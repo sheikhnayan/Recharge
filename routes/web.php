@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RechargeController;
 use App\Http\Controllers\SimController;
 use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\OfferController;
 use App\Models\SimOperator;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,21 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
 });
 Route::get('/add-reseller', function () {
     return view('front.add-reseller');
+});
+
+Route::get('/reseller/edit/{id}',[UserController::class,'edit']);
+
+Route::get('/reseller/delete/{id}',[UserController::class,'destroy']);
+
+Route::post('/reseller/update/{id}',[UserController::class,'update']);
+
+Route::get('/resellers', function () {
+    if(Auth::user()->role == 'admin')
+    $show = User::where('role','user')->get();
+    else{
+        $show = User::where('role','user')->where('created_by',Auth::user()->id)->get();
+    }
+    return view('front.reseller',compact('show'));
 });
 
 Route::get('/recharge', function () {

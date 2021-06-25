@@ -64,18 +64,18 @@
           <span>
             <span class="color m-2">Partner : </span><span> Point Recharge</span>
           </span><br>
-          <span>
+          {{-- <span>
             <span class="color m-2">Saldo Ricariche : </span><span class="text-muted"> {{Auth::user()->wallet}}</span>
           </span><br>
           <span>
             <span class="color m-2">Debito Corriere : </span><span class="text-muted"> 1230</span>
-          </span><br>
-          <span>
+          </span><br> --}}
+          {{-- <span>
             <span class="color m-2">Debito Sim : </span><span class="text-muted"> 5000</span>
-          </span><br>
-          <span>
+          </span><br> --}}
+          {{-- <span>
             <span class="color m-2">Debito SmartPhone : </span><span class="text-muted">300</span>
-          </span>
+          </span> --}}
         </li>
 
         <ul class="list-unstyled components mb-5">
@@ -83,37 +83,40 @@
             <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
           <li>
-              <a href="#"><span class="fa fa-bell mr-3 notif"><small class="d-flex align-items-center justify-content-center">5</small></span> Notification</a>
+            <a href="/sim"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Activation</a>
           </li>
-          <li>
-            <a href="#"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Activation</a>
-          </li>
-          <li>
+          {{-- <li>
             <a href="#"><span class="fa fa-photo mr-3"></span> Post</a>
-          </li>
+          </li> --}}
+          @if (Auth::user()->role === 'admin')
+            <li>
+              <a href="/recharge"><img src="{{asset('front/Recharge-Logo.png')}}" width="07%" class="mr-3"> Recharges</a>
+            </li>
+          @endif
           <li>
-            <a href="/recharge"><img src="{{asset('front/Recharge-Logo.png')}}" width="07%" class="mr-3"> Recharges</a>
-          </li>
-          <li>
-            <a href="#"><img src="{{asset('front/Order-Logo.png')}}" width="07%" class="mr-3"> Orders</a>
+            <a href="/sim-orders"><img src="{{asset('front/Order-Logo.png')}}" width="07%" class="mr-3"> Orders</a>
           </li>
           <li>
             <a class="dropbtn" onclick="myFunction()"><span class="fa fa-tasks mr-3"></span> Management <i class="fa fa-caret-down"></i>
                   <div class="dropdown-content" id="myDropdown">
                     <a href="/add-reseller">Add Re-Seller</a>
-                    <a href="#">Re-Seller List</a>
+                    @if (Auth::user()->role === 'admin')
+                      <a href="/resellers">Re-Seller List</a>
+                    @endif
                   </div>
             </a>
           </li>
-          <li>
-            <a href="#"><span class="fa fa-truck mr-3"></span> Cargo</a>
-          </li>
-          <li>
+          @if (Auth::user()->role === 'admin')
+            <li>
+              <a href="#"><span class="fa fa-truck mr-3"></span> Cargo</a>
+            </li>
+          @endif
+          {{-- <li>
             <a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
-          </li>
-          <li>
+          </li> --}}
+          {{-- <li>
             <a href="#"><span class="fa fa-support mr-3"></span> Support</a>
-          </li>
+          </li> --}}
           <li>
             <a href="/logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
           </li>
