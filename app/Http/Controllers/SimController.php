@@ -164,10 +164,16 @@ class SimController extends Controller
 
 
     public function orders(){
+        if(Auth::user()->role == 'admin'){
         $data = SimOrder::join('sims','sims.id','=','sim_orders.sim_id')
         ->select('sim_orders.*','sims.status')
         ->latest()->get();
-
+        }else{
+        $data = SimOrder::where('reseller_id',Auth::user()->id)
+        ->join('sims','sims.id','=','sim_orders.sim_id')
+        ->select('sim_orders.*','sims.status')
+        ->latest()->get();
+        }
         return view('front.sim-order',compact('data'));
     }
 

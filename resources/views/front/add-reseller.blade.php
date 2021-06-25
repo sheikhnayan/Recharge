@@ -23,7 +23,7 @@
               <input type="password" name="password">
 
               {{-- <div id="yourBtn" onclick="getFile()">click to upload a file</div> --}}
-              <div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)" /></div>
+              {{-- <div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)" /></div> --}}
               
               <input type="submit" value="Add Re-Seller"><br>
           </form>
