@@ -53,7 +53,7 @@
           <button type="button" id="sidebarCollapse" class="btn btn-primary">
           </button>
         </div>
-        <div class="img bg-wrap text-center py-2" style=""><a href="index.php"><img src="{{asset('front/logo.png')}}" width="50%"></a>
+        <div class="img bg-wrap text-center py-2" style=""><a href="index.php"><img src="{{asset('front/Logo.png')}}" width="50%"></a>
           <div class="user-logo"></div>
         </div>
 

@@ -53,7 +53,7 @@
                   </div>
                   <div class="form-group">
                     <label for="file">Upload di file 2</label>
-                    <input class="form-control" type="file" name="file2">
+                    <input class="form-control" =" name="file2">
                   </div>
                 <label style="font-size:17px; font-weight:bold;"><input type="checkbox" id="changeShip"> Portabilità</label>
               </div>
