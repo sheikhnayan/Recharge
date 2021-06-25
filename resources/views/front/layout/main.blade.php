@@ -92,10 +92,10 @@
             <a href="#"><span class="fa fa-photo mr-3"></span> Post</a>
           </li>
           <li>
-            <a href="/recharge"><img src="{{asset('front/Recharge-logo.png')}}" width="07%" class="mr-3"> Recharges</a>
+            <a href="/recharge"><img src="{{asset('front/Recharge-Logo.png')}}" width="07%" class="mr-3"> Recharges</a>
           </li>
           <li>
-            <a href="#"><img src="{{asset('front/Order-logo.png')}}" width="07%" class="mr-3"> Orders</a>
+            <a href="#"><img src="{{asset('front/Order-Logo.png')}}" width="07%" class="mr-3"> Orders</a>
           </li>
           <li>
             <a class="dropbtn" onclick="myFunction()"><span class="fa fa-tasks mr-3"></span> Management <i class="fa fa-caret-down"></i>
