@@ -85,12 +85,14 @@
           <li>
             <a href="/sim"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Activation</a>
           </li>
+          @if (Auth::user()->role === 'admin')
           <li>
             <a href="/operator"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Operators</a>
           </li>
           <li>
             <a href="/offer"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Offers</a>
           </li>
+          @endif
           {{-- <li>
             <a href="#"><span class="fa fa-photo mr-3"></span> Post</a>
           </li> --}}
