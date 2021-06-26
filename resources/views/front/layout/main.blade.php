@@ -80,10 +80,16 @@
 
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+            <a href="/"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
           <li>
             <a href="/sim"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Activation</a>
+          </li>
+          <li>
+            <a href="/operator"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Operators</a>
+          </li>
+          <li>
+            <a href="/offer"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Offers</a>
           </li>
           {{-- <li>
             <a href="#"><span class="fa fa-photo mr-3"></span> Post</a>
