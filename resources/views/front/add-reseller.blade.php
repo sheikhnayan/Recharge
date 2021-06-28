@@ -14,6 +14,9 @@
 
               <label for="email">E-Mail</label><br>
               <input type="text" placeholder="Your Email..." name="email"><br>
+
+              <label for="email">Company</label><br>
+              <input type="text" placeholder="Your Company..." name="company"><br>
               
               <label for="gender">Gender</label><br>
               <input type="radio" name="gender" value="male">Male<br>

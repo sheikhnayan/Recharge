@@ -74,6 +74,7 @@ class UserController extends Controller
         $data = User::where('id',$id)->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'nationality' => $request->company,
             'email' => $request->email
         ]);
 

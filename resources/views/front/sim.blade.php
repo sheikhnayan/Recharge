@@ -31,6 +31,7 @@ thead {
                 <th>Operator</th>
                 <th>ICCID Number</th>
                 <th>SIM Number</th>
+                <th>Re-Seller</th>
                 <th>Buy Date</th>
                 <th>Buy Price</th>
                 <th>Action</th>
@@ -43,6 +44,7 @@ thead {
                         <td>{{$item->operator}}</td>
                         <td>{{$item->iccid}}</td>
                         <td>{{$item->sim_number}}</td>
+                        <td>{{$item->nationality}}</td>
                         <td>{{ Carbon\Carbon::parse($item->buy_date)->format('d-m-Y') }}</td>
                         <td>{{$item->buy_price}}</td>
                         <td> <a class="btn btn-success" href="/buy-sim/{{$item->id}}">Buy</a> </td>

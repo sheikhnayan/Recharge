@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('front/js/jquery.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
     <style type="text/css">
       .dropdown {
   float: left;
@@ -138,7 +142,6 @@
 
 
       
-    <script src="{{asset('front/js/jquery.min.js')}}"></script>
     <script src="{{asset('front/js/popper.js')}}"></script>
     <script src="{{asset('front/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('front/js/main.js')}}"></script>

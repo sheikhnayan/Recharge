@@ -1,13 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\RechargeController;
 use App\Http\Controllers\SimController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OfferController;
 use App\Models\SimOperator;
+use App\Models\sim;
 use App\Models\User;
+use App\Models\Offer;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +55,13 @@ Route::get('/recharge', function () {
 
 Route::get('/add-sim', function () {
     $operator = SimOperator::all();
-    return view('front.add-sim',compact('operator'));
+    $user = User::where('role','user')->get();
+    return view('front.add-sim',compact('operator','user'));
+});
+
+Route::post('offer-check', function(Request $request){
+    $offer_detail = Offer::where('offer',$request->id)->first();
+    return response()->json($offer_detail, 200);
 });
 
 Route::get('/operator', [OperatorController::class,'index']);

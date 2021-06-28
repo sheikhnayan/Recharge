@@ -143,7 +143,7 @@
                         <h4 class="text-uppercase">
                             @if($invoice->logo)
             <img src="{{ $invoice->getLogo() }}" alt="logo" height="50">
-        @endif<strong>{{ $invoice->operator }}</strong>
+        @endif
                         </h4>
                     </td>
                     <td class="border-0 pl-0">
@@ -154,7 +154,7 @@
             </tbody>
         </table>
         @if($invoice->notes)
-        <p style="font-weight: bold;font-size:13px;">
+        <p style="font-weight: bold;font-size:11px;">
             {{-- {{ trans('invoices::invoice.notes') }}:  --}}
             {!! $invoice->notes !!}
         </p>
@@ -315,7 +315,7 @@
                     <td> <span style="font-weight: bold"> ICCID Number </span> : {{$item->iccid}}</td>
                 </tr>
                 <tr>
-                    <td> <span style="font-weight: bold"> DATA RICHIESTA </span> : </td>
+                    <td> <span style="font-weight: bold"> Nazionalità</span> : {{$item->price}}</td>
                     <td> <span style="font-weight: bold"> FIRMA DEL CLENTE </span> :</td>
                 </tr>
                 @endforeach
@@ -381,12 +381,12 @@
             </p>
         @endif --}}
 
-        <p>
-            <span style="font-weight:bold">{{ trans('invoices::invoice.amount_in_words') }} </span>: {{$invoice->price}}
+        <p style="font-size:15px;">
+            <span style="font-weight:bold">Total</span>: {{$invoice->price}}
         </p>
-        <p>
+        {{-- <p>
             {{ trans('invoices::invoice.pay_until') }}: {{ $invoice->getPayUntilDate() }}
-        </p>
+        </p> --}}
 
         <script type="text/php">
             if (isset($pdf) && $PAGE_COUNT > 1) {

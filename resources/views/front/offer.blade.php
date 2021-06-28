@@ -36,6 +36,42 @@ thead {
                             @endforeach
                         </select>  
                 </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Costo al mese:</label>
+                    <input class="form-control" type="text" value="" name="costo" placeholder="Enter Costo....">
+                </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Ricarica totale:</label>
+                    <input class="form-control" type="text" value="" name="ricarica" placeholder="Enter Ricarica....">
+                </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Offerta valida per:</label>
+                    <input class="form-control" type="text" value="" name="valida" placeholder="Enter Offerta....">
+                </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Pacchetto Internet gratuito (GB):</label>
+                    <input class="form-control" type="text" value="" name="internet" placeholder="Enter Internet....">
+                </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Minuti gratuiti per operatore locale:</label>
+                    <input class="form-control" type="text" value="" name="minuti" placeholder="Enter Minuti....">
+                </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Minuti gratuiti per internazionale:</label>
+                    <input class="form-control" type="text" value="" name="minuti_internazionale" placeholder="Enter Minuti internazionale....">
+                </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Minuti illimitati a:</label>
+                    <input class="form-control" type="text" value="" name="minuti_illimitati" placeholder="Enter Minuti illimitati....">
+                </div>
+                <div class="col-md-5">
+                    <label style="font-weight: bold; color:black">Minuti internazionali validi per:</label>
+                    <textarea style="border: 1px solid gray" class="form-control" type="text" value="" name="minuti_internazionali_validi" placeholder="Enter Minuti internazionali validi...."> </textarea>
+                </div>
+                <div class="col-md-10">
+                    <label style="font-weight: bold; color:black">Altre informazioni:</label>
+                    <textarea style="border: 1px solid gray" class="form-control" type="text" value="" name="altre_informazioni" placeholder="Enter Altre...."></textarea>
+                </div>
                 <div class="col-md-12">
                     <input style="margin-top: 40px" class="btn btn-success" type="submit" value="Add">
                 </div>
@@ -50,6 +86,15 @@ thead {
                 <th>#</th>
                 <th>Offer</th>
                 <th>Operator</th>
+                <th>Costo al mese</th>
+                <th>Ricarica totale</th>
+                <th>Offerta valida per</th>
+                <th>Pacchetto Internet gratuito (GB)</th>
+                <th>Minuti gratuiti per operatore locale</th>
+                <th>Minuti gratuiti per internazionale</th>
+                <th>Minuti illimitati a</th>
+                <th>Minuti internazionali validi per</th>
+                <th>Altre informazioni</th>
                 <th>Action</th>
                 </tr>
                 </thead>
@@ -59,6 +104,15 @@ thead {
                         <td>{{ $loop->iteration }}</td>
                         <td>{{$item->offer}}</td>
                         <td>{{$item->operator}}</td>
+                        <td>{{$item->costo}}</td>
+                        <td>{{$item->ricarica}}</td>
+                        <td>{{$item->valida}}</td>
+                        <td>{{$item->internet}}</td>
+                        <td>{{$item->minuti}}</td>
+                        <td>{{$item->minuti_internazionale}}</td>
+                        <td>{{$item->minuti_illimitati}}</td>
+                        <td>{{$item->minuti_internazionali_validi}}</td>
+                        <td>{{$item->altre_informazioni}}</td>
                         <td> <a class="btn btn-danger" href="/delete-offer/{{$item->id}}">Delete</a> </td>
                       </tr>
                   @endforeach

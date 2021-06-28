@@ -14,6 +14,9 @@
 
               <label for="email">E-Mail</label><br>
               <input type="text" placeholder="Your Email..." value="{{$data->email}}" name="email"><br>
+
+              <label for="email">Company</label><br>
+              <input type="text" placeholder="Your Company..." value="{{$data->nationality}}" name="company"><br>
               
               {{-- <label for="password">Password</label><br>
               <input type="password" name="password"> --}}

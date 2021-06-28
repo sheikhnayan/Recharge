@@ -41,7 +41,16 @@ class OfferController extends Controller
     {
         $data = Offer::create([
             'operator' => $request->operator,
-            'offer' => $request->offer
+            'offer' => $request->offer,
+            'costo' => $request->costo,
+            'ricarica' => $request->ricarica,
+            'valida' => $request->valida,
+            'internet' => $request->internet,
+            'minuti' => $request->minuti,
+            'minuti_internazionale' =>$request->minuti_internazionale,
+            'minuti_illimitati' => $request->minuti_illimitati,
+            'minuti_internazionali_validi' => $request->minuti_internazionali_validi,
+            'altre_informazioni' => $request->altre_informazioni
         ]);
 
         return redirect('/offer');

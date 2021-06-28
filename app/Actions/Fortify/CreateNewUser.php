@@ -35,6 +35,7 @@ class CreateNewUser implements CreatesNewUsers
             'last_name' => $input['last_name'],
             'gender' => $input['gender'],
             'role' => 'user',
+            'nationality' => $input['company'],
             'wallet' => 0,
             'email' => $input['email'],
             'created_by' => Auth::user()->id,

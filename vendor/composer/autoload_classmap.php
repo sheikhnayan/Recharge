@@ -19,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\OperatorController' => $baseDir . '/app/Http/Controllers/OperatorController.php',
     'App\\Http\\Controllers\\RechargeController' => $baseDir . '/app/Http/Controllers/RechargeController.php',
     'App\\Http\\Controllers\\SimController' => $baseDir . '/app/Http/Controllers/SimController.php',
+    'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

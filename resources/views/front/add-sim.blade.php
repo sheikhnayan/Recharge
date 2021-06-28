@@ -22,6 +22,13 @@
 
               <label for="password">Prezzo di acquisto</label><br>
               <input type="text" name="buy_price" id="buy_price" placeholder="Accedere Prezzo di acquisto....">
+
+              <label for="company">Re-seller</label><br>
+              <select name="re_seller">
+                @foreach ($user as $item)
+                    <option value="{{$item->id}}">{{$item->nationality}}</option>
+                @endforeach
+              </select>
               
               <label for="status">Status</label><br>
               <select name="status" id="status">

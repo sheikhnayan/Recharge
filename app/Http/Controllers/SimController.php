@@ -24,8 +24,18 @@ class SimController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $show = sim::where('status', 'available')->latest()->get();
+    {  if(Auth::user()->role == 'user'){
+        $show = sim::where('status', 'available')
+        ->where('reseller_id',Auth::user()->id)
+        ->join('users','users.id','=','sims.reseller_id')
+        ->select('users.nationality','sims.*')
+        ->latest()
+        ->get();
+        }else{
+            $show = sim::where('status', 'available')
+            ->latest()
+            ->get();  
+        }
 
         return view('front.sim',compact('show'));
     }
@@ -51,9 +61,9 @@ class SimController extends Controller
         $operator = SimOperator::where('operator', $data->operator)->first();
 
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $price = $digit->format($sim->buy_price);
+        $price = '€ '.$sim->buy_price;
 
-        $item = (new InvoiceItem())->title('Invoice')->pricePerUnit(2)->first($data->first_name)->last($data->last_name)->dob($data->dob)->gender($data->gender)->codice($data->codice)->iccid($data->iccid)->price($price);
+        $item = (new InvoiceItem())->title('Invoice')->pricePerUnit(2)->first($data->first_name)->last($data->last_name)->dob($data->dob)->gender($data->gender)->codice($data->codice)->iccid($data->iccid)->price($data->nationality);
 
         $invoice = Invoice::make()
             ->logo('storage/'.$operator->img)
@@ -86,6 +96,7 @@ class SimController extends Controller
             'sim_number' => $request->sim_number,
             'buy_date' => Carbon\Carbon::now(),
             'buy_price' => $request->buy_price,
+            'reseller_id' => $request->re_seller,
             'status' => $request->status
         ]);
 
@@ -105,7 +116,6 @@ class SimController extends Controller
 
         $offer = Offer::where('operator', $data->operator)->get();
         $operator = SimOperator::all();
-
         return view('front.buy-sim',compact('data','offer','operator'));
     }
 
@@ -142,6 +152,7 @@ class SimController extends Controller
             'price' =>$sim->buy_price,
             'dob' => $request->dob,
             'codice' => $request->codice,
+            'nationality' => $request->nationality,
             'file' => $path,
             'file_2' => $path2,
             'alt_operator' => $request->alt_operator,

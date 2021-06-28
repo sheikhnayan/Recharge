@@ -702,6 +702,7 @@ class ComposerStaticInit8d411599166722813be44a90ce29357d
         'App\\Http\\Controllers\\OperatorController' => __DIR__ . '/../..' . '/app/Http/Controllers/OperatorController.php',
         'App\\Http\\Controllers\\RechargeController' => __DIR__ . '/../..' . '/app/Http/Controllers/RechargeController.php',
         'App\\Http\\Controllers\\SimController' => __DIR__ . '/../..' . '/app/Http/Controllers/SimController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

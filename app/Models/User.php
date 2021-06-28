@@ -31,6 +31,7 @@ class User extends Authenticatable
         'wallet',
         'role',
         'gender',
+        'nationality',
         'created_by'
     ];
 

@@ -11,6 +11,15 @@ class Offer extends Model
 
     protected $fillable = [
         'operator',
-        'offer'
+        'offer',
+        'costo',
+        'ricarica',
+        'valida',
+        'internet',
+        'minuti',
+        'minuti_internazionale',
+        'minuti_illimitati',
+        'minuti_internazionali_validi',
+        'altre_informazioni'
     ];
 }
