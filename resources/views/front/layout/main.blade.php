@@ -86,17 +86,6 @@
           <li class="active">
             <a href="/"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
-          <li>
-            <a href="/sim"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Activation</a>
-          </li>
-          @if (Auth::user()->role === 'admin')
-          <li>
-            <a href="/operator"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Operators</a>
-          </li>
-          <li>
-            <a href="/offer"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Offers</a>
-          </li>
-          @endif
           {{-- <li>
             <a href="#"><span class="fa fa-photo mr-3"></span> Post</a>
           </li> --}}
@@ -106,7 +95,16 @@
             </li>
           @endif
           <li>
-            <a href="/sim-orders"><img src="{{asset('front/Order-Logo.png')}}" width="07%" class="mr-3"> Orders</a>
+            <a class="dropbtn" onclick="myFunction2()"><span class="fa fa-tasks mr-3"></span> Sim Management <i class="fa fa-caret-down"></i>
+                  <div class="dropdown-content" id="myDropdown2">
+                   <a href="/sim"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Activation</a>
+                    @if (Auth::user()->role === 'admin')
+                      <a href="/operator"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Operators</a>
+                      <a href="/offer"><img src="{{asset('front/SIM-logo.png')}}" width="09%" class="mr-3"> SIM Offers</a>
+                    @endif
+                    <a href="/sim-orders"><img src="{{asset('front/Order-Logo.png')}}" width="07%" class="mr-3">SIM Orders</a>
+                  </div>
+            </a>
           </li>
           <li>
             <a class="dropbtn" onclick="myFunction()"><span class="fa fa-tasks mr-3"></span> Management <i class="fa fa-caret-down"></i>
@@ -152,6 +150,17 @@
       document.getElementById("myDropdown").classList.toggle("show");
     }
 
+    function myFunction2() {
+      document.getElementById("myDropdown2").classList.toggle("show");
+    }
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropbtn')) {
+      var myDropdown = document.getElementById("myDropdown2");
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+        }
+      }
+    }
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(e) {
       if (!e.target.matches('.dropbtn')) {
