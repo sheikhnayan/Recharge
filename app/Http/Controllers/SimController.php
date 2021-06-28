@@ -143,7 +143,11 @@ class SimController extends Controller
     { 
        $sim = sim::where('id', $request->sim_id)->first();
         $path = $request->file->store('sim/uploads', 'public');
-        $path2 = $request->file2->store('sim/uploads', 'public');
+        if(file2 != null){
+            $path2 = $request->file2->store('sim/uploads', 'public');
+        }else{
+            $path2 = null;
+        }
         $order = SimOrder::create([
             'first_name' => $request->fname,
             'last_name' => $request->lname,
