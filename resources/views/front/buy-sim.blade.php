@@ -159,7 +159,7 @@ checkbox.on('click', function() {
     var table = $('#offer');
     $.ajax({
      type: "POST",
-     url: "http://127.0.0.1:8000/offer-check/", // url to request
+     url: "http://jmlogistic.com/offer-check/", // url to request
      data:{ 
                 _token:'{{ csrf_token() }}',
                 id: value,
