@@ -7,6 +7,8 @@ use App\Http\Controllers\SimController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\OrderController;
 use App\Models\SimOperator;
 use App\Models\sim;
 use App\Models\User;
@@ -92,6 +94,29 @@ Route::get('/sim-download/{id}', [SimController::class,'download']);
 Route::get('/sim-invoice/{id}', [SimController::class,'invoice']);
 
 Route::post('/sim-order/update', [SimController::class,'sim_order_update']);
+
+//  CARGO NEW ORDER
+Route::get('/cargo/new-order', [CargoController::class,'NewOrderView']);
+    
+    //  CREATE NEW ORDER
+    Route::get('/create-new-order', [CargoController::class,'CreateNewOrder'])->name('create-new-order');
+
+    //  SEARCH ORDERS
+    Route::get('/cargo/search', [CargoController::class,'NewOrder'])->name('search');
+
+    //  ADD NEW ORDER
+    Route::POST('/cargo/add-new-order', [OrderController::class,'AddOrder'])->name('add-new-order');
+
+
+//  CARGO ORDER LIST
+Route::get('/cargo/order-list', [CargoController::class,'OrderList']);
+
+//  CARGO ORDER TRACKING
+Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking']);
+
+//  CARGO ORDER INVOICE
+Route::get('/cargo/order-invoice', [CargoController::class,'OrderInvoice']);
+
 
 Route::get('/logout', function(){
     If(Auth::check()){

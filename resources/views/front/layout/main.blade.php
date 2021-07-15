@@ -10,6 +10,47 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('front/js/jquery.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
+    <link rel="shortcut icon" href="http://sundarbancargo.eu/favicon.ico" type="image/x-icon">
+      <link rel="icon" href="http://sundarbancargo.eu/favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/css/app.css">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/css/admin.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
+      <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.min.css">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/css/plugins.css">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/opt/css/custom.css">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/opt/intro/introjs.css">
+      <script src="http://sundarbancargo.eu/opt/sweetalert.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="http://sundarbancargo.eu/opt/sweetalert.css">
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="http://sundarbancargo.eu/opt/emoji/emojionearea.min.css">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/css/style.css">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/css/custome.css">
+      <link rel="stylesheet" href="http://sundarbancargo.eu/css/multiselect.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+         li>a {
+         font-size: 18px;
+         font-weight: 600;
+         }
+      </style>
+      <style>
+         td {
+         padding: 10px;
+         }
+         table, th, td {
+         border: 2px solid black;
+         text-align: center;
+         }
+      </style>
     <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -117,9 +158,16 @@
             </a>
           </li>
           @if (Auth::user()->role === 'admin')
-            <li>
-              <a href="#"><span class="fa fa-truck mr-3"></span> Cargo</a>
-            </li>
+          <li>
+            <a class="dropbtn" onclick="myFunction3()"><span class="fa fa-tasks mr-3"></span> Cargo <i class="fa fa-caret-down"></i>
+                <div class="dropdown-content" id="myDropdown3">
+                  <a href="/cargo/new-order">New Order</a>
+                  <a href="/cargo/order-list">Order List</a>
+                  <a href="/cargo/order-tracking">Order Tracking</a>
+                  <a href="/cargo/order-invoice">Order Invoice</a>
+                </div>
+            </a>
+          </li>
           @endif
           {{-- <li>
             <a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
@@ -170,6 +218,116 @@
         }
       }
     }
+    function myFunction3() {
+      document.getElementById("myDropdown3").classList.toggle("show");
+    }
+
+         $(document).ready(function() {
+         
+             var table = $('#mytable').DataTable({
+                 responsive: false,
+                 dom: '<fB>t<i>',
+                 "order": [
+                     [0, "desc"]
+                 ],
+                 "iDisplayLength": 100,
+                 "scrollX": true,
+                 //"paging": false,
+                 //"scrollY": 500,
+                 buttons: [{
+                         extend: 'excel',
+                         text: '<button class="btn btn-success btn-xs fak"><i class="fa fa-file-excel-o"></i> Export Excel</button>'
+                     },
+                     {
+                         extend: 'pdf',
+                         text: '<button class="btn btn-danger btn-xs fak"><i class="fa fa-file-pdf-o"></i> Export PDF</button>'
+                     },
+                     {
+                         extend: 'print',
+                         text: '<button class="btn btn-default btn-xs fak"><i class="fa fa-print"></i> Print </button>'
+                     },
+                 ]
+             });
+         
+         
+             var table = $('#reportTable').DataTable({
+                 responsive: false,
+                 dom: '<fB>t<>',
+                 "order": [
+                     [0, "asc"]
+                 ],
+                 "iDisplayLength": 100,
+                 "scrollX": true,
+                 buttons: [{
+                         extend: 'excel',
+                         text: '<button class="btn btn-success btn-xs fak"><i class="fa fa-file-excel-o"></i> Export Excel</button>',
+                         messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+                     },
+                     {
+                         extend: 'pdf',
+                         text: '<button class="btn btn-danger btn-xs fak"><i class="fa fa-file-pdf-o"></i> Export PDF</button>',
+                         messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+                     },
+                     {
+                         extend: 'print',
+                         text: '<button class="btn btn-default btn-xs fak"><i class="fa fa-print"></i> Print </button>'
+                     },
+                 ]
+             });
+         });         $(document).ready(function() {
+         
+             var table = $('#mytable').DataTable({
+                 responsive: false,
+                 dom: '<fB>t<i>',
+                 "order": [
+                     [0, "desc"]
+                 ],
+                 "iDisplayLength": 100,
+                 "scrollX": true,
+                 //"paging": false,
+                 //"scrollY": 500,
+                 buttons: [{
+                         extend: 'excel',
+                         text: '<button class="btn btn-success btn-xs fak"><i class="fa fa-file-excel-o"></i> Export Excel</button>'
+                     },
+                     {
+                         extend: 'pdf',
+                         text: '<button class="btn btn-danger btn-xs fak"><i class="fa fa-file-pdf-o"></i> Export PDF</button>'
+                     },
+                     {
+                         extend: 'print',
+                         text: '<button class="btn btn-default btn-xs fak"><i class="fa fa-print"></i> Print </button>'
+                     },
+                 ]
+             });
+         
+         
+             var table = $('#reportTable').DataTable({
+                 responsive: false,
+                 dom: '<fB>t<>',
+                 "order": [
+                     [0, "asc"]
+                 ],
+                 "iDisplayLength": 100,
+                 "scrollX": true,
+                 buttons: [{
+                         extend: 'excel',
+                         text: '<button class="btn btn-success btn-xs fak"><i class="fa fa-file-excel-o"></i> Export Excel</button>',
+                         messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+                     },
+                     {
+                         extend: 'pdf',
+                         text: '<button class="btn btn-danger btn-xs fak"><i class="fa fa-file-pdf-o"></i> Export PDF</button>',
+                         messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+                     },
+                     {
+                         extend: 'print',
+                         text: '<button class="btn btn-default btn-xs fak"><i class="fa fa-print"></i> Print </button>'
+                     },
+                 ]
+             });
+         });
+
     </script>
   </body>
 </html>
