@@ -29,7 +29,6 @@ class OrderController extends Controller
         $orders->document_number = $request->input('document_number');
         $orders->phone = $request->input('phone');
         $orders->email = $request->input('email');
-        $orders->dob = $request->input('dob');
         $orders->address = $request->input('address');
         $orders->cap = $request->input('cap');
         $orders->country = $request->input('country');

@@ -751,40 +751,40 @@
                <h3 class="box-title"><i class="fa fa-user"></i> <b> Receiver Information </b></h3><br>
             </div>            
             <div class="form-group">
-               <label for="first_name">First Name * </label>
-               <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name">
+               <label for="rfirst_name">First Name * </label>
+               <input type="text" class="form-control" name="rfirst_name" id="rfirst_name" placeholder="First Name">
             </div>
             <div class="form-group">
-               <label for="surname">Surname</label>
-               <input type="text" class="form-control" name="surname" id="surname" placeholder="Surnames">
+               <label for="rsurname">Surname</label>
+               <input type="text" class="form-control" name="rsurname" id="rsurname" placeholder="Surnames">
             </div>
             <div class="form-group">
                <label for="dob">Date of Birth</label>
                <input type="date" class="form-control" name="dob" id="dob">
             </div>
             <div class="form-group">
-               <label for="document_number">Document Number * </label>
-               <input type="number" class="form-control" name="document_number" id="document_number" placeholder="Document Number">
+               <label for="rdocument_number">Document Number * </label>
+               <input type="number" class="form-control" name="rdocument_number" id="rdocument_number" placeholder="Document Number">
             </div>
             <div class="form-group">
-               <label for="phone">Phone *</label>
-               <input type="number" class="form-control" name="phone" id="phone" placeholder="Surnames">
+               <label for="rphone">Phone *</label>
+               <input type="number" class="form-control" name="rphone" id="rphone" placeholder="Surnames">
             </div>
             <div class="form-group">
-               <label for="email">Email</label>
-               <input type="Email" class="form-control" name="email" id="email" placeholder="Email">
+               <label for="remail">Email</label>
+               <input type="Email" class="form-control" name="remail" id="remail" placeholder="Email">
             </div>
             <div class="form-group">
-               <label for="address">Address</label>
-               <input type="text" class="form-control" name="address" id="address" placeholder="Address">
+               <label for="raddress">Address</label>
+               <input type="text" class="form-control" name="raddress" id="raddress" placeholder="Address">
             </div>
             <div class="form-group">
-               <label for="cap">CAP / Post Code</label>
-               <input type="text" class="form-control" name="cap" id="cap" placeholder="">
+               <label for="rcap">CAP / Post Code</label>
+               <input type="text" class="form-control" name="rcap" id="rcap" placeholder="">
             </div>
             <div class="form-group">
-               <label for="country">Country *</label>
-               <select id="country" name="country" class="form-control" style="width: 100%;">
+               <label for="rcountry">Country *</label>
+               <select id="rcountry" name="rcountry" class="form-control" style="width: 100%;">
                   <option value="0">---Select---</option>
                   <option value="2" >
                      AFGHANISTAN
@@ -1473,16 +1473,16 @@
                </select>
             </div>
             <div class="form-group">
-               <label for="state">State/division</label>
-               <input type="text" class="form-control" name="state" id="state">
+               <label for="rstate">State/division</label>
+               <input type="text" class="form-control" name="rstate" id="rstate">
             </div>
             <div class="form-group">
-               <label for="dist">District/Province</label>
-               <input type="text" class="form-control" name="dist" id="dist">
+               <label for="rdist">District/Province</label>
+               <input type="text" class="form-control" name="rdist" id="rdist">
             </div>
             <div class="form-group">
-               <label for="city">City /Thana</label>
-               <input type="text" class="form-control" name="city" id="city">
+               <label for="rcity">City /Thana</label>
+               <input type="text" class="form-control" name="rcity" id="rcity">
             </div>
          </div>
 
