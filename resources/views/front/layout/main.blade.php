@@ -4,11 +4,12 @@
     <title>Point BD</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="{{asset('front/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('front/style.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="{{asset('front/js/jquery.min.js')}}"></script>
+    
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     <link rel="shortcut icon" href="http://sundarbancargo.eu/favicon.ico" type="image/x-icon">
       <link rel="icon" href="http://sundarbancargo.eu/favicon.ico" type="image/x-icon">
@@ -36,6 +37,21 @@
       <link rel="stylesheet" href="http://sundarbancargo.eu/css/custome.css">
       <link rel="stylesheet" href="http://sundarbancargo.eu/css/multiselect.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+      <style type="text/css">
+      table.dataTable thead .sorting:after,
+      table.dataTable thead .sorting:before,
+      table.dataTable thead .sorting_asc:after,
+      table.dataTable thead .sorting_asc:before,
+      table.dataTable thead .sorting_asc_disabled:after,
+      table.dataTable thead .sorting_asc_disabled:before,
+      table.dataTable thead .sorting_desc:after,
+      table.dataTable thead .sorting_desc:before,
+      table.dataTable thead .sorting_desc_disabled:after,
+      table.dataTable thead .sorting_desc_disabled:before {
+      bottom: .5em;
+      }
+      </style>
       <style>
          li>a {
          font-size: 18px;
@@ -51,10 +67,6 @@
          text-align: center;
          }
       </style>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
     <style type="text/css">
       .dropdown {
   float: left;
@@ -191,7 +203,8 @@
     <script src="{{asset('front/js/popper.js')}}"></script>
     <script src="{{asset('front/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('front/js/main.js')}}"></script>
-        <script>
+@yield('js')
+<script>
     /* When the user clicks on the button, 
     toggle between hiding and showing the dropdown content */
     function myFunction() {

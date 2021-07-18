@@ -16,24 +16,36 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
+            $table->string('rfirst_name');
             $table->string('surname');
+            $table->string('rsurname');
             $table->date('dob');
+            $table->date('rdob');
             $table->string('document_number');
+            $table->string('rdocument_number');
             $table->string('phone');
+            $table->string('rphone');
             $table->string('email');
+            $table->string('remail');
             $table->longText('address');
+            $table->longText('raddress');
             $table->string('cap');
+            $table->string('rcap');
             $table->string('country');
+            $table->string('rcountry');
             $table->string('state');
+            $table->string('rstate');
             $table->string('dist');
+            $table->string('rdist');
             $table->string('city');
+            $table->string('rcity');
             $table->date('expected_date_to_receive');
             $table->string('delivery_condition');
-            $table->int('numberOfBox');
+            $table->integer('numberOfBox');
             $table->decimal('goods_value');
-            $table->int('productType');
-            $table->int('weight');
-            $table->int('perKg');
+            $table->integer('productType');
+            $table->integer('weight');
+            $table->integer('perKg');
             $table->decimal('cusCharge');
             $table->decimal('homeDeliveryCharge');
             $table->decimal('addiCharge');
@@ -52,6 +64,7 @@ class CreateOrdersTable extends Migration
             $table->string('quantity3');
             $table->string('quantity4');
             $table->string('quantity5');
+            $table->string('status');
             $table->timestamps();
         });
     }

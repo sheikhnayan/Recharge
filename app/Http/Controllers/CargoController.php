@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Order;
+
 
 class CargoController extends Controller
 {
@@ -19,8 +21,8 @@ class CargoController extends Controller
 
     public function OrderList($value='')
     {
-        echo "OrderList";
-        return view('front.order-list');
+        $orders = Order::all();
+        return view('front.order-list', compact('orders'));
     }
 
     public function OrderTracking($value='')

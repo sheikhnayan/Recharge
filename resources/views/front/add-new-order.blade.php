@@ -3,6 +3,20 @@
 @section('content')
    <div style="width: 60%;margin-left: 50px;"><br><br><br>
       <form action="{{route('add-new-order')}}" method="POST">
+         @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
          @csrf
          <div class="box box-info">
             <div class="box-header with-border">
@@ -759,8 +773,8 @@
                <input type="text" class="form-control" name="rsurname" id="rsurname" placeholder="Surnames">
             </div>
             <div class="form-group">
-               <label for="dob">Date of Birth</label>
-               <input type="date" class="form-control" name="dob" id="dob">
+               <label for="rdob">Date of Birth</label>
+               <input type="date" class="form-control" name="rdob" id="dob">
             </div>
             <div class="form-group">
                <label for="rdocument_number">Document Number * </label>
@@ -1494,7 +1508,7 @@
             </div>           
             <div class="form-group">
                <label for="expected_date_to_receive">Expected Delivery Date</label>
-               <input type="text" class="form-control" name="expected_date_to_receive" id="expected_date_to_receive">
+               <input type="date" class="form-control" name="expected_date_to_receive" id="expected_date_to_receive">
             </div>
             <div class="form-group">
                <label for="delivery_condition">Delivery Type * </label>
@@ -1512,11 +1526,11 @@
             </div>
             <div class="form-group">
                <label for="goods_value">Goods Value (EURO) *</label>
-               <input type="number" step="any" class="form-control" id="goods_value" name="goods_value" value="0" onchange="calculateCommission(this)">
+               <input type="number" step="any" class="form-control" id="goods_value" name="goods_value" value="0" oninput="myFunction12(this)">
             </div>
             <div class="form-group">
                <label for="productType">Product Type *</label>
-               <select class="form-control" name="productType" id="productType" class="form-control" onchange="calculateCommission(this)">
+               <select class="form-control" name="productType" id="productType" class="form-control" oninput="myFunction1234(this)">
                   <option value="0">---Select---</option>
                   <option value="1"> Documents </option>
                   <option value="2"> Goods </option>
@@ -1524,7 +1538,7 @@
             </div>
             <div class="form-group">
                <label for="weight">Total Weight (Kg) *</label>
-               <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" onchange="calculateCommission(this)">
+               <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="myFunction123(this)">
             </div>
             <div class="form-group">
                <label for="perKg">Charge/Kg (EURO)</label>
@@ -5515,50 +5529,50 @@
                   <label for="product" class="col-sm-2 control-label">
                   BOX 1 </label>
                   <div class="col-sm-8">
-                     <input type="text" class="form-control" name="product[1]" value="" placeholder="Product Name. e.g Shirt, Pant etc">
+                     <input type="text" class="form-control" name="product1" value="" placeholder="Product Name. e.g Shirt, Pant etc">
                   </div>
                   <div class="col-sm-2">
-                     <input type="number" class="form-control" name="qty[1]" value="" placeholder="Qty">
+                     <input type="number" class="form-control" name="qty1" value="" placeholder="Qty">
                   </div>
                </div>
                <div class="form-group">
                   <label for="product" class="col-sm-2 control-label">
                   BOX 2 </label>
                   <div class="col-sm-8">
-                     <input type="text" class="form-control" name="product[2]" value="" placeholder="Product Name. e.g Shirt, Pant etc">
+                     <input type="text" class="form-control" name="product2" value="" placeholder="Product Name. e.g Shirt, Pant etc">
                   </div>
                   <div class="col-sm-2">
-                     <input type="number" class="form-control" name="qty[2]" value="" placeholder="Qty">
+                     <input type="number" class="form-control" name="qty2" value="" placeholder="Qty">
                   </div>
                </div>
                <div class="form-group">
                   <label for="product" class="col-sm-2 control-label">
                   BOX 3 </label>
                   <div class="col-sm-8">
-                     <input type="text" class="form-control" name="product[3]" value="" placeholder="Product Name. e.g Shirt, Pant etc">
+                     <input type="text" class="form-control" name="product3" value="" placeholder="Product Name. e.g Shirt, Pant etc">
                   </div>
                   <div class="col-sm-2">
-                     <input type="number" class="form-control" name="qty[3]" value="" placeholder="Qty">
+                     <input type="number" class="form-control" name="qty3" value="" placeholder="Qty">
                   </div>
                </div>
                <div class="form-group">
                   <label for="product" class="col-sm-2 control-label">
                   BOX 4 </label>
                   <div class="col-sm-8">
-                     <input type="text" class="form-control" name="product[4]" value="" placeholder="Product Name. e.g Shirt, Pant etc">
+                     <input type="text" class="form-control" name="product4" value="" placeholder="Product Name. e.g Shirt, Pant etc">
                   </div>
                   <div class="col-sm-2">
-                     <input type="number" class="form-control" name="qty[4]" value="" placeholder="Qty">
+                     <input type="number" class="form-control" name="qty4" value="" placeholder="Qty">
                   </div>
                </div>
                <div class="form-group">
                   <label for="product" class="col-sm-2 control-label">
                   BOX 5 </label>
                   <div class="col-sm-8">
-                     <input type="text" class="form-control" name="product[5]" value="" placeholder="Product Name. e.g Shirt, Pant etc">
+                     <input type="text" class="form-control" name="product5" value="" placeholder="Product Name. e.g Shirt, Pant etc">
                   </div>
                   <div class="col-sm-2">
-                     <input type="number" class="form-control" name="qty[5]" value="" placeholder="Qty">
+                     <input type="number" class="form-control" name="qty5" value="" placeholder="Qty">
                   </div>
                </div>
             </div>
@@ -5571,4 +5585,44 @@
          </div>
       </form>
    </div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+function myFunction12() {
+
+   let totalCharge = document.getElementById("total");
+   let value = document.getElementById("goods_value").value;
+   totalCharge.setAttribute('value', value*2)
+
+}
+function myFunction123() {
+
+let totalCharge = document.getElementById("total");
+   let change = document.getElementById("total").value;
+
+   let weight = document.getElementById("weight");
+   totalCharge.setAttribute('value', change+19);
+
+   // let totalCharge = document.getElementById("total");
+
+   console.log(change);
+   // totalCharge.setAttribute('value','')
+
+}
+function myFunction1234() {
+let totalCharge = document.getElementById("total");
+   let change = document.getElementById("total").value;
+
+   let type = document.getElementById("productType");
+   totalCharge.setAttribute('value', change+143);
+   
+   // let totalCharge = document.getElementById("total");
+
+   console.log(change);
+   // totalCharge.setAttribute('value','')
+
+}
+
+</script>
 @endsection
