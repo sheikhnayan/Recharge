@@ -1,26 +1,33 @@
 @extends('front.layout.main')
 
 @section('content')
-      <div style="width: 60%;margin-left: 50px;">
-        <br>
-        <br>
-        <br>
-          <a class="btn btn-primary" href="{{ route('create-new-order') }}">Add Order</a>
 
-          <h2>Search</h2>
-          <form action="{{ route('search') }}" method="get">
-          <div class="form-row">
-            @csrf
-            <div class="col">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Enter email...">
+<div class="col-md-6">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"><i class="fa fa-plus-circle"></i> Track Your Order </h3>
+            <div class="box-tools pull-right">
+                
             </div>
-            
-            <input type="submit" value="Search">
-            
-          </div>
-          </form>
-          <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        </div>
+        <br><br>
+        <div class="box-body col">
+        	<form action="{{route('track')}}">
+            <div class="row-md-3">
+                <label>Order/Tracking Number</label>
+                <input type="text" id="order_no" name="order_no" class="form-control" placeholder="SBC0000010">
+            </div>
+            <div class="row-md-2">
+                <br>
+                <button type="submit" id="search" class="btn btn-success btn-block"><i class="fa fa-search"></i>
+                Search Order
+                </button>
+            </div>
+            </form>
+        </div>
+        <div class="box-footer">
+            <div class="col-md-12">
+                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
   <thead>
     <tr>
       <th class="th-sm">Id
@@ -77,40 +84,14 @@
       </td>
     </tr>
     @endforeach
-
-  </tbody>
-  <tfoot>
-    <tr>
-      <th class="th-sm">Id
-      </th>
-      <th class="th-sm">Date
-      </th>
-      <th class="th-sm">Agent
-      </th>
-      <th class="th-sm">City
-      </th>
-      <th class="th-sm">Customer
-      </th>
-      <th class="th-sm">Receiver
-      </th>
-      <th class="th-sm">Box
-      </th>
-      <th class="th-sm">Weight
-      </th>
-      <th class="th-sm">Charge
-      </th>
-      <th class="th-sm">Goods Type
-      </th>
-      <th class="th-sm">Destination
-      </th>
-      <th class="th-sm">Status
-      </th>
-      <th class="th-sm">Action
-      </th>
-    </tr>
-  </tfoot>
 </table>
-
-
+            </div>
+        </div>
     </div>
+</div>
+
+@endsection
+
+@section('js')
+
 @endsection
