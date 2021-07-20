@@ -37,15 +37,15 @@
       <td>{{$order->id}}</td>
       <td>{{$order->created_at}}</td>
       <td>Agent Name</td>
-      <td>{{$order->City}}</td>
-      <td>Tiger Nixon</td>
-      <td>Tiger Nixon</td>
-      <td>Tiger Nixon</td>
-      <td>System Architect</td>
-      <td>Edinburgh</td>
-      <td>61</td>
-      <td>2011/04/25</td>
-      <td>$320,800</td>
+      <td>{{$order->city}}</td>
+      <td>{{$order->first_name}}</td>
+      <td>{{$order->rfirst_name}}</td>
+      <td>{{$order->numberOfBox}}</td>
+      <td>{{$order->weight}}</td>
+      <td>{{$order->total}}</td>
+      <td>{{$order->productType}}</td>
+      <td>{{$order->raddress}}</td>
+      <td>{{$order->status}}</td>
       <td><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-gear tiny-icon"></i><span class="caret"></span>
           </button>

@@ -102,7 +102,7 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView']);
     Route::get('/create-new-order', [CargoController::class,'CreateNewOrder'])->name('create-new-order');
 
     //  SEARCH ORDERS
-    Route::get('/cargo/search', [CargoController::class,'NewOrder'])->name('search');
+    Route::get('/cargo/search', [CargoController::class,'Search'])->name('search');
 
     //  ADD NEW ORDER
     Route::POST('/cargo/add-new-order', [OrderController::class,'AddOrder'])->name('add-new-order');
