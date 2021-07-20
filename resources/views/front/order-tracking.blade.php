@@ -27,7 +27,8 @@
         </div>
         <div class="box-footer">
             <div class="col-md-12">
-                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+@if(Route::currentRouteName() != '/cargo/order-tracking-view')   
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
   <thead>
     <tr>
       <th class="th-sm">Id
@@ -59,6 +60,7 @@
     </tr>
   </thead>
   <tbody>
+    
     @foreach($orders as $order)
     <tr>
       <td>{{$order->id}}</td>
@@ -84,7 +86,9 @@
       </td>
     </tr>
     @endforeach
+    
 </table>
+    @endif
             </div>
         </div>
     </div>
