@@ -175,7 +175,7 @@
                 <div class="dropdown-content" id="myDropdown3">
                   <a href="/cargo/new-order">New Order</a>
                   <a href="/cargo/order-list">Order List</a>
-                  <a href="/cargo/order-tracking">Order Tracking</a>
+                  <a href="/cargo/order-tracking-view">Order Tracking</a>
                   <a href="/cargo/order-invoice">Order Invoice</a>
                 </div>
             </a>

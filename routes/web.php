@@ -111,8 +111,11 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView']);
     Route::POST('/cargo/add-new-order', [OrderController::class,'AddOrder'])->name('add-new-order');
 
 
-//  CARGO ORDER LIST
+//  CARGO VIEW TRACK
+Route::get('/cargo/order-tracking-view', [CargoController::class,'OrderTrackingView'])->name('order-tracking-view');
+
 Route::get('/cargo/order-list', [CargoController::class,'OrderList']);
+
 
 //  CARGO ORDER TRACKING
 Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking']);

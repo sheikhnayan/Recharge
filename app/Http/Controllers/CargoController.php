@@ -41,6 +41,13 @@ class CargoController extends Controller
         return view('front.order-list', compact('orders'));
     }
 
+    public function OrderTrackingView(Request $request)
+    {
+       $orders = $orders = Order::all();
+
+        return view('front.order-tracking', compact('orders'));
+    }
+
     public function OrderTracking(Request $request)
     {
         // echo "Order Tracking";
