@@ -8,7 +8,7 @@
           <a class="btn btn-primary" href="{{ route('create-new-order') }}">Add Order</a>
 
           <h2>Search</h2>
-          <form action="{{ route('search') }}" method="get">
+          <form action="{{ url('search') }}" method="get">
           <div class="form-row">
             @csrf
             <div class="col">

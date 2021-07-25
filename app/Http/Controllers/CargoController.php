@@ -45,7 +45,7 @@ class CargoController extends Controller
     {
         // echo "Order Tracking";
         if($request->order_no){
-            $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get();
+            $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get(); 
         }
         return view('front.order-tracking', compact('orders'));
 
