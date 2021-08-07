@@ -181,6 +181,18 @@
             </a>
           </li>
           @endif
+          @if (Auth::user()->role === 'admin')
+          <li>
+            <a class="dropbtn" onclick="myFunction4()"><span class="fa fa-tasks mr-3"></span>
+              Phone Management
+            <i class="fa fa-caret-down"></i>
+                <div class="dropdown-content" id="myDropdown4">
+                  <a href="/phone/phone-order">Phone Order</a>
+                  <a href="/phone/selling-list">Selling</a>
+                </div>
+            </a>
+          </li>
+          @endif
           {{-- <li>
             <a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
           </li> --}}
@@ -233,6 +245,10 @@
     }
     function myFunction3() {
       document.getElementById("myDropdown3").classList.toggle("show");
+    }
+
+    function myFunction4() {
+      document.getElementById("myDropdown4").classList.toggle("show");
     }
 
          $(document).ready(function() {

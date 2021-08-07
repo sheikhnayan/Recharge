@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PhoneController;
 use App\Models\SimOperator;
 use App\Models\sim;
 use App\Models\User;
@@ -96,7 +97,7 @@ Route::get('/sim-invoice/{id}', [SimController::class,'invoice']);
 Route::post('/sim-order/update', [SimController::class,'sim_order_update']);
 
 //  CARGO NEW ORDER
-Route::get('/cargo/new-order', [CargoController::class,'NewOrderView']);
+Route::get('/cargo/new-order', [CargoController::class,'NewOrderView'])->name('cargo-new-order');
     
     //  CREATE NEW ORDER
     Route::get('/create-new-order', [CargoController::class,'CreateNewOrder'])->name('create-new-order');
@@ -105,7 +106,7 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView']);
     Route::get('/cargo/search', [CargoController::class,'Search'])->name('search');
     
     //  TRACK ORDERS
-    Route::get('/cargo/search', [CargoController::class,'OrderTracking'])->name('track');
+    Route::get('/cargo/track', [CargoController::class,'OrderTracking'])->name('track');
 
     //  ADD NEW ORDER
     Route::POST('/cargo/add-new-order', [OrderController::class,'AddOrder'])->name('add-new-order');
@@ -114,15 +115,20 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView']);
 //  CARGO VIEW TRACK
 Route::get('/cargo/order-tracking-view', [CargoController::class,'OrderTrackingView'])->name('order-tracking-view');
 
-Route::get('/cargo/order-list', [CargoController::class,'OrderList']);
+Route::get('/cargo/order-list', [CargoController::class,'OrderList'])->name('order-list');
 
 
 //  CARGO ORDER TRACKING
-Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking']);
+Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking'])->name('order-tracking');
 
 //  CARGO ORDER INVOICE
 Route::get('/cargo/order-invoice', [CargoController::class,'OrderInvoice']);
 
+//  PHONE ORDER
+Route::get('/phone/phone-order', [PhoneController::class,'PhoneOrder']);
+
+//  PHONE SELLING LIST
+Route::get('/phone/selling-list', [PhoneController::class,'SellingList']);
 
 Route::get('/logout', function(){
     If(Auth::check()){
