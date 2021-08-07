@@ -13,21 +13,21 @@ class CargoController extends Controller
     {
         $orders = Order::where('email', 'LIKE', '%'.$request->email.'%')->get();
         // dd($orders);
-        return view('front.new-order', compact('orders'));
+        return view('front.new-order-new', compact('orders'));
     }
 
     public function Search(Request $request)
     {
         // dd($request->email);
         if($request->email) {
-            $orders = Order::where('email', 'LIKE', '%'.$request->email.'%')->get();
+            $orders = Order::where('email', 'LIKE', '%'.$request->email.'%')->paginate(10);
             // dd($orders);
         }
         if (empty($request->email)) {
             $orders = Order::all();
         }
 
-        return view('front.new-order', compact('orders'));
+        return view('front.order-list', compact('orders'));
     }
 
     public function CreateNewOrder(Request $request)
@@ -37,7 +37,7 @@ class CargoController extends Controller
 
     public function OrderList($value='')
     {
-        $orders = Order::all();
+        $orders = Order::paginate(10);
         return view('front.order-list', compact('orders'));
     }
 
@@ -60,7 +60,7 @@ class CargoController extends Controller
 
     public function OrderInvoice($value='')
     {
-        echo "Order Invoice";
+        return view('front.cargo-invoice');
     }
 
 
