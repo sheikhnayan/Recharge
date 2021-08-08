@@ -509,5 +509,3 @@ let totalCharge = document.getElementById("total");
 
 </script>
 @endsection
-</body>
-</html>

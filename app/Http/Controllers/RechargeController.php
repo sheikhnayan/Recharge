@@ -42,6 +42,34 @@ class RechargeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //  INTERNATIONAL RECHARGE
+    public function RechargeInt($value='')
+    {
+        return view('front.recharge-international');
+    }
+
+    public function RechargeDom($value='')
+    {
+        return view('front.recharge-domestic');
+    }
+
+    public function RechargeGiftCard($value='')
+    {
+        return view('front.recharge-gift-card');
+    }
+
+    public function RechargeCallingCard($value='')
+    {
+        return view('front.recharge-calling-card');
+    }
+
+    public function PrintInvoice($value='')
+    {
+        return view('front.print-all-invoice');
+    }
+
+
+
     public function index(Request $request)
     {
         // $factory = (new Factory)->withServiceAccount(__DIR__.'/FirebaseKey.json');

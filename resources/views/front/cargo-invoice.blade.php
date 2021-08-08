@@ -418,7 +418,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-@endsextion
+@endsection
 
 @section('scripts')
 <!-- jQuery -->
