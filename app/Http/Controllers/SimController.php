@@ -23,6 +23,22 @@ class SimController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function SimActivation($value='')
+    {
+        return view('front.sim-activation');
+    }
+
+    public function SimSelling($value='')
+    {
+        return view('front.sim-selling');
+    }
+
+    public function WiFi($value='')
+    {
+        return view('front.wi-fi');
+    }
+
     public function index()
     {  if(Auth::user()->role == 'user'){
         $show = sim::where('status', 'available')

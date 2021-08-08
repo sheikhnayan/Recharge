@@ -10,6 +10,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\RetailerController;
 use App\Models\SimOperator;
 use App\Models\sim;
 use App\Models\User;
@@ -139,6 +140,22 @@ Route::get('/recharge/recharge-italy', [RechargeController::class,'RechargeDom']
 Route::get('/recharge/recharge-calling-card', [RechargeController::class,'RechargeCallingCard'])->name('recharge-calling-card');
 
 Route::get('/recharge/print-all-invoice', [RechargeController::class,'PrintInvoice'])->name('print-all-invoice');
+//  RECHARGES END
+
+//  SIMS
+Route::get('/sim/sim-activation', [SimController::class,'SimActivation'])->name('sim-activation');
+
+Route::get('/sim/sim-selling', [SimController::class,'SimSelling'])->name('sim-selling');
+
+Route::get('/sim/wi-fi', [SimController::class,'WiFi'])->name('wi-fi');
+//  SIMS END
+
+//  RETAILER
+Route::get('/retailer/retailer-details', [RetailerController::class,'RetailerDetail'])->name('retailer-details');
+
+Route::get('/retailer/retailer-sign-up', [RetailerController::class,'RetailerSignUp'])->name('retailer-sign-up');
+
+//  RETAILER END
 
 Route::get('/logout', function(){
     If(Auth::check()){

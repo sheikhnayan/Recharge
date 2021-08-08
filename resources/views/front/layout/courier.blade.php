@@ -252,19 +252,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/sim" class="nav-link">
+                <a href="/sim/sim-activation" class="@if(Route::currentRouteName() == 'sim-activation') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>SIM Activation</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="sim_selling.html" class="nav-link">
+                <a href="/sim/sim-selling" class="@if(Route::currentRouteName() == 'sim-selling') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>SIM Selling</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="wi-fi.html" class="nav-link">
+                <a href="/sim/wi-fi" class="@if(Route::currentRouteName() == 'wi-fi') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Wi-fi</p>
                 </a>
@@ -339,19 +339,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="retailer.html" class="nav-link">
+                <a href="/retailer/retailer-details" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Retailer Details</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="retailer_action.html" class="nav-link">
+                <a href="/retailer/retailer-action" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Retailer Action</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="signup.html" class="nav-link">
+                <a href="/retailer/retailer-sign-up" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Retailer</p>
                 </a>
