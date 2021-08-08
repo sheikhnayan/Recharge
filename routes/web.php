@@ -125,12 +125,17 @@ Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking'])->n
 //  CARGO ORDER INVOICE
 Route::get('/cargo/order-invoice', [CargoController::class,'OrderInvoice'])->name('order-invoice-view');
 
-//  PHONE ORDER
+//  PHONE START
+
 Route::get('/phone/phone-order', [PhoneController::class,'PhoneOrder'])->name('phone-order');
 
-//  PHONE SELLING LIST
 Route::get('/phone/selling-list', [PhoneController::class,'SellingList'])->name('selling-list');
 
+Route::get('/phone/add-phone-view', [PhoneController::class,'AddPhoneView'])->name('add-phone-view');
+
+Route::post('/phone/add-phone', [PhoneController::class,'AddPhone'])->name('add-phone');
+
+//  PHONE END
 
 //  RECHARGES START
 

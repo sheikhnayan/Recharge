@@ -328,6 +328,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="/phone/add-phone-view" class="@if(Route::currentRouteName() == 'add-phone-view') nav-link active @endif nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Phone</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="/phone/phone-order" class="@if(Route::currentRouteName() == 'phone-order') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Order</p>
