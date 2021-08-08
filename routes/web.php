@@ -29,7 +29,7 @@ use App\Models\Offer;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return view('front.index');
-});
+})->name('/');
 Route::get('/add-reseller', function () {
     return view('front.add-reseller');
 });
@@ -126,34 +126,44 @@ Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking'])->n
 Route::get('/cargo/order-invoice', [CargoController::class,'OrderInvoice'])->name('order-invoice-view');
 
 //  PHONE ORDER
-Route::get('/phone/phone-order', [PhoneController::class,'PhoneOrder']);
+Route::get('/phone/phone-order', [PhoneController::class,'PhoneOrder'])->name('phone-order');
 
 //  PHONE SELLING LIST
 Route::get('/phone/selling-list', [PhoneController::class,'SellingList'])->name('selling-list');
 
 
-//  RECHARGES
+//  RECHARGES START
+
 Route::get('/recharge/recharge-int', [RechargeController::class,'RechargeInt'])->name('recharge-int');
 
 Route::get('/recharge/recharge-italy', [RechargeController::class,'RechargeDom'])->name('recharge-italy');
 
+Route::get('/recharge/recharge-gift-card', [RechargeController::class,'RechargeGiftCard'])->name('recharge-gift-card');
+
 Route::get('/recharge/recharge-calling-card', [RechargeController::class,'RechargeCallingCard'])->name('recharge-calling-card');
 
 Route::get('/recharge/print-all-invoice', [RechargeController::class,'PrintInvoice'])->name('print-all-invoice');
+
 //  RECHARGES END
 
-//  SIMS
+//  SIMS START
+
 Route::get('/sim/sim-activation', [SimController::class,'SimActivation'])->name('sim-activation');
 
 Route::get('/sim/sim-selling', [SimController::class,'SimSelling'])->name('sim-selling');
 
 Route::get('/sim/wi-fi', [SimController::class,'WiFi'])->name('wi-fi');
+
 //  SIMS END
 
-//  RETAILER
+//  RETAILER START
+
 Route::get('/retailer/retailer-details', [RetailerController::class,'RetailerDetail'])->name('retailer-details');
 
 Route::get('/retailer/retailer-sign-up', [RetailerController::class,'RetailerSignUp'])->name('retailer-sign-up');
+
+Route::get('/retailer/retailer-action', [RetailerController::class,'RetailerAction'])->name('retailer-action');
+
 
 //  RETAILER END
 
