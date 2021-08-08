@@ -211,31 +211,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="recharge_international.html" class="nav-link">
+                <a href="/recharge/recharge-int" class="@if(Route::currentRouteName() == 'recharge-int') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>International</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="recharge_italy.html" class="nav-link">
+                <a href="/recharge/recharge-italy" class="@if(Route::currentRouteName() == 'recharge-italy') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Domestic</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="recharge_gift_card.html" class="nav-link">
+                <a href="/recharge/recharge-gift-card" class="@if(Route::currentRouteName() == 'recharge-gift-card') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gift Card</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="recharge_calling_card.html" class="nav-link">
+                <a href="/recharge/recharge-calling-card" class="@if(Route::currentRouteName() == 'recharge-calling-card') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Calling Card</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="print_all_invoice.html" class="nav-link">
+                <a href="/recharge/print-all-invoice" class="@if(Route::currentRouteName() == 'print-all-invoice') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Print all invoice</p>
                 </a>
@@ -271,7 +271,7 @@
               </li>
             </ul>
           </li>
-          <li class="@if(Route::currentRouteName() == 'cargo-new-order' || Route::currentRouteName() == 'order-list') nav-item menu-open @endif nav-item">
+          <li class="@if(Route::currentRouteName() == 'cargo-new-order' || Route::currentRouteName() == 'order-list' || Route::currentRouteName() == 'order-tracking-view' || Route::currentRouteName() == 'order-invoice-view') nav-item menu-open @endif nav-item">
             <a href="#" class="@if(Route::currentRouteName() == 'cargo-new-order') nav-link active @endif nav-link">
               <i class="nav-icon fas fa-truck"></i>
               <p>
@@ -287,21 +287,21 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/cargo/order-list" class="@if(Route::currentRouteName() == 'order-list') @endif nav-link">
+                <a href="/cargo/order-list" class="@if(Route::currentRouteName() == 'order-list') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Order List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/cargo/order-tracking-view" class="@if(Route::currentRouteName() == 'order-tracking') @endif nav-link">
+                <a href="/cargo/order-tracking-view" class="@if(Route::currentRouteName() == 'order-tracking-view') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tracking</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="cargo_commission.html" class="nav-link">
+                <a href="/cargo/order-invoice" class="@if(Route::currentRouteName() == 'order-invoice-view') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Commission</p>
+                  <p>Invoice</p>
                 </a>
               </li>
             </ul>
@@ -316,7 +316,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/phone/phone-order" class="nav-link">
+                <a href="/phone/phone-order" class="@if(Route::currentRouteName() == 'selling-list') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Order</p>
                 </a>

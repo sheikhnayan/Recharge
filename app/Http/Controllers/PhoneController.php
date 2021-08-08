@@ -14,6 +14,6 @@ class PhoneController extends Controller
 
     public function SellingList()
     {
-        return view('');
+        return view('front.phone-selling');
     }
 }

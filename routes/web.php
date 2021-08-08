@@ -122,13 +122,23 @@ Route::get('/cargo/order-list', [CargoController::class,'OrderList'])->name('ord
 Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking'])->name('order-tracking');
 
 //  CARGO ORDER INVOICE
-Route::get('/cargo/order-invoice', [CargoController::class,'OrderInvoice']);
+Route::get('/cargo/order-invoice', [CargoController::class,'OrderInvoice'])->name('order-invoice-view');
 
 //  PHONE ORDER
 Route::get('/phone/phone-order', [PhoneController::class,'PhoneOrder']);
 
 //  PHONE SELLING LIST
-Route::get('/phone/selling-list', [PhoneController::class,'SellingList']);
+Route::get('/phone/selling-list', [PhoneController::class,'SellingList'])->name('selling-list');
+
+
+//  RECHARGES
+Route::get('/recharge/recharge-int', [RechargeController::class,'RechargeInt'])->name('recharge-int');
+
+Route::get('/recharge/recharge-italy', [RechargeController::class,'RechargeDom'])->name('recharge-italy');
+
+Route::get('/recharge/recharge-calling-card', [RechargeController::class,'RechargeCallingCard'])->name('recharge-calling-card');
+
+Route::get('/recharge/print-all-invoice', [RechargeController::class,'PrintInvoice'])->name('print-all-invoice');
 
 Route::get('/logout', function(){
     If(Auth::check()){

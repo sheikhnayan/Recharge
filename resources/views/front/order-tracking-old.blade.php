@@ -27,7 +27,7 @@
         </div>
         <div class="box-footer">
             <div class="col-md-12">
-@if(Route::currentRouteName() != '/cargo/order-tracking-view')   
+@if(count($orders) > 0)   
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
   <thead>
     <tr>
@@ -88,7 +88,7 @@
     @endforeach
     
 </table>
-    @endif
+@endif
             </div>
         </div>
     </div>

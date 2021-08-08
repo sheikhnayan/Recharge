@@ -43,8 +43,9 @@ class CargoController extends Controller
 
     public function OrderTrackingView(Request $request)
     {
-       $orders = $orders = Order::all();
 
+        $orders = Order::where('id', '=', $request->order_no)->get();
+        // dd(count($ordsers));
         return view('front.order-tracking', compact('orders'));
     }
 
@@ -58,9 +59,10 @@ class CargoController extends Controller
 
     }
 
-    public function OrderInvoice($value='')
+    public function OrderInvoice(Request $request)
     {
-        return view('front.cargo-invoice');
+        $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get();
+        return view('front.cargo-invoice', compact('orders'));
     }
 
 
