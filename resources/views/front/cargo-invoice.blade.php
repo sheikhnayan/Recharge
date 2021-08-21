@@ -56,7 +56,7 @@
                                 <label>Agent Code</label>
                               </td>
                               <td>
-                                <b>1038</b>
+                                <b>{{ $agent->id }}</b>
                               </td>
                             </tr>
                             <tr>
@@ -64,31 +64,31 @@
                                 <label>Agent Name</label>
                               </td>
                               <td>
-                                <span>JM LOGISTIC</span>
+                                <span>{{ $agent->nationality }}</span>
                               </td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                               <td>
                                 <label>Agent Address</label>
                               </td>
                               <td>
                                 <span>Via Aldo Fiorini, 40, ANCONA, Ancona, ITALY</span>
                               </td>
-                            </tr>
-                            <tr>
+                            </tr> --}}
+                            {{-- <tr>
                               <td>
                                 <label>Phone</label>
                               </td>
                               <td>
                                 <span>3280807591-0712362286</span>
                               </td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                               <td>
                                 <label>Email</label>
                               </td>
                               <td>
-                                <span>example@gmail.com</span>
+                                <span>{{ $agent->email }}</span>
                               </td>
                             </tr>
                           </tbody>
@@ -99,13 +99,13 @@
                           <table class="table">
                             <tbody>
                               <tr>
-                                <td class="pt-4"><img src="images/jm logo.jpeg" alt="logo" width="130" height="90"></td>
+                                <td class="pt-4"><img src="{{ asset('images/jm logo.jpeg') }}" alt="logo" width="130" height="90"></td>
                                 <td class="text-center pt-4">
                                   <h3>Tracking Number</h3>
-                                  <h4><b>JML000124</b></h4>
-                                  <b>Date: 12-07-2021</b>
+                                  <h4><b>{{ $order->id }}</b></h4>
+                                  <b>Date: {{ $order->created_at }}</b>
                                 </td>
-                                <td><img src="images/QR_Code.png" alt="QR Code" width="130" height="130"></td>
+                                <td><img src="{{ asset('images/QR_Code.png') }}" alt="QR Code" width="130" height="130"></td>
                               </tr>
                             </tbody>
                           </table>
@@ -124,20 +124,20 @@
                       <td colspan="4" class="inner-table invoice_table_border p-1">
                         <table class="table-sm">
                           <tbody>
-                            <tr>
+                            {{-- <tr>
                               <td>
                                 <label>Customer ID</label>
                               </td>
                               <td>
                                 <b>7805</b>
                               </td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                               <td>
                                 <label>Surname</label>
                               </td>
                               <td>
-                                <span>ABUL</span>
+                                <span>{{ $order->surname }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -145,7 +145,7 @@
                                 <label>Name</label>
                               </td>
                               <td>
-                                <span>KHAIR</span>
+                                <span>{{ $order->first_name }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -153,7 +153,7 @@
                                 <label>Date of Birth</label>
                               </td>
                               <td>
-                                <span>1992-04-16</span>
+                                <span>{{ $order->dob }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -161,7 +161,7 @@
                                 <label>Phone Number</label>
                               </td>
                               <td>
-                                <span>3293030586</span>
+                                <span>{{ $order->phone }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -169,7 +169,7 @@
                                 <label>Address</label>
                               </td>
                               <td>
-                                <span>CORSO CARLO ALBERTO 24</span>
+                                <span>{{ $order->address }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -177,7 +177,7 @@
                                 <label>Country</label>
                               </td>
                               <td>
-                                <span>ITALY</span>
+                                <span>{{ $order->country }}</span>
                               </td>
                             </tr>
                           </tbody>
@@ -191,7 +191,7 @@
                                 <label>Surname</label>
                               </td>
                               <td>
-                                <span>SOBUJ</span>
+                                <span>{{ $order->rsurname }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -199,7 +199,7 @@
                                 <label>Name</label>
                               </td>
                               <td>
-                                <span>HOWLADER</span>
+                                <span>{{ $order->rfirst_name }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -207,7 +207,7 @@
                                 <label>Date of Birth</label>
                               </td>
                               <td>
-                                <span>1992-04-16</span>
+                                <span>{{ $order->rdob }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -215,7 +215,7 @@
                                 <label>Phone Number</label>
                               </td>
                               <td>
-                                <span>3293030586</span>
+                                <span>{{ $order->rphone }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -223,7 +223,7 @@
                                 <label>Address</label>
                               </td>
                               <td>
-                                <span>CORSO CARLO ALBERTO 24</span>
+                                <span>{{ $order->raddress }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -231,7 +231,7 @@
                                 <label>Country</label>
                               </td>
                               <td>
-                                <span>ITALY</span>
+                                <span>{{ $order->rcountry }}</span>
                               </td>
                             </tr>
                           </tbody>
@@ -247,23 +247,23 @@
                                 <label>Product Type</label>
                               </td>
                               <td>
-                                <span>Goods</span>
+                                <span>{{ $order->productType }}</span>
                               </td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                               <td>
                                 <label>Destination Country</label>
                               </td>
                               <td>
-                                <span>ITALY</span>
+                                <span>{{ $order->desti }}</span>
                               </td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                               <td>
                                 <label>Delivery Type</label>
                               </td>
                               <td>
-                                <span>Home Delivery in Europe</span>
+                                <span>{{ $order->delivery_condition }}</span>
                               </td>
                             </tr>
                           </tbody>
@@ -277,7 +277,7 @@
                                 <label>No of Packets:</label>
                               </td>
                               <td>
-                                <span>1</span>
+                                <span>{{ $order->numberOfBox }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -285,7 +285,7 @@
                                 <label>Charge/Kg:</label>
                               </td>
                               <td>
-                                <span>20.00</span>
+                                <span>{{ $order->perKg }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -293,7 +293,7 @@
                                 <label>Additional Charge:</label>
                               </td>
                               <td>
-                                <span>0.00</span>
+                                <span>{{ $order->addiCharge }}</span>
                               </td>
                             </tr>
                           </tbody>
@@ -307,7 +307,7 @@
                                 <label>Value of Goods:</label>
                               </td>
                               <td>
-                                <span>99.00</span>
+                                <span>{{ $order->goods_value }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -315,7 +315,7 @@
                                 <label>Weight:</label>
                               </td>
                               <td>
-                                <span>2.00 Kg</span>
+                                <span>{{ $order->weight }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -323,7 +323,7 @@
                                 <label>Home Delivery:</label>
                               </td>
                               <td>
-                                <span>0.00</span>
+                                <span>{{ $order->homeDeliveryCharge }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -331,7 +331,7 @@
                                 <label>Total Amount:</label>
                               </td>
                               <td>
-                                <span>&euro; 20.00</span>
+                                <span>&euro; {{ $order->total }}</span>
                               </td>
                             </tr>
                           </tbody>
@@ -403,9 +403,9 @@
                     <i class="fas fa-print"></i>
                     Print
                   </a>
-                  <button type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
+                  {{-- <button type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
-                  </button>
+                  </button> --}}
                 </div>
               </div>
             </div>

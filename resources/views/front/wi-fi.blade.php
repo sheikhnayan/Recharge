@@ -29,7 +29,7 @@
           <div class="col-12 mt-3">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-list" style="margin-right: 10px;"></i><strong>WIFI List</strong></h3>
+                <h3 class="card-title"><i class="fas fa-list" style="margin-right: 10px;"></i><strong>Offer List</strong></h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -41,6 +41,9 @@
                       </button>
                     </div>
                   </div>
+                  @if (Auth::user()->role == 'admin')
+                  <a href="/offer" class="btn btn-success">Add Offer</a>
+                  @endif
                 </div>
               </div>
               <!-- /.card-header -->
@@ -54,31 +57,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($data as $item)
                     <tr class="bg-ocean">
-                      <td>GrameenPhone</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                      <td>{{ $item->operator }}</td>
+                      <td>{{ $item->offer }}</td>
                       <td class="text-center"><span class="badge bg-info">Active</span></td>
                     </tr>
-                    <tr class="bg-sky">
-                      <td>Robi</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                      <td class="text-center"><span class="badge bg-info">Active</span></td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>Airtel</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                      <td class="text-center"><span class="badge bg-info">Active</span></td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>Banglalink</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                      <td class="text-center"><span class="badge bg-info">Active</span></td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>Telitalk</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                      <td class="text-center"><span class="badge bg-info">Active</span></td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

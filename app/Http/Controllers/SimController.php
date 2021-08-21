@@ -7,6 +7,7 @@ use App\Models\sim;
 use App\Models\SimOperator;
 use App\Models\Offer;
 use App\Models\SimOrder;
+use App\Models\User;
 use Auth;
 use Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -24,19 +25,11 @@ class SimController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function SimActivation($value='')
-    {
-        return view('front.sim-activation');
-    }
 
-    public function SimSelling($value='')
+    public function WiFi()
     {
-        return view('front.sim-selling');
-    }
-
-    public function WiFi($value='')
-    {
-        return view('front.wi-fi');
+        $data = Offer::all();
+        return view('front.wi-fi',compact('data'));
     }
 
     public function index()
@@ -47,13 +40,17 @@ class SimController extends Controller
         ->select('users.nationality','sims.*')
         ->latest()
         ->get();
+        $total = $show->count();
+        return view('front.sim-activation',compact('show','total'));
         }else{
             $show = sim::where('status', 'available')
             ->latest()
             ->get();  
+            $operator = SimOperator::all();
+            $user = User::where('role','user')->get();
+            $total = $show->count();
+            return view('front.sim-activation',compact('show','operator','user','total'));
         }
-
-        return view('front.sim',compact('show'));
     }
 
     /**
@@ -105,7 +102,7 @@ class SimController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $create = sim::create([
             'operator' => $request->operator,
             'iccid' => $request->iccid,
@@ -113,10 +110,10 @@ class SimController extends Controller
             'buy_date' => Carbon\Carbon::now(),
             'buy_price' => $request->buy_price,
             'reseller_id' => $request->re_seller,
-            'status' => $request->status
+            'status' => 'available'
         ]);
 
-        return redirect('/sim');
+        return redirect('/sim/sim-activation');
     }
 
     /**
@@ -132,7 +129,7 @@ class SimController extends Controller
 
         $offer = Offer::where('operator', $data->operator)->get();
         $operator = SimOperator::all();
-        return view('front.buy-sim',compact('data','offer','operator'));
+        return view('front.sale',compact('data','offer','operator'));
     }
 
     /**
@@ -182,14 +179,16 @@ class SimController extends Controller
             'iccid' => $sim->iccid,
             'sim_number' => $sim->sim_number,
             'reseller_id' => Auth::user()->id,
-            'sim_id' => $sim->id
+            'sim_id' => $sim->id,
+            'sell_price' => $request->sell_price,
+            'recharge' => $request->recharge
         ]);
 
         $update = sim::where('id', $request->sim_id)->update([
             'status' => 'pending'
         ]);
 
-        return redirect('sim');
+        return redirect('/sim/sim-activation');
 
     }
 
@@ -200,12 +199,19 @@ class SimController extends Controller
         ->select('sim_orders.*','sims.status')
         ->latest()->get();
         }else{
-        $data = SimOrder::where('reseller_id',Auth::user()->id)
-        ->join('sims','sims.id','=','sim_orders.sim_id')
-        ->select('sim_orders.*','sims.status')
-        ->latest()->get();
+        $check = SimOrder::where('reseller_id', Auth::user()->id)->get();
+        $count = $check->count();
+
+        if ($count > 0) {
+            $data = SimOrder::where('reseller_id',Auth::user()->id)
+            ->join('sims','sims.id','=','sim_orders.sim_id')
+            ->select('sim_orders.*','sims.status')
+            ->latest()->get();
+        }else {
+            $data = $data = SimOrder::where('reseller_id',Auth::user()->id)->get();
         }
-        return view('front.sim-order',compact('data'));
+        }
+        return view('front.sim-selling',compact('data'));
     }
 
 

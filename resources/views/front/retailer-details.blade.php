@@ -26,14 +26,14 @@
           <div class="col-sm-12">
             <h1 class="d-inline-block">Retailer Details</h1>
             <div class="search-form d-inline-block" style="float: right;">
-              <div class="input-group" data-widget="sidebar-search">
+              {{-- <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-search">
                   <button class="btn btn-sidebar">
                     <i class="fas fa-search fa-fw"></i>
                   </button>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -47,433 +47,60 @@
       <div class="card card-solid">
         <div class="card-body pb-0">
           <div class="row">
+            @foreach ($data as $item)
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
               <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
+                {{-- <div class="card-header border-bottom-0">
                   <button class="btn btn-sm bg-teal" id="activeBtn">
                     Active Profile
                   </button>
                   <button class="btn btn-sm bg-danger" id="deactiveBtn" style="display:none;">
                     Deactive Profile
                   </button>
-                </div>
+                </div> --}}
                 <div class="card-body pt-0">
                   <div class="row">
                     <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
+                      <h2 class="lead"><b>{{ $item->first_name }} {{ $item->last_name }}</b></h2>
+                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>Company: </b> {{ $item->nationality }} </p>
+                      <p class="text-muted text-sm"><b>ID: </b> {{ $item->id }} </p>
                       <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
+                        {{-- <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
+                          04312, NJ</li> --}}
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: {{ $item->email }}</li>
+                        {{-- <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li> --}}
                       </ul>
                     </div>
                     <div class="col-5 text-center">
-                      <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                      {{-- <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid"> --}}
                       <div class="current_balance mt-2">
                         <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
+                        <span>&euro; {{ $item->wallet }}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="card-footer">
                   <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
+                    {{-- <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
                       <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
+                    </button> --}}
+                    <a href="/reseller/edit/{{ $item->id }}" class="btn btn-sm btn-secondary mt-1">
                       <i class="fas fa-edit"></i> Edit Profile
+                    </a>
+                    <a href="/reseller/delete/{{ $item->id }}" class="btn btn-sm btn-danger mt-1">
+                      <i class="fas fa-user"></i> Delete
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn" style="display:none;">
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn">
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn" style="display:none;">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn">
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn" style="display:none;">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn">
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn" style="display:none;">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn" style="display:none;">
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn" >
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn" style="display:none;">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn" style="display:none;">
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City
-                          04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-              <div class="card bg-light d-flex flex-fill">
-                <div class="card-header border-bottom-0">
-                  <button class="btn btn-sm bg-teal" id="activeBtn">
-                    Active Profile
-                  </button>
-                  <button class="btn btn-sm bg-danger" id="deactiveBtn">
-                    Deactive Profile
-                  </button>
-                </div>
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="lead"><b>Nicole Pearson</b></h2>
-                      <p class="text-muted text-sm" style="margin-bottom: 0;"><b>About: </b> Mobile Store </p>
-                      <p class="text-muted text-sm"><b>ID: </b> 123456789 </p>
-                      <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-at"></i></span> Email Address: example@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone : + 800 - 12 12 23 52</li>
-                      </ul>
-                    </div>
-                    <div class="col-5 text-center">
-                      <img src="images/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
-                      <div class="current_balance mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; 500.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="text-right">
-                    <button type="button" class="btn btn-sm bg-info mt-1" data-toggle="modal" data-target="#modal-default">
-                      <i class="fas fa-comments"></i>
-                    </button>
-                    <a href="retailer_view_detail.html" class="btn btn-sm btn-primary mt-1">
-                      <i class="fas fa-user"></i> View Details
-                    </a>
-                    <a href="edit_profile.html" class="btn btn-sm btn-secondary mt-1">
-                      <i class="fas fa-edit"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-          <nav aria-label="Contacts Page Navigation">
+          {{-- <nav aria-label="Contacts Page Navigation">
             <ul class="pagination justify-content-center m-0">
               <li class="page-item active"><a class="page-link" href="#">1</a></li>
               <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -484,7 +111,7 @@
               <li class="page-item"><a class="page-link" href="#">7</a></li>
               <li class="page-item"><a class="page-link" href="#">8</a></li>
             </ul>
-          </nav>
+          </nav> --}}
         </div>
         <!-- /.card-footer -->
       </div>

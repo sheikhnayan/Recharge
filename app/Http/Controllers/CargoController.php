@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\User;
+use Auth;
 
 
 class CargoController extends Controller
@@ -37,7 +39,11 @@ class CargoController extends Controller
 
     public function OrderList($value='')
     {
-        $orders = Order::paginate(10);
+        if(Auth::user()->role == 'admin'){
+            $orders = Order::paginate(10);
+        }else{
+            $orders = Order::where('reseller_id', Auth::user()->id)->paginate(10);
+        }
         return view('front.order-list', compact('orders'));
     }
 
@@ -53,16 +59,49 @@ class CargoController extends Controller
     {
         // echo "Order Tracking";
         if($request->order_no){
-            $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get(); 
+            if (Auth::user()->role == 'admin') {
+                $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get();
+                $agent = User::where('id', $orders['0']->reseller_id)->first(); 
+            }else {
+                $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->where('reseller_id', Auth::user()->id)->get();
+                $count = $orders->count();
+                if($count > 0){
+                    $agent = User::where('id', $orders['0']->reseller_id)->first(); 
+                }else {
+                    $agent['nationality'] = null; 
+                }
+            }
+            
         }
-        return view('front.order-tracking', compact('orders'));
+        return view('front.order-tracking', compact('orders','agent'));
 
     }
 
-    public function OrderInvoice(Request $request)
+    public function OrderInvoice($id)
     {
-        $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get();
-        return view('front.cargo-invoice', compact('orders'));
+        $order = Order::where('id', $id)->first();
+        
+        $agent = User::where('id', $order->reseller_id)->first();
+
+        return view('front.cargo-invoice', compact('order','agent'));
+    }
+
+    public function OrderView($id)
+    {
+        $data = Order::where('id', $id)->first();
+
+        $agent = User::where('id', $data->reseller_id)->first();
+
+        return view('front.cargo_view_order',compact('data','agent'));
+
+    }
+
+    public function OrderCancel($id)
+    {
+        Order::where('id', $id)->delete();
+
+        return back();
+
     }
 
 

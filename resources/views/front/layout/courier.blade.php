@@ -39,7 +39,7 @@
       </li>
 
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
@@ -122,7 +122,7 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
-      </li>
+      </li> --}}
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -131,7 +131,7 @@
   <aside class="main-sidebar fixd-sidebar sidebar-dark-primary">
     <!-- Brand Logo -->
     <a href="index.html" class="brand-link" style="background: #fff;">
-      <img src="images/jm-transparent-logo.png" alt="Courier Logo" class="brand-image" style="opacity: .8">
+      <img src="{{ asset('images/jm-transparent-logo.png') }}" alt="Courier Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-bold"><strong>JM</strong> LOGISTIC</span>
     </a>
 
@@ -139,13 +139,13 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image mt-2">
+        {{-- <div class="image mt-2">
           <img src="images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+        </div> --}}
         <div class="info sidebar_profile_info">
           <h5>{{Auth::user()->first_name}}</h5>
-          <p>Point Recharge</p>
-          <a href="edit_profile.html" class="mr-2">
+          <p>{{ Auth::user()->nationality }}</p>
+          <a href="/reseller/edit/{{ Auth::user()->id}}" class="mr-2">
             <small>Profile</small>
           </a>
           <a href="{{url('/logout')}}">
@@ -242,12 +242,6 @@
                   <p>Calling Card</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/recharge/print-all-invoice" class="@if(Route::currentRouteName() == 'print-all-invoice') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Print all invoice</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="@if(Route::currentRouteName() == 'sim-activation' ||
@@ -310,12 +304,12 @@
                   <p>Tracking</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="/cargo/order-invoice" class="@if(Route::currentRouteName() == 'order-invoice-view') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Invoice</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </li>
           <li class="@if(Route::currentRouteName() == 'phone-order' || Route::currentRouteName() == 'selling-list') nav-item menu-open @endif nav-item">
@@ -327,12 +321,14 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @if (Auth::user()->role == 'admin')
               <li class="nav-item">
                 <a href="/phone/add-phone-view" class="@if(Route::currentRouteName() == 'add-phone-view') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Phone</p>
                 </a>
               </li>
+              @endif
               <li class="nav-item">
                 <a href="/phone/phone-order" class="@if(Route::currentRouteName() == 'phone-order') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -362,12 +358,14 @@
                   <p>Retailer Details</p>
                 </a>
               </li>
+              @if (Auth::user()->role == 'admin')
               <li class="nav-item">
                 <a href="/retailer/retailer-action" class="@if(Route::currentRouteName() == 'retailer-action') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Retailer Action</p>
                 </a>
               </li>
+              @endif
               <li class="nav-item">
                 <a href="/retailer/retailer-sign-up" class="@if(Route::currentRouteName() == 'retailer-sign-up') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>

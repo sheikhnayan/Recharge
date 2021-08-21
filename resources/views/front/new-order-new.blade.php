@@ -71,6 +71,7 @@
                     </div>
                 @endif
          @csrf
+         <input type="hidden" name="reseller_id" value="{{ Auth::user()->id }}">
           <div class="card-body">
             <div class="row b-border pb-3">
               <div class="col-md-6">
@@ -88,10 +89,10 @@
                     <div class="form-group">
                       <label>Date of Birth</label>
                       <div class="input-group date" id="customerBirthDate" data-target-input="nearest">
-                        <input type="text" name="dob" class="form-control datetimepicker-input" data-target="#customerBirthDate" />
-                        <div class="input-group-append" data-target="#customerBirthDate" data-toggle="datetimepicker">
+                        <input type="date" name="dob" class="form-control" />
+                        {{-- <div class="input-group-append" data-target="#customerBirthDate" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
+                        </div> --}}
                       </div>
                     </div>
                     <div class="mb-3">
@@ -171,10 +172,10 @@
                     <div class="form-group">
                       <label>Date of Birth</label>
                       <div class="input-group date" id="receiverBirthDate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#receiverBirthDate" name="rdob" />
-                        <div class="input-group-append" data-target="#receiverBirthDate" data-toggle="datetimepicker">
+                        <input type="date" class="form-control" data-target="" name="rdob" />
+                        {{-- <div class="input-group-append" data-target="#receiverBirthDate" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
+                        </div> --}}
                       </div>
                     </div>
                     <div class="mb-3">
@@ -250,11 +251,11 @@
                   <div class="order_information">
                     <div class="form-group">
                       <label>Expected Delivary Date</label>
-                      <div class="input-group date" id="expectedDelivaryDate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#expectedDelivaryDate" name="expected_date_to_receive"/>
-                        <div class="input-group-append" data-target="#expectedDelivaryDate" data-toggle="datetimepicker">
+                      <div class="input-group date" data-target-input="nearest">
+                        <input type="date" class="form-control"  name="expected_date_to_receive"/>
+                        {{-- <div class="input-group-append" data-target="#expectedDelivaryDate" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
+                        </div> --}}
                       </div>
                     </div>
                     <div class="form-group">
@@ -318,11 +319,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="chargeValue" class="form-label">Charge(Euro)</label>
-                      <input type="nmber" class="form-control" id="chargeValue" id="cusCharge" placeholder="0">
+                      <input type="nmber" class="form-control" id="chargeValue" name="cusCharge" placeholder="0">
                     </div>
                     <div class="mb-3">
                       <label for="homeDeliveryChargeValue" class="form-label">Home Delivery Charge(Euro)</label>
-                      <input type="number" class="form-control" id="homeDeliveryChargeValue" id="homeDeliveryCharge" placeholder="0">
+                      <input type="number" class="form-control" id="homeDeliveryChargeValue" name="homeDeliveryCharge" placeholder="0">
                     </div>
                     <div class="mb-3">
                       <label for="addiCharge" class="form-label">Additional Charge(Euro)</label>
@@ -455,13 +456,13 @@
     })
     //Date picker
     $('#customerBirthDate').datetimepicker({
-      format: 'L'
+      format: 'yyyy-mm-dd'
     });
     $('#receiverBirthDate').datetimepicker({
-      format: 'L'
+      format: 'yyyy-mm-dd'
     });
     $('#expectedDelivaryDate').datetimepicker({
-      format: 'L'
+      format: 'yyyy-mm-dd'
     });
 
   })

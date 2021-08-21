@@ -15,6 +15,7 @@ use App\Models\SimOperator;
 use App\Models\sim;
 use App\Models\User;
 use App\Models\Offer;
+use App\Models\Phone;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ use App\Models\Offer;
 */
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    return view('front.index');
+    $data = Phone::where('status', 'available')->get();
+    return view('front.index',compact('data'));
 })->name('/');
 Route::get('/add-reseller', function () {
     return view('front.add-reseller');
@@ -57,12 +59,6 @@ Route::get('/recharge', function () {
 //     return view('front.sim');
 // });
 
-Route::get('/add-sim', function () {
-    $operator = SimOperator::all();
-    $user = User::where('role','user')->get();
-    return view('front.add-sim',compact('operator','user'));
-});
-
 Route::post('offer-check', function(Request $request){
     $offer_detail = Offer::where('offer',$request->id)->first();
     return response()->json($offer_detail, 200);
@@ -80,8 +76,6 @@ Route::get('/offer', [OfferController::class,'index']);
 Route::post('/offer', [OfferController::class,'store']);
 
 Route::get('/delete-offer/{id}', [OfferController::class,'destroy']);
-
-Route::get('/sim', [SimController::class,'index']);
 
 Route::post('/add-sim', [SimController::class,'store']);
 
@@ -123,7 +117,13 @@ Route::get('/cargo/order-list', [CargoController::class,'OrderList'])->name('ord
 Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking'])->name('order-tracking');
 
 //  CARGO ORDER INVOICE
-Route::get('/cargo/order-invoice', [CargoController::class,'OrderInvoice'])->name('order-invoice-view');
+Route::get('/cargo/order-invoice/{id}', [CargoController::class,'OrderInvoice'])->name('order-invoice-view');
+
+// CARGO ORDER VIEW
+Route::get('/cargo/order/view/{id}', [CargoController::class,'OrderView']);
+
+// CARGO ORDER cancel
+Route::get('/cargo/order/cancel/{id}', [CargoController::class,'OrderCancel']);
 
 //  PHONE START
 
@@ -134,6 +134,11 @@ Route::get('/phone/selling-list', [PhoneController::class,'SellingList'])->name(
 Route::get('/phone/add-phone-view', [PhoneController::class,'AddPhoneView'])->name('add-phone-view');
 
 Route::post('/phone/add-phone', [PhoneController::class,'AddPhone'])->name('add-phone');
+
+Route::post('/phone/order', [PhoneController::class,'order'])->name('add-order');
+
+Route::post('/phone/update', [PhoneController::class,'updateorder'])->name('update-order');
+
 
 //  PHONE END
 
@@ -153,9 +158,9 @@ Route::get('/recharge/print-all-invoice', [RechargeController::class,'PrintInvoi
 
 //  SIMS START
 
-Route::get('/sim/sim-activation', [SimController::class,'SimActivation'])->name('sim-activation');
+Route::get('/sim/sim-activation', [SimController::class,'index'])->name('sim-activation');
 
-Route::get('/sim/sim-selling', [SimController::class,'SimSelling'])->name('sim-selling');
+Route::get('/sim/sim-selling', [SimController::class,'orders'])->name('sim-selling');
 
 Route::get('/sim/wi-fi', [SimController::class,'WiFi'])->name('wi-fi');
 

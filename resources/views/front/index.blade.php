@@ -80,142 +80,97 @@
           </div>
         </div>
         <div class="row px-3">
+          @foreach ($data as $item)
           <div class="col-sm-4 col-md-3 my-4">
             <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-1.jpg" alt="Photo 1" class="img-fluid">
+              <div data-toggle="modal" data-target="#modal-default{{ $item->id }}">
+                <img src="{{asset('/storage'.'/'.$item->image)}}" alt="Photo 1" class="img-fluid">
                 <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-success text-lg">
+                  {{-- <div class="ribbon bg-success text-lg">
                     30% OFF
-                  </div>
+                  </div> --}}
                 </div>
               </div>
               <div class="home_card_text">
-                <h4>POCO M3- 4GB/128GB</h4>
-                <h5>$300</h5>
-                <p>Stock Available</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-2.jpg" alt="Photo 2" class="img-fluid">
-                <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-warning text-lg">
-                    40% OFF
+                {{-- <div class="brand_logo d-flex">
+                  <span>Poco
+                  <img src="{{ asset('images/M3_logo.png') }}" width="auto" height="30px"></span>
+                  <img src="{{ asset('images/Mi-Xiaomi-Logo.png') }}" width="auto" height="30px">
+                </div> --}}
+                <div class="row">
+                  <div class="col-12 model_price">
+                    <h4>{{ $item->phone }}</h4>
+                    <h5 class="rate_for_customer">{{ $item->price }}</h5>
+                    {{-- <h5 class="rate_for_retailer">$250.00</h5> --}}
+                  </div>
+                </div>
+                <div class="row">
+                  {{-- <div class="col-12 text-center stock_rate">
+                    <p>Stock</p>
+                    <p class="stock_quantity">800 pcs</p>
+                  </div> --}}
+                  <div class="col-12 stock_rate">
+                    <form action="/phone/order" method="POST">
+                      @csrf
+                    <p>Order</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="quantity" aria-describedby="basic-addon2">
+                        <input type="hidden" name="phone_name" value="{{ $item->phone }}">
+                        <input type="hidden" name="reseller_id" value="{{ Auth::user()->id }}">
+                      <input type="submit" class="input-group-text" id="basic-addon2" value="Buy">
+                    </div>
+                  </form>
                   </div>
                 </div>
               </div>
-              <div class="home_card_text">
-                <h4>Redmi 9 Power- 4GB/64GB</h4>
-                <h5>$250</h5>
-                <p>Stock Available</p>
-              </div>
             </div>
           </div>
-          <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-3.jpg" alt="Photo 3" class="img-fluid">
-                <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-danger text-lg">
-                    35% OFF
+
+          <div class="modal fade" id="modal-default{{ $item->id }}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="spe_modal-header">
+                  <h4 class="d-block">{{ $item->phone }}</h4>
+                  <p>SPECIFICATION</p>
+                  <button type="button" class="btn btn-tool-close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <img src="{{asset('/storage'.'/'.$item->image)}}" alt="Photo 1" class="img-fluid">
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table table-sm" style="border-bottom: 1px solid #dee2e6;">
+                    <tbody>
+                      <tr>
+                        <th colspan="2" scope="col"><strong style="color: #db0909;">Configuration</strong></th>
+                      </tr>
+                      <tr>
+                        <td> <p> {{ $item->description }}</p> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                      <tr>
+                        <td><strong>Disclaimer.</strong></td>
+                        <td>We can not guarantee that the information on this page is 100% correct. <a
+                            href="https://www.gsmarena.com/glossary.php3?term=data-disclaimer">Read more</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-tool" data-dismiss="modal" aria-label="Close">Close</button>
                   </div>
                 </div>
               </div>
-              <div class="home_card_text">
-                <h4>Redmi 9 Power- 4GB/64GB</h4>
-                <h5>$250</h5>
-                <p>Stock Available</p>
-              </div>
+              <!-- /.modal-content -->
             </div>
+            <!-- /.modal-dialog -->
           </div>
-          <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-1.jpg" alt="Photo 1" class="img-fluid">
-                <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-success text-lg">
-                    30% OFF
-                  </div>
-                </div>
-              </div>
-              <div class="home_card_text">
-                <h4>POCO M3- 4GB/128GB</h4>
-                <h5>$300</h5>
-                <p>Stock Available</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-2.jpg" alt="Photo 2" class="img-fluid">
-                <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-warning text-lg">
-                    40% OFF
-                  </div>
-                </div>
-              </div>
-              <div class="home_card_text">
-                <h4>Redmi 9 Power- 4GB/64GB</h4>
-                <h5>$250</h5>
-                <p>Stock Available</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-3.jpg" alt="Photo 3" class="img-fluid">
-                <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-danger text-lg">
-                    35% OFF
-                  </div>
-                </div>
-              </div>
-              <div class="home_card_text">
-                <h4>Redmi 9 Power- 4GB/64GB</h4>
-                <h5>$250</h5>
-                <p>Stock Available</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-1.jpg" alt="Photo 1" class="img-fluid">
-                <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-success text-lg">
-                    30% OFF
-                  </div>
-                </div>
-              </div>
-              <div class="home_card_text">
-                <h4>POCO M3- 4GB/128GB</h4>
-                <h5>$300</h5>
-                <p>Stock Available</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
-              <div data-toggle="modal" data-target="#modal-default">
-                <img src="images/mobile-2.jpg" alt="Photo 2" class="img-fluid">
-                <div class="ribbon-wrapper ribbon-lg">
-                  <div class="ribbon bg-warning text-lg">
-                    40% OFF
-                  </div>
-                </div>
-              </div>
-              <div class="home_card_text">
-                <h4>Redmi 9 Power- 4GB/64GB</h4>
-                <h5>$250</h5>
-                <p>Stock Available</p>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>

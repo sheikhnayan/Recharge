@@ -23,6 +23,7 @@ class OrderController extends Controller
         ]);
 
         $orders = new Order;
+        $orders->reseller_id = $request->input('reseller_id'); 
         $orders->first_name = $request->input('first_name');        
         $orders->rfirst_name = $request->input('rfirst_name');        
         $orders->surname = $request->input('surname');

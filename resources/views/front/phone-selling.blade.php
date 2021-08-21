@@ -48,349 +48,37 @@
                     <tr>
                       <th style="background: #faaeae;">Order No</th>
                       <th style="background: #faaeae;">Date</th>
-                      <th style="background: #faaeae;">Punto Vendita</th>
-                      <th style="background: #faaeae;">Stato</th>
-                      <th class="text-center" style="background: #faaeae;">Avanzamento</th>
+                      <th style="background: #faaeae;">Quantity</th>
+                      <th style="background: #faaeae;">State</th>
+                      <th class="text-center" style="background: #faaeae;">Agent Name</th>
+                      @if (Auth::user()->role == 'admin')
                       <th class="text-center" style="background: #faaeae;">Action</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($data as $item)
                     <tr class="bg-ocean">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
+                      <td style="text-align: center" >{{ $item->id }}</td>
+                      <td style="text-align: center"><span>{{ $item->created_at }} </span></td>
+                      <td style="text-align: center">{{ $item->quantity }}</td>
+                      <td style="text-align: center">{{ $item->status }}</td>
+                      <td style="text-align: center">{{ $item->nationality }}</td>
+                      @if (Auth::user()->role == 'admin')
+                      <td style="text-align: center">
+                        <form action="/phone/update" method="POST">
+                          @csrf
+                          <input type="hidden" name="id" value="{{ $item->id }}">
+                          <select name="status" style="width: 120px">
+                              <option {{$item->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
+                              <option {{$item->status == 'cancel' ? 'selected' : '' }} value="cancel">Cancel</option>
+                          </select>
+                          <input type="submit" value="Update" class="btn btn-success">
+                          </form>
                       </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
+                      @endif
                     </tr>
-                    <tr class="bg-sky">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>JML223355</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Amici Bigiottera</td>
-                      <td>Evaso Totalmente</td>
-                      <td class="text-center selling_progress">
-                        <span class="fs-6">100%</span>
-                        <div class="progress progress-sm active">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100" style="width: 100%">
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="btn btn-sm bg-info">
-                            <i class="nav-icon fas fa-truck"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

@@ -1,5 +1,20 @@
-@extends('front.layout.main')
+@extends('front.layout.courier')
+@section('header')
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sale</title>
 
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{asset('css/fontawesome-free/css/all.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('css/style.css')}}">
+</head>
+@endsection
 @section('content')
       <div style="width: 80%;margin-left: 50px;">
           <h2>Vendita Sim</h2>

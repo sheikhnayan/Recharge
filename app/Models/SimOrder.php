@@ -27,6 +27,8 @@ class SimOrder extends Model
         'file',
         'price',
         'file_2',
-        'nationality'
+        'nationality',
+        'sell_price',
+        'recharge'
     ];
 }

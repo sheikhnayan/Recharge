@@ -1,5 +1,21 @@
-@extends('front.layout.main')
+@extends('front.layout.courier')
+@section('header')
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wi-fi</title>
 
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{asset('css/fontawesome-free/css/all.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('css/style.css')}}">
+</head>
+
+@endsection
 @section('content')
 <style>
   input {
@@ -18,8 +34,16 @@ tr:nth-of-type(even) {
 thead {
     background: #f8af3c;
 }
+.t{
+    width: 82%;margin-left: 300px;
+}
+@media screen and (max-width: 600px) {
+    .t{
+        margin-left: 40px;
+    }
+}
 </style>
-      <div style="width: 60%;margin-left: 50px;">
+      <div class="t" >
           <h2>Offers</h2>
           <form class="card" action="/offer" method="POST">
             @csrf
@@ -30,7 +54,7 @@ thead {
                 </div>
                 <div class="col-md-5">
                     <label style="font-weight: bold; color:black" for="fname">Operatore</label><br>
-                        <select id="operator" name="operator">
+                        <select id="operator" name="operator" class="custom-select">
                             @foreach ($operator as $item)
                                 <option value="{{$item->operator}}">{{$item->operator}}</option>
                             @endforeach
@@ -77,95 +101,5 @@ thead {
                 </div>
             </div>
           </form>
-          <div class="reseller"   style="margin-top:50px">
-            <input type="search" class="light-table-filter" data-table="table-info" placeholder="Seach For Offer....">
- 
-            <table class="table-info table">
-                <thead>
-                <tr>
-                <th>#</th>
-                <th>Offer</th>
-                <th>Operator</th>
-                <th>Costo al mese</th>
-                <th>Ricarica totale</th>
-                <th>Offerta valida per</th>
-                <th>Pacchetto Internet gratuito (GB)</th>
-                <th>Minuti gratuiti per operatore locale</th>
-                <th>Minuti gratuiti per internazionale</th>
-                <th>Minuti illimitati a</th>
-                <th>Minuti internazionali validi per</th>
-                <th>Altre informazioni</th>
-                <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach ($data as $item)
-                      <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{$item->offer}}</td>
-                        <td>{{$item->operator}}</td>
-                        <td>{{$item->costo}}</td>
-                        <td>{{$item->ricarica}}</td>
-                        <td>{{$item->valida}}</td>
-                        <td>{{$item->internet}}</td>
-                        <td>{{$item->minuti}}</td>
-                        <td>{{$item->minuti_internazionale}}</td>
-                        <td>{{$item->minuti_illimitati}}</td>
-                        <td>{{$item->minuti_internazionali_validi}}</td>
-                        <td>{{$item->altre_informazioni}}</td>
-                        <td> <a class="btn btn-danger" href="/delete-offer/{{$item->id}}">Delete</a> </td>
-                      </tr>
-                  @endforeach
-                </tbody>
-            </table>
-         
-        </section>
-         
-            <script>
-              /* Code By Webdevtrick ( https://webdevtrick.com ) */
-(function(document) {
-    'use strict';
- 
-    var TableFilter = (function(Arr) {
- 
-        var _input;
- 
-        function _onInputEvent(e) {
-        _input = e.target;
-        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-        Arr.forEach.call(tables, function(table) {
-        Arr.forEach.call(table.tBodies, function(tbody) {
-        Arr.forEach.call(tbody.rows, _filter);
-        });
-        });
-        }
- 
-        function _filter(row) {
-        var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-        }
- 
-        return {
-        init: function() {
-        var inputs = document.getElementsByClassName('light-table-filter');
-        Arr.forEach.call(inputs, function(input) {
-        input.oninput = _onInputEvent;
-        });
-        }
-        };
-    })(Array.prototype);
- 
-    document.addEventListener('readystatechange', function() {
-        if (document.readyState === 'complete') {
-        TableFilter.init();
-        }
-    });
- 
-})(document);
-            </script>
-         
-      </div>
-
-
-    </div>
+       </div>
 @endsection

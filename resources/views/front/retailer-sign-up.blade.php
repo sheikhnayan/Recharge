@@ -19,15 +19,17 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="card card-outline card-primary">
+    <form action="{{ route('register') }}" method="POST">
+      @csrf
     <div class="card-header text-center">
-      <a href="signup.html"><img src="images/jm logo.jpeg" width="80px" height="auto"></a>
+      <a href="signup.html"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="../../index.html" method="post">
+      {{-- <form action="../../index.html" method="post"> --}}
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
+          <input type="text" name="first_name" class="form-control" placeholder="First name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -35,7 +37,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Partita IVA">
+          <input type="text" name="last_name" class="form-control" placeholder="Last Name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -43,37 +45,45 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <input type="text" name="company" class="form-control" placeholder="Company Name">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        {{-- <div class="input-group mb-3">
           <textarea class="form-control" rows="1" placeholder="Address"></textarea>
           <div class="input-group-text">
             <span class="fas fa-house-user"></span>
           </div>
-        </div>
+        </div> --}}
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-at"></span>
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
+        {{-- <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Mobile Number">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-mobile-alt"></span>
             </div>
           </div>
-        </div>
-        <div class="input-group mb-3">
+        </div> --}}
+        {{-- <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Codice Fiscale">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-mobile-alt"></span>
             </div>
           </div>
-        </div>
+        </div> --}}
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Create Password">
+          <input type="password" name="password" class="form-control" placeholder="Create Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -81,33 +91,36 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Confirm password">
+          <select name="gender" class="form-control" id="">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-8">
-            <div class="icheck-primary">
+            {{-- <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agree">
               <label for="agreeTerms">
                I agree to the <a href="#">terms</a>
               </label>
-            </div>
+            </div> --}}
+            {{-- <a href="login.html" class="text-center">I already have a membership</a> --}}
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            <input type="submit" class="btn btn-primary btn-block" value="Sign Up">
           </div>
           <!-- /.col -->
         </div>
-      </form>
-
-      <a href="login.html" class="text-center">I already have a membership</a>
+      {{-- </form> --}}
     </div>
     <!-- /.form-box -->
+  </form>
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->

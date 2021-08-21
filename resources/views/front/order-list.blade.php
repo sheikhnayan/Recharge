@@ -29,11 +29,11 @@
               <a href="{{route('cargo-new-order')}}" class="d-inline-block" style="float: right;"><i class="fas fa-plus-circle"></i>New Order</a>
             </div>
             <div class="input-group mb-4">
-              <input type="text" class="form-control" placeholder="Search old order" aria-label="Search old order"
+              <input type="text" class="form-control light-table-filter" data-table="table-info" placeholder="Search old order" aria-label="Search old order"
                 aria-describedby="basic-addon2">
               <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
             </div>
-            <div class="mb-2 text-center">
+            {{-- <div class="mb-2 text-center">
               <button type="button" class="btn btn-success btn-sm cargo_order_list_btn">
                 <i class="fas fa-file-excel"></i>
                 Export Excel
@@ -46,7 +46,7 @@
                 <i class="fas fa-print"></i>
                 Print
               </button>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -61,12 +61,12 @@
           <div class="card-body">
             <div class="row pb-3">
               <div class="col-12  table-responsive p-0" style="height: 550px;">
-                <table class="table table-sm table-bordered table-hover table-head-fixed text-nowrap">
+                <table class="table-info table table-sm table-bordered table-hover table-head-fixed text-nowrap">
                   <thead>
                     <tr>
                       <th style="background: #faaeae;">Order ID</th>
                       <th style="background: #faaeae;">Date</th>
-                      <th style="background: #faaeae;">Agent</th>
+                      {{-- <th style="background: #faaeae;">Agent</th> --}}
                       <th style="background: #faaeae;">City</th>
                       <th style="background: #faaeae;">Customer</th>
                       <th style="background: #faaeae;">Receiver</th>
@@ -84,7 +84,7 @@
                     <tr class="bg-ocean">
                       <td>{{$order->id}}</td>
                       <td>{{$order->created_at}}<!-- <br>20:42:30 --></td>
-                      <td>Agent Name</td>
+                      {{-- <td>Agent Name</td> --}}
                       <td>{{$order->city}}</td>
                       <td>{{$order->first_name}}</td>
                       <td>{{$order->rfirst_name}}</td>
@@ -99,10 +99,10 @@
                           <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
                           </button>
                           <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="cargo_invoice.html"><i class="fas fa-print"></i>Print Invoice</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-print"></i>Print Label</a>
-                            <a class="dropdown-item" href="cargo_view_order.html"><i class="fas fa-eye"></i>View</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-times"></i>Cancel</a>
+                            <a class="dropdown-item" href="/cargo/order-invoice/{{ $order->id }}"><i class="fas fa-print"></i>Print Invoice</a>
+                            {{-- <a class="dropdown-item" href="#"><i class="fas fa-print"></i>Print Label</a> --}}
+                            <a class="dropdown-item" href="/cargo/order/view/{{ $order->id }}"><i class="fas fa-eye"></i>View</a>
+                            <a class="dropdown-item" href="/cargo/order/cancel/{{ $order->id }}"><i class="fas fa-times"></i>Cancel</a>
                           </div>
                         </div>
                       </td>
@@ -133,6 +133,48 @@
     </section>
     <!-- /.content -->
   </div>
+  <script>
+    /* Code By Webdevtrick ( https://webdevtrick.com ) */
+(function(document) {
+'use strict';
+
+var TableFilter = (function(Arr) {
+
+var _input;
+
+function _onInputEvent(e) {
+_input = e.target;
+var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+Arr.forEach.call(tables, function(table) {
+Arr.forEach.call(table.tBodies, function(tbody) {
+Arr.forEach.call(tbody.rows, _filter);
+});
+});
+}
+
+function _filter(row) {
+var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+}
+
+return {
+init: function() {
+var inputs = document.getElementsByClassName('light-table-filter');
+Arr.forEach.call(inputs, function(input) {
+input.oninput = _onInputEvent;
+});
+}
+};
+})(Array.prototype);
+
+document.addEventListener('readystatechange', function() {
+if (document.readyState === 'complete') {
+TableFilter.init();
+}
+});
+
+})(document);
+  </script>
   <!-- /.content-wrapper -->
 @endsection
 @section('scripts')

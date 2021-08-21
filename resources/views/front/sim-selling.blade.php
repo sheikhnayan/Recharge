@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 @endsection
-
 @section('content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -28,15 +27,15 @@
             <div class="card mt-3 p-3">
               <h5><i class="fas fa-search mr-2"></i>Search Order</h5>
               <div class="selling_search_group">
-                <input type="text" name="table_search_input" class="form-control mr-2" placeholder="Offer Number, ICCID Number, SIM Number, Order By etc..">
-                <div class="form-group mr-2">
+                <input type="text" name="table_search_input" data-table="table-info" class="form-control mr-2 light-table-filter" placeholder="Offer Number, ICCID Number, SIM Number, Order By etc..">
+                {{-- <div class="form-group mr-2">
                   <select class="custom-select" id="">
                     <option>Select Status</option>
                     <option>Completed</option>
                     <option>Incompleted</option>
                   </select>
-                </div>
-                <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+                </div> --}}
+                {{-- <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button> --}}
               </div>
             </div>
             <div class="card mt-3">
@@ -48,7 +47,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 550px;">
-                <table class="table table-sm table-bordered table-hover table-head-fixed text-nowrap">
+                <table class="table table-info table-sm table-bordered table-hover table-head-fixed text-nowrap">
                   <thead>
                     <tr>
                       <th style="background: #faaeae;">#</th>
@@ -58,451 +57,50 @@
                       <th style="background: #faaeae;">Order Date</th>
                       <th style="background: #faaeae;">Order By</th>
                       <th class="text-center" style="background: #faaeae;">Status</th>
+                      @if (Auth::user()->role == 'admin')
                       <th class="text-center" style="background: #faaeae;">Update</th>
+                      @endif
                       <th class="text-center" style="background: #faaeae;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($data as $item)
                     <tr class="bg-ocean">
-                      <td>22</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>{{ $item->id }}</td>
+                      <td>{{ $item->offer }}</td>
+                      <td>{{ $item->iccid }}</td>
+                      <td>{{ $item->created_at }}</td>
+                      <td>{{ $item->nationality }}</td>
+                      <td><span class="badge badge-primary">{{ $item->status }}</span></td>
+                      @if (Auth::user()->role == 'admin')
+                      <td> 
+                        <form action="/sim-order/update" method="POST">
+                          @csrf
+
+                          <input type="hidden" name="sim_id" value="{{$item->sim_id}}">
+
+                          <select name="status" style="width: 120px">
+                              <option {{$item->status == 'available' ? 'selected' : '' }} value="available">Available</option>
+                              <option {{$item->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
+                              <option {{$item->status == 'sold' ? 'selected' : '' }} value="sold">Sold</option>
+                          </select>
+                          <input type="submit" value="Update" class="btn btn-success">
+                          </form>  
+                      </td>
+                      @endif
                       <td class="text-center">
                         <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
+                          <a href="/sim-invoice/{{ $item->id }}" class="btn btn-sm btn-success">
                             <i class="fas fa-print"></i>
                           </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
+                          <a href="/sim-download/{{ $item->id }}" class="btn btn-sm bg-info">
                             <i class="fas fa-eye"></i>
                           </a>
                         </div>
                       </td>
                     </tr>
-                    <tr class="bg-sky">
-                      <td>21</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>20</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>19</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>18</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>17</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>16</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>15</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>14</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>13</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>12</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>11</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>10</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>9</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>8</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>7</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>6</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>5</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>4</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>3</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>2</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>1</td>
-                      <td>3050</td>
-                      <td>WIND Call Your Country SUPER LE 9.99 OFFER 50 GIGA INTERNET</td>
-                      <td>5849123541553250252</td>
-                      <td><span>02/07/2021 </span><span>15:46</span></td>
-                      <td>Shamal Saha</td>
-                      <td><span class="badge badge-primary">Completed</span></td>
-                      <td></td>
-                      <td class="text-center">
-                        <div class="btn-group">
-                          <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-sm btn-success">
-                            <i class="fas fa-print"></i>
-                          </a>
-                          <a href="retailer_view_detail.html" class="btn btn-sm bg-info">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                        </div>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -521,7 +119,48 @@
   <!-- /.content-wrapper -->
 
 @section('scripts')
+<script>
+  /* Code By Webdevtrick ( https://webdevtrick.com ) */
+(function(document) {
+'use strict';
 
+var TableFilter = (function(Arr) {
+
+var _input;
+
+function _onInputEvent(e) {
+_input = e.target;
+var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+Arr.forEach.call(tables, function(table) {
+Arr.forEach.call(table.tBodies, function(tbody) {
+Arr.forEach.call(tbody.rows, _filter);
+});
+});
+}
+
+function _filter(row) {
+var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+}
+
+return {
+init: function() {
+var inputs = document.getElementsByClassName('light-table-filter');
+Arr.forEach.call(inputs, function(input) {
+input.oninput = _onInputEvent;
+});
+}
+};
+})(Array.prototype);
+
+document.addEventListener('readystatechange', function() {
+if (document.readyState === 'complete') {
+TableFilter.init();
+}
+});
+
+})(document);
+</script>
 <!-- jQuery -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <!-- Bootstrap -->

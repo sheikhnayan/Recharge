@@ -59,7 +59,7 @@ class UserController extends Controller
     {
         $data = User::where('id',$id)->first();
 
-        return view('front.edit-reseller',compact('data'));
+        return view('front.edit_profile',compact('data'));
     }
 
     /**
@@ -78,7 +78,7 @@ class UserController extends Controller
             'email' => $request->email
         ]);
 
-        return redirect('/resellers');
+        return redirect('/retailer/retailer-details');
     }
 
     /**

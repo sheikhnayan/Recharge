@@ -73,9 +73,9 @@ thead {
                                   <input type="hidden" name="sim_id" value="{{$item->sim_id}}">
       
                                   <select name="status" style="width: 120px">
-                                      <option value="available">Available</option>
+                                      <option {{$item->status == 'available' ? 'selected' : '' }} value="available">Available</option>
                                       <option {{$item->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
-                                      <option value="sold">Sold</option>
+                                      <option {{$item->status == 'sold' ? 'selected' : '' }} value="sold">Sold</option>
                                   </select>
                                   <input type="submit" value="Update" class="btn btn-success">
                                   </form>    

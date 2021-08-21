@@ -720,6 +720,7 @@ class ComposerStaticInit8d411599166722813be44a90ce29357d
         'App\\Models\\Operator' => __DIR__ . '/../..' . '/app/Models/Operator.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\Phone' => __DIR__ . '/../..' . '/app/Models/Phone.php',
+        'App\\Models\\PhoneOrder' => __DIR__ . '/../..' . '/app/Models/PhoneOrder.php',
         'App\\Models\\Recharge' => __DIR__ . '/../..' . '/app/Models/Recharge.php',
         'App\\Models\\SimOperator' => __DIR__ . '/../..' . '/app/Models/SimOperator.php',
         'App\\Models\\SimOrder' => __DIR__ . '/../..' . '/app/Models/SimOrder.php',
