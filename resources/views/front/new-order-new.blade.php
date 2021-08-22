@@ -80,11 +80,11 @@
                     <h5><i class="fas fa-male"></i> <strong>Customer Information</strong></h5>
                     <div class="mb-3">
                       <label for="first_name" class="form-label">First Name</label>
-                      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Customer Name">
+                      <input required="" type="text" class="form-control" name="first_name" id="first_name" placeholder="Customer Name">
                     </div>
                     <div class="mb-3">
                       <label for="surname" class="form-label">Surname</label>
-                      <input type="text" class="form-control" name="surname" id="surname" placeholder="Customer surname">
+                      <input required="" type="text" class="form-control" name="surname" id="surname" placeholder="Customer surname">
                     </div>
                     <div class="form-group">
                       <label>Date of Birth</label>
@@ -271,7 +271,7 @@
                     <div class="form-group">
                       <label>Number of Box</label>
                       <select class="form-control select2" name="numberOfBox" style="width: 100%;">
-                        <option>--Select--</option>
+                        <option value="">--Select--</option>
                         <option>01</option>
                         <option>02</option>
                         <option>03</option>
@@ -292,7 +292,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="goods_value" class="form-label">Goods Value (EURO) *</label>
-                      <input type="number" step="any" class="form-control" id="goods_value" name="goods_value" value="0" oninput="myFunction12(this)">
+                      <input type="number" step="any" class="form-control" id="goods_value" name="goods_value" value="0" oninput="goodValue(this)">
                     </div>
                     <!-- <div class="mb-3">
                       <label for="inputGoodsValue" class="form-label">Goods Value (Euro)</label>
@@ -301,7 +301,7 @@
                     <div class="form-group">
                       <label>Product Type</label>
                       <select class="form-control select2" name="productType" id="productType" style="width: 100%;" oninput="myFunction1234(this)">
-                        <option>--Select--</option>
+                        <option value="null">--Select--</option>
                         <option>Metal</option>
                         <option>Liquid</option>
                         <option>Wooden</option>
@@ -311,15 +311,15 @@
                     </div>
                     <div class="mb-3">
                       <label for="totalWeightValue" class="form-label">Total Weight (Kg)</label>
-                      <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="myFunction123(this)">
+                      <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="weight(this)">
                     </div>
                     <div class="mb-3">
                       <label for="chargePerKgValue" class="form-label">Charge/Kg(Euro)</label>
-                      <input class="form-control" type="number" step="any" readonly="true" name="perKg" id="perKg" value="0" placeholder="0">
+                      <input class="form-control" type="number" step="any" name="perKg" id="perKg" value="0" placeholder="0">
                     </div>
                     <div class="mb-3">
                       <label for="chargeValue" class="form-label">Charge(Euro)</label>
-                      <input type="nmber" class="form-control" id="chargeValue" name="cusCharge" placeholder="0">
+                      <input type="number" class="form-control" id="chargeValue" name="cusCharge" placeholder="0">
                     </div>
                     <div class="mb-3">
                       <label for="homeDeliveryChargeValue" class="form-label">Home Delivery Charge(Euro)</label>
@@ -473,20 +473,20 @@
     });
 </script>
 <script type="text/javascript">
-function myFunction12() {
+function goodValue() {
 
    let totalCharge = document.getElementById("total");
    let value = document.getElementById("goods_value").value;
-   totalCharge.setAttribute('value', value*2)
+   totalCharge.setAttribute('value', value*1.1)
 
 }
-function myFunction123() {
+function weight() {
 
-let totalCharge = document.getElementById("total");
+   let totalCharge = document.getElementById("total");
    let change = document.getElementById("total").value;
 
    let weight = document.getElementById("weight");
-   totalCharge.setAttribute('value', change+19);
+   totalCharge.setAttribute('value', change+9);
 
    // let totalCharge = document.getElementById("total");
 
@@ -495,11 +495,11 @@ let totalCharge = document.getElementById("total");
 
 }
 function myFunction1234() {
-let totalCharge = document.getElementById("total");
+   let totalCharge = document.getElementById("total");
    let change = document.getElementById("total").value;
 
    let type = document.getElementById("productType");
-   totalCharge.setAttribute('value', change+143);
+   totalCharge.setAttribute('value', change+3);
    
    // let totalCharge = document.getElementById("total");
 
