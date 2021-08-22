@@ -206,7 +206,7 @@
                         Route::currentRouteName() == 'recharge-gift-card' ||
                         Route::currentRouteName() == 'recharge-calling-card' ||
                         Route::currentRouteName() == 'print-all-invoice') nav-item menu-open @endif nav-item">
-            <a href="/recharge" class="@if(Route::currentRouteName() == 'recharge-int' ||
+            <a href="#" class="@if(Route::currentRouteName() == 'recharge-int' ||
                         Route::currentRouteName() == 'recharge-italy' ||
                         Route::currentRouteName() == 'recharge-gift-card' ||
                         Route::currentRouteName() == 'recharge-calling-card' ||

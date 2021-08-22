@@ -55,7 +55,7 @@
       <div class="container-fluid">
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
-          <form action="{{route('add-new-order')}}" method="POST">
+          <form action="{{route('add-new-order')}}" method="POST" enctype="multipart/form-data">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -141,18 +141,18 @@
                         <option>Zimbabwe</option>
                       </select>
                     </div>
-                    <!-- <div class="form-group">
-                      <label for="exampleInputFile">File input</label>
+                    <div class="form-group">
+                      <label for="exampleInputFile">Package Label</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
+                          <input type="file" class="custom-file-input" id="label" name="label">
                           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                         <div class="input-group-append">
                           <span class="input-group-text">Upload</span>
                         </div>
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               </div>

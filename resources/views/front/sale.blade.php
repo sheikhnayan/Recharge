@@ -309,9 +309,9 @@
                       </div>
                       <div class="row w-100">
                         <label for="">File 1</label>
-                        <input type="file" name="file" class="btn btn-success col ">
+                        <input type="file" name="file" class="btn btn-success col " required="">
                         <label for="">File 2</label>
-                        <input type="file" name="file2" class="btn btn-success col ">
+                        <input type="file" name="file2" class="btn btn-success col " required="">
                         {{-- <span class="btn btn-success col fileinput-button">
                           <i class="fas fa-plus"></i>
                           <span>Add files</span>

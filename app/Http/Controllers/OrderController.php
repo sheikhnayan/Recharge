@@ -14,6 +14,11 @@ class OrderController extends Controller
 
         // dd($request->all());
 
+        if(!empty($request->label)){
+            $request->file('label')->store('public');  
+            $labelFileName = $request->label->hashName();
+        }
+
 
         $validatedData = $request->validate([
             // 'first_name' => 'required|max:255',
@@ -38,8 +43,7 @@ class OrderController extends Controller
         $orders->remail = $request->input('remail');
         $orders->address = $request->input('address');
         $orders->raddress = $request->input('raddress');
-        $orders->cap = $request->input('cap');
-        $orders->rcap = $request->input('rcap');
+        
         $orders->country = $request->input('country');
         $orders->rcountry = $request->input('rcountry');
         $orders->state = $request->input('state');
@@ -73,6 +77,7 @@ class OrderController extends Controller
         $orders->quantity3 = $request->input('qty3');
         $orders->quantity4 = $request->input('qty4');
         $orders->quantity5 = $request->input('qty5');
+        $orders->label = $labelFileName;
         $orders->status = 'available';
         $orders->save();
 
