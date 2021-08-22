@@ -258,6 +258,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="/operator" class="@if(Route::currentRouteName() == 'operator') nav-link active @endif nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SIM Operator</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="/sim/sim-activation" class="@if(Route::currentRouteName() == 'sim-activation') nav-link active @endif nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>SIM Activation</p>
