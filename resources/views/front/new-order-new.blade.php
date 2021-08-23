@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
   
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+  <script type= "text/javascript" src="{{asset('js/countries.js')}}"></script>
 </head>
 
 @endsection
@@ -112,34 +114,7 @@
                       <textarea class="form-control" id="interCustomerAddress" name="address" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="interCustomerCountry" class="form-label">Country</label>
-                      <select class="form-control select2" id="interCustomerCountry" name="country" style="width: 100%;">
-                        <option>Select Country</option>
-                        <option>America</option>
-                        <option>Bangladesh</option>
-                        <option>Canada</option>
-                        <option>Dubai</option>
-                        <option>England</option>
-                        <option>Franch</option>
-                        <option>Germany</option>
-                        <option>Holand</option>
-                        <option>India</option>
-                        <option>Japan</option>
-                        <option>Kenya</option>
-                        <option>Liberia</option>
-                        <option>Malaysia</option>
-                        <option>Nepal</option>
-                        <option>Oman</option>
-                        <option>Pakistan</option>
-                        <option>Qatar</option>
-                        <option>Russia</option>
-                        <option>Saudi Arabia</option>
-                        <option>Thailand</option>
-                        <option>Uganda</option>
-                        <option>Vietnam</option>
-                        <option>Yemen</option>
-                        <option>Zimbabwe</option>
-                      </select>
+                      <select class="form-control select2" onchange="print_state('state',this.selectedIndex);" id="country" name ="country" style="width: 100%;"></select>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile">Package Label</label>
@@ -195,34 +170,7 @@
                       <textarea class="form-control" id="interReceiverAddress" name="raddress" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="interReceiverCountry" class="form-label">Country</label>
-                      <select class="form-control select2" id="interReceiverCountry" name="rcountry" style="width: 100%;">
-                        <option>Select Receiver Country</option>
-                        <option>America</option>
-                        <option>Bangladesh</option>
-                        <option>Canada</option>
-                        <option>Dubai</option>
-                        <option>England</option>
-                        <option>Franch</option>
-                        <option>Germany</option>
-                        <option>Holand</option>
-                        <option>India</option>
-                        <option>Japan</option>
-                        <option>Kenya</option>
-                        <option>Liberia</option>
-                        <option>Malaysia</option>
-                        <option>Nepal</option>
-                        <option>Oman</option>
-                        <option>Pakistan</option>
-                        <option>Qatar</option>
-                        <option>Russia</option>
-                        <option>Saudi Arabia</option>
-                        <option>Thailand</option>
-                        <option>Uganda</option>
-                        <option>Vietnam</option>
-                        <option>Yemen</option>
-                        <option>Zimbabwe</option>
-                      </select>
+                      <select class="form-control select2" onchange="print_state_for_receiver('rstate',this.selectedIndex);" id="rcountry" name ="rcountry" style="width: 100%;"></select>
                     </div>
                     <!-- <div class="form-group">
                       <label for="exampleInputFile">File input</label>
@@ -352,23 +300,11 @@
                     </div>
                     <div class="form-group">
                       <label>Departure Port/Station</label>
-                      <select class="form-control select2" name="departure_airport" style="width: 100%;">
-                        <option>--Select--</option>
-                        <option>Dhaka</option>
-                        <option>Chittagong</option>
-                        <option>Khulna</option>
-                        <option>Rajshahi</option>
-                      </select>
+                      <select class="form-control select2" name ="departure_airport" id ="state" style="width: 100%;"></select>
                     </div>
                     <div class="form-group">
                       <label>Arival Port/Station</label>
-                      <select class="form-control select2" name="arrival_airport" style="width: 100%;">
-                        <option>--Select--</option>
-                        <option>Dhaka</option>
-                        <option>Chittagong</option>
-                        <option>Khulna</option>
-                        <option>Rajshahi</option>
-                      </select>
+                      <select class="form-control select2" name ="arrival_airport" id ="rstate" style="width: 100%;"></select>
                     </div>
                   </div>
                 </div>
@@ -509,4 +445,6 @@ function myFunction1234() {
 }
 
 </script>
+<script language="javascript">print_country("country");</script>
+<script language="javascript">print_country("rcountry");</script>
 @endsection
