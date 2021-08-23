@@ -22,9 +22,53 @@ class OrderController extends Controller
 
         $validatedData = $request->validate([
             // 'first_name' => 'required|max:255',
-            // 'name' => 'required',
-            // 'phone_number' => 'required',
+            // 'rfirst_name' => 'required',
+            // 'surname' => 'required',
+            // 'rsurname' => 'required',
             // 'dob' => 'required',
+            // 'rdob' => 'required',
+            // 'document_number' => 'required',
+            // 'rdocument_number' => 'required',
+            // 'phone' => 'required',
+            // 'rphone' => 'required',
+            // 'email' => 'required',
+            // 'remail' => 'required',
+            // 'address' => 'required',
+            // 'raddress' => 'required',
+            // 'country' => 'required',
+            // 'rcountry' => 'required',
+            // 'state' => 'required',
+            // 'rstate' => 'required',
+            // 'dist' => 'required',
+            // 'rdist' => 'required',
+            // 'city' => 'required',
+            // 'rcity' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+            // 'phone_number' => 'required',
+
         ]);
 
         $orders = new Order;
@@ -77,7 +121,9 @@ class OrderController extends Controller
         $orders->quantity3 = $request->input('qty3');
         $orders->quantity4 = $request->input('qty4');
         $orders->quantity5 = $request->input('qty5');
-        $orders->label = $labelFileName;
+        if(!empty($labelFileName)){}
+            $orders->label = $labelFileName;
+        }
         $orders->status = 'available';
         $orders->save();
 
