@@ -100,7 +100,9 @@
                           </button>
                           <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item" href="/cargo/order-invoice/{{ $order->id }}"><i class="fas fa-print"></i>Print Invoice</a>
-                            {{-- <a class="dropdown-item" href="#"><i class="fas fa-print"></i>Print Label</a> --}}
+                            @if ($order->label != null)
+                            <a class="dropdown-item" href="/cargo/order-label/{{ $order->id }}"><i class="fas fa-print"></i>Print Label</a>
+                            @endif
                             <a class="dropdown-item" href="/cargo/order/view/{{ $order->id }}"><i class="fas fa-eye"></i>View</a>
                             <a class="dropdown-item" href="/cargo/order/cancel/{{ $order->id }}"><i class="fas fa-times"></i>Cancel</a>
                           </div>

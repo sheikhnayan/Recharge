@@ -35,7 +35,8 @@
               <h3 class="text-center mb-5">Indice Brand Richriche</h3>
               <div class="row">
                 <div class="col-md-6">
-                  <form action="" method="post">
+                  <form action="/domestic_recharge" method="post">
+                    @csrf
                     <div class="form-group">
                       <label>Brand</label>
                   
@@ -63,11 +64,12 @@
                     </div>
                     <div class="mb-3 phone_number">
                       <label for="inputMobileNumber" class="form-label">Mobile Number</label>
-                      <input type="text" class="form-control myNumber" id="inputMobileNumber" name="myNumber" value="" placeholder="Please enter mobile number">
+                      <input type="text" class="form-control myNumber" id="inputMobileNumber" name="number" value="" placeholder="Please enter mobile number">
                     </div>
                   
                     <div class="mb-3">
-                      <input type="text" class="form-control" id="inputAmount" placeholder="Please select amount from below" readonly="">
+                      <label for="inputAmount" class="form-label">Amount</label>
+                      <input type="text" class="form-control" id="inputAmount" name="amount" placeholder="Please select amount from below">
                     </div>
 
                     <div class="row recharge_amount mb-5">
@@ -130,7 +132,7 @@
                       
                     </div>
                     <div class="mt-3">
-                      <button type="button" class="btn btn-info" style="width: 100%;">Continue</button>
+                      <input type="submit" class="btn btn-info" style="width: 100%;" value="Recharge">
                     </div>
                     
                   </form>
