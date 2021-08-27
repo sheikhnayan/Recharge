@@ -10,6 +10,7 @@ use App\Models\Operator;
 use App\Models\Recharge;
 use Auth as a;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 
 // edit by shuvo
 use Kreait\Firebase\Auth;
@@ -46,7 +47,8 @@ class RechargeController extends Controller
     //   work here shovon   
     public function RechargeInt($value='')
     {
-        return view('front.recharge-international');
+        $stage = 'initial';
+        return view('front.recharge-international',compact('stage'));
     }
 
 //  shovon work here
@@ -183,20 +185,10 @@ class RechargeController extends Controller
         ],'verify' => false]);
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
-    $list = $data['Items'];
-    $operator_info = $list['0'];
-
-    $operator = $operator_info['Name'];
-    $logo = $operator_info['LogoUrl'];
-
-    $client = new \GuzzleHttp\Client();
-    $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?accountNumber='.$request->number,['headers' => [
-        'api_key'     => 'Etmo8i5V9q862PHn5dNJSb'
-        ],'verify' => false]);
-    $product_response = $product_request->getBody();
-    return $product_response;
-    $checked = 1;
-    return view('front.recharge',compact('checked','operator','logo'));
+    $operators = $data['Items'];
+    $datas = $request->all();
+    $stage = 'check_number';
+    return view('front.recharge-international',compact('operators','datas','stage'));
     }
     
     // edit by shuvo
@@ -270,5 +262,151 @@ class RechargeController extends Controller
 		a::login($user);
 		
 		return redirect('/');
+    }
+
+    public function get_product(Request $request)
+    {  
+
+        $datas = $request->all();
+
+
+        $client = new \GuzzleHttp\Client();
+        $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?&providerCodes='.$request->operator,['headers' => [
+            'api_key'     => 'Etmo8i5V9q862PHn5dNJSb'
+            ],'verify' => false]);
+        $product_responses = $product_request->getBody();
+
+        $prod = json_decode($product_responses,true);
+
+
+        $prods = $prod['Items'];
+
+        $count = count($prods);
+
+
+        $stage = 'get_product';
+
+        return view('front.recharge-international',compact('datas','prods','count','stage'));
+    }
+
+    public function recharge(Request $request)
+    {  
+
+        $datas = $request->all();
+
+        $sku_amount = explode(',',$datas['amount']);
+
+        $client = new \GuzzleHttp\Client();
+        $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
+            'headers' => [
+            'api_key'     => 'Etmo8i5V9q862PHn5dNJSb',
+            'content_type' => 'application/json'
+            ],
+            'verify' => false,
+            'json' => [
+                    'SkuCode' => $sku_amount['0'],
+                    'SendValue' => $sku_amount['1'],
+                    'AccountNumber' => $request->number,
+                    'DistributorRef' => a::user()->id,
+                    'ValidateOnly' => true]              
+        ]);
+        $product_responses = $recharge_request->getBody();
+
+        dd($recharge_request);
+
+        $prod = json_decode($product_responses,true);
+
+
+        $prods = $prod['Items'];
+
+        $count = count($prods);
+
+
+        $stage = 'get_product';
+
+        return view('front.recharge-international',compact('datas','prods','count','stage'));
+    }
+
+    public function domestic_recharge(Request $request)
+    {
+        $txid = mt_rand(1000000000, 9999999999);
+        
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>
+        <REQUEST MODE="RESERVE" STORERECEIPT="1" TYPE="SALE">
+        <USERNAME>UPTestARTest</USERNAME>
+        <PASSWORD>TestAR1234</PASSWORD>
+        <RECEIPT><LANGUAGE>ITA</LANGUAGE><CHARSPERLINE>32</CHARSPERLINE><TYPE>FULLTEXT</TYPE></RECEIPT>
+        <CURRENCY>978</CURRENCY>
+        <AMOUNT>'.$request->amount.'</AMOUNT>
+        <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">93889384</TERMINALID>
+        <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
+        <TXID>'.$txid.'</TXID>
+        <CARD><EAN>1234567892016</EAN></CARD>
+        <PHONE>3315748439</PHONE><CAB>
+        3D001</CAB></REQUEST>';
+
+        // $req = $client->request(["Content-Type" => "application/xml"])
+        //                ->post('https://precision.epayworldwide.com/up-interface', [$xml,'verify' => false]);
+
+        $client = new \GuzzleHttp\Client();
+        $recharge_request = $client->post('https://precision.epayworldwide.com/up-interface',[
+            'headers' => [
+            'api_key'     => 'Etmo8i5V9q862PHn5dNJSb',
+            'content_type' => 'application/xml'
+            ],
+            'verify' => false,
+            'body' => $xml              
+        ]);
+
+        $body = $recharge_request->getBody(); 
+        $xml = simplexml_load_string($body);
+
+        // $data = json_encode($bod,true);
+
+        if($xml->RESULT == 0)
+        {
+            $txid2 = mt_rand(1000000000, 9999999999);
+            $xml2 = '<?xml version="1.0" encoding="UTF-8"?>
+                <REQUEST MODE="CAPTURE" STORERECEIPT="1" TYPE="SALE">
+                    <USERNAME>UPTestARTest</USERNAME>
+                    <PASSWORD>TestAR1234</PASSWORD>
+                    <RECEIPT>
+                        <LANGUAGE>ITA</LANGUAGE>
+                        <CHARSPERLINE>32</CHARSPERLINE>
+                        <TYPE>FULLTEXT</TYPE>
+                    </RECEIPT>
+                    <CURRENCY>978</CURRENCY>
+                    <AMOUNT>'.$request->amount.'</AMOUNT>
+                    <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">93889384</TERMINALID>
+                    <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
+                    <TXID>'.$txid2.'</TXID>
+                        <CARD>
+                            <EAN>1234567892016</EAN>
+                        </CARD>
+                        <PHONE>3315748439</PHONE>
+                        <CAB>3D0013D001</CAB>
+                    <TXID/>
+                    <TXREF>'.$txid.'</TXREF>
+                    <CAB/>
+                </REQUEST>';
+
+        // $req = $client->request(["Content-Type" => "application/xml"])
+        //                ->post('https://precision.epayworldwide.com/up-interface', [$xml,'verify' => false]);
+
+        $client = new \GuzzleHttp\Client();
+        $recharge_request = $client->post('https://precision.epayworldwide.com/up-interface',[
+            'headers' => [
+            'api_key'     => 'Etmo8i5V9q862PHn5dNJSb',
+            'content_type' => 'application/xml'
+            ],
+            'verify' => false,
+            'body' => $xml2              
+        ]);
+
+        $body2 = $recharge_request->getBody(); 
+        $xml2 = simplexml_load_string($body2);
+        }
+
+         return  Redirect()->back()->with('success','Your Recharge Has Been Suucessfull');
     }
 }
