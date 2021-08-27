@@ -49,6 +49,7 @@ class PhoneController extends Controller
         $Phones = new Phone;
         $Phones->phone = $request->input('phone');        
         $Phones->price = $request->input('price');
+        $Phones->dis_price = $request->input('dis_price');
         $Phones->description = $request->input('description');
         $Phones->image = $path;
         $Phones->save();

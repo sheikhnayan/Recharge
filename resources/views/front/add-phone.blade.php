@@ -32,7 +32,11 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="formGroupExampleInput">Price</label>
-		    <input type="text" class="form-control" id="formGroupExampleInput" name="price" placeholder="Example input">
+		    <input type="number" class="form-control" id="formGroupExampleInput" name="price" placeholder="Example input">
+		  </div>
+		  <div class="form-group">
+		    <label for="formGroupExampleInput">Discount Price</label>
+		    <input type="number" class="form-control" id="formGroupExampleInput" name="dis_price" placeholder="Example input">
 		  </div>
 		  <div class="form-group">
 		    <label for="formGroupExampleInput">Image</label>

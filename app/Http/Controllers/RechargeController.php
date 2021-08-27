@@ -43,10 +43,14 @@ class RechargeController extends Controller
      * @return \Illuminate\Http\Response
      */
     //  INTERNATIONAL RECHARGE
+    //   work here shovon   
     public function RechargeInt($value='')
     {
         return view('front.recharge-international');
     }
+
+//  shovon work here
+// create model researchtransaction
 
     public function RechargeDom($value='')
     {

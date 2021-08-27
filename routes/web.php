@@ -28,6 +28,10 @@ use App\Models\Phone;
 |
 */
 
+Route::get('/sign-up',[UserController::class,'index']);
+
+Route::post('/create',[UserController::class,'create'])->name('create');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     $data = Phone::where('status', 'available')->get();
     return view('front.index',compact('data'));
@@ -153,6 +157,15 @@ Route::get('/recharge/recharge-gift-card', [RechargeController::class,'RechargeG
 Route::get('/recharge/recharge-calling-card', [RechargeController::class,'RechargeCallingCard'])->name('recharge-calling-card');
 
 Route::get('/recharge/print-all-invoice', [RechargeController::class,'PrintInvoice'])->name('print-all-invoice');
+
+Route::get('changeStatus', [RetailerController::class,'changeStatus']);
+
+Route::get('changeSim', [RetailerController::class,'changeSim']);
+
+Route::get('changeCargo', [RetailerController::class,'changeCargo']);
+
+Route::get('changePhone', [RetailerController::class,'changePhone']);
+
 
 //  RECHARGES END
 

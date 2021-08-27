@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
 
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
 @endsection
 
@@ -46,259 +50,31 @@
                 <table class="table table-bordered table-sm table-hover table-head-fixed text-nowrap text-center">
                   <thead>
                     <tr>
-                      <th style="background: #faaeae;">ID</th>
+                      <th style="background: #faaeae;">Name</th>
                       <th style="background: #faaeae;">Recharge</th>
                       <th style="background: #faaeae;">SIM</th>
                       <th style="background: #faaeae;">Cargo</th>
-                      <th style="background: #faaeae;">Online-Mask</th>
+                      <th style="background: #faaeae;">Mobile</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach($data as $retailer)
                     <tr class="bg-ocean">
-                      <td>123214</td>
+                      <td>{{$retailer->first_name}}</td>
                       <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
+                        <input data-id="{{$retailer->id}}" class="toggle-class recharge" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $retailer->recharge_permission ? 'checked' : '' }}>
                       </td>
                       <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
+                        <input id="sim{{$retailer->id}}" data-id="{{$retailer->id}}" class="toggle-class sim" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $retailer->sim_permission ? 'checked' : '' }}>
                       </td>
                       <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
+                        <input id="cargo{{$retailer->id}}" data-id="{{$retailer->id}}" class="toggle-class cargo" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $retailer->cargo_permission ? 'checked' : '' }}>
                       </td>
                       <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
+                        <input id="phone{{$retailer->id}}" data-id="{{$retailer->id}}" class="toggle-class phone" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $retailer->mobile_permission ? 'checked' : '' }}>
                       </td>
                     </tr>
-                    <tr class="bg-sky">
-                      <td>123214</td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn" style="display:none;">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>123214</td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn" style="display:none;">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>123214</td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn" style="display:none;">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>123214</td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn" style="display:none;">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn" style="display:none;">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn">
-                          Deactive
-                        </button>
-                      </td>
-                    </tr>
-                    <tr class="bg-sky">
-                      <td>123214</td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                    </tr>
-                    <tr class="bg-ocean">
-                      <td>123214</td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn" style="display:none;">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn" style="display:none;">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn">
-                          Deactive
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm bg-teal" id="retailerActiveBtn">
-                          Active
-                        </button>
-                        <button class="btn btn-sm bg-danger" id="retailerDeactiveBtn" style="display:none;">
-                          Deactive
-                        </button>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -314,15 +90,85 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <script>
+  $(function() {
+    $('.recharge').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+        console.log('hello');
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeStatus',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+  </script>
+  <script>
+  $(function() {
+    $('.sim').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+        console.log('hello');
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeSim',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+  </script>
+  <script>
+  $(function() {
+    $('.cargo').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+        console.log('hello');
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeCargo',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+  </script>
+  <script>
+  $(function() {
+    $('.phone').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+        console.log('hello');
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changePhone',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+  </script>
 @endsection
 
 @section('scripts')
-<!-- jQuery -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<!-- Bootstrap -->
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<!-- Theme JS -->
-<script src="{{asset('js/admin.js')}}"></script>
-<!-- Custom JS -->
-<script src="{{asset('js/custom.js')}}"></script>
+
+
 @endsection

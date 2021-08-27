@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -14,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('front.sign-up');
     }
 
     /**
@@ -22,9 +25,44 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+    //     $this->validate($request, [
+    //     'name' => 'required|min:3|max:50',
+    //     'address' => 'required',
+    //     'email' => 'email',
+    //     'vat_number' => 'max:13',
+    //     'password' => 'required|confirmed|min:6',
+    //     'contact_number' => 'required',
+    //     'codice_fiscale' => 'required',
+    //     'terms' => 'required',
+    // ]);
+        // dd($request->all());
+        // User::create([
+        //     'name' => $request['name'],
+        //     'vat_number' => $request['vat_number'],
+        //     'email' => $request['email'],
+        //     'address' => $request['address'],
+        //     'role' => 'user',
+        //     'contact_number' => $request['contact_number'],
+        //     'codice_fiscale' => $request['codice_fiscale'],
+        //     'wallet' => 0,
+        //     'password' => Hash::make($request['password']),
+        // ]);
+        $users = new User;
+        $users->first_name = $request->input('first_name');
+        $users->last_name = $request->input('last_name');
+        $users->vat_number = $request->input('vat_number');
+        $users->email = $request->input('email');
+        $users->address = $request->input('address');
+        $users->role = 'user';
+        $users->contact_number = $request->input('contact_number');
+        $users->codice_fiscale = $request->input('codice_fiscale');
+        $users->wallet = 0;
+        $users->password = Hash::make($request['password']);
+        $users->save();
+
+        return redirect('/login')->with('status', 'Registered Successfully!');
     }
 
     /**

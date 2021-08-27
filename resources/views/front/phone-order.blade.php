@@ -30,9 +30,9 @@
             <div class="order_page_header">
               <h4><i class="fas fa-mobile"></i>Order</h4>
             </div>
-            {{-- <div class="btn_card_group">
+            <div class="btn_card_group">
               <div class="form-group">
-                <label class="d-inline-block;">Category</label>
+                <!-- <label class="d-inline-block;">Category</label>
                 <select class="form-control d-inline-block select2">
                   <option selected="selected">Samsung</option>
                   <option>Nokia</option>
@@ -41,12 +41,12 @@
                   <option>Vivo</option>
                   <option>Xiomi</option>
                   <option>Oppo</option>
-                </select>
+                </select> -->
               </div>
               <div class="retailer_switch d-inline-block">
                 <input type="checkbox" name="phone_order_price"  data-bootstrap-switch data-off-color="danger" data-on-color="success">
               </div>
-            </div> --}}
+            </div> 
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -76,7 +76,7 @@
                   <div class="col-12 model_price">
                     <h4>{{ $item->phone }}</h4>
                     <h5 class="rate_for_customer">{{ $item->price }}</h5>
-                    {{-- <h5 class="rate_for_retailer">$250.00</h5> --}}
+                    <h5 class="rate_for_retailer">{{ $item->dis_price }}</h5>
                   </div>
                 </div>
                 <div class="row">
@@ -89,10 +89,10 @@
                       @csrf
                     <p>Order</p>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="quantity" aria-describedby="basic-addon2">
+                        <input type="number" class="form-control" name="quantity" aria-describedby="basic-addon2">
                         <input type="hidden" name="phone_name" value="{{ $item->phone }}">
                         <input type="hidden" name="reseller_id" value="{{ Auth::user()->id }}">
-                      <input type="submit" class="input-group-text" id="basic-addon2" value="Buy">
+                        <input type="submit" class="input-group-text" id="basic-addon2" value="Buy">
                     </div>
                   </form>
                   </div>

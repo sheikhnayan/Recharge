@@ -31,11 +31,12 @@ class CreateNewUser implements CreatesNewUsers
         // ])->validate();
           
         return User::create([
-            'first_name' => $input['first_name'],
-            'last_name' => $input['last_name'],
-            'gender' => $input['gender'],
+            'name' => $input['name'],
+            'address' => $input['last_name'],
+            'vat_number' => $input['gender'],
             'role' => 'user',
-            'nationality' => $input['company'],
+            'contact_number' => $input['contact_number'],
+            'codice_fiscale' => $input['codice_fiscale'],
             'wallet' => 0,
             'email' => $input['email'],
             'created_by' => Auth::user()->id,
