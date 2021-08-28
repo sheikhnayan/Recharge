@@ -14,6 +14,11 @@
 
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
+<style type="text/css">
+  .modal-content{
+    border:whitesmoke 6px solid;
+  }
+</style>
 @endsection
 
 @section('content')
@@ -47,6 +52,13 @@
       <div class="card card-solid">
         <div class="card-body pb-0">
           <div class="row">
+                          @if (\Session::has('message'))
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      <li>{!! \Session::get('message') !!}</li>
+                                  </ul>
+                              </div>
+                          @endif
             @foreach ($data as $item)
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
               <div class="card bg-light d-flex flex-fill">
@@ -73,10 +85,29 @@
                     </div>
                     <div class="col-5 text-center">
                       {{-- <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid"> --}}
-                      <div class="current_balance mt-2">
+                      <div class="  mt-2">
                         <strong>Balance: </strong><br>
                         <span>&euro; {{ $item->wallet }}</span>
                       </div>
+
+                      <!-- Small modal -->
+                      <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#boom{{$item->id}}">Add Balance</button>
+
+                      <div class="modal fade bd-example-modal-sm" id="boom{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                            <form action="{{url('/add_balance')}}" method="post">
+                              @csrf
+                              <div>
+                                <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
+                                <input class="form-control" type="number" step="0.01" name="balance">
+                                <button class="btn btn-success btn-sm"  type="submit">Add</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>

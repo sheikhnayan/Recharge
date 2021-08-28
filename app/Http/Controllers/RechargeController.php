@@ -316,7 +316,6 @@ class RechargeController extends Controller
 
         $prod = json_decode($product_responses,true);
 
-
         $prods = $prod['Items'];
 
         $count = count($prods);
@@ -402,9 +401,11 @@ class RechargeController extends Controller
             'verify' => false,
             'body' => $xml2              
         ]);
+        // dd($recharge_request);
 
         $body2 = $recharge_request->getBody(); 
         $xml2 = simplexml_load_string($body2);
+        dd($body2);
         }
 
          return  Redirect()->back()->with('success','Your Recharge Has Been Suucessfull');

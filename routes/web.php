@@ -11,6 +11,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\RetailerController;
+use App\Http\Controllers\BalanceController;
 use App\Models\SimOperator;
 use App\Models\sim;
 use App\Models\User;
@@ -209,3 +210,6 @@ Route::get('/fcm', [RechargeController::class,'fcmSend']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::post('/add_balance',[BalanceController::class,'AddBalance'])->name('AddBalance');

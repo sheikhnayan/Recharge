@@ -16,6 +16,7 @@ class RetailerController extends Controller
         }else {
             $data = User::where('role','user')->where('created_by', Auth::user()->id)->get();
         }
+        // dd($data);
         return view('front.retailer-details',compact('data'));
     }
 
