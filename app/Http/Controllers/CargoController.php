@@ -61,9 +61,15 @@ class CargoController extends Controller
         if($request->order_no){
             if (Auth::user()->role == 'admin') {
                 $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get();
-                $agent = User::where('id', $orders['0']->reseller_id)->first(); 
+                // dd($orders);
+                if (count($orders) > 0) {
+                    $agent = User::where('id', $orders[0]->reseller_id)->first();
+                }else $agent = "";
+
+                return view('front.order-tracking', compact('orders','agent'));
             }else {
                 $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->where('reseller_id', Auth::user()->id)->get();
+
                 $count = $orders->count();
                 if($count > 0){
                     $agent = User::where('id', $orders['0']->reseller_id)->first(); 
