@@ -14,7 +14,6 @@ class AddPriceToPhones extends Migration
     public function up()
     {
         Schema::table('phones', function (Blueprint $table) {
-            //
             $table->string('dis_price')->nullable();
         });
     }

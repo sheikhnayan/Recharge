@@ -314,7 +314,6 @@ class RechargeController extends Controller
         ]);
         $product_responses = $recharge_request->getBody();
 
-        dd($recharge_request);
 
         $prod = json_decode($product_responses,true);
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewSingUpFieldsColumnInUsersTable extends Migration
+class AddNewAdminComFieldsColumnInUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class AddNewSingUpFieldsColumnInUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('vat_number')->nullable();
-            $table->longText('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('codice_fiscale')->nullable();
-
+            $table->float('admin_recharge_commission')->default(0);
+            $table->float('admin_international_recharge_commission')->default(0);
+            $table->float('admin_mobile_commission')->default(0);
+            $table->float('admin_cargo_commission')->default(0);
+            $table->float('admin_sim_commission')->default(0);
         });
     }
 

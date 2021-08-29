@@ -215,3 +215,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::post('/add_balance',[BalanceController::class,'AddBalance'])->name('AddBalance');
 
 Route::post('/edit_balance',[BalanceController::class,'EditBalance'])->name('EditBalance');
+
+Route::post('/add_com',[RetailerController::class,'AddCom'])->name('AddCom');
