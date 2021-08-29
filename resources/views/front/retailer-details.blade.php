@@ -86,11 +86,11 @@
                     <div class="col-5 text-center">
                       {{-- <img src="images/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid"> --}}
                       <div class="  mt-2">
-                        <strong>Balance: </strong><br>
-                        <span>&euro; {{ $item->wallet }}</span>
+                        <strong>Balance: </strong>
+                        <span>&euro;{{ $item->wallet }}</span>
                       </div>
 
-                      <!-- Small modal -->
+                      <!-- ADD BALANCE -->
                       <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#boom{{$item->id}}">Add Balance</button>
 
                       <div class="modal fade bd-example-modal-sm" id="boom{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -101,12 +101,40 @@
                               <div>
                                 <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
                                 <input class="form-control" type="number" step="0.01" name="balance">
-                                <button class="btn btn-success btn-sm"  type="submit">Add</button>
+                                <button class="btn btn-success btn-sm"  type="submit">Add Balance For {{$item->first_name}}</button>
                               </div>
                             </form>
                           </div>
                         </div>
                       </div>
+
+
+
+                      <div class="  mt-2">
+                        <strong>Due: </strong>
+                        <span>&euro; {{ $item->due }}</span>
+                      </div>
+
+
+                      <!-- ADD DUE -->
+                      <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#boom1{{$item->id}}">Add Due</button>
+
+                      <div class="modal fade bd-example-modal-sm" id="boom1{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                            <form action="{{url('/add_balance')}}" method="post">
+                              @csrf
+                              <div>
+                                <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
+                                <input class="form-control" type="number" step="0.01" name="due">
+                                <button class="btn btn-success btn-sm"  type="submit">Add Due For {{$item->first_name}}</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+
 
                     </div>
                   </div>

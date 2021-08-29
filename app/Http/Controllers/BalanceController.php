@@ -22,33 +22,70 @@ class BalanceController extends Controller
         //  FETCH RECEIVER INFO
         $user_balance = User::select('wallet')->where('id',$request->user_id)->get('wallet');
         $user_balance = $user_balance[0]->wallet;
+        $user_due = User::select('due')->where('id',$request->user_id)->get('due');
+        $user_due = $user_due[0]->due;
 
 
-        //  FOR ADMIN
-        if(auth()->user()->role == "admin")
-            {
-                $users = User::find($request->user_id);
-                $users->wallet = $user_balance + $request->balance;
-                $users->save();
-                return redirect()->back();
+        if($request->balance){
+            //  FOR ADMIN
+            if(auth()->user()->role == "admin"){
+                {
+                    $users = User::find($request->user_id);
+                    $users->wallet = $user_balance + $request->balance;
+                    $users->save();
+                    return redirect()->back();
+                }
             }
 
-        //  FOR USER
-        if(auth()->user()->role == "user")
-            if ($sender_balance > $request->balance) {
+            //  FOR USER
+            if(auth()->user()->role == "user"){
+                if ($sender_balance > $request->balance) {
 
-                $users = User::find($request->user_id);
-                $users->wallet = $user_balance + $request->balance;
-                $users->save();
-                
+                    $users = User::find($request->user_id);
+                    $users->wallet = $user_balance + $request->balance;
+                    $users->save();
+                    
 
-                $senders = User::find(auth()->user()->id);
-                $senders->wallet = $sender_balance - $request->balance;
-                $senders->save();
-                return redirect()->back();
+                    $senders = User::find(auth()->user()->id);
+                    $senders->wallet = $sender_balance - $request->balance;
+                    $senders->save();
+                    return redirect()->back();
 
+                }
             }
-            
+        }
+
+
+        if($request->due){
+            //  FOR ADMIN
+            if(auth()->user()->role == "admin"){
+                {
+                    $users = User::find($request->user_id);
+                    $users->wallet = $user_balance + $request->due;
+                    $users->due = $user_due + $request->due;
+                    $users->save();
+                    return redirect()->back();
+                }
+            }
+
+            //  FOR USER
+            if(auth()->user()->role == "user"){
+                if ($sender_balance > $request->balance) {
+
+                    $users = User::find($request->user_id);
+                    $users->wallet = $user_balance + $request->balance;
+                    $users->due = $request->due;
+                    $users->save();
+                    
+
+                    $senders = User::find(auth()->user()->id);
+                    $senders->wallet = $sender_balance - $request->balance;
+                    $senders->save();
+                    return redirect()->back();
+
+                }
+            }
+        }
         return redirect()->back()->with('message','Not enough balance!');
     }
 }

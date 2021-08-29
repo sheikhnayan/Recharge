@@ -186,12 +186,10 @@
             <a class="dropbtn" onclick="myFunction4()"><span class="fa fa-tasks mr-3"></span>
               Phone Management
             <i class="fa fa-caret-down"></i>
-            @if(auth()->user()->role == "admin")
                 <div class="dropdown-content" id="myDropdown4">
                   <a href="/phone/phone-order">Phone Order</a>
                   <a href="/phone/selling-list">Selling</a>
                 </div>
-            @endif
             </a>
           </li>
           @endif
