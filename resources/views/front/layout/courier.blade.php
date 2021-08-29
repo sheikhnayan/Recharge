@@ -157,13 +157,13 @@
       <div class="profile-info mt-3">
         <div class="row">
           <div class="col-6">
-            <p style="color: #b9ff38;"><i class="nav-icon fab fa-rev mr-4"></i>500</p>
+            <p style="color: #b9ff38;"><i class="nav-icon fab fa-rev mr-4"></i>{{ Auth()->user()->wallet }}</p>
           </div>
           <div class="col-6">
-            <b class="mr-2">Due:</b><span>0.00</span>
+            <b class="mr-2">Due:</b><span>{{ Auth()->user()->due }}</span>
           </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-6">
             <p><i class="nav-icon fas fa-sim-card mr-4"></i>1230</p>
           </div>
@@ -186,7 +186,7 @@
           <div class="col-6">
             <b class="mr-2">Due:</b><span>0.00</span>
           </div>
-        </div>
+        </div> --}}
       </div>
 
       <!-- Sidebar Menu -->

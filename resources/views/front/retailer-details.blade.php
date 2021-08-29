@@ -119,6 +119,8 @@
                       <!-- ADD DUE -->
                       <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#boom1{{$item->id}}">Add Due</button>
 
+                      <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#boom2{{$item->id}}">Edit Due</button>
+
                       <div class="modal fade bd-example-modal-sm" id="boom1{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
                           <div class="modal-content">
@@ -128,6 +130,22 @@
                                 <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
                                 <input class="form-control" type="number" step="0.01" name="due">
                                 <button class="btn btn-success btn-sm"  type="submit">Add Due For {{$item->first_name}}</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="modal fade bd-example-modal-sm" id="boom2{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                            <form action="{{url('/edit_balance')}}" method="post">
+                              @csrf
+                              <div>
+                                <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
+                                <input class="form-control" type="number" step="0.01" name="due">
+                                <button class="btn btn-success btn-sm"  type="submit">Edit Due For {{$item->first_name}}</button>
                               </div>
                             </form>
                           </div>

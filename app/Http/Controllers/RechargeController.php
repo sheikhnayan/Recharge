@@ -296,6 +296,8 @@ class RechargeController extends Controller
 
         $sku_amount = explode(',',$datas['amount']);
 
+        // dd($sku_amount);
+
         $client = new \GuzzleHttp\Client();
         $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
             'headers' => [

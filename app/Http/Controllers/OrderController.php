@@ -121,7 +121,7 @@ class OrderController extends Controller
         $orders->quantity3 = $request->input('qty3');
         $orders->quantity4 = $request->input('qty4');
         $orders->quantity5 = $request->input('qty5');
-        if(!empty($labelFileName)){}
+        if(!empty($labelFileName)){
             $orders->label = $labelFileName;
         }
         $orders->status = 'available';

@@ -88,4 +88,24 @@ class BalanceController extends Controller
         }
         return redirect()->back()->with('message','Not enough balance!');
     }
+
+    public function EditBalance(Request $request){
+
+        $info = User::where('id', $request->user_id)->first();
+
+        if($info->due >= $request->due){
+            $user = User::where('id', $request->user_id)->update([
+
+                "due" => $info->due - $request->due
+                
+            ]);
+
+            return back();
+        }else{
+            return back()->with('error','Due Amount Is Less Than The Input');
+        }
+
+
+
+    }
 }

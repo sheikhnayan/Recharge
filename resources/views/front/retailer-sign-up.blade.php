@@ -52,12 +52,20 @@
             </div>
           </div>
         </div>
-        {{-- <div class="input-group mb-3">
-          <textarea class="form-control" rows="1" placeholder="Address"></textarea>
+        <div class="input-group mb-3">
+          <input type="text" name="vat_number" class="form-control" placeholder="Partita IVA">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <textarea class="form-control" name="address" rows="1" placeholder="Address"></textarea>
           <div class="input-group-text">
             <span class="fas fa-house-user"></span>
           </div>
-        </div> --}}
+        </div>
         <div class="input-group mb-3">
           <input type="email" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
@@ -66,22 +74,22 @@
             </div>
           </div>
         </div>
-        {{-- <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Mobile Number">
+        <div class="input-group mb-3">
+          <input type="text" name="phone" class="form-control" placeholder="Mobile Number">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-mobile-alt"></span>
             </div>
           </div>
-        </div> --}}
-        {{-- <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Codice Fiscale">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="codice_fiscale" class="form-control" placeholder="Codice Fiscale">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-mobile-alt"></span>
             </div>
           </div>
-        </div> --}}
+        </div>
         <div class="input-group mb-3">
           <input type="password" name="password" class="form-control" placeholder="Create Password">
           <div class="input-group-append">

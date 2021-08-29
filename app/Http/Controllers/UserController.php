@@ -53,10 +53,12 @@ class UserController extends Controller
         $users->first_name = $request->input('first_name');
         $users->last_name = $request->input('last_name');
         $users->vat_number = $request->input('vat_number');
+        $users->nationality = $request->input('company');
+        $users->gender = $request->input('gender');
         $users->email = $request->input('email');
         $users->address = $request->input('address');
         $users->role = 'user';
-        $users->contact_number = $request->input('contact_number');
+        $users->phone = $request->input('phone');
         $users->codice_fiscale = $request->input('codice_fiscale');
         $users->wallet = 0;
         $users->password = Hash::make($request['password']);
@@ -112,6 +114,11 @@ class UserController extends Controller
         $data = User::where('id',$id)->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'vat_number' => $request->vat_number,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'codice_fiscale' =>$request->codice_fiscale,
             'nationality' => $request->company,
             'email' => $request->email
         ]);
