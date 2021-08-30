@@ -48,6 +48,7 @@
                     <tr>
                       <th style="background: #faaeae;">Order No</th>
                       <th style="background: #faaeae;">Date</th>
+                      <th style="background: #faaeae;">Phone</th>
                       <th style="background: #faaeae;">Quantity</th>
                       <th style="background: #faaeae;">State</th>
                       <th class="text-center" style="background: #faaeae;">Agent Name</th>
@@ -61,6 +62,7 @@
                     <tr class="bg-ocean">
                       <td style="text-align: center" >{{ $item->id }}</td>
                       <td style="text-align: center"><span>{{ $item->created_at }} </span></td>
+                      <td style="text-align: center">{{ $item->phone_name }}</td>
                       <td style="text-align: center">{{ $item->quantity }}</td>
                       <td style="text-align: center">{{ $item->status }}</td>
                       <td style="text-align: center">{{ $item->nationality }}</td>
@@ -69,7 +71,10 @@
                         <form action="/phone/update" method="POST">
                           @csrf
                           <input type="hidden" name="id" value="{{ $item->id }}">
+                          <input type="hidden" name="nationality" value="{{ $item->nationality }}">
+                          <input type="hidden" name="phone_name" value="{{ $item->phone_name }}">
                           <select name="status" style="width: 120px">
+                            <option {{$item->status == 'sold' ? 'selected' : '' }} value="sold">Sold</option>
                               <option {{$item->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
                               <option {{$item->status == 'cancel' ? 'selected' : '' }} value="cancel">Cancel</option>
                           </select>

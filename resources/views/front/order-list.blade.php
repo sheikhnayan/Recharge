@@ -67,7 +67,7 @@
                       <th style="background: #faaeae;">Order ID</th>
                       <th style="background: #faaeae;">Date</th>
                       {{-- <th style="background: #faaeae;">Agent</th> --}}
-                      <th style="background: #faaeae;">City</th>
+                      {{-- <th style="background: #faaeae;">City</th> --}}
                       <th style="background: #faaeae;">Customer</th>
                       <th style="background: #faaeae;">Receiver</th>
                       <th style="background: #faaeae;">Box</th>
@@ -76,6 +76,7 @@
                       <th style="background: #faaeae;">Type</th>
                       <th style="background: #faaeae;">Destination</th>
                       <th style="background: #faaeae;">Status</th>
+                      <th style="background: #faaeae;">Status Update</th>
                       <th style="background: #faaeae;">Action</th>
                     </tr>
                   </thead>
@@ -85,7 +86,7 @@
                       <td>{{$order->id}}</td>
                       <td>{{$order->created_at}}<!-- <br>20:42:30 --></td>
                       {{-- <td>Agent Name</td> --}}
-                      <td>{{$order->city}}</td>
+                      {{-- <td>{{$order->city}}</td> --}}
                       <td>{{$order->first_name}}</td>
                       <td>{{$order->rfirst_name}}</td>
                       <td>{{$order->numberOfBox}}</td>
@@ -94,6 +95,24 @@
                       <td>{{$order->productType}}</td>
                       <td>{{$order->raddress}}</td>
                       <td>{{$order->status}}</td>
+                      <td>
+                        <form action="/cargo_update" method="POST">
+                          @csrf
+                          <input type="hidden" name="reseller_id" value="{{ $order->reseller_id }}">
+                          <input type="hidden" name="id" value="{{ $order->id }}">
+                          <select name="status">
+                            <option {{$order->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
+                            <option {{$order->status == 'confirmed' ? 'selected' : '' }} value="confirmed">Confirmed</option>
+                            <option {{$order->status == 'received' ? 'selected' : '' }} value="received">Received</option>
+                            <option {{$order->status == 'on_the_way' ? 'selected' : '' }} value="on_the_way">On The Way</option>
+                            <option {{$order->status == 'in_the_airport' ? 'selected' : '' }} value="in_the_airport">In Customs</option>
+                            <option {{$order->status == 'delivered' ? 'selected' : '' }} value="delivered">Delivered</option>
+                            <option {{$order->status == 'cancel' ? 'selected' : '' }} value="cancel">Cancel</option>
+                          </select>
+
+                          <input type="submit" class="btn btn-success" value="Update">
+                        </form>
+                      </td>
                       <td>
                         <div class="btn-group cargo_t-action_btn">
                           <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">

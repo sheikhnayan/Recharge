@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\User;
+use Auth;
 
 
 class OrderController extends Controller
 {
     public function AddOrder(Request $request)
-    {
+    { 
 
-        // dd($request->all());
+        if (Auth::user()->wallet >= $request->total) {
+            // dd($request->all());
 
         if(!empty($request->label)){
             $request->file('label')->store('public');  
@@ -127,6 +130,50 @@ class OrderController extends Controller
         $orders->status = 'available';
         $orders->save();
 
-        return back()->with('status', 'Order Created Successfully!');      
+        return back()->with('status', 'Order Created Successfully!');
+        }else{
+            return back()->with('error', 'Insufficient Balace!');    
+        }      
+    }
+
+    public function update_status(Request $request)
+    {
+        $info = Order::where('id', $request->id)->first();
+
+        $user = User::where('id', $request->reseller_id)->first();
+
+        $past = Order::where('id', $request->id)->first();
+
+        $reseller_comission = ($info->total/100)*$user->cargo;
+
+        $admin_comission = ($info->total/100)*$user->admin_cargo_commision;
+
+        if ($request->status == 'confirmed' && $past->status != 'confirmed') {
+            $update = User::where('id', $request->reseller_id)->update([
+                'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
+            ]);
+        }elseif ($request->status == 'cancel' && $past->status == 'confirm'){
+            $update = User::where('id', $request->reseller_id)->update([
+                'wallet' => $user->wallet + ($info->total + $reseller_comission + $admin_comission)
+            ]);
+        }elseif ($request->status == 'pending' && $past->status == 'confirmed'){
+            $update = User::where('id', $request->reseller_id)->update([
+                'wallet' => $user->wallet + ($info->total + $reseller_comission + $admin_comission)
+            ]);
+        }elseif ($request->status == 'received' && $past->status == 'pending'){
+            $update = User::where('id', $request->reseller_id)->update([
+                'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
+            ]);
+        }elseif ($request->status == 'received' && $past->status == 'cancel'){
+            $update = User::where('id', $request->reseller_id)->update([
+                'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
+            ]);
+        }
+
+        $update = Order::where('id', $request->id)->update([
+            'status' => $request->status
+        ]);
+
+        return back()->with('status', 'Status Updated Successfully!');
     }
 }

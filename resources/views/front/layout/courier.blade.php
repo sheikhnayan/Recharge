@@ -13,7 +13,20 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
-
+                          @if (\Session::has('error'))
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      <li>{!! \Session::get('error') !!}</li>
+                                  </ul>
+                              </div>
+                          @endif
+                          @if (\Session::has('status'))
+                              <div class="alert alert-success">
+                                  <ul>
+                                      <li>{!! \Session::get('status') !!}</li>
+                                  </ul>
+                              </div>
+                          @endif
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
@@ -130,7 +143,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar fixd-sidebar sidebar-dark-primary">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link" style="background: #fff;">
+    <a href="/" class="brand-link" style="background: #fff;">
       <img src="{{ asset('images/jm-transparent-logo.png') }}" alt="Courier Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-bold"><strong>JM</strong> LOGISTIC</span>
     </a>
@@ -231,7 +244,7 @@
                     <p>Domestic</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a href="/recharge/recharge-gift-card" class="@if(Route::currentRouteName() == 'recharge-gift-card') nav-link active @endif nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Gift Card</p>
@@ -242,7 +255,7 @@
                     <i class="far fa-circle nav-icon"></i>
                     <p>Calling Card</p>
                   </a>
-                </li>
+                </li> --}}
               </ul>
             </li>
           @endif

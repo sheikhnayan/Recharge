@@ -217,3 +217,4 @@ Route::post('/add_balance',[BalanceController::class,'AddBalance'])->name('AddBa
 Route::post('/edit_balance',[BalanceController::class,'EditBalance'])->name('EditBalance');
 
 Route::post('/add_com',[RetailerController::class,'AddCom'])->name('AddCom');
+Route::post('/cargo_update',[OrderController::class,'update_status']);
