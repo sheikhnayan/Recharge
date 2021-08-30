@@ -11,6 +11,7 @@ use App\Models\Recharge;
 use Auth as a;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
+use App\Models\RechargeHistory;
 
 // edit by shuvo
 use Kreait\Firebase\Auth;
@@ -56,7 +57,14 @@ class RechargeController extends Controller
 
     public function RechargeDom($value='')
     {
-        return view('front.recharge-domestic');
+        if(a::user()->role == 'user'){
+            $data = RechargeHistory::where('reseller_id', a::user()->id)->get();
+        }else{
+            $data = RechargeHistory::join('users','users.id','=','recharge_histories.reseller_id')
+            ->select('recharge_histories.*','users.nationality')
+            ->get();
+        }
+        return view('front.recharge-domestic',compact('data'));
     }
 
     public function RechargeGiftCard($value='')
@@ -181,7 +189,7 @@ class RechargeController extends Controller
     {
     $client = new \GuzzleHttp\Client();
     $operator_request = $client->get('https://api.dingconnect.com/api/V1/GetProviders?accountNumber='.$request->number,['headers' => [
-        'api_key'     => 'Etmo8i5V9q862PHn5dNJSb'
+        'api_key'     => 'CclMqCYR8F85oBXWoBFeQo'
         ],'verify' => false]);
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
@@ -272,12 +280,13 @@ class RechargeController extends Controller
 
         $client = new \GuzzleHttp\Client();
         $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?&providerCodes='.$request->operator,['headers' => [
-            'api_key'     => 'Etmo8i5V9q862PHn5dNJSb'
+            'api_key'     => 'CclMqCYR8F85oBXWoBFeQo'
             ],'verify' => false]);
         $product_responses = $product_request->getBody();
 
         $prod = json_decode($product_responses,true);
 
+        // dd($prod);
 
         $prods = $prod['Items'];
 
@@ -294,11 +303,14 @@ class RechargeController extends Controller
 
         $datas = $request->all();
 
+        
+
         $sku_amount = explode(',',$datas['amount']);
 
         // dd($sku_amount);
 
-        $client = new \GuzzleHttp\Client();
+        if (a::user()->wallet >= $sku_amount['1']) {
+            $client = new \GuzzleHttp\Client();
         $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
             'headers' => [
             'api_key'     => 'Etmo8i5V9q862PHn5dNJSb',
@@ -310,26 +322,52 @@ class RechargeController extends Controller
                     'SendValue' => $sku_amount['1'],
                     'AccountNumber' => $request->number,
                     'DistributorRef' => a::user()->id,
-                    'ValidateOnly' => true]              
+                    'ValidateOnly' => true
+                    ]              
         ]);
         $product_responses = $recharge_request->getBody();
 
 
         $prod = json_decode($product_responses,true);
 
-        $prods = $prod['Items'];
+        $sendvalue = $prod['TransferRecord']['Price']['SendValue'];
 
-        $count = count($prods);
+         $count = count($prod['ErrorCodes']);
 
+         if($count == 0){
 
-        $stage = 'get_product';
+            $reseller_commission = ($sendvalue/100)*a::user()->recharge;
+            $admin_commission = ($sendvalue/100)*a::user()->admin_recharge_commission;
+    
+            $cost = $sendvalue + $reseller_commission + $admin_commission;
+    
+            $minus = a::user()->update([
+                'wallet' => a::user()->wallet - $cost
+            ]);
+    
+            $create = new RechargeHistory;
+            $create->reseller_id = a::user()->id;
+            $create->number = $request->number;
+            $create->amount = $sendvalue;
+            $create->txid = $prod['TransferRecord']['TransferId']['TransferRef'];
+            $create->type = 'International';
+            $create->status = 'completed';
+            $create->cost = $cost;
+            $create->save();
+    
+            }
 
-        return view('front.recharge-international',compact('datas','prods','count','stage'));
+        return redirect('/recharge/recharge-int');
+        }else{
+            return back()->with('error','Insufficient Balance!');
+        }
+        
     }
 
     public function domestic_recharge(Request $request)
     {
-        $txid = mt_rand(1000000000, 9999999999);
+        if (a::user()->wallet >= $request->amount) {
+            $txid = mt_rand(1000000000, 9999999999);
         
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
         <REQUEST MODE="RESERVE" STORERECEIPT="1" TYPE="SALE">
@@ -406,9 +444,31 @@ class RechargeController extends Controller
 
         $body2 = $recharge_request->getBody(); 
         $xml2 = simplexml_load_string($body2);
-        dd($body2);
+
+        $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;
+        $admin_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
+
+        $cost = $xml2->AMOUNT + $reseller_commission + $admin_commission;
+
+        $minus = a::user()->update([
+            'wallet' => a::user()->wallet - $cost
+        ]);
+
+        $create = new RechargeHistory;
+        $create->reseller_id = a::user()->id;
+        $create->number = $xml2->PHONE;
+        $create->amount = $xml2->AMOUNT;
+        $create->txid = $xml2->TXID;
+        $create->type = 'Domestic';
+        $create->status = 'completed';
+        $create->save();
+
         }
 
-         return  Redirect()->back()->with('success','Your Recharge Has Been Suucessfull');
+         return  Redirect()->back()->with('success','Your Recharge Has Been Suucessfull!');
+        }else{
+            return  Redirect()->back()->with('error','Insufficient Balance!'); 
+        }
+        
     }
 }

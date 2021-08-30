@@ -154,66 +154,14 @@
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ($data as $item)
                           <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
+                            <td>{{ $item->number }}</td>
+                            <td>{{ $item->amount }}</td>
+                            <td>{{ $item->cost }}</td>
                             <td><i class="text-primary fas fa-check-square"></i></td>
                           </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>
