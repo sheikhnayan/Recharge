@@ -314,7 +314,6 @@ class RechargeController extends Controller
         $prods = $prod['Items'];
 
         $count = count($prods);
-
         $stage = 'get_product';
 
         if(a::user()->role == 'user'){
