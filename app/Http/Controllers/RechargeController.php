@@ -213,10 +213,11 @@ class RechargeController extends Controller
     $datas['number'] = $number;
     $stage = 'check_number';
     if(a::user()->role == 'user'){
-        $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->take(10)->get();
+        $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->latest()->take(10)->get();
     }else{
         $data = RechargeHistory::where('type','International')->join('users','users.id','=','recharge_histories.reseller_id')
         ->select('recharge_histories.*','users.nationality')
+        ->latest()
         ->take(10)
         ->get();
     }
@@ -314,13 +315,16 @@ class RechargeController extends Controller
         $prods = $prod['Items'];
 
         $count = count($prods);
+
+        // dd($prods);
         $stage = 'get_product';
 
         if(a::user()->role == 'user'){
-            $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->take(10)->get();
+            $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->latest()->take(10)->get();
         }else{
             $data = RechargeHistory::where('type','International')->join('users','users.id','=','recharge_histories.reseller_id')
             ->select('recharge_histories.*','users.nationality')
+            ->latest()
             ->take(10)
             ->get();
         }
@@ -333,14 +337,21 @@ class RechargeController extends Controller
         $txid = mt_rand(1000000000, 9999999999);
 
         $datas = $request->all();
+        // dd($datas);
 
         
-
         $sku_amount = explode(',',$datas['amount']);
 
         // dd($sku_amount);
 
-        if (a::user()->wallet >= $sku_amount['1']) {
+        if(count($sku_amount) > 1) {
+            $SkuCode = $sku_amount['0'];
+            $SendValue = $sku_amount['1'];
+        }else{
+            $SkuCode = $datas['Sku_Code'];
+            $SendValue = $datas['amount'];
+        }
+        if (a::user()->wallet >= $SendValue) {
             $client = new \GuzzleHttp\Client();
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
             'headers' => [
@@ -349,8 +360,8 @@ class RechargeController extends Controller
             ],
             'verify' => false,
             'json' => [
-                    'SkuCode' => $sku_amount['0'],
-                    'SendValue' => $sku_amount['1'],
+                    'SkuCode' => $SkuCode,
+                    'SendValue' => $SendValue,
                     'AccountNumber' => $request->number,
                     'DistributorRef' => $txid,
                     'ValidateOnly' => true
@@ -366,11 +377,18 @@ class RechargeController extends Controller
          $count = count($prod['ErrorCodes']);
 
          if($count == 0){
+            $auth_recharge = a::user()->international_recharge;
 
-            $reseller_commission = ($sendvalue/100)*a::user()->recharge;
-            $admin_commission = ($sendvalue/100)*a::user()->admin_recharge_commission;
+            $auth_admin_recharge = a::user()->admin_international_recharge_commission;
+
+            $reseller_commission = ($sendvalue/100)*$auth_recharge;
+
+            $admin_commission = ($sendvalue/100)*$auth_admin_recharge;
+
+            // dd($admin_commission);
     
             $cost = $sendvalue + $reseller_commission + $admin_commission;
+
     
             $minus = a::user()->update([
                 'wallet' => a::user()->wallet - $cost

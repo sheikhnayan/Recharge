@@ -54,7 +54,9 @@
                               <select class="custom-select" name="operator" id="operators">
                                  <option value="">Select Operator</option>
                                  @foreach ($operators as $item)
-                                 <option {{ ( $datas['operator'] ?? '' == $item['ProviderCode']) ? 'selected' : '' }} value="{{ $item['ProviderCode'] }}">{{ $item['Name'] }}</option>
+                                    @if ($item['CustomerCareNumber'] == null)
+                                       <option {{ ( $datas['operator'] ?? '' == $item['ProviderCode']) ? 'selected' : '' }} value="{{ $item['ProviderCode'] }}">{{ $item['Name'] }}</option>
+                                    @endif
                                  @endforeach
                               </select>
                            </div>
@@ -97,7 +99,11 @@
                            @else
                            <div class="mb-3">
                               <label for="inputAmount" class="form-label">Service Charge in (EUR)</label>
-                              <input type="text" class="form-control" name="amount" placeholder="Between Euro {{ $prods['0']['Maximum']['SendValue'] }}  -  Euro {{ $prods['0']['Minimum']['SendValue'] }}">
+                              <input oninput="cost()" id="amount" type="number" class="form-control" name="amount" placeholder="Between Euro {{ $prods['0']['Maximum']['SendValue'] }}  -  Euro {{ $prods['0']['Minimum']['SendValue'] }}">
+                              <input type="hidden" name="Sku_Code" value="{{ $prods['0']['SkuCode'] }}">
+                              <input type="hidden" id="admin_com" value="{{ Auth::user()->admin_international_recharge_commission }}">
+                              <input type="hidden" id="reseller_com" value="{{ Auth::user()->international_recharge }}">
+                              <small id="cost"></small>
                            </div>
                            @endif
                            @endif
@@ -351,7 +357,17 @@
    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
+<script>
+   function cost(){
+      var amount = document.getElementById('amount').value;
+      var admin = document.getElementById('admin_com').value;
+      var reseller = document.getElementById('reseller_com').value;
+      var cost = ((amount/100)*admin) + ((amount/100)*reseller);
+      var am = Number(amount, 10);
+      var pm = Number(cost, 10);
+      document.getElementById("cost").innerHTML = 'Extra Service Charge Will Be ' + pm + am;
+   }
+</script>
 @endsection
 @section('scripts')
 <!-- jQuery -->
