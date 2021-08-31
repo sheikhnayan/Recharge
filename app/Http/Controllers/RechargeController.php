@@ -220,7 +220,8 @@ class RechargeController extends Controller
         ->take(10)
         ->get();
     }
-    return view('front.recharge-international',compact('operators','datas','stage','data'));
+    $count = '1';
+    return view('front.recharge-international',compact('operators','datas','stage','data','count'));
     }
     
     // edit by shuvo
@@ -313,7 +314,6 @@ class RechargeController extends Controller
         $prods = $prod['Items'];
 
         $count = count($prods);
-
 
         $stage = 'get_product';
 

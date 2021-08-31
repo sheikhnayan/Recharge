@@ -82,7 +82,7 @@
                            @endif
                            @if (isset($stage))
                            @if ($stage == 'get_product')
-                           @if ($count ?? '' > 1)
+                           @if ($count > 1)
                            <div class="form-group">
                               <label for="selectPackage">Select Amount</label>
                               <select class="custom-select" name="amount" id="package">
@@ -97,7 +97,7 @@
                            @else
                            <div class="mb-3">
                               <label for="inputAmount" class="form-label">Service Charge in (EUR)</label>
-                              <input type="text" class="form-control" name="amount" placeholder="Service Charge in EUR 0.50-10.00">
+                              <input type="text" class="form-control" name="amount" placeholder="Between Euro {{ $prods['0']['Maximum']['SendValue'] }}  -  Euro {{ $prods['0']['Minimum']['SendValue'] }}">
                            </div>
                            @endif
                            @endif
