@@ -49,7 +49,16 @@ class RechargeController extends Controller
     public function RechargeInt($value='')
     {
         $stage = 'initial';
-        return view('front.recharge-international',compact('stage'));
+        if(a::user()->role == 'user'){
+            $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->latest()->take(10)->get();
+        }else{
+            $data = RechargeHistory::where('type','International')->join('users','users.id','=','recharge_histories.reseller_id')
+            ->select('recharge_histories.*','users.nationality')
+            ->latest()
+            ->take(10)
+            ->get();
+        }
+        return view('front.recharge-international',compact('stage','data'));
     }
 
 //  shovon work here
@@ -58,10 +67,12 @@ class RechargeController extends Controller
     public function RechargeDom($value='')
     {
         if(a::user()->role == 'user'){
-            $data = RechargeHistory::where('reseller_id', a::user()->id)->get();
+            $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','Domestic')->latest()->take(10)->get();
         }else{
-            $data = RechargeHistory::join('users','users.id','=','recharge_histories.reseller_id')
+            $data = RechargeHistory::where('type','Domestic')->join('users','users.id','=','recharge_histories.reseller_id')
             ->select('recharge_histories.*','users.nationality')
+            ->latest()
+            ->take(10)
             ->get();
         }
         return view('front.recharge-domestic',compact('data'));
@@ -136,9 +147,11 @@ class RechargeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function invoice($id)
     {
-        //
+        $data = RechargeHistory::where('id', $id)->first();
+
+        return view('front.recharge_invoice',compact('data'));
     }
 
     /**
@@ -186,17 +199,28 @@ class RechargeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function check_operator(Request $request)
-    {
+    { 
+    $change = [' ','+'];
+    $number = str_replace($change,'',$request->number);
     $client = new \GuzzleHttp\Client();
-    $operator_request = $client->get('https://api.dingconnect.com/api/V1/GetProviders?accountNumber='.$request->number,['headers' => [
+    $operator_request = $client->get('https://api.dingconnect.com/api/V1/GetProviders?accountNumber='.$number,['headers' => [
         'api_key'     => 'CclMqCYR8F85oBXWoBFeQo'
         ],'verify' => false]);
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
     $operators = $data['Items'];
     $datas = $request->all();
+    $datas['number'] = $number;
     $stage = 'check_number';
-    return view('front.recharge-international',compact('operators','datas','stage'));
+    if(a::user()->role == 'user'){
+        $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->take(10)->get();
+    }else{
+        $data = RechargeHistory::where('type','International')->join('users','users.id','=','recharge_histories.reseller_id')
+        ->select('recharge_histories.*','users.nationality')
+        ->take(10)
+        ->get();
+    }
+    return view('front.recharge-international',compact('operators','datas','stage','data'));
     }
     
     // edit by shuvo
@@ -286,8 +310,6 @@ class RechargeController extends Controller
 
         $prod = json_decode($product_responses,true);
 
-        // dd($prod);
-
         $prods = $prod['Items'];
 
         $count = count($prods);
@@ -295,11 +317,21 @@ class RechargeController extends Controller
 
         $stage = 'get_product';
 
-        return view('front.recharge-international',compact('datas','prods','count','stage'));
+        if(a::user()->role == 'user'){
+            $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->take(10)->get();
+        }else{
+            $data = RechargeHistory::where('type','International')->join('users','users.id','=','recharge_histories.reseller_id')
+            ->select('recharge_histories.*','users.nationality')
+            ->take(10)
+            ->get();
+        }
+
+        return view('front.recharge-international',compact('datas','prods','count','stage','data'));
     }
 
     public function recharge(Request $request)
     {  
+        $txid = mt_rand(1000000000, 9999999999);
 
         $datas = $request->all();
 
@@ -311,17 +343,17 @@ class RechargeController extends Controller
 
         if (a::user()->wallet >= $sku_amount['1']) {
             $client = new \GuzzleHttp\Client();
-        $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
+            $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
             'headers' => [
-            'api_key'     => 'Etmo8i5V9q862PHn5dNJSb',
-            'content_type' => 'application/json'
+            'api_key'     => 'CclMqCYR8F85oBXWoBFeQo',
+            'Content-Type' => 'application/json'
             ],
             'verify' => false,
             'json' => [
                     'SkuCode' => $sku_amount['0'],
                     'SendValue' => $sku_amount['1'],
                     'AccountNumber' => $request->number,
-                    'DistributorRef' => a::user()->id,
+                    'DistributorRef' => $txid,
                     'ValidateOnly' => true
                     ]              
         ]);
@@ -344,12 +376,11 @@ class RechargeController extends Controller
             $minus = a::user()->update([
                 'wallet' => a::user()->wallet - $cost
             ]);
-    
             $create = new RechargeHistory;
             $create->reseller_id = a::user()->id;
             $create->number = $request->number;
             $create->amount = $sendvalue;
-            $create->txid = $prod['TransferRecord']['TransferId']['TransferRef'];
+            $create->txid = $txid;
             $create->type = 'International';
             $create->status = 'completed';
             $create->cost = $cost;
@@ -357,9 +388,9 @@ class RechargeController extends Controller
     
             }
 
-        return redirect('/recharge/recharge-int');
+        return redirect('/recharge/recharge-int')->with('status','Recharge Successful!');
         }else{
-            return back()->with('error','Insufficient Balance!');
+            return redirect('/recharge/recharge-int')->with('error','Insufficient Balance!');
         }
         
     }
@@ -461,6 +492,7 @@ class RechargeController extends Controller
         $create->txid = $xml2->TXID;
         $create->type = 'Domestic';
         $create->status = 'completed';
+        $create->cost = $cost;
         $create->save();
 
         }

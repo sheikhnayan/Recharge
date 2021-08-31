@@ -42,7 +42,7 @@
                            <div class="mb-3 receiver_inputs">
                               <label for="inputMobileNumber" class="form-label">Receiver Number</label>
                               @if ($stage == 'initial')
-                              <input type="text" value="{{ $prods[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number">
+                              <input type="text" id="receiverMobile" value="{{ $prods[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number">
                               @else
                               <input type="text" value="{{ $prods[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number" readonly>
                               @endif
@@ -52,8 +52,8 @@
                            <div class="form-group">
                               <label for="selectOparetor">Oparetor</label>
                               <select class="custom-select" name="operator" id="operators">
-                                 @foreach ($operators as $item)
                                  <option value="">Select Operator</option>
+                                 @foreach ($operators as $item)
                                  <option {{ ( $datas['operator'] ?? '' == $item['ProviderCode']) ? 'selected' : '' }} value="{{ $item['ProviderCode'] }}">{{ $item['Name'] }}</option>
                                  @endforeach
                               </select>
@@ -320,69 +320,19 @@
                                        <th>Amount</th>
                                        <th>Cost</th>
                                        <th>Status</th>
+                                       <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach ($data as $item)
                                     <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
+                                       <<td>{{ $item->number }}</td>
+                                       <td>{{ $item->amount }}</td>
+                                       <td>{{ $item->cost }}</td>
                                        <td><i class="text-primary fas fa-check-square"></i></td>
+                                       <td> <a class="btn btn-success" href="/recharge_invoice/{{ $item->id }}"> Invoice</a> </td>
                                     </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
+                                    @endforeach
                                  </tbody>
                               </table>
                            </div>
@@ -401,6 +351,7 @@
    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
 @endsection
 @section('scripts')
 <!-- jQuery -->
@@ -415,10 +366,20 @@
 @endsection
 @section('js')
 <script>
-   var receiverMobile = document.querySelector("#receiverMobile");
-   window.intlTelInput(receiverMobile, {
-     // any initialisation options go here
+   // Vanilla Javascript
+   var input = document.querySelector("#receiverMobile");
+   window.intlTelInput(input,({
+     // options here
+   }));
+
+   $(document).ready(function() {
+       $('.iti__flag-container').click(function() { 
+         var countryCode = $('.iti__selected-flag').attr('title');
+         var countryCode = countryCode.replace(/[^0-9]/g,'')
+         $('#receiverMobile').val("");
+         $('#receiverMobile').val("+"+countryCode+" "+ $('#receiverMobile').val());
+      });
    });
-</script>
+ </script>
 @endsection
 

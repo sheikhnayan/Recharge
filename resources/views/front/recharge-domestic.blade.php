@@ -151,6 +151,7 @@
                             <th>Amount</th>
                             <th>Cost</th>
                             <th>Status</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -160,6 +161,7 @@
                             <td>{{ $item->amount }}</td>
                             <td>{{ $item->cost }}</td>
                             <td><i class="text-primary fas fa-check-square"></i></td>
+                            <td> <a class="btn btn-success" href="/recharge_invoice/{{ $item->id }}"> Invoice</a> </td>
                           </tr>
                           @endforeach
                         </tbody>

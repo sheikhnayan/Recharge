@@ -204,6 +204,7 @@ Route::post('/check-operator',[RechargeController::class,'check_operator']);
 Route::post('/check-product',[RechargeController::class,'get_product']);
 Route::post('/international_recharge',[RechargeController::class,'recharge']);
 Route::post('/domestic_recharge',[RechargeController::class,'domestic_recharge']);
+Route::get('/recharge_invoice/{id}',[RechargeController::class,'invoice']);
 // edit by shuvo
 Route::get('/fcm', [RechargeController::class,'fcmSend']);
 
