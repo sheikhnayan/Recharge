@@ -91,7 +91,10 @@
                       </div>
 
                       <!-- ADD BALANCE -->
-                      <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#boom{{$item->id}}">Add Balance</button>
+                      <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#edit{{$item->id}}">Add Balance</button>
+                      @if (Auth::user()->role == 'admin')
+                        <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#edit{{$item->id}}">Edit Balance</button>
+                      @endif
 
                       <div class="modal fade bd-example-modal-sm" id="boom{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
@@ -107,6 +110,22 @@
                           </div>
                         </div>
                       </div>
+                      @if (Auth::user()->role == 'admin')
+                        <div class="modal fade bd-example-modal-sm" id="edit{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <form action="{{url('/edit_wallet')}}" method="post">
+                                @csrf
+                                <div>
+                                  <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
+                                  <input class="form-control" value="{{ $item->wallet }}" type="number" step="0.01" name="balance">
+                                  <button class="btn btn-success btn-sm"  type="submit">Edit Balance For {{$item->first_name}}</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      @endif
 
 
                       @if (Auth::user()->role == 'admin')
