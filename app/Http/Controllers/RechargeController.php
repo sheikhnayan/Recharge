@@ -332,6 +332,31 @@ class RechargeController extends Controller
         return view('front.recharge-international',compact('datas','prods','count','stage','data'));
     }
 
+    public function get_price(Request $request)
+    {  
+        $client = new \GuzzleHttp\Client();
+        $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
+        'headers' => [
+          'api_key' => '913XSjpRzlB6lbS2kEE7gt',
+          'Content-Type' => 'application/json'
+        ],
+        'verify' => false,
+        'json' => [
+                'SendValue' => $request->SendValue,
+                'SkuCode' => $request->SkuCode,
+                'BatchItemRef' => $request->BatchItemRef,
+                ]              
+    ]);
+    $product_responses = $recharge_request->getBody();
+
+
+    $prod = json_decode($product_responses,true);
+
+    dd($prod);
+
+        return view('front.recharge-international',compact('datas','prods','count','stage','data'));
+    }
+
     public function recharge(Request $request)
     {  
         $txid = mt_rand(1000000000, 9999999999);
@@ -387,7 +412,7 @@ class RechargeController extends Controller
 
             // dd($admin_commission);
     
-            $cost = $sendvalue + $reseller_commission + $admin_commission;
+            $cost = $sendvalue + $reseller_commission + $admin_commission + $request->service;
 
     
             $minus = a::user()->update([

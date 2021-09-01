@@ -13,6 +13,7 @@
    <!-- Theme style -->
    <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
    <link rel="stylesheet" href="{{asset('plugin/intl-tel-input/css/intlTelInput.min.css')}}">
+   <meta name="csrf-token" content="{{ csrf_token() }}" />
    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 @endsection
@@ -98,12 +99,15 @@
                            </div>
                            @else
                            <div class="mb-3">
-                              <label for="inputAmount" class="form-label">Service Charge in (EUR)</label>
+                              <label for="inputAmount" class="form-label">Amount (EUR)</label>
                               <input oninput="cost()" id="amount" type="number" class="form-control" name="amount" placeholder="Between Euro {{ $prods['0']['Maximum']['SendValue'] }}  -  Euro {{ $prods['0']['Minimum']['SendValue'] }}">
-                              <input type="hidden" name="Sku_Code" value="{{ $prods['0']['SkuCode'] }}">
+                              <input type="hidden" name="Sku_Code" value="{{ $prods['0']['SkuCode'] }}" id="skucode">
                               <input type="hidden" id="admin_com" value="{{ Auth::user()->admin_international_recharge_commission }}">
                               <input type="hidden" id="reseller_com" value="{{ Auth::user()->international_recharge }}">
-                              <small id="cost"></small>
+                              <small id="price"></small>
+                              <small id="cost"></small> <br>
+                              <label class="foem-label">Service Charge in EURO</label>
+                              <input type="number" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
                            </div>
                            @endif
                            @endif
@@ -363,8 +367,31 @@
       var admin = document.getElementById('admin_com').value;
       var reseller = document.getElementById('reseller_com').value;
       var cost = ((amount/100)*admin) + ((amount/100)*reseller);
+      var skucode = document.getElementById('skucode').value;
       var am = Number(amount);
       var pm = Number(cost);
+      var token   = $('meta[name="csrf-token"]').attr('content');
+
+      $.ajax({
+        url: "https://api.dingconnect.com/api/V1/EstimatePrices",
+        type:"POST",
+        dataType: 'json',
+        contentType: 'application/json',
+        headers:{
+         api_key:"913XSjpRzlB6lbS2kEE7gt"
+        },
+        data: JSON.stringify([{
+          SendValue:amount,
+          SkuCode:skucode,
+          BatchItemRef:Math.floor(Math.random() * 100000000000),
+        }]),
+        success:function(response){
+          console.log(response.Items[0].Price.ReceiveValue);
+          document.getElementById("price").innerHTML = 'You Will Receive ' + response.Items[0].Price.ReceiveValue +' ' +response.Items[0].Price.ReceiveCurrencyIso+'. ';
+        },
+       });
+
+
       document.getElementById("cost").innerHTML = 'Extra Service Charge Will Be ' + cost;
    }
 </script>
