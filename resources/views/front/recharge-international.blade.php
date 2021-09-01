@@ -363,8 +363,8 @@
       var admin = document.getElementById('admin_com').value;
       var reseller = document.getElementById('reseller_com').value;
       var cost = ((amount/100)*admin) + ((amount/100)*reseller);
-      var am = Number(amount, 10);
-      var pm = Number(cost, 10);
+      var am = Number(amount, 100);
+      var pm = Number(cost, 100);
       document.getElementById("cost").innerHTML = 'Extra Service Charge Will Be ' + pm + am;
    }
 </script>

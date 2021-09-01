@@ -74,7 +74,7 @@ class RetailerController extends Controller
         $user->save();
   
         return response()->json(['success'=>'Status change successfully.']);
-
+    }
     public function AddCom(Request $request)
     {
         if (Auth::user()->role == 'admin') {
