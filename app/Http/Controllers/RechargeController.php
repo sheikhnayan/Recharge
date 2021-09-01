@@ -204,7 +204,7 @@ class RechargeController extends Controller
     $number = str_replace($change,'',$request->number);
     $client = new \GuzzleHttp\Client();
     $operator_request = $client->get('https://api.dingconnect.com/api/V1/GetProviders?accountNumber='.$number,['headers' => [
-        'api_key'     => 'CclMqCYR8F85oBXWoBFeQo'
+        'api_key'     => '913XSjpRzlB6lbS2kEE7gt'
         ],'verify' => false]);
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
@@ -306,7 +306,7 @@ class RechargeController extends Controller
 
         $client = new \GuzzleHttp\Client();
         $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?&providerCodes='.$request->operator,['headers' => [
-            'api_key'     => 'CclMqCYR8F85oBXWoBFeQo'
+            'api_key'     => '913XSjpRzlB6lbS2kEE7gt'
             ],'verify' => false]);
         $product_responses = $product_request->getBody();
 
@@ -355,7 +355,7 @@ class RechargeController extends Controller
             $client = new \GuzzleHttp\Client();
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
             'headers' => [
-            'api_key'     => 'CclMqCYR8F85oBXWoBFeQo',
+            'api_key'     => '913XSjpRzlB6lbS2kEE7gt',
             'Content-Type' => 'application/json'
             ],
             'verify' => false,
