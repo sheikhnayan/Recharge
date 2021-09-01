@@ -395,12 +395,14 @@
                   </a>
                 </li>
                 @endif
+                @if (Auth::user()->reseller_permission == 1)
                 <li class="nav-item">
                   <a href="/retailer/retailer-sign-up" class="@if(Route::currentRouteName() == 'retailer-sign-up') nav-link active @endif nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>New Retailer</p>
                   </a>
                 </li>
+                @endif
               </ul>
             </li>
         </ul>

@@ -393,6 +393,12 @@ class RechargeController extends Controller
             $minus = a::user()->update([
                 'wallet' => a::user()->wallet - $cost
             ]);
+
+            $reseller = User::where('id',a::user()->created_by)->first();
+
+            $commission = User::where('id',a::user()->created_by)->update([
+                'wallet' => $reseller->wallet + $reseller_commission
+            ]);
             $create = new RechargeHistory;
             $create->reseller_id = a::user()->id;
             $create->number = $request->number;
@@ -500,6 +506,12 @@ class RechargeController extends Controller
 
         $minus = a::user()->update([
             'wallet' => a::user()->wallet - $cost
+        ]);
+
+        $reseller = User::where('id',a::user()->created_by)->first();
+
+        $commission = User::where('id',a::user()->created_by)->update([
+            'wallet' => $reseller->wallet + $reseller_commission
         ]);
 
         $create = new RechargeHistory;
