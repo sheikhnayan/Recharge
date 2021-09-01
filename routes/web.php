@@ -167,6 +167,8 @@ Route::get('changeCargo', [RetailerController::class,'changeCargo']);
 
 Route::get('changePhone', [RetailerController::class,'changePhone']);
 
+Route::get('changeReseller', [RetailerController::class,'changeReseller']);
+
 
 //  RECHARGES END
 
@@ -215,3 +217,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::post('/add_balance',[BalanceController::class,'AddBalance'])->name('AddBalance');
 
 Route::post('/edit_balance',[BalanceController::class,'EditBalance'])->name('EditBalance');
+
+Route::get('/change-phone-price', [BalanceController::class,'PriceDiscount']);

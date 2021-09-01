@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Phone;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -105,6 +106,14 @@ class BalanceController extends Controller
             return back()->with('error','Due Amount Is Less Than The Input');
         }
 
+    public function PriceDiscount(Request $request)
+    {
+        $phone = Phone::find($request->user_id);
+        $phone->discount_status = $request->status;
+        $phone->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 
 
     }

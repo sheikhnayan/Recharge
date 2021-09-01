@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewSingUpFieldsColumnInUsersTable extends Migration
+class AddWholesaleToPhones extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class AddNewSingUpFieldsColumnInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('vat_number')->nullable();
-            $table->longText('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('codice_fiscale')->nullable();
-
+        Schema::table('phones', function (Blueprint $table) {
+            $table->boolean('wholsesale')->default(0);
         });
     }
 
@@ -29,7 +25,7 @@ class AddNewSingUpFieldsColumnInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('phones', function (Blueprint $table) {
             //
         });
     }

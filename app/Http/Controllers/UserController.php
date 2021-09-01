@@ -54,11 +54,9 @@ class UserController extends Controller
         $users->last_name = $request->input('last_name');
         $users->vat_number = $request->input('vat_number');
         $users->nationality = $request->input('company');
-        $users->gender = $request->input('gender');
         $users->email = $request->input('email');
         $users->address = $request->input('address');
         $users->role = 'user';
-        $users->phone = $request->input('phone');
         $users->codice_fiscale = $request->input('codice_fiscale');
         $users->wallet = 0;
         $users->password = Hash::make($request['password']);

@@ -40,6 +40,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('codice_fiscale')->nullable();
+            $table->boolean('reseller_permission')->default(0);
         });
     }
 

@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
 
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
 </head>
 @endsection
 
@@ -44,7 +45,8 @@
                 </select> -->
               </div>
               <div class="retailer_switch d-inline-block">
-                <input type="checkbox" name="phone_order_price"  data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                <!-- <input type="checkbox" name="phone_order_price"  data-bootstrap-switch data-off-color="danger" data-on-color="success"> -->
+                <input data-id="{{ Auth::user()->id }}" name="phone_order_price" class="toggle-class discount" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" >Discount</input>
               </div>
             </div> 
           </div>
@@ -186,4 +188,24 @@
 
   })
 </script>
+
+<script>
+  $(function() {
+    $('.discount').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+        console.log('hello');
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/change-phone-price',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+  </script>
 @endsection

@@ -22,7 +22,7 @@ class RetailerController extends Controller
 
     public function RetailerAction($value='')
     {
-        //  SHOVON WORKS HERE
+        //  SHOVON WORKED HERE
         if (Auth::user()->role == 'admin') {
             $data = User::where('role','user')->get();
         }else {
@@ -62,6 +62,14 @@ class RetailerController extends Controller
     {
         $user = User::find($request->user_id);
         $user->mobile_permission = $request->status;
+        $user->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
+    }
+    public function changeReseller(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->reseller_permission = $request->status;
         $user->save();
   
         return response()->json(['success'=>'Status change successfully.']);

@@ -55,6 +55,7 @@
                       <th style="background: #faaeae;">SIM</th>
                       <th style="background: #faaeae;">Cargo</th>
                       <th style="background: #faaeae;">Mobile</th>
+                      <th style="background: #faaeae;">Reseller</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -72,6 +73,9 @@
                       </td>
                       <td>
                         <input id="phone{{$retailer->id}}" data-id="{{$retailer->id}}" class="toggle-class phone" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $retailer->mobile_permission ? 'checked' : '' }}>
+                      </td>
+                      <td>
+                        <input id="reseller{{$retailer->id}}" data-id="{{$retailer->id}}" class="toggle-class reseller" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $retailer->reseller_permission ? 'checked' : '' }}>
                       </td>
                     </tr>
                     @endforeach
@@ -158,6 +162,25 @@
             type: "GET",
             dataType: "json",
             url: '/changePhone',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+  </script>
+  <script>
+  $(function() {
+    $('.reseller').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+        console.log('hello');
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeReseller',
             data: {'status': status, 'user_id': user_id},
             success: function(data){
               console.log(data.success)
