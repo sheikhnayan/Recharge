@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPriceToPhones extends Migration
+class AddStatusColumnInSimOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPriceToPhones extends Migration
      */
     public function up()
     {
-        Schema::table('phones', function (Blueprint $table) {
-            $table->string('dis_price')->nullable();
+        Schema::table('sim_orders', function (Blueprint $table) {
+            $table->string('status')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddPriceToPhones extends Migration
      */
     public function down()
     {
-        Schema::table('phones', function (Blueprint $table) {
+        Schema::table('sim_orders', function (Blueprint $table) {
             //
         });
     }

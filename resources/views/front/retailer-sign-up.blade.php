@@ -21,13 +21,12 @@
   <div class="card card-outline card-primary">
     <form action="{{ route('create') }}" method="POST">
       @csrf
-    <div class="card-header text-center">
-      <a href="signup.html"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <div class="card-header text-center">
+        <a href="/"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Register a new membership</p>
 
-      {{-- <form action="../../index.html" method="post"> --}}
         <div class="input-group mb-3">
           <input type="text" name="first_name" class="form-control" placeholder="First name">
           <div class="input-group-append">

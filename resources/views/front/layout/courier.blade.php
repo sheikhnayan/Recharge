@@ -13,7 +13,20 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
-
+                          @if (\Session::has('error'))
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      <li>{!! \Session::get('error') !!}</li>
+                                  </ul>
+                              </div>
+                          @endif
+                          @if (\Session::has('status'))
+                              <div class="alert alert-success">
+                                  <ul>
+                                      <li>{!! \Session::get('status') !!}</li>
+                                  </ul>
+                              </div>
+                          @endif
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
@@ -130,7 +143,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar fixd-sidebar sidebar-dark-primary">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link" style="background: #fff;">
+    <a href="/" class="brand-link" style="background: #fff;">
       <img src="{{ asset('images/jm-transparent-logo.png') }}" alt="Courier Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-bold"><strong>JM</strong> LOGISTIC</span>
     </a>
@@ -201,185 +214,195 @@
               </p>
             </a>
           </li>
-          <li class="@if(Route::currentRouteName() == 'recharge-int' ||
-                        Route::currentRouteName() == 'recharge-italy' ||
-                        Route::currentRouteName() == 'recharge-gift-card' ||
-                        Route::currentRouteName() == 'recharge-calling-card' ||
-                        Route::currentRouteName() == 'print-all-invoice') nav-item menu-open @endif nav-item">
-            <a href="#" class="@if(Route::currentRouteName() == 'recharge-int' ||
-                        Route::currentRouteName() == 'recharge-italy' ||
-                        Route::currentRouteName() == 'recharge-gift-card' ||
-                        Route::currentRouteName() == 'recharge-calling-card' ||
-                        Route::currentRouteName() == 'print-all-invoice') nav-link active @endif nav-link nav-link">
-              <i class="nav-icon fab fa-rev"></i>
-              <p>
-                Recharge
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/recharge/recharge-int" class="@if(Route::currentRouteName() == 'recharge-int') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>International</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/recharge/recharge-italy" class="@if(Route::currentRouteName() == 'recharge-italy') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Domestic</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/recharge/recharge-gift-card" class="@if(Route::currentRouteName() == 'recharge-gift-card') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gift Card</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/recharge/recharge-calling-card" class="@if(Route::currentRouteName() == 'recharge-calling-card') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Calling Card</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="@if(Route::currentRouteName() == 'sim-activation' ||
-                         Route::currentRouteName() == 'sim-selling' ||
-                         Route::currentRouteName() == 'wi-fi') nav-item menu-open @endif nav-item">
-            <a href="#" class="@if(Route::currentRouteName() == 'sim-activation' ||
-                         Route::currentRouteName() == 'sim-selling' ||
-                         Route::currentRouteName() == 'wi-fi') nav-link active @endif nav-link">
-              <i class="nav-icon fas fa-sim-card"></i>
-              <p>
-                SIM
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/operator" class="@if(Route::currentRouteName() == 'operator') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>SIM Operator</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/sim/sim-activation" class="@if(Route::currentRouteName() == 'sim-activation') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>SIM Activation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/sim/sim-selling" class="@if(Route::currentRouteName() == 'sim-selling') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>SIM Selling</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/sim/wi-fi" class="@if(Route::currentRouteName() == 'wi-fi') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Wi-fi</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="@if(Route::currentRouteName() == 'cargo-new-order' || Route::currentRouteName() == 'order-list' || Route::currentRouteName() == 'order-tracking-view' || Route::currentRouteName() == 'order-invoice-view') nav-item menu-open @endif nav-item">
-            <a href="#" class="@if(Route::currentRouteName() == 'cargo-new-order' || Route::currentRouteName() == 'order-list' || Route::currentRouteName() == 'order-tracking-view' || Route::currentRouteName() == 'order-invoice-view') nav-link active @endif nav-link">
-              <i class="nav-icon fas fa-truck"></i>
-              <p>
-                Cargo(Courier Service)
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/cargo/new-order" class="@if(Route::currentRouteName() == 'cargo-new-order') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>New Order</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/cargo/order-list" class="@if(Route::currentRouteName() == 'order-list') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Order List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/cargo/order-tracking-view" class="@if(Route::currentRouteName() == 'order-tracking-view') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tracking</p>
-                </a>
-              </li>
-              {{-- <li class="nav-item">
-                <a href="/cargo/order-invoice" class="@if(Route::currentRouteName() == 'order-invoice-view') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Invoice</p>
-                </a>
-              </li> --}}
-            </ul>
-          </li>
-          <li class="@if(Route::currentRouteName() == 'phone-order' || Route::currentRouteName() == 'selling-list') nav-item menu-open @endif nav-item">
-            <a href="#" class="@if(Route::currentRouteName() == 'phone-order' || Route::currentRouteName() == 'selling-list') nav-link active menu-open @endif nav-link">
-              <i class="nav-icon fas fa-mobile-alt"></i>
-              <p>
-                Phone
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+          @if (Auth::user()->recharge_permission == 1)
+            <li class="@if(Route::currentRouteName() == 'recharge-int' ||
+                          Route::currentRouteName() == 'recharge-italy' ||
+                          Route::currentRouteName() == 'recharge-gift-card' ||
+                          Route::currentRouteName() == 'recharge-calling-card' ||
+                          Route::currentRouteName() == 'print-all-invoice') nav-item menu-open @endif nav-item">
+              <a href="#" class="@if(Route::currentRouteName() == 'recharge-int' ||
+                          Route::currentRouteName() == 'recharge-italy' ||
+                          Route::currentRouteName() == 'recharge-gift-card' ||
+                          Route::currentRouteName() == 'recharge-calling-card' ||
+                          Route::currentRouteName() == 'print-all-invoice') nav-link active @endif nav-link nav-link">
+                <i class="nav-icon fab fa-rev"></i>
+                <p>
+                  Recharge
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/recharge/recharge-int" class="@if(Route::currentRouteName() == 'recharge-int') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>International</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/recharge/recharge-italy" class="@if(Route::currentRouteName() == 'recharge-italy') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Domestic</p>
+                  </a>
+                </li>
+                {{-- <li class="nav-item">
+                  <a href="/recharge/recharge-gift-card" class="@if(Route::currentRouteName() == 'recharge-gift-card') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Gift Card</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/recharge/recharge-calling-card" class="@if(Route::currentRouteName() == 'recharge-calling-card') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Calling Card</p>
+                  </a>
+                </li> --}}
+              </ul>
+            </li>
+          @endif
+          @if (Auth::user()->sim_permission == 1)
+            <li class="@if(Route::currentRouteName() == 'sim-activation' ||
+                          Route::currentRouteName() == 'sim-selling' ||
+                          Route::currentRouteName() == 'wi-fi') nav-item menu-open @endif nav-item">
+              <a href="#" class="@if(Route::currentRouteName() == 'sim-activation' ||
+                          Route::currentRouteName() == 'sim-selling' ||
+                          Route::currentRouteName() == 'wi-fi') nav-link active @endif nav-link">
+                <i class="nav-icon fas fa-sim-card"></i>
+                <p>
+                  SIM
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
               @if (Auth::user()->role == 'admin')
-              <li class="nav-item">
-                <a href="/phone/add-phone-view" class="@if(Route::currentRouteName() == 'add-phone-view') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Phone</p>
-                </a>
-              </li>
+                <li class="nav-item">
+                  <a href="/operator" class="@if(Route::currentRouteName() == 'operator') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>SIM Operator</p>
+                  </a>
+                </li>
               @endif
-              <li class="nav-item">
-                <a href="/phone/phone-order" class="@if(Route::currentRouteName() == 'phone-order') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Order</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/phone/selling-list" class="@if(Route::currentRouteName() == 'selling-list') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Selling</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="@if(Route::currentRouteName() == 'retailer-details' || Route::currentRouteName() == 'retailer-action' || Route::currentRouteName() == 'retailer-sign-up') nav-item menu-open @endif nav-item">
-            <a href="#" class="@if(Route::currentRouteName() == 'retailer-details' || Route::currentRouteName() == 'retailer-action' || Route::currentRouteName() == 'retailer-sign-up') nav-link active @endif nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Retailer
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/retailer/retailer-details" class="@if(Route::currentRouteName() == 'retailer-details') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Retailer Details</p>
-                </a>
-              </li>
-              @if (Auth::user()->role == 'admin')
-              <li class="nav-item">
-                <a href="/retailer/retailer-action" class="@if(Route::currentRouteName() == 'retailer-action') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Retailer Action</p>
-                </a>
-              </li>
-              @endif
-              <li class="nav-item">
-                <a href="/retailer/retailer-sign-up" class="@if(Route::currentRouteName() == 'retailer-sign-up') nav-link active @endif nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>New Retailer</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+                <li class="nav-item">
+                  <a href="/sim/sim-activation" class="@if(Route::currentRouteName() == 'sim-activation') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>SIM Activation</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/sim/sim-selling" class="@if(Route::currentRouteName() == 'sim-selling') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>SIM Selling</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/sim/wi-fi" class="@if(Route::currentRouteName() == 'wi-fi') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Offers</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
+          @if (Auth::user()->cargo_permission == 1)
+            <li class="@if(Route::currentRouteName() == 'cargo-new-order' || Route::currentRouteName() == 'order-list' || Route::currentRouteName() == 'order-tracking-view' || Route::currentRouteName() == 'order-invoice-view') nav-item menu-open @endif nav-item">
+              <a href="#" class="@if(Route::currentRouteName() == 'cargo-new-order' || Route::currentRouteName() == 'order-list' || Route::currentRouteName() == 'order-tracking-view' || Route::currentRouteName() == 'order-invoice-view') nav-link active @endif nav-link">
+                <i class="nav-icon fas fa-truck"></i>
+                <p>
+                  Cargo(Courier Service)
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/cargo/new-order" class="@if(Route::currentRouteName() == 'cargo-new-order') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>New Order</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/cargo/order-list" class="@if(Route::currentRouteName() == 'order-list') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Order List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/cargo/order-tracking-view" class="@if(Route::currentRouteName() == 'order-tracking-view') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tracking</p>
+                  </a>
+                </li>
+                {{-- <li class="nav-item">
+                  <a href="/cargo/order-invoice" class="@if(Route::currentRouteName() == 'order-invoice-view') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Invoice</p>
+                  </a>
+                </li> --}}
+              </ul>
+            </li>
+          @endif
+          @if (Auth::user()->mobile_permission == 1)
+            <li class="@if(Route::currentRouteName() == 'phone-order' || Route::currentRouteName() == 'selling-list') nav-item menu-open @endif nav-item">
+              <a href="#" class="@if(Route::currentRouteName() == 'phone-order' || Route::currentRouteName() == 'selling-list') nav-link active menu-open @endif nav-link">
+                <i class="nav-icon fas fa-mobile-alt"></i>
+                <p>
+                  Phone
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if (Auth::user()->role == 'admin')
+                <li class="nav-item">
+                  <a href="/phone/add-phone-view" class="@if(Route::currentRouteName() == 'add-phone-view') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Phone</p>
+                  </a>
+                </li>
+                @endif
+                <li class="nav-item">
+                  <a href="/phone/phone-order" class="@if(Route::currentRouteName() == 'phone-order') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Order</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/phone/selling-list" class="@if(Route::currentRouteName() == 'selling-list') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Selling</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
+            <li class="@if(Route::currentRouteName() == 'retailer-details' || Route::currentRouteName() == 'retailer-action' || Route::currentRouteName() == 'retailer-sign-up') nav-item menu-open @endif nav-item">
+              <a href="#" class="@if(Route::currentRouteName() == 'retailer-details' || Route::currentRouteName() == 'retailer-action' || Route::currentRouteName() == 'retailer-sign-up') nav-link active @endif nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Retailer
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/retailer/retailer-details" class="@if(Route::currentRouteName() == 'retailer-details') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Retailer Details</p>
+                  </a>
+                </li>
+                @if (Auth::user()->role == 'admin')
+                <li class="nav-item">
+                  <a href="/retailer/retailer-action" class="@if(Route::currentRouteName() == 'retailer-action') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Retailer Action</p>
+                  </a>
+                </li>
+                @endif
+                <li class="nav-item">
+                  <a href="/retailer/retailer-sign-up" class="@if(Route::currentRouteName() == 'retailer-sign-up') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>New Retailer</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

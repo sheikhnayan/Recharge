@@ -250,11 +250,8 @@
                       <label>Product Type</label>
                       <select class="form-control select2" name="productType" id="productType" style="width: 100%;" oninput="myFunction1234(this)">
                         <option value="null">--Select--</option>
-                        <option>Metal</option>
-                        <option>Liquid</option>
-                        <option>Wooden</option>
-                        <option>Glassware</option>
-                        <option>Ciramics</option>
+                        <option>Solid</option>
+                        <option>Paper</option>
                       </select>
                     </div>
                     <div class="mb-3">

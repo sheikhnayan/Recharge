@@ -29,7 +29,7 @@
         <div class="recharge-box">
           <div class="card card-outline card-primary">
             <div class="card-header text-center">
-              <a href="index.html"><img src="images/jm logo.jpeg" width="80px" height="auto"></a>
+              <a href="index.html"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
             </div>
             <div class="card-body">
               <h3 class="text-center mb-5">Indice Brand Richriche</h3>
@@ -151,69 +151,19 @@
                             <th>Amount</th>
                             <th>Cost</th>
                             <th>Status</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ($data as $item)
                           <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
+                            <td>{{ $item->number }}</td>
+                            <td>{{ $item->amount }}</td>
+                            <td>{{ $item->cost }}</td>
                             <td><i class="text-primary fas fa-check-square"></i></td>
+                            <td> <a class="btn btn-success" href="/recharge_invoice/{{ $item->id }}"> Invoice</a> </td>
                           </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-ocean">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
-                          <tr class="bg-sky">
-                            <td>393897666667</td>
-                            <td>5.00</td>
-                            <td>EUR 4.50</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                          </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

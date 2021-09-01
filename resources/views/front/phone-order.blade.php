@@ -91,8 +91,9 @@
                       @csrf
                     <p>Order</p>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" name="quantity" aria-describedby="basic-addon2">
+                        <input type="number" class="form-control" name="quantity" aria-describedby="basic-addon2" required>
                         <input type="hidden" name="phone_name" value="{{ $item->phone }}">
+                        <input type="hidden" name="price" value="{{ $item->price }}">
                         <input type="hidden" name="reseller_id" value="{{ Auth::user()->id }}">
                         <input type="submit" class="input-group-text" id="basic-addon2" value="Buy">
                     </div>

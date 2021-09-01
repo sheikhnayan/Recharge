@@ -1,8 +1,9 @@
+
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Edit Profile</title>
-
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -10,114 +11,120 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('css/admin.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-
-
 </head>
 <body class="hold-transition register-page">
-  <form action="/reseller/update/{{ $data->id }}" method="POST">
-    @csrf
-  <div class="profile_info_box">
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="/add-reseller"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
-    </div>
-    <div class="card-body">
-      <div class="row justify-content-center">
-        <div class="col-sm-8">
-          <div class="profile_name">
-            <h2 class="lead"><b>{{ $data->first_name }} {{ $data->last_name }}</b></h2>
-            <p><i class="fas fa-user-circle"></i> Profile Info</p>
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+        <form action="/reseller/update/{{ $data->id }}" method="POST">
+          @csrf
+          <div class="card-header text-center">
+              <a href="/"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
           </div>
-          <div class="profile_information">
-            <h5 class="text-bold">ID</h5>
-            <p>{{ $data->id }}</p>
-          </div>
-          {{-- <div class="profile_information">
-            <h5 class="text-bold">Partia IVA</h5>
-            <p>02094100427</p>
-          </div> --}}
-          <div class="profile_information">
-            <h5 class="text-bold">E-mail</h5>
-            <div class="profile_edit">
-              <div class="profile_edit_feild">
-                <p class="input_text">{{ $data->email }}</p>
-                <input type="text" class="form-control profile_info_input" id="inputEmail" name="email" value="{{ $data->email }}">
+          <div class="card-body">
+              <p class="login-box-msg">Edit Profile</p>
+              <div class="input-group mb-3">
+                <input type="text" name="first_name" value="{{ $data->first_name }}" class="form-control" placeholder="First name">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                </div>
               </div>
-              <button type="button" class="btn btn-sm btn-default" id="profile_edit_btn"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-sm btn-default" id="profile_check_btn"><i class="fas fa-check-square"></i></button>
-            </div>
-          </div>
-          <div class="profile_information">
-            <h5 class="text-bold">First Name</h5>
-            <div class="profile_edit">
-              <div class="profile_edit_feild">
-                <p class="input_text">{{ $data->first_name }}</p>
-                <input type="text" class="form-control profile_info_input" id="inputEmail" name="first_name" value="{{ $data->first_name }}">
+              <div class="input-group mb-3">
+                <input type="text" name="last_name" value="{{ $data->last_name }}" class="form-control" placeholder="Last Name">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                </div>
               </div>
-              <button type="button" class="btn btn-sm btn-default" id="profile_edit_btn"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-sm btn-default" id="profile_check_btn"><i class="fas fa-check-square"></i></button>
-            </div>
-          </div>
-          <div class="profile_information">
-            <h5 class="text-bold">Last Name</h5>
-            <div class="profile_edit">
-              <div class="profile_edit_feild">
-                <p class="input_text">{{ $data->last_name }}</p>
-                <input type="text" class="form-control profile_info_input" id="inputEmail" name="last_name" value="{{ $data->last_name }}">
+              <div class="input-group mb-3">
+                <input type="text" name="company" value="{{ $data->nationality }}" class="form-control" placeholder="Company Name">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                </div>
               </div>
-              <button type="button" class="btn btn-sm btn-default" id="profile_edit_btn"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-sm btn-default" id="profile_check_btn"><i class="fas fa-check-square"></i></button>
-            </div>
-          </div>
-          <div class="profile_information">
-            <h5 class="text-bold">Company</h5>
-            <div class="profile_edit">
-              <div class="profile_edit_feild">
-                <p class="input_text">{{ $data->nationality }}</p>
-                <input type="text" class="form-control profile_info_input" id="inputEmail" name="company" value="{{ $data->nationality }}">
+              <div class="input-group mb-3">
+                <input type="text" name="vat_number" value="{{ $data->vat_number }}" class="form-control" placeholder="Partita IVA">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                </div>
               </div>
-              <button type="button" class="btn btn-sm btn-default" id="profile_edit_btn"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-sm btn-default" id="profile_check_btn"><i class="fas fa-check-square"></i></button>
-            </div>
-          </div>
-          {{-- <div class="profile_information">
-            <h5 class="text-bold">Address</h5>
-            <div class="profile_edit">
-              <div class="profile_edit_feild">
-                <p class="input_text">House#43, Road#5, Mirpur, Dhaka- 1205, Bangladesh</p>
-                <input type="text" class="form-control profile_info_input" id="inputEmail" value="House#43, Road#5, Mirpur, Dhaka- 1205, Bangladesh">
+              <div class="input-group mb-3">
+                <textarea class="form-control" name="address"  rows="1" placeholder="Address">{{ $data->address }}</textarea>
+                <div class="input-group-text">
+                    <span class="fas fa-house-user"></span>
+                </div>
               </div>
-              <button type="button" class="btn btn-sm btn-default" id="profile_edit_btn"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-sm btn-default" id="profile_check_btn"><i class="fas fa-check-square"></i></button>
-            </div>
-          </div> --}}
+              <div class="input-group mb-3">
+                <input type="email" name="email" class="form-control" value="{{ $data->email }}" placeholder="Email">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-at"></span>
+                    </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" name="phone" class="form-control" value="{{ $data->mobile }}" placeholder="Mobile Number">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-mobile-alt"></span>
+                    </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" name="codice_fiscale" class="form-control" value="{{ $data->codice_fiscale }}" placeholder="Codice Fiscale">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-mobile-alt"></span>
+                    </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="password" name="password" class="form-control" value="" placeholder="New Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <select name="gender" class="form-control" value="{{ $data->gender }}">
+                <option {{ ( $data->gender == 'male') ? 'selected' : '' }} value="male">Male</option>
+                <option {{ ( $data->gender == 'female') ? 'selected' : '' }} value="female">Female</option>
+                </select>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- /.col -->
+                <div class="col-4">
+                    <input type="submit" class="btn btn-primary btn-block" value="Update">
+                </div>
+                <!-- /.col -->
+              </div>
+              
         </div>
-      </div>
+        <!-- /.form-box -->
+        </form>
     </div>
-    <div class="card-footer">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <input type="submit" value="Update" class="btn btn-success" style="width:100%">
-        </div>
-      </div>
-    </div>
-    <!-- /.form-box -->
   </div>
-  <!-- /.card -->
-</form>
-</div>
-<!-- /.register-box -->
-
-<!-- jQuery -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<!-- Theme JS -->
-<script src="{{ asset('js/admin.js') }}"></script>
-<!-- Custom JS -->
-<script src="{{ asset('js/custom.js') }}"></script>
-
-
+  <!-- /.register-box -->
+  <!-- jQuery -->
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+  <!-- Theme JS -->
+  <script src="{{ asset('js/admin.js') }}"></script>
+  <!-- Custom JS -->
+  <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>
+

@@ -57,8 +57,13 @@ class UserController extends Controller
         $users->email = $request->input('email');
         $users->address = $request->input('address');
         $users->role = 'user';
+
+
+        $users->contact_number = $request->input('phone');
+
         $users->codice_fiscale = $request->input('codice_fiscale');
         $users->wallet = 0;
+        $users->created_by = Auth::user()->id;
         $users->password = Hash::make($request['password']);
         $users->save();
 
@@ -115,7 +120,7 @@ class UserController extends Controller
             'vat_number' => $request->vat_number,
             'gender' => $request->gender,
             'address' => $request->address,
-            'phone' => $request->phone,
+            'contact_number' => $request->phone,
             'codice_fiscale' =>$request->codice_fiscale,
             'nationality' => $request->company,
             'email' => $request->email

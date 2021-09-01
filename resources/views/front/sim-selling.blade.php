@@ -80,6 +80,8 @@
 
                           <input type="hidden" name="sim_id" value="{{$item->sim_id}}">
 
+                          <input type="hidden" name="id" value="{{$item->id}}">
+
                           <select name="status" style="width: 120px">
                               <option {{$item->status == 'available' ? 'selected' : '' }} value="available">Available</option>
                               <option {{$item->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>

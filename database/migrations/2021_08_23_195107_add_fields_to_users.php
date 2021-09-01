@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class AddFieldsToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->text('profile_photo_path')->nullable();
-            $table->timestamps();
-            $table->string('role');
-            $table->float('wallet');
+        Schema::table('users', function (Blueprint $table) {
             $table->string('vat_number')->nullable();
-            $table->string('recharge')->nullable();
-            $table->string('sim')->nullable();
-            $table->string('cargo')->nullable();
-            $table->string('mobile')->nullable();
+            $table->string('recharge')->default(0);
+            $table->string('sim')->default(0);
+            $table->string('cargo')->default(0);
+            $table->string('mobile')->default(0);
             $table->boolean('recharge_permission')->default(0);
             $table->boolean('sim_permission')->default(0);
             $table->boolean('cargo_permission')->default(0);
@@ -40,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('codice_fiscale')->nullable();
+
         });
     }
 
@@ -50,6 +39,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

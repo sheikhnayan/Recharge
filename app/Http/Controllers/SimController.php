@@ -124,12 +124,14 @@ class SimController extends Controller
      */
     public function show($id)
     {
-        
         $data = sim::where('id', $id)->first();
-
-        $offer = Offer::where('operator', $data->operator)->get();
-        $operator = SimOperator::all();
-        return view('front.sale',compact('data','offer','operator'));
+        if (Auth::user()->wallet >= $data->buy_price) {
+            $offer = Offer::where('operator', $data->operator)->get();
+            $operator = SimOperator::all();
+            return view('front.sale',compact('data','offer','operator'));
+        }else {
+            return back()->with('error', 'Insufficient Balance!');
+        }
     }
 
     /**
@@ -201,14 +203,11 @@ class SimController extends Controller
         }else{
         $check = SimOrder::where('reseller_id', Auth::user()->id)->get();
         $count = $check->count();
-
         if ($count > 0) {
             $data = SimOrder::where('reseller_id',Auth::user()->id)
-            ->join('sims','sims.id','=','sim_orders.sim_id')
-            ->select('sim_orders.*','sims.status')
             ->latest()->get();
         }else {
-            $data = $data = SimOrder::where('reseller_id',Auth::user()->id)->get();
+            $data = SimOrder::where('reseller_id',Auth::user()->id)->get();
         }
         }
         return view('front.sim-selling',compact('data'));
@@ -216,7 +215,34 @@ class SimController extends Controller
 
 
     public function sim_order_update(Request $request){
+        $info = sim::where('id', $request->sim_id)->first();
+
+        $user = User::where('id', $info->reseller_id)->first();
+
+        $past = SimOrder::where('id', $request->id)->first();
+
+        $reseller_comission = ($info->buy_price/100)*$user->sim;
+
+        $admin_comission = ($info->_price/100)*$user->admin_sim_commision;
+
+        if ($request->status == 'sold' && $past->status != 'sold') {
+            $update = User::where('id', $info->reseller_id)->update([
+                'wallet' => $user->wallet - ($info->buy_price + $reseller_comission + $admin_comission)
+            ]);
+        }elseif ($request->status == 'available' && $past->status == 'sold'){
+            $update = User::where('id', $info->reseller_id)->update([
+                'wallet' => $user->wallet + ($info->buy_price + $reseller_comission + $admin_comission)
+            ]);
+        }elseif ($request->status == 'pending' && $past->status == 'sold'){
+            $update = User::where('id', $info->reseller_id)->update([
+                'wallet' => $user->wallet + ($info->buy_price + $reseller_comission + $admin_comission)
+            ]);
+        }
+
         $update = sim::where('id', $request->sim_id)->update([
+            'status' => $request->status
+        ]);
+        $update_sim = SimOrder::where('id', $request->id)->update([
             'status' => $request->status
         ]);
         return back();

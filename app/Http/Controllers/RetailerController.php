@@ -66,6 +66,7 @@ class RetailerController extends Controller
   
         return response()->json(['success'=>'Status change successfully.']);
     }
+
     public function changeReseller(Request $request)
     {
         $user = User::find($request->user_id);
@@ -73,5 +74,28 @@ class RetailerController extends Controller
         $user->save();
   
         return response()->json(['success'=>'Status change successfully.']);
+
+    public function AddCom(Request $request)
+    {
+        if (Auth::user()->role == 'admin') {
+            $user = User::where('id', $request->user_id)->update([
+                'admin_mobile_commission' => $request->mobile,
+                'admin_sim_commission' => $request->sim,
+                'admin_cargo_commission' => $request->cargo,
+                'admin_recharge_commission' => $request->recharge,
+                'admin_international_recharge_commission' => $request->international_recharge,
+            ]);
+        }else{
+            $user = User::where('id', $request->user_id)->update([
+                'mobile' => $request->mobile,
+                'sim' => $request->sim,
+                'cargo' => $request->cargo,
+                'recharge' => $request->recharge,
+                'international_recharge' => $request->international_recharge,
+            ]); 
+        }
+        
+        return back()->with('status','Commission Set Suucessfully!');
+
     }
 }

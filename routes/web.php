@@ -206,6 +206,7 @@ Route::post('/check-operator',[RechargeController::class,'check_operator']);
 Route::post('/check-product',[RechargeController::class,'get_product']);
 Route::post('/international_recharge',[RechargeController::class,'recharge']);
 Route::post('/domestic_recharge',[RechargeController::class,'domestic_recharge']);
+Route::get('/recharge_invoice/{id}',[RechargeController::class,'invoice']);
 // edit by shuvo
 Route::get('/fcm', [RechargeController::class,'fcmSend']);
 
@@ -216,6 +217,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::post('/add_balance',[BalanceController::class,'AddBalance'])->name('AddBalance');
 
+
 Route::post('/edit_balance',[BalanceController::class,'EditBalance'])->name('EditBalance');
 
 Route::get('/change-phone-price', [BalanceController::class,'PriceDiscount']);
+
+Route::post('/edit_wallet',[BalanceController::class,'edit_wallet']);
+
+Route::post('/add_com',[RetailerController::class,'AddCom'])->name('AddCom');
+Route::post('/cargo_update',[OrderController::class,'update_status']);
+

@@ -25,7 +25,7 @@
          <div class="recharge-box">
             <div class="card card-outline card-primary">
                <div class="card-header text-center">
-                  <a href="/"><img src="images/jm logo.jpeg" width="80px" height="auto"></a>
+                  <a href="/"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
                </div>
                <div class="card-body">
                   <p class="login-box-msg">Mobile Recharge or Offers </p>
@@ -42,9 +42,9 @@
                            <div class="mb-3 receiver_inputs">
                               <label for="inputMobileNumber" class="form-label">Receiver Number</label>
                               @if ($stage == 'initial')
-                              <input type="text" value="{{ $datas['number'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number">
+                              <input type="text" id="receiverMobile" value="{{ $prods[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number">
                               @else
-                              <input type="text" value="{{ $datas['number'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number" readonly>
+                              <input type="text" value="{{ $prods[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number" readonly>
                               @endif
                               {{-- <button class="btn btn-primary" style="margin-bottom: 6px; float: right;">Verify</button> --}}
                            </div>
@@ -52,9 +52,11 @@
                            <div class="form-group">
                               <label for="selectOparetor">Oparetor</label>
                               <select class="custom-select" name="operator" id="operators">
-                                 @foreach ($operators as $item)
                                  <option value="">Select Operator</option>
-                                 <option {{ ( $datas['operator'] ?? '' == $item['ProviderCode']) ? 'selected' : '' }} value="{{ $item['ProviderCode'] }}">{{ $item['Name'] }}</option>
+                                 @foreach ($operators as $item)
+                                    @if ($item['CustomerCareNumber'] == null)
+                                       <option {{ ( $datas['operator'] ?? '' == $item['ProviderCode']) ? 'selected' : '' }} value="{{ $item['ProviderCode'] }}">{{ $item['Name'] }}</option>
+                                    @endif
                                  @endforeach
                               </select>
                            </div>
@@ -82,13 +84,13 @@
                            @endif
                            @if (isset($stage))
                            @if ($stage == 'get_product')
-                           @if ($count ?? '' > 1)
+                           @if ($count > 1)
                            <div class="form-group">
                               <label for="selectPackage">Select Amount</label>
                               <select class="custom-select" name="amount" id="package">
                                  @foreach ($prods as $item)
                                  <option value="{{ $item['SkuCode'] }},{{ $item['Maximum']['SendValue'] }}">
-                                    {{ $item['Maximum']['SendValue'] }} Euro
+                                    {{ $item['Maximum']['SendValue'] + (($item['Maximum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($item['Maximum']['SendValue']/100)*Auth::user()->international_recharge) }} Euro
                                     <h7 style="font-size: 10px;">({{ $item['Maximum']['ReceiveValueExcludingTax'] }} {{ $item['Maximum']['ReceiveCurrencyIso'] }} will be received)</h7>
                                  </option>
                                  @endforeach
@@ -97,7 +99,11 @@
                            @else
                            <div class="mb-3">
                               <label for="inputAmount" class="form-label">Service Charge in (EUR)</label>
-                              <input type="text" class="form-control" name="amount" placeholder="Service Charge in EUR 0.50-10.00">
+                              <input oninput="cost()" id="amount" type="number" class="form-control" name="amount" placeholder="Between Euro {{ $prods['0']['Maximum']['SendValue'] }}  -  Euro {{ $prods['0']['Minimum']['SendValue'] }}">
+                              <input type="hidden" name="Sku_Code" value="{{ $prods['0']['SkuCode'] }}">
+                              <input type="hidden" id="admin_com" value="{{ Auth::user()->admin_international_recharge_commission }}">
+                              <input type="hidden" id="reseller_com" value="{{ Auth::user()->international_recharge }}">
+                              <small id="cost"></small>
                            </div>
                            @endif
                            @endif
@@ -320,69 +326,19 @@
                                        <th>Amount</th>
                                        <th>Cost</th>
                                        <th>Status</th>
+                                       <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach ($data as $item)
                                     <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
+                                       <<td>{{ $item->number }}</td>
+                                       <td>{{ $item->amount }}</td>
+                                       <td>{{ $item->cost }}</td>
                                        <td><i class="text-primary fas fa-check-square"></i></td>
+                                       <td> <a class="btn btn-success" href="/recharge_invoice/{{ $item->id }}"> Invoice</a> </td>
                                     </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-ocean">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
-                                    <tr class="bg-sky">
-                                       <td>393897666667</td>
-                                       <td>5.00</td>
-                                       <td>EUR 4.50</td>
-                                       <td><i class="text-primary fas fa-check-square"></i></td>
-                                    </tr>
+                                    @endforeach
                                  </tbody>
                               </table>
                            </div>
@@ -401,6 +357,17 @@
    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+   function cost(){
+      var amount = document.getElementById('amount').value;
+      var admin = document.getElementById('admin_com').value;
+      var reseller = document.getElementById('reseller_com').value;
+      var cost = ((amount/100)*admin) + ((amount/100)*reseller);
+      var am = Number(amount, 10);
+      var pm = Number(cost, 10);
+      document.getElementById("cost").innerHTML = 'Extra Service Charge Will Be ' + pm + am;
+   }
+</script>
 @endsection
 @section('scripts')
 <!-- jQuery -->
@@ -415,10 +382,20 @@
 @endsection
 @section('js')
 <script>
-   var receiverMobile = document.querySelector("#receiverMobile");
-   window.intlTelInput(receiverMobile, {
-     // any initialisation options go here
+   // Vanilla Javascript
+   var input = document.querySelector("#receiverMobile");
+   window.intlTelInput(input,({
+     // options here
+   }));
+
+   $(document).ready(function() {
+       $('.iti__flag-container').click(function() { 
+         var countryCode = $('.iti__selected-flag').attr('title');
+         var countryCode = countryCode.replace(/[^0-9]/g,'')
+         $('#receiverMobile').val("");
+         $('#receiverMobile').val("+"+countryCode+" "+ $('#receiverMobile').val());
+      });
    });
-</script>
+ </script>
 @endsection
 

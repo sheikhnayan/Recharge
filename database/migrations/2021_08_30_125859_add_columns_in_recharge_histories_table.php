@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPriceToPhones extends Migration
+class AddColumnsInRechargeHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPriceToPhones extends Migration
      */
     public function up()
     {
-        Schema::table('phones', function (Blueprint $table) {
-            $table->string('dis_price')->nullable();
+        Schema::table('recharge_histories', function (Blueprint $table) {
+            $table->float('cost')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddPriceToPhones extends Migration
      */
     public function down()
     {
-        Schema::table('phones', function (Blueprint $table) {
+        Schema::table('recharge_histories', function (Blueprint $table) {
             //
         });
     }

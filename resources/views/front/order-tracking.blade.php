@@ -32,7 +32,7 @@
             <form action="{{route('track')}}">
             <div class="order_page_header mb-4">
               <h4><i class="fas fa-hand-point-right"></i>Order Tracking</h4>
-              <a href="cargo_new_order.html"><i class="fas fa-plus-circle"></i>New Order</a>
+              <a href="/cargo/new-order"><i class="fas fa-plus-circle"></i>New Order</a>
             </div>
             <div class="input-group mb-4">
               <label for="inputTrackingNumber" class="form-label" style="margin: 5px 15px 0 0;">Order/Tracking Number</label>

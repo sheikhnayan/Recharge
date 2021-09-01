@@ -117,4 +117,20 @@ class BalanceController extends Controller
 
 
     }
+
+    public function edit_wallet(Request $request){
+
+
+        $user = User::where('id', $request->user_id)->update([
+
+            "wallet" => $request->balance,
+                
+        ]);
+
+        return back()->with('status','Balance Updated Successfully!');
+
+
+
+
+    }
 }
