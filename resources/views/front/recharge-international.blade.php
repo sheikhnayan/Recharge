@@ -97,6 +97,8 @@
                                  @endforeach
                               </select>
                            </div>
+                           <label class="form-label">Service Charge in EURO</label>
+                           <input type="number" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
                            @else
                            <div class="mb-3">
                               <label for="inputAmount" class="form-label">Amount (EUR)</label>
@@ -104,11 +106,10 @@
                               <input type="hidden" name="Sku_Code" value="{{ $prods['0']['SkuCode'] }}" id="skucode">
                               <input type="hidden" id="admin_com" value="{{ Auth::user()->admin_international_recharge_commission }}">
                               <input type="hidden" id="reseller_com" value="{{ Auth::user()->international_recharge }}">
-                              <small id="price"></small>
-                              <small id="cost"></small> <br>
-                              <label class="foem-label">Service Charge in EURO</label>
-                              <input type="number" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
+                              <small style="font-size: 18px;text-align: center;font-weight: bold;color: red;" id="price"></small><br>
                            </div>
+                           <label class="form-label">Service Charge in EURO</label>
+                           <input type="number" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
                            @endif
                            @endif
                            @endif
@@ -390,9 +391,6 @@
           document.getElementById("price").innerHTML = 'You Will Receive ' + response.Items[0].Price.ReceiveValue +' ' +response.Items[0].Price.ReceiveCurrencyIso+'. ';
         },
        });
-
-
-      document.getElementById("cost").innerHTML = 'Extra Service Charge Will Be ' + cost;
    }
 </script>
 @endsection
