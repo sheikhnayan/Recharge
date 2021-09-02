@@ -348,9 +348,11 @@ class RechargeController extends Controller
         if(count($sku_amount) > 1) {
             $SkuCode = $sku_amount['0'];
             $SendValue = $sku_amount['1'];
+            $amount = $sku_amount['1'];
         }else{
             $SkuCode = $datas['Sku_Code'];
             $SendValue = $datas['amount'] - (($datas['amount']/100)*a::user()->admin_international_recharge_commission) - (($datas['amount']/100)*a::user()->international_recharge);
+            $amount = $datas['amount'];
         }
         if (a::user()->wallet >= $SendValue) {
             $client = new \GuzzleHttp\Client();
@@ -403,7 +405,7 @@ class RechargeController extends Controller
             $create = new RechargeHistory;
             $create->reseller_id = a::user()->id;
             $create->number = $request->number;
-            $create->amount = $sendvalue + $reseller_commission + $admin_commission;
+            $create->amount = $amount;
             $create->txid = $txid;
             $create->type = 'International';
             $create->status = 'completed';
