@@ -55,7 +55,7 @@
                               <select class="custom-select" name="operator" id="operators">
                                  <option value="">Select Operator</option>
                                  @foreach ($operators as $item)
-                                    @if ($item['CustomerCareNumber'] == null)
+                                    @if ( strpos($item['Name'], 'Data') == false)
                                        <option {{ ( $datas['operator'] ?? '' == $item['ProviderCode']) ? 'selected' : '' }} value="{{ $item['ProviderCode'] }}">{{ $item['Name'] }}</option>
                                     @endif
                                  @endforeach

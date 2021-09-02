@@ -209,6 +209,7 @@ class RechargeController extends Controller
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
     $operators = $data['Items'];
+    // dd($operators);
     $datas = $request->all();
     $datas['number'] = $number;
     $stage = 'check_number';
