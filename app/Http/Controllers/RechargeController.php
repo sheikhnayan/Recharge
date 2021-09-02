@@ -403,7 +403,7 @@ class RechargeController extends Controller
             $create = new RechargeHistory;
             $create->reseller_id = a::user()->id;
             $create->number = $request->number;
-            $create->amount = $sendvalue;
+            $create->amount = $sendvalue + $reseller_commission + $admin_commission;
             $create->txid = $txid;
             $create->type = 'International';
             $create->status = 'completed';
