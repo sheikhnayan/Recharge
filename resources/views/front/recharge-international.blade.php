@@ -90,7 +90,7 @@
                               <label for="selectPackage">Select Amount</label>
                               <select class="custom-select" name="amount" id="package">
                                  @foreach ($prods as $item)
-                                 <option value="{{ $item['SkuCode'] }},{{ $item['Maximum']['SendValue'] }}">
+                                 <option value="{{ $item['SkuCode'] }},{{ $item['Maximum']['SendValue']}}">
                                     {{ $item['Maximum']['SendValue'] + (($item['Maximum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($item['Maximum']['SendValue']/100)*Auth::user()->international_recharge) }} Euro
                                     <h7 style="font-size: 10px;">({{ $item['Maximum']['ReceiveValueExcludingTax'] }} {{ $item['Maximum']['ReceiveCurrencyIso'] }} will be received)</h7>
                                  </option>
@@ -98,18 +98,22 @@
                               </select>
                            </div>
                            <label class="form-label">Service Charge in EURO</label>
-                           <input type="number" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
+                           <input type="number" step="any" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
                            @else
                            <div class="mb-3">
                               <label for="inputAmount" class="form-label">Amount (EUR)</label>
-                              <input oninput="cost()" id="amount" type="number" class="form-control" name="amount" placeholder="Between Euro {{ $prods['0']['Maximum']['SendValue'] }}  -  Euro {{ $prods['0']['Minimum']['SendValue'] }}">
+                              <input oninput="cost()" id="amount" type="number" step="any"
+                              min="{{ $prods['0']['Minimum']['SendValue'] + (($prods['0']['Minimum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($prods['0']['Minimum']['SendValue']/100)*Auth::user()->international_recharge) }}" 
+                              max="{{ $prods['0']['Maximum']['SendValue'] + (($prods['0']['Maximum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($prods['0']['Maximum']['SendValue']/100)*Auth::user()->international_recharge) }}" 
+                              class="form-control" name="amount" 
+                              placeholder="Between Euro {{ $prods['0']['Maximum']['SendValue'] + (($prods['0']['Maximum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($prods['0']['Maximum']['SendValue']/100)*Auth::user()->international_recharge)}}  -  Euro {{ $prods['0']['Minimum']['SendValue'] + (($prods['0']['Minimum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($prods['0']['Minimum']['SendValue']/100)*Auth::user()->international_recharge)}}">
                               <input type="hidden" name="Sku_Code" value="{{ $prods['0']['SkuCode'] }}" id="skucode">
                               <input type="hidden" id="admin_com" value="{{ Auth::user()->admin_international_recharge_commission }}">
                               <input type="hidden" id="reseller_com" value="{{ Auth::user()->international_recharge }}">
                               <small style="font-size: 18px;text-align: center;font-weight: bold;color: red;" id="price"></small><br>
                            </div>
                            <label class="form-label">Service Charge in EURO</label>
-                           <input type="number" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
+                           <input type="number" step="any" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">
                            @endif
                            @endif
                            @endif
@@ -367,7 +371,9 @@
       var amount = document.getElementById('amount').value;
       var admin = document.getElementById('admin_com').value;
       var reseller = document.getElementById('reseller_com').value;
-      var cost = ((amount/100)*admin) + ((amount/100)*reseller);
+      var admin_cost = (amount/100)*admin;
+      var reseller_cost = (amount/100)*reseller;
+      var cost = (admin_cost + reseller_cost);
       var skucode = document.getElementById('skucode').value;
       var am = Number(amount);
       var pm = Number(cost);
@@ -382,7 +388,7 @@
          api_key:"913XSjpRzlB6lbS2kEE7gt"
         },
         data: JSON.stringify([{
-          SendValue:amount,
+          SendValue:amount - cost,
           SkuCode:skucode,
           BatchItemRef:Math.floor(Math.random() * 100000000000),
         }]),

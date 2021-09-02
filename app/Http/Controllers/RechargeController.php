@@ -349,7 +349,7 @@ class RechargeController extends Controller
             $SendValue = $sku_amount['1'];
         }else{
             $SkuCode = $datas['Sku_Code'];
-            $SendValue = $datas['amount'];
+            $SendValue = $datas['amount'] - (($datas['amount']/100)*a::user()->admin_international_recharge_commission) - (($datas['amount']/100)*a::user()->international_recharge);
         }
         if (a::user()->wallet >= $SendValue) {
             $client = new \GuzzleHttp\Client();
