@@ -422,14 +422,14 @@ class RechargeController extends Controller
     }
 
     public function domestic_recharge(Request $request)
-    {
+    { 
         if (a::user()->wallet >= $request->amount) {
             $txid = mt_rand(1000000000, 9999999999);
         
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
         <REQUEST MODE="RESERVE" STORERECEIPT="1" TYPE="SALE">
-        <USERNAME>UPTestARTest</USERNAME>
-        <PASSWORD>TestAR1234</PASSWORD>
+        <USERNAME>UPLIVE_AMICIBIGIOTTERIA</USERNAME>
+        <PASSWORD>db2ec37cc93a3525</PASSWORD>
         <RECEIPT><LANGUAGE>ITA</LANGUAGE><CHARSPERLINE>32</CHARSPERLINE><TYPE>FULLTEXT</TYPE></RECEIPT>
         <CURRENCY>978</CURRENCY>
         <AMOUNT>'.$request->amount.'</AMOUNT>
@@ -437,7 +437,7 @@ class RechargeController extends Controller
         <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
         <TXID>'.$txid.'</TXID>
         <CARD><EAN>1234567892016</EAN></CARD>
-        <PHONE>3315748439</PHONE><CAB>
+        <PHONE>'.$request->number.'</PHONE><CAB>
         3D001</CAB></REQUEST>';
 
         // $req = $client->request(["Content-Type" => "application/xml"])
@@ -455,6 +455,7 @@ class RechargeController extends Controller
 
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
+        return $body;
 
         // $data = json_encode($bod,true);
 
