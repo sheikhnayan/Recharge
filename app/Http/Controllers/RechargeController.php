@@ -433,7 +433,7 @@ class RechargeController extends Controller
         <RECEIPT><LANGUAGE>ITA</LANGUAGE><CHARSPERLINE>32</CHARSPERLINE><TYPE>FULLTEXT</TYPE></RECEIPT>
         <CURRENCY>978</CURRENCY>
         <AMOUNT>'.$request->amount.'</AMOUNT>
-        <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">93889384</TERMINALID>
+        <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
         <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
         <TXID>'.$txid.'</TXID>
         <CARD><EAN>1234567892016</EAN></CARD>
@@ -473,7 +473,7 @@ class RechargeController extends Controller
                     </RECEIPT>
                     <CURRENCY>978</CURRENCY>
                     <AMOUNT>'.$request->amount.'</AMOUNT>
-                    <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">93889384</TERMINALID>
+                    <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
                     <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
                     <TXID>'.$txid2.'</TXID>
                         <CARD>
