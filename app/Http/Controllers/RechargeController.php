@@ -436,7 +436,7 @@ class RechargeController extends Controller
         <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
         <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
         <TXID>'.$txid.'</TXID>
-        <CARD><EAN>9998889999120</EAN></CARD>
+        <CARD><EAN>9998889999101</EAN></CARD>
         <PHONE>'.$request->number.'</PHONE><CAB>
         3D001</CAB></REQUEST>';
 
@@ -477,7 +477,7 @@ class RechargeController extends Controller
                     <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
                     <TXID>'.$txid2.'</TXID>
                         <CARD>
-                            <EAN>9998889999120</EAN>
+                            <EAN>9998889999101</EAN>
                         </CARD>
                         <PHONE>3315748439</PHONE>
                         <CAB>3D0013D001</CAB>
