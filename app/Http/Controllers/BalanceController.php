@@ -105,6 +105,7 @@ class BalanceController extends Controller
         }else{
             return back()->with('error','Due Amount Is Less Than The Input');
         }
+    }
 
     public function PriceDiscount(Request $request)
     {
@@ -116,7 +117,7 @@ class BalanceController extends Controller
     }
 
 
-    }
+
 
     public function edit_wallet(Request $request){
 
