@@ -43,9 +43,9 @@
                            <div class="mb-3 receiver_inputs">
                               <label for="inputMobileNumber" class="form-label">Receiver Number</label>
                               @if ($stage == 'initial')
-                              <input type="text" id="receiverMobile" value="{{ $prods[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number">
+                              <input type="text" id="receiverMobile" value="{{ $datas[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number">
                               @else
-                              <input type="text" value="{{ $prods[0]['UatNumber'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number" readonly>
+                              <input type="text" value="{{ $datas['number'] ?? '' }}" class="form-control receiver_input_form" name="number" placeholder="Receiver Number" readonly>
                               @endif
                               {{-- <button class="btn btn-primary" style="margin-bottom: 6px; float: right;">Verify</button> --}}
                            </div>
