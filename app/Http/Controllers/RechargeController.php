@@ -367,7 +367,7 @@ class RechargeController extends Controller
                     'SendValue' => $SendValue,
                     'AccountNumber' => $request->number,
                     'DistributorRef' => $txid,
-                    'ValidateOnly' => true
+                    'ValidateOnly' => false
                     ]              
         ]);
         $product_responses = $recharge_request->getBody();
