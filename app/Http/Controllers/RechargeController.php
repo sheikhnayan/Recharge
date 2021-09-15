@@ -465,8 +465,8 @@ class RechargeController extends Controller
             $txid2 = mt_rand(1000000000, 9999999999);
             $xml2 = '<?xml version="1.0" encoding="UTF-8"?>
                 <REQUEST MODE="CAPTURE" STORERECEIPT="1" TYPE="SALE">
-                    <USERNAME>UPTestARTest</USERNAME>
-                    <PASSWORD>TestAR1234</PASSWORD>
+                    <USERNAME>UPLIVE_AMICIBIGIOTTERIA</USERNAME>
+                    <PASSWORD>db2ec37cc93a3525</PASSWORD>
                     <RECEIPT>
                         <LANGUAGE>ITA</LANGUAGE>
                         <CHARSPERLINE>32</CHARSPERLINE>
