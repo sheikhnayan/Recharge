@@ -499,10 +499,11 @@ class RechargeController extends Controller
             'verify' => false,
             'body' => $xml2              
         ]);
-        return $recharge_request;
 
         $body2 = $recharge_request->getBody(); 
         $xml2 = simplexml_load_string($body2);
+
+        return $body2;
 
         $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;
         $admin_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
