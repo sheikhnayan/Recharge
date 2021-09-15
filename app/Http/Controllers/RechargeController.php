@@ -375,6 +375,7 @@ class RechargeController extends Controller
 
         $prod = json_decode($product_responses,true);
 
+
         $sendvalue = $prod['TransferRecord']['Price']['SendValue'];
 
          $count = count($prod['ErrorCodes']);
@@ -455,7 +456,7 @@ class RechargeController extends Controller
 
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
-        return $body;
+
 
         // $data = json_encode($bod,true);
 
