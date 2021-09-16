@@ -62,6 +62,7 @@ class UserController extends Controller
         $users->contact_number = $request->input('phone');
 
         $users->codice_fiscale = $request->input('codice_fiscale');
+        $user->gender = 1;
         $users->wallet = 0;
         $users->created_by = Auth::user()->id;
         $users->password = Hash::make($request['password']);

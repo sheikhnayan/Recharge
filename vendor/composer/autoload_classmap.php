@@ -39,6 +39,7 @@ return array(
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\Phone' => $baseDir . '/app/Models/Phone.php',
     'App\\Models\\PhoneOrder' => $baseDir . '/app/Models/PhoneOrder.php',
+    'App\\Models\\Provider' => $baseDir . '/app/Models/Provider.php',
     'App\\Models\\Recharge' => $baseDir . '/app/Models/Recharge.php',
     'App\\Models\\RechargeHistory' => $baseDir . '/app/Models/RechargeHistory.php',
     'App\\Models\\SimOperator' => $baseDir . '/app/Models/SimOperator.php',
