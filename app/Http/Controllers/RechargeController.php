@@ -459,7 +459,7 @@ class RechargeController extends Controller
                     'ValidateOnly' => false
                     ]              
         ]);
-        return $recharge_request;
+
         $product_responses = $recharge_request->getBody();
 
         
