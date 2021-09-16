@@ -203,8 +203,10 @@ Route::get('/logout', function(){
 });
 
 Route::post('/check-operator',[RechargeController::class,'check_operator']);
+Route::get('/change-operator/{numbers}/{rg}',[RechargeController::class,'change_operator']);
 Route::post('/get-price',[RechargeController::class,'get_price']);
 Route::post('/check-product',[RechargeController::class,'get_product']);
+Route::post('/check-changed-product',[RechargeController::class,'get_changed_product']);
 Route::post('/international_recharge',[RechargeController::class,'recharge']);
 Route::post('/domestic_recharge',[RechargeController::class,'domestic_recharge']);
 Route::get('/recharge_invoice/{id}',[RechargeController::class,'invoice']);

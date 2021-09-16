@@ -209,7 +209,7 @@ class RechargeController extends Controller
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
     $operators = $data['Items'];
-    // dd($operators);
+    // dd($operators['0']);
     $datas = $request->all();
     $datas['number'] = $number;
     $stage = 'check_number';
@@ -223,7 +223,41 @@ class RechargeController extends Controller
         ->get();
     }
     $count = '1';
-    return view('front.recharge-international',compact('operators','datas','stage','data','count'));
+     return $pass = $this->get_product($request,$operators['0']['Name'],$operators['0']['ProviderCode'],$number);
+
+
+    // return view('front.recharge-international',compact('operators','datas','stage','data','count'));
+    }
+
+
+    public function change_operator($numbers,$rg)
+    { 
+    $change = [' ','+'];
+    $number = str_replace($change,'',$numbers);
+    $client = new \GuzzleHttp\Client();
+    $operator_request = $client->get('https://api.dingconnect.com/api/V1/GetProviders?regionCodes='.$rg,['headers' => [
+        'api_key'     => '913XSjpRzlB6lbS2kEE7gt'
+        ],'verify' => false]);
+    $operator_response = $operator_request->getBody();
+    $data = json_decode($operator_response,true);
+    $operators = $data['Items'];
+    // dd($operators['0']);
+    // $datas = $request->all();
+    $datas['number'] = $number;
+    $stage = 'check_number';
+    if(a::user()->role == 'user'){
+        $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->latest()->take(10)->get();
+    }else{
+        $data = RechargeHistory::where('type','International')->join('users','users.id','=','recharge_histories.reseller_id')
+        ->select('recharge_histories.*','users.nationality')
+        ->latest()
+        ->take(10)
+        ->get();
+    }
+    $count = '1';
+
+
+    return view('front.recharge-international',compact('operators','stage','data','count','datas'));
     }
     
     // edit by shuvo
@@ -299,19 +333,27 @@ class RechargeController extends Controller
 		return redirect('/');
     }
 
-    public function get_product(Request $request)
+    public function get_product(Request $request,$operator = '',$code = '',$number = '')
     {  
-
         $datas = $request->all();
+        // dd($number);
+        $datas['operator'] = $operator;
 
+        $change = [' ','+'];
+        // $number = str_replace($change,'',$request->number);
 
+        //  dd($number);
         $client = new \GuzzleHttp\Client();
-        $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?&providerCodes='.$request->operator,['headers' => [
+        $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?&providerCodes='.$code,['headers' => [
             'api_key'     => '913XSjpRzlB6lbS2kEE7gt'
             ],'verify' => false]);
         $product_responses = $product_request->getBody();
 
         $prod = json_decode($product_responses,true);
+
+        // dd($prod);
+
+        $rg = $prod['Items']['0']['RegionCode'];
 
         $prods = $prod['Items'];
 
@@ -330,11 +372,58 @@ class RechargeController extends Controller
             ->get();
         }
 
-        return view('front.recharge-international',compact('datas','prods','count','stage','data'));
+        return view('front.recharge-international',compact('datas','prods','count','stage','data','rg'));
+    }
+
+
+    public function get_changed_product(Request $request)
+    {  
+        $datas = $request->all();
+        // dd($number);
+        $datas['operator'] = $request->operator;
+
+        $change = [' ','+'];
+        // $number = str_replace($change,'',$request->number);
+
+        //  dd($number);
+        $client = new \GuzzleHttp\Client();
+        $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?&providerCodes='.$request->operator,['headers' => [
+            'api_key'     => '913XSjpRzlB6lbS2kEE7gt'
+            ],'verify' => false]);
+        $product_responses = $product_request->getBody();
+
+        $prod = json_decode($product_responses,true);
+
+        // dd($prod);
+
+        $rg = $prod['Items']['0']['RegionCode'];
+
+        $prods = $prod['Items'];
+
+        $count = count($prods);
+
+        // dd($prods);
+        $stage = 'get_product';
+
+        if(a::user()->role == 'user'){
+            $data = RechargeHistory::where('reseller_id', a::user()->id)->where('type','International')->latest()->take(10)->get();
+        }else{
+            $data = RechargeHistory::where('type','International')->join('users','users.id','=','recharge_histories.reseller_id')
+            ->select('recharge_histories.*','users.nationality')
+            ->latest()
+            ->take(10)
+            ->get();
+        }
+
+        return view('front.recharge-international',compact('datas','prods','count','stage','data','rg'));
     }
 
     public function recharge(Request $request)
     {  
+        $change = [' ','+'];
+        $number = str_replace($change,'',$request->number);
+       
+        //  dd($number);
         $txid = mt_rand(1000000000, 9999999999);
 
         $datas = $request->all();
@@ -365,12 +454,15 @@ class RechargeController extends Controller
             'json' => [
                     'SkuCode' => $SkuCode,
                     'SendValue' => $SendValue,
-                    'AccountNumber' => $request->number,
+                    'AccountNumber' => $number,
                     'DistributorRef' => $txid,
                     'ValidateOnly' => false
                     ]              
         ]);
+        return $recharge_request;
         $product_responses = $recharge_request->getBody();
+
+        
 
 
         $prod = json_decode($product_responses,true);

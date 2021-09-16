@@ -33,7 +33,7 @@
                   <div class="row">
                      <div class="col-md-6">
                         @if ($stage == 'check_number')
-                        <form action="/check-product" method="POST">
+                        <form action="/check-changed-product" method="POST">
                            @elseif($stage == 'get_product')
                         <form action="/international_recharge" method="POST">
                            @else
@@ -75,6 +75,7 @@
                             <select class="custom-select" name="operator" id="operators" readonly>
                                <option value="{{ $datas['operator'] }}">{{ $datas['operator'] }}</option>
                             </select>
+                            <a class="btn btn-success" href="/change-operator/{{ $datas['number'] ?? '' }}/{{ $rg ?? '' }}"> Change Operator</a>
                          </div>
                          <div class="form-group">
                             <label for="selectPackage">Package Type</label>
