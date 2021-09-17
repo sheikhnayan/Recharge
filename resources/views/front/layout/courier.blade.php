@@ -244,6 +244,12 @@
                     <p>Domestic</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="/recharge/all-invoice" class="@if(Route::currentRouteName() == 'recharge-invoice') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>All Invoices</p>
+                  </a>
+                </li>
                 {{-- <li class="nav-item">
                   <a href="/recharge/recharge-gift-card" class="@if(Route::currentRouteName() == 'recharge-gift-card') nav-link active @endif nav-link">
                     <i class="far fa-circle nav-icon"></i>

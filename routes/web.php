@@ -151,6 +151,12 @@ Route::post('/phone/update', [PhoneController::class,'updateorder'])->name('upda
 
 Route::get('/recharge/recharge-int', [RechargeController::class,'RechargeInt'])->name('recharge-int');
 
+Route::get('/recharge/all-invoice', [RechargeController::class,'invoices'])->name('recharge-invoice');
+
+Route::post('/filebytype',[RechargeController::class,'filebytype']);
+
+Route::get('/filebydate/{start}/{end}',[RechargeController::class,'filebydate']);
+
 Route::get('/recharge/recharge-italy', [RechargeController::class,'RechargeDom'])->name('recharge-italy');
 
 Route::get('/recharge/recharge-gift-card', [RechargeController::class,'RechargeGiftCard'])->name('recharge-gift-card');

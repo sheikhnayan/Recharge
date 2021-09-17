@@ -12,6 +12,7 @@ use Auth as a;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use App\Models\RechargeHistory;
+use Carbon\Carbon;
 
 // edit by shuvo
 use Kreait\Firebase\Auth;
@@ -499,6 +500,8 @@ class RechargeController extends Controller
             $create->reseller_id = a::user()->id;
             $create->number = $request->number;
             $create->amount = $amount;
+            $create->reseller_com = $reseller_commission;
+            $create->admin_com = $reseller_commission;
             $create->txid = $txid;
             $create->type = 'International';
             $create->status = 'completed';
@@ -598,7 +601,7 @@ class RechargeController extends Controller
         return $body2;
 
         $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;
-        $admin_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
+        $reseller_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
 
         $cost = $xml2->AMOUNT + $reseller_commission + $admin_commission;
 
@@ -616,6 +619,8 @@ class RechargeController extends Controller
         $create->reseller_id = a::user()->id;
         $create->number = $xml2->PHONE;
         $create->amount = $xml2->AMOUNT;
+        $create->reseller_com = $reseller_commission;
+        $create->admin_com = $reseller_commission;
         $create->txid = $xml2->TXID;
         $create->type = 'Domestic';
         $create->status = 'completed';
@@ -629,5 +634,62 @@ class RechargeController extends Controller
             return  Redirect()->back()->with('error','Insufficient Balance!'); 
         }
         
+    }
+
+    public function invoices()
+    {
+        if(a::user()->role == 'admin'){
+            $data = RechargeHistory::latest()->get();
+            $cost = $data->sum('amount');
+            $profit = $data->sum('admin_com');
+        }else{
+            $data = RechargeHistory::where('reseller_id', a::user()->id)->latest()->get();
+            $cost = $data->sum('cost');
+            $profit = $data->sum('reseller_com');
+        }
+
+        return view('front.print-all-invoice',compact('data','cost','profit'));
+    }
+
+    public function filebydate($start,$end){
+        $st = Carbon::parse($start)->toDateTimeString();
+        $en = Carbon::parse($end)->toDateTimeString();
+        // dd($start);
+        if(a::user()->role == 'admin'){
+            $data = RechargeHistory::whereBetween('created_at', [$start, $end])->get();
+            $cost = $data->sum('amount');
+            $profit = $data->sum('admin_com');
+        }else{
+            $data = RechargeHistory::whereBetween('created_at', [$start, $end])->where('reseller_id', a::user()->id)->latest()->get();
+            $cost = $data->sum('cost');
+            $profit = $data->sum('reseller_com');
+        }
+        // dd($data);
+        return view('front.print-all-invoice',compact('data','cost','profit'));
+    }
+
+    public function filebytype(Request $request){
+        if ($request->type == 'all') {
+            if(a::user()->role == 'admin'){
+                $data = RechargeHistory::latest()->get();
+                $cost = $data->sum('amount');
+                $profit = $data->sum('admin_com');
+            }else{
+                $data = RechargeHistory::where('reseller_id', a::user()->id)->latest()->get();
+                $cost = $data->sum('cost');
+                $profit = $data->sum('reseller_com');
+            }
+        }else {
+            if(a::user()->role == 'admin'){
+                $data = RechargeHistory::where('type', $request->type)->get();
+                $cost = $data->sum('amount');
+                $profit = $data->sum('admin_com');
+            }else{
+                $data = RechargeHistory::where('type', $request->type)->where('reseller_id', a::user()->id)->latest()->get();
+                $cost = $data->sum('cost');
+                $profit = $data->sum('reseller_com');
+            }
+        }
+        return view('front.print-all-invoice',compact('data','cost','profit'));
     }
 }
