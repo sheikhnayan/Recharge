@@ -423,31 +423,9 @@ $(function() {
     }
   }, function(start, end, label) {
 
-    // $.ajax({
+
       var url = '/filebydate/'+start.format('YYYY-MM-DD')+'/'+end.format('YYYY-MM-DD');
       window.location = url;
-       
-        // type:"GET",
-        // success:function(response){
-        //   response.forEach(items);
-        //   function items(item){
-        //     var tr = `<tr class="bg-ocean">
-        //                 <td>
-        //                   <a type="button" href="/recharge_invoice/{{ $item->id }}">
-        //                     <i class="fas fa-print"></i>
-        //                   </a>
-        //                   `+$item.txid+`
-        //                 </td>
-        //                 <td>`+$item.number+`</td>
-        //                 <td>`+$item.cost+` &euro;</td>
-        //                 <td>`+$item.created_at+`</td>
-        //                 <td>`+$item.admin_com+`&euro;</td>
-        //               </tr>`;
-        //               console.log(tr);
-        //   }
-        //   // console.log(response);
-        // },
-      //  });
        console.log('/filebydate/'+start.format('YYYY-MM-DD')+'/'+end.format('YYYY-MM-DD'));
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end).format('YYYY-MM-DD');
   });
