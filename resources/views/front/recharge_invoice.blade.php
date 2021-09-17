@@ -67,6 +67,10 @@
                             <td>Importo</td>
                             <td><strong>{{ $data->cost }} &euro;</strong></td>
                           </tr>
+                          <tr>
+                            <td>bilancia</td>
+                            <td><strong>{{ $data->amount }} &euro;</strong></td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
