@@ -61,16 +61,16 @@
                           </tr> --}}
                           <tr>
                             <td>Prodotto</td>
-                            <td><strong>{{ $data->type }} Recarica</strong></td>
+                            <td><strong>{{ $data->amount }}  &euro;</strong></td>
                           </tr>
                           <tr>
                             <td>Importo</td>
                             <td><strong>{{ $data->cost }} &euro;</strong></td>
                           </tr>
-                          <tr>
+                          {{-- <tr>
                             <td>bilancia</td>
                             <td><strong>{{ $data->amount }} &euro;</strong></td>
-                          </tr>
+                          </tr> --}}
                         </tbody>
                       </table>
                     </div>
@@ -121,8 +121,8 @@
                             <td><strong>Point recharge</strong></td>
                           </tr>
                           <tr>
-                            <td>Help Desk</td>
-                            <td><strong>081 0125546</strong></td>
+                            <td style="width: 80px">Help Desk</td>
+                            <td><strong>3889883882/ 34786783388</strong></td>
                           </tr>
                           <tr>
                             <td class="align-middle">Note</td>
@@ -144,6 +144,7 @@
                         </tbody>
                       </table>
                     </div>
+                    <p style="text-align: center;font-weight:bold">Powered by: Point Recharge</p>
                   </div>
                   <!-- /.col -->
                 </div>
