@@ -17,6 +17,7 @@ use App\Models\sim;
 use App\Models\User;
 use App\Models\Offer;
 use App\Models\Phone;
+use App\Models\DomesticProduct;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,6 +149,27 @@ Route::post('/phone/update', [PhoneController::class,'updateorder'])->name('upda
 //  PHONE END
 
 //  RECHARGES START
+
+Route::get('domestic_product', function () {
+    if(Auth::user()->role == 'admin'){
+        return view('front.add-domestic');
+    }else{
+        return back();
+    }
+});
+
+Route::post('/domestic_product', function (Request $request) {
+    $add = new DomesticProduct;
+    $add->operator = $request->operator;
+    $add->amount = $request->amount;
+    $add->type = $request->type;
+    $add->product = $request->product;
+    $add->ean = $request->ean;
+    $add->save();
+
+    return back();
+
+});
 
 Route::get('/recharge/recharge-int', [RechargeController::class,'RechargeInt'])->name('recharge-int');
 

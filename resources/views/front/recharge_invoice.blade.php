@@ -154,7 +154,7 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
                   <div class="col-12 text-center">
-                    <a href="javascript:void" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-default">
+                    <a href="javascript:void" onclick="window.print()" rel="noopener" class="btn btn-default">
                       <i class="fas fa-print"></i> 
                       Print
                     </a>

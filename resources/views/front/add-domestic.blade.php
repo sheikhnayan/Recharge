@@ -35,7 +35,7 @@
               <h3 class="text-center mb-5">Indice Brand Richriche</h3>
               <div class="row">
                 <div class="col-md-6">
-                  <form action="/domestic_recharge" method="post">
+                  <form action="/domestic_product" method="post">
                     @csrf
                     <div class="form-group">
                       <label>Brand</label>
@@ -47,7 +47,7 @@
                         </div>
                       </div>
                   
-                      <select class=" brand-dropdown" style="width: 100%;">
+                      <select name="operator" class=" brand-dropdown" style="width: 100%;">
                         <option value="Fastweb" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
                         <option value="Vodafone" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone</option>
                         <option value="Tiscali" data-thumbnail="{{ asset('images/Tiscali.png') }}">Tiscali</option>
@@ -63,111 +63,30 @@
                       </select>
                     </div>
                     <div class="mb-3 phone_number">
-                      <label for="inputMobileNumber" class="form-label">Mobile Number</label>
-                      <input type="text" class="form-control myNumber" id="inputMobileNumber" name="number" value="" placeholder="Please enter mobile number">
+                      <label for="inputMobileNumber" class="form-label">Amount</label>
+                      <input type="number" class="form-control myNumber" id="inputMobileNumber" name="amount" value="" placeholder="Please enter amount">
                     </div>
                   
                     <div class="mb-3">
-                      <label for="inputAmount" class="form-label">Amount</label>
-                      <input type="text" class="form-control" id="inputAmount" name="amount" placeholder="Please select amount from below">
+                      <label for="inputAmount" class="form-label">Product</label>
+                      <input type="text" class="form-control" name="product" placeholder="Please select amount from below">
                     </div>
 
-                    <div class="row recharge_amount mb-5">
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(10)">
-                            <strong>10 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(20)">
-                            <strong>20 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(30)">
-                            <strong>30 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(40)">
-                            <strong>40 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(50)">
-                            <strong>50 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(100)">
-                            <strong>100 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(200)">
-                            <strong>200 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(300)">
-                            <strong>300 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      
-                    </div>
+                    <label>Type</label>
+                    <select name="type" class=" brand-dropdown" style="width: 100%;">
+                      <option value="recharge"> Recharge</option>
+                      <option value="pin"> Pin</option>
+                    </select>
+
+                    <label>EAN</label>
+                    <input class="form-control" type="text" name="ean" id="">
+
+
                     <div class="mt-3">
                       <input type="submit" class="btn btn-info" style="width: 100%;" value="Recharge">
                     </div>
                     
                   </form>
-                </div>
-                <div class="col-md-6">
-                  <div class="last_recharge_table">
-                    <div class="last_recharge_table_head text-center">
-                      <h5><strong>Last 10 Recharge</strong></h5>
-                    </div>
-                
-                    <div class="card-body table-responsive p-0">
-                      <table class=" table table-sm table-bordered table-hover">
-                        <thead>
-                          <tr class="table-danger">
-                            <th>Receiver</th>
-                            <th>Amount</th>
-                            <th>Cost</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($data as $item)
-                          <tr class="bg-ocean">
-                            <td>{{ $item->number }}</td>
-                            <td>{{ $item->amount }}</td>
-                            <td>{{ $item->cost }}</td>
-                            <td><i class="text-primary fas fa-check-square"></i></td>
-                            <td> <a class="btn btn-success" href="/recharge_invoice/{{ $item->id }}"> Invoice</a> </td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
                 </div>
               </div>
 
