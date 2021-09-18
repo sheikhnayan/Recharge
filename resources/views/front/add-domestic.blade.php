@@ -64,7 +64,7 @@
                     </div>
                     <div class="mb-3 phone_number">
                       <label for="inputMobileNumber" class="form-label">Amount</label>
-                      <input type="number" class="form-control myNumber" id="inputMobileNumber" name="amount" value="" placeholder="Please enter amount">
+                      <input type="number" class="form-control myNumber" name="amount" value="" placeholder="Please enter amount">
                     </div>
                   
                     <div class="mb-3">
@@ -72,18 +72,22 @@
                       <input type="text" class="form-control" name="product" placeholder="Please select amount from below">
                     </div>
 
+                    <div class="mb-3">
                     <label>Type</label>
-                    <select name="type" class=" brand-dropdown" style="width: 100%;">
+                    <select name="type" class="form-control" style="width: 100%;">
                       <option value="recharge"> Recharge</option>
                       <option value="pin"> Pin</option>
                     </select>
+                    </div>
 
+                    <div class="mb-3">
                     <label>EAN</label>
                     <input class="form-control" type="text" name="ean" id="">
+                    </div>
 
 
                     <div class="mt-3">
-                      <input type="submit" class="btn btn-info" style="width: 100%;" value="Recharge">
+                      <input type="submit" class="btn btn-info" style="width: 100%;" value="Add">
                     </div>
                     
                   </form>
