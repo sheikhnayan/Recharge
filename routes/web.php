@@ -151,10 +151,14 @@ Route::post('/phone/update', [PhoneController::class,'updateorder'])->name('upda
 //  RECHARGES START
 
 Route::get('domestic_product', function () {
+    if(Auth::check()){
     if(Auth::user()->role == 'admin'){
         return view('front.add-domestic');
     }else{
         return back();
+    }
+    }else{
+        return redirect('login');
     }
 });
 
