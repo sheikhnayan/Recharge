@@ -519,6 +519,9 @@ class RechargeController extends Controller
 
     public function domestic_recharge(Request $request)
     { 
+
+        $sku_amount = explode(',',$request->amount);
+
         if (a::user()->wallet >= $request->amount) {
             $txid = mt_rand(1000000000, 9999999999);
         
@@ -528,11 +531,11 @@ class RechargeController extends Controller
         <PASSWORD>db2ec37cc93a3525</PASSWORD>
         <RECEIPT><LANGUAGE>ITA</LANGUAGE><CHARSPERLINE>32</CHARSPERLINE><TYPE>FULLTEXT</TYPE></RECEIPT>
         <CURRENCY>978</CURRENCY>
-        <AMOUNT>'.$request->amount.'</AMOUNT>
+        <AMOUNT>'.$sku_amount['1'].'000</AMOUNT>
         <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
         <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
         <TXID>'.$txid.'</TXID>
-        <CARD><EAN>9998889999101</EAN></CARD>
+        <CARD><EAN>'.$sku_amount['0'].'</EAN></CARD>
         <PHONE>'.$request->number.'</PHONE><CAB>
         3D001</CAB></REQUEST>';
 
@@ -568,12 +571,12 @@ class RechargeController extends Controller
                         <TYPE>FULLTEXT</TYPE>
                     </RECEIPT>
                     <CURRENCY>978</CURRENCY>
-                    <AMOUNT>'.$request->amount.'</AMOUNT>
+                    <AMOUNT>'.$sku_amount['1'].'</AMOUNT>
                     <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
                     <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
                     <TXID>'.$txid2.'</TXID>
                         <CARD>
-                            <EAN>9998889999101</EAN>
+                            <EAN>'.$sku_amount['0'].'</EAN>
                         </CARD>
                         <PHONE>3315748439</PHONE>
                         <CAB>3D0013D001</CAB>
@@ -626,6 +629,7 @@ class RechargeController extends Controller
         $create->status = 'completed';
         $create->cost = $cost;
         $create->save();
+        
 
         }
 

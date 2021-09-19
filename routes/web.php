@@ -70,6 +70,11 @@ Route::post('offer-check', function(Request $request){
     return response()->json($offer_detail, 200);
 });
 
+Route::post('check-products', function(Request $request){
+    $offer_detail = DomesticProduct::where('product', 'like', '%'.$request->id.'%')->where('type','recharge')->get();
+    return response()->json($offer_detail, 200);
+});
+
 Route::get('/operator', [OperatorController::class,'index']);
 
 Route::post('/operator', [OperatorController::class,'store']);

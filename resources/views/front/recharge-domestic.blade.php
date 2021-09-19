@@ -29,7 +29,7 @@
         <div class="recharge-box">
           <div class="card card-outline card-primary">
             <div class="card-header text-center">
-              <a href="index.html"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
+              <a href="/"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
             </div>
             <div class="card-body">
               <h3 class="text-center mb-5">Indice Brand Richriche</h3>
@@ -47,9 +47,9 @@
                         </div>
                       </div>
                   
-                      <select class=" brand-dropdown" style="width: 100%;">
-                        <option value="Fastweb" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
-                        <option value="Vodafone" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone</option>
+                      <select name="operator" id="operator" class="brand-dropdown" style="width: 100%;">
+                        <option id="test" value="Fastweb" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
+                        <option id="test" value="Vodafone" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone</option>
                         <option value="Tiscali" data-thumbnail="{{ asset('images/Tiscali.png') }}">Tiscali</option>
                         <option value="Tim" data-thumbnail="{{ asset('images/Tim.png') }}">Tim</option>
                         <option value="WindTre" data-thumbnail="{{ asset('images/WindTre.png') }}">WindTre</option>
@@ -66,70 +66,15 @@
                       <label for="inputMobileNumber" class="form-label">Mobile Number</label>
                       <input type="text" class="form-control myNumber" id="inputMobileNumber" name="number" value="" placeholder="Please enter mobile number">
                     </div>
-                  
-                    <div class="mb-3">
-                      <label for="inputAmount" class="form-label">Amount</label>
-                      <input type="text" class="form-control" id="inputAmount" name="amount" placeholder="Please select amount from below">
-                    </div>
+                    <div id="price">
+                      <label for="">Amount</label>
+                      <select id="amounts" name="amount" class="form-control amounts">
 
-                    <div class="row recharge_amount mb-5">
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(10)">
-                            <strong>10 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(20)">
-                            <strong>20 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(30)">
-                            <strong>30 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(40)">
-                            <strong>40 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(50)">
-                            <strong>50 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(100)">
-                            <strong>100 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(200)">
-                            <strong>200 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                        <div class="Recharge_package">
-                          <div class="recharge_tk" onclick="selectAmount(300)">
-                            <strong>300 Tk</strong>
-                          </div>
-                        </div>
-                      </div>
-                      
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="inputAmount" class="form-label">Service Charge in EURO</label>
+                      <input type="text" class="form-control" id="inputAmount" step="any" name="service" placeholder="Please Enter Service Charge">
                     </div>
                     <div class="mt-3">
                       <input type="submit" class="btn btn-info" style="width: 100%;" value="Recharge">
@@ -201,6 +146,37 @@
 @endsection
 
 @section('js')
+{{-- <script>
+  $(function(){
+$('#test').click(function(){
+var empty = "";
+var value = $(this).val();
+var table = $('#offer');
+$.ajax({
+ type: "POST",
+ url: "/check-products", // url to request
+ data:{ 
+            _token:'{{ csrf_token() }}',
+            id: value,
+        },
+  cache: false,
+  dataType: 'json',
+ success : function(response){
+  $(response).each(function(){
+    var data = `<div class="col-sm-6 col-md-4 col-lg-3 mt-3">
+                        <div class="Recharge_package">
+                          <div class="recharge_tk" onclick="selectAmount(10)">
+                            <strong>`+response.amount+` Tk</strong>
+                          </div>
+                        </div>
+                      </div>`;
+                      console.log(response.amount);
+  })
+ }
+});
+});
+});
+</script> --}}
 <script type="text/javascript">
 
     //test for iterating over child elements
@@ -209,7 +185,7 @@
       var img = $(this).attr("data-thumbnail");
       var text = this.innerText;
       var value = $(this).val();
-      var item = '<li><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
+      var item = '<li id="test"><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
       dropdownArray.push(item);
     })
 
@@ -229,6 +205,26 @@
       $('.selected-brand').html(item);
       $('.selected-brand').attr('value', value).trigger('change');
       $(".brandUlLiContainer").toggle();
+
+      $('#amounts').empty();
+
+      $.ajax({
+ type: "POST",
+ url: "/check-products", // url to request
+ data:{ 
+            _token:'{{ csrf_token() }}',
+            id: value,
+        },
+  cache: false,
+  dataType: 'json',
+ success : function(response){
+  $(response).each(function(index,item){
+    var data = '<option value='+item.ean+'>'+item.amount+'</option>';
+    $('#amounts').append('<option value='+item.ean+','+item.amount+'>'+item.amount+' Euro</option>');
+  })
+ }
+});
+
       $(".phone_number").show();
     });
 
