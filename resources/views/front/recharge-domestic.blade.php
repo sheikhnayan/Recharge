@@ -72,10 +72,10 @@
 
                       </select>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                       <label for="inputAmount" class="form-label">Service Charge in EURO</label>
                       <input type="text" class="form-control" id="inputAmount" step="any" name="service" placeholder="Please Enter Service Charge">
-                    </div>
+                    </div> --}}
                     <div class="mt-3">
                       <input type="submit" class="btn btn-info" style="width: 100%;" value="Recharge">
                     </div>

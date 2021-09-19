@@ -501,7 +501,7 @@ class RechargeController extends Controller
             $create->number = $request->number;
             $create->amount = $amount;
             $create->reseller_com = $reseller_commission;
-            $create->admin_com = $reseller_commission;
+            $create->admin_com = $admin_commission;
             $create->txid = $txid;
             $create->type = 'International';
             $create->status = 'completed';
@@ -601,28 +601,33 @@ class RechargeController extends Controller
         $body2 = $recharge_request->getBody(); 
         $xml2 = simplexml_load_string($body2);
 
+        if(a::user()->role != 'admin'){
+            $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;
+            $admin_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
+            $cost = $xml2->AMOUNT + $reseller_commission + $admin_commission;
 
-        $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;
-        $reseller_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
+            $minus = a::user()->update([
+                'wallet' => a::user()->wallet - $cost
+            ]);
 
-        $cost = $xml2->AMOUNT + $reseller_commission + $admin_commission;
+            $reseller = User::where('id',a::user()->created_by)->first();
 
-        $minus = a::user()->update([
-            'wallet' => a::user()->wallet - $cost
-        ]);
-
-        $reseller = User::where('id',a::user()->created_by)->first();
-
-        $commission = User::where('id',a::user()->created_by)->update([
-            'wallet' => $reseller->wallet + $reseller_commission
-        ]);
+            $commission = User::where('id',a::user()->created_by)->update([
+                'wallet' => $reseller->wallet + $reseller_commission
+            ]);
+        }else{
+            $reseller_commission = 0;
+            $admin_commission = 0;
+            $cost = $xml2->AMOUNT;
+        }
+        
 
         $create = new RechargeHistory;
         $create->reseller_id = a::user()->id;
         $create->number = $xml2->PHONE;
         $create->amount = $xml2->AMOUNT;
         $create->reseller_com = $reseller_commission;
-        $create->admin_com = $reseller_commission;
+        $create->admin_com = $admin_commission;
         $create->txid = $xml2->TXID;
         $create->type = 'Domestic';
         $create->status = 'completed';
