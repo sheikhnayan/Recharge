@@ -578,7 +578,7 @@ class RechargeController extends Controller
                         <CARD>
                             <EAN>'.$sku_amount['0'].'</EAN>
                         </CARD>
-                        <PHONE>3315748439</PHONE>
+                        <PHONE>'.$request->number.'</PHONE>
                         <CAB>3D0013D001</CAB>
                     <TXID/>
                     <TXREF>'.$txid.'</TXREF>
@@ -624,8 +624,8 @@ class RechargeController extends Controller
 
         $create = new RechargeHistory;
         $create->reseller_id = a::user()->id;
-        $create->number = $xml2->PHONE;
-        $create->amount = $xml2->AMOUNT;
+        $create->number = $request->number;
+        $create->amount = $sku_amount['1'];
         $create->reseller_com = $reseller_commission;
         $create->admin_com = $admin_commission;
         $create->txid = $xml2->TXID;
