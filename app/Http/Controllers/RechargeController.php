@@ -571,7 +571,7 @@ class RechargeController extends Controller
                         <TYPE>FULLTEXT</TYPE>
                     </RECEIPT>
                     <CURRENCY>978</CURRENCY>
-                    <AMOUNT>'.$sku_amount['1'].'</AMOUNT>
+                    <AMOUNT>'.$sku_amount['1'].'000</AMOUNT>
                     <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
                     <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
                     <TXID>'.$txid2.'</TXID>
