@@ -522,7 +522,7 @@ class RechargeController extends Controller
 
         $sku_amount = explode(',',$request->amount);
 
-        if (a::user()->wallet >= $request->amount) {
+        if (a::user()->wallet >= $sku_amount['1']) {
             $txid = mt_rand(1000000000, 9999999999);
         
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
