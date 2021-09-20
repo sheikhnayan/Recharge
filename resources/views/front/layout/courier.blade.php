@@ -182,10 +182,10 @@
               $ding = DB::table('balances')->where('type','ding')->first();
               $domestic = DB::table('balances')->where('type','domestic')->first();
             @endphp
-            <div class="col-6">
+            <div class="col-12">
               <b class="mr-2">Ding:</b><span>{{ $ding->balance }}&euro;</span>
             </div>
-            <div class="col-6">
+            <div class="col-12">
               <b class="mr-2">Domestic:</b><span>{{ $domestic->balance }}&euro;</span>
             </div>
           </div>
