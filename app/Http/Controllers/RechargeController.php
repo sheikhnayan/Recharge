@@ -690,7 +690,7 @@ class RechargeController extends Controller
 
         }
 
-         return  Redirect()->back()->with('success','Your Recharge Has Been Suucessfull!');
+         return  Redirect()->back()->with('status','Your Recharge Has Been Suucessfull!');
         }else{
             return  Redirect()->back()->with('error','Insufficient Balance!'); 
         }
