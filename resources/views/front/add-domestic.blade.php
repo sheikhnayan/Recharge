@@ -44,7 +44,7 @@
 
                     <div class="mb-3">
                       <label for="inputMobileNumber" class="form-label">Commission</label>
-                      <input type="number" class="form-control" name="commission" value="" placeholder="Please enter commission">
+                      <input type="text" class="form-control" name="commission" value="" placeholder="Please enter commission">
                     </div>
 
                     <div class="mb-3">
