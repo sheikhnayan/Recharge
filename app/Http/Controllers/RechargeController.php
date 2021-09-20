@@ -590,7 +590,7 @@ class RechargeController extends Controller
         $xml = simplexml_load_string($body);
 
         
-
+        dd($prof->commission);
 
 
         // $data = json_encode($bod,true);
@@ -643,7 +643,7 @@ class RechargeController extends Controller
 
         $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
 
-        dd($prof->commission);
+        
 
         if($balancequery != null){
             $balance = DB::table('balances')->where('type','domestic')->update([
