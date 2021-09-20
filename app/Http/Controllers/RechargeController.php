@@ -568,7 +568,7 @@ class RechargeController extends Controller
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
 
-        return $xml;
+        return $body;
 
 
         // $data = json_encode($bod,true);
