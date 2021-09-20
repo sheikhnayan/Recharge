@@ -431,7 +431,7 @@ class RechargeController extends Controller
         $txid = mt_rand(1000000000, 9999999999);
 
         $datas = $request->all();
-        // dd($datas);
+        dd($datas);
 
         
         $sku_amount = explode(',',$datas['amount']);
