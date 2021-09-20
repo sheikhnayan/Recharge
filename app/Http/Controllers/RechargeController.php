@@ -654,8 +654,8 @@ class RechargeController extends Controller
 
 
         if(a::user()->role != 'admin'){
-            $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;
-            $admin_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
+            $reseller_commission = ($sku_amount['1']/100)*a::user()->recharge;
+            $admin_commission = ($sku_amount['1']/100)*a::user()->admin_recharge_commission;
             $cost = $sku_amount['1'];
 
             $minus = a::user()->update([
