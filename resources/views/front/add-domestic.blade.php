@@ -37,63 +37,18 @@
                 <div class="col-md-6">
                   <form action="/domestic_product" method="post">
                     @csrf
-                    <div class="form-group">
-                      <label>Brand</label>
-                  
-                      <div class="brand-select-list">
-                        <button type="button" class="selected-brand text-left" name="selected_brand" value=""></button>
-                        <div class="brandUlLiContainer">
-                          <ul id="brandUlList" style="max-height: 200px; overflow: auto;"></ul>
-                        </div>
-                      </div>
-                  
-                      <select name="operator" class=" brand-dropdown" style="width: 100%;">
-                        <option value="Fastweb" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
-                        <option value="Vodafone" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone</option>
-                        <option value="Tiscali" data-thumbnail="{{ asset('images/Tiscali.png') }}">Tiscali</option>
-                        <option value="Tim" data-thumbnail="{{ asset('images/Tim.png') }}">Tim</option>
-                        <option value="WindTre" data-thumbnail="{{ asset('images/WindTre.png') }}">WindTre</option>
-                        <option value="PosteMobile" data-thumbnail="{{ asset('images/PosteMobile.png') }}">PosteMobile Online</option>
-                        <option value="Digi" data-thumbnail="{{ asset('images/Digi.png') }}">Digi Mobil</option>
-                        <option value="Tim-Carta" data-thumbnail="{{ asset('images/Tim-Carta.png') }}">Tim-Carta Servizi</option>
-                        <option value="CoopVoce" data-thumbnail="{{ asset('images/coop-voce-1-480x480.jpeg') }}">CoopVoce</option>
-                        <option value="Ho" data-thumbnail="{{ asset('images/Ho.png') }}">Ho Mobile</option>
-                        <option value="Vodafone-Carte" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone-Carte Servizi</option>
-                        <option value="Iliad" data-thumbnail="{{ asset('images/Iliad.png') }}">Iliad</option>
-                        <option value="Very" data-thumbnail="{{ asset('images/very.png') }}">Very</option>
-                        <option value="Kena" data-thumbnail="{{ asset('images/kena.png') }}">Kena Mobile</option>
-                        <option value="Rabona" data-thumbnail="{{ asset('images/rabona.png') }}">Rabona</option>
-                        <option value="Lycamobile" data-thumbnail="{{ asset('images/lyca.png') }}">Lycamobile</option>
-                        <option value="Uno" data-thumbnail="{{ asset('images/Iliad.png') }}">Uno Mobile</option>
-                        <option value="Daily" data-thumbnail="{{ asset('images/daily.png') }}">Daily Mobile</option>
-                      </select>
-                    </div>
-                    <div class="mb-3 phone_number">
-                      <label for="inputMobileNumber" class="form-label">Amount</label>
-                      <input type="number" class="form-control myNumber" name="amount" value="" placeholder="Please enter amount">
-                    </div>
-                  
                     <div class="mb-3">
-                      <label for="inputAmount" class="form-label">Product</label>
-                      <input type="text" class="form-control" name="product" placeholder="Please select amount from below">
+                      <label for="inputMobileNumber" class="form-label">EAN</label>
+                      <input type="text" class="form-control" name="ean" value="" placeholder="Please enter ean">
                     </div>
 
                     <div class="mb-3">
-                    <label>Type</label>
-                    <select name="type" class="form-control" style="width: 100%;">
-                      <option value="recharge"> Recharge</option>
-                      <option value="pin"> Pin</option>
-                    </select>
+                      <label for="inputMobileNumber" class="form-label">Commission</label>
+                      <input type="number" class="form-control" name="commission" value="" placeholder="Please enter commission">
                     </div>
 
                     <div class="mb-3">
-                    <label>EAN</label>
-                    <input class="form-control" type="text" name="ean" id="">
-                    </div>
-
-
-                    <div class="mt-3">
-                      <input type="submit" class="btn btn-info" style="width: 100%;" value="Add">
+                      <input class="btn btn-success" type="submit" value="Add">
                     </div>
                     
                   </form>

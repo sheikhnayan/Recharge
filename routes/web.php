@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Models\Offer;
 use App\Models\Phone;
 use App\Models\DomesticProduct;
+use App\Models\DomesticProfit;
 
 /*
 |--------------------------------------------------------------------------
@@ -168,12 +169,9 @@ Route::get('domestic_product', function () {
 });
 
 Route::post('/domestic_product', function (Request $request) {
-    $add = new DomesticProduct;
-    $add->operator = $request->operator;
-    $add->amount = $request->amount;
-    $add->type = $request->type;
-    $add->product = $request->product;
+    $add = new DomesticProfit;
     $add->ean = $request->ean;
+    $add->commission = $request->commission;
     $add->save();
 
     return back();
