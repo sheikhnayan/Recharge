@@ -663,7 +663,7 @@ class RechargeController extends Controller
             $admin_commission = ($sku_amount['1']/100)*a::user()->admin_recharge_commission;
             $cost = $sku_amount['1'];
 
-            $admin_given_profit = ($prof->commission)*a::user()->admin_recharge_commission;
+            $admin_given_profit = ($prof->commission/100)*a::user()->admin_recharge_commission;
 
             $minus = a::user()->update([
                 'wallet' => a::user()->wallet - $cost + $admin_given_profit,
