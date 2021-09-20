@@ -22,6 +22,7 @@ use Kreait\Firebase\Messaging\AndroidConfig;
 use Kreait\Firebase\Exception\Messaging\InvalidMessage;
 use Kreait\Firebase\Messaging\RawMessageFromArray;
 use Kreait\Firebase\Messaging\Notification;
+use DB;
 
 
 
