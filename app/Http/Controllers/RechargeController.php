@@ -8,6 +8,7 @@ use Kreait\Firebase\Database;
 use App\Models\User;
 use App\Models\Operator;
 use App\Models\Recharge;
+use App\Models\Balance;
 use Auth as a;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
@@ -499,9 +500,28 @@ class RechargeController extends Controller
                 ]);
             }
 
-            
+            $client = new \GuzzleHttp\Client();
+            $product_request = $client->get('https://api.dingconnect.com/api/V1/GetBalance',['headers' => [
+                'api_key'     => '913XSjpRzlB6lbS2kEE7gt'
+                ],'verify' => false]);
+            $product_responses = $product_request->getBody();
 
+            $prod = json_decode($product_responses,true);
 
+            $bal = $prod['Balance'];
+
+            $balancequery = Balance::where('type','ding')->first();
+
+            if($balancequery != null){
+            $balance = DB::table('balances')->where('type','ding')->update([
+                'balance' => $bal,
+            ]);
+            }else{
+            $balance = new Balance;
+            $balance->type = 'ding';
+            $balance->balance = $bal;
+            $balance->save();
+            }
 
 
             
@@ -568,7 +588,7 @@ class RechargeController extends Controller
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
 
-        dd($xml);
+        
 
 
 
@@ -617,7 +637,20 @@ class RechargeController extends Controller
         $body2 = $recharge_request->getBody(); 
         $xml2 = simplexml_load_string($body2);
 
-        
+
+        $balancequery = Balance::where('type','domestic')->first();
+
+        if($balancequery != null){
+            $balance = DB::table('balances')->where('type','domestic')->update([
+                'balance' => $xml->LIMIT,
+            ]);
+        }else{
+            $balance = new Balance;
+            $balance->type = 'domestic';
+            $balance->balance = $xml->LIMIT;
+            $balance->save();
+        }
+
 
         if(a::user()->role != 'admin'){
             $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;

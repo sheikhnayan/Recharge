@@ -176,6 +176,18 @@
             <b class="mr-2">Due:</b><span>{{ Auth()->user()->due }}</span>
           </div>
         </div>
+        <div class="row">
+          @php
+            $ding = DB::table('balances')->where('type','ding')->first();
+            $domestic = DB::table('balances')->where('type','domestic')->first();
+          @endphp
+          {{-- <div class="col-6">
+            <b class="mr-2">Ding Balance:</b><span>{{ $ding->balance }}</span>
+          </div>
+          <div class="col-6">
+            <b class="mr-2">Domestic Balance:</b><span>{{ $domestic->balance }}</span>
+          </div> --}}
+        </div>
         {{-- <div class="row">
           <div class="col-6">
             <p><i class="nav-icon fas fa-sim-card mr-4"></i>1230</p>

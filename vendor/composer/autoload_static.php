@@ -717,6 +717,7 @@ class ComposerStaticInit8d411599166722813be44a90ce29357d
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Balance' => __DIR__ . '/../..' . '/app/Models/Balance.php',
         'App\\Models\\DomesticProduct' => __DIR__ . '/../..' . '/app/Models/DomesticProduct.php',
         'App\\Models\\Offer' => __DIR__ . '/../..' . '/app/Models/Offer.php',
         'App\\Models\\Operator' => __DIR__ . '/../..' . '/app/Models/Operator.php',
