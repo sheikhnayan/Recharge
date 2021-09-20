@@ -486,16 +486,25 @@ class RechargeController extends Controller
     
             $cost = $sendvalue + $reseller_commission + $admin_commission + $request->service;
 
-    
-            $minus = a::user()->update([
-                'wallet' => a::user()->wallet - $cost
-            ]);
 
-            $reseller = User::where('id',a::user()->created_by)->first();
+            if(a::user()->role != 'admin'){
+                $minus = a::user()->update([
+                    'wallet' => a::user()->wallet - $cost
+                ]);
+                
+                $reseller = User::where('id',a::user()->created_by)->first();
 
-            $commission = User::where('id',a::user()->created_by)->update([
-                'wallet' => $reseller->wallet + $reseller_commission
-            ]);
+                $commission = User::where('id',a::user()->created_by)->update([
+                    'wallet' => $reseller->wallet + $reseller_commission
+                ]);
+            }
+
+            
+
+
+
+
+            
             $create = new RechargeHistory;
             $create->reseller_id = a::user()->id;
             $create->number = $request->number;
