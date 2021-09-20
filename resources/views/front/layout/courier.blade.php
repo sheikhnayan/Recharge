@@ -183,10 +183,10 @@
           @endphp
           {{-- <div class="col-6">
             <b class="mr-2">Ding Balance:</b><span>{{ $ding->balance }}</span>
-          </div>
+          </div> --}}
           <div class="col-6">
             <b class="mr-2">Domestic Balance:</b><span>{{ $domestic->balance }}</span>
-          </div> --}}
+          </div>
         </div>
         {{-- <div class="row">
           <div class="col-6">
