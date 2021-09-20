@@ -420,7 +420,7 @@ class RechargeController extends Controller
     }
 
     public function recharge(Request $request)
-    {  dd($request->all());
+    {  
         $change = [' ','+'];
         $number = str_replace($change,'',$request->number);
        
@@ -503,6 +503,7 @@ class RechargeController extends Controller
             $create->reseller_com = $reseller_commission;
             $create->admin_com = $admin_commission;
             $create->txid = $txid;
+            $create->operator = $request->operator;
             $create->type = 'International';
             $create->status = 'completed';
             $create->cost = $cost;
