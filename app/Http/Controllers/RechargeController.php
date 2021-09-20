@@ -641,6 +641,10 @@ class RechargeController extends Controller
 
         $balancequery = Balance::where('type','domestic')->first();
 
+        $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
+
+        dd($prof->commission);
+
         if($balancequery != null){
             $balance = DB::table('balances')->where('type','domestic')->update([
                 'balance' => $xml->LIMIT,
