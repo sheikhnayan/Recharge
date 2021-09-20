@@ -589,7 +589,7 @@ class RechargeController extends Controller
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
 
-        
+        $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
         dd($prof->commission);
 
 
@@ -641,7 +641,7 @@ class RechargeController extends Controller
 
         $balancequery = Balance::where('type','domestic')->first();
 
-        $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
+        
 
         
 
