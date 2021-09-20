@@ -614,6 +614,8 @@ class RechargeController extends Controller
         $body2 = $recharge_request->getBody(); 
         $xml2 = simplexml_load_string($body2);
 
+        return $xml2;
+
         if(a::user()->role != 'admin'){
             $reseller_commission = ($xml2->AMOUNT/100)*a::user()->recharge;
             $admin_commission = ($xml2->AMOUNT/100)*a::user()->admin_recharge_commission;
