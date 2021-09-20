@@ -420,7 +420,7 @@ class RechargeController extends Controller
     }
 
     public function recharge(Request $request)
-    {  
+    {  dd($request->all());
         $change = [' ','+'];
         $number = str_replace($change,'',$request->number);
        
@@ -518,7 +518,10 @@ class RechargeController extends Controller
     }
 
     public function domestic_recharge(Request $request)
-    { 
+    {  
+        $change = [' ','Mobile','mobile'];
+        $operator = str_replace($change,'',$request->operator);
+
 
         $sku_amount = explode(',',$request->amount);
 
@@ -626,6 +629,7 @@ class RechargeController extends Controller
         $create->reseller_id = a::user()->id;
         $create->number = $request->number;
         $create->amount = $sku_amount['1'];
+        $create->operator = $operator;
         $create->reseller_com = $reseller_commission;
         $create->admin_com = $admin_commission;
         $create->txid = $xml2->TXID;

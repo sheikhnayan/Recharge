@@ -46,8 +46,8 @@
                           <ul id="brandUlList" style="max-height: 200px; overflow: auto;"></ul>
                         </div>
                       </div>
-                  
-                      <select name="operator" id="operator" class="brand-dropdown" style="width: 100%;">
+                      <input type="hidden" name="operator" id="op">
+                      <select id="operator" class="brand-dropdown" value="" style="width: 100%;">
                         <option id="test" value="Fastweb" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
                         <option id="test" value="Vodafone" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone</option>
                         <option value="Tiscali" data-thumbnail="{{ asset('images/Tiscali.png') }}">Tiscali</option>
@@ -185,8 +185,9 @@ $.ajax({
       var img = $(this).attr("data-thumbnail");
       var text = this.innerText;
       var value = $(this).val();
-      var item = '<li id="test"><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
+      var item = '<li name="op" id="test"><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
       dropdownArray.push(item);
+
     })
 
     $('#brandUlList').html(dropdownArray);
@@ -203,6 +204,7 @@ $.ajax({
        var text = this.innerText;
        var item = '<li><img src="'+ img +'" alt="" /><span>'+ text +'</span></li>';
       $('.selected-brand').html(item);
+      $('#op').attr('value', text);
       $('.selected-brand').attr('value', value).trigger('change');
       $(".brandUlLiContainer").toggle();
 

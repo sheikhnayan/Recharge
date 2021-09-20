@@ -36,7 +36,7 @@
                 <div class="row invoice-info mt-3">
                   <div class="col-12 text-center">
                     <h3>
-                      <strong>JM Logistic</strong>
+                      <strong>{{ $data->operator }}</strong>
                     </h3>
                   </div>
                   <div class="col-12">
@@ -65,7 +65,11 @@
                           </tr>
                           <tr>
                             <td>Importo</td>
+                            @if ($data->type == 'Domestic')
+                            <td><strong>{{ $data->amount }} &euro;</strong></td>
+                            @else
                             <td><strong>{{ $data->cost }} &euro;</strong></td>
+                            @endif
                           </tr>
                           {{-- <tr>
                             <td>bilancia</td>
