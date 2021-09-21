@@ -157,9 +157,9 @@
                           <tr>
                             <td>Agenzia</td>
                             @php
-                              $agent = DB::table('users')->where('id','reseller_id')->first();
+                              $agent = DB::table('users')->where('id', $data->reseller_id)->first();
                             @endphp
-                            <td><strong>{{ $agent }}</strong></td>
+                            <td><strong>{{ $agent->nationality }}</strong></td>
                           </tr>
                           @endif
                           <tr>
