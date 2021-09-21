@@ -111,7 +111,7 @@
                               <input type="hidden" name="Sku_Code" value="{{ $prods['0']['SkuCode'] }}" id="skucode">
                               <input type="hidden" id="admin_com" value="{{ Auth::user()->admin_international_recharge_commission }}">
                               <input type="hidden" id="reseller_com" value="{{ Auth::user()->international_recharge }}">
-                              <small style="font-size: 18px;text-align: center;font-weight: bold;color: red;" id="price"></small><br>
+                              <small name="received_amount" style="font-size: 18px;text-align: center;font-weight: bold;color: red;" id="price"></small><br>
                            </div>
                            <label class="form-label">Service Charge in EURO</label>
                            <input type="number" step="any" name="service" class="form-control" placeholder="Enter Service Charge (Optional)">

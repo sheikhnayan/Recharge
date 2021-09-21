@@ -423,7 +423,7 @@ class RechargeController extends Controller
     }
 
     public function recharge(Request $request)
-    {  
+    {  dd($request->all());
         $change = [' ','+'];
         $number = str_replace($change,'',$request->number);
        
