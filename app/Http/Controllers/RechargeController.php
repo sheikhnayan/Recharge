@@ -569,7 +569,7 @@ class RechargeController extends Controller
         <CURRENCY>978</CURRENCY>
         <AMOUNT>'.$sku_amount['1'].'000</AMOUNT>
         <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
-        <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
+        <LOCALDATETIME>'.Carbon::now().'</LOCALDATETIME>
         <TXID>'.$txid.'</TXID>
         <CARD><EAN>'.$sku_amount['0'].'</EAN></CARD>
         <PHONE>'.$request->number.'</PHONE><CAB>
@@ -611,7 +611,7 @@ class RechargeController extends Controller
                     <CURRENCY>978</CURRENCY>
                     <AMOUNT>'.$sku_amount['1'].'000</AMOUNT>
                     <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
-                    <LOCALDATETIME>2021-08-09 14:58:13</LOCALDATETIME>
+                    <LOCALDATETIME>'.Carbon::now().'</LOCALDATETIME>
                     <TXID>'.$txid2.'</TXID>
                         <CARD>
                             <EAN>'.$sku_amount['0'].'</EAN>
