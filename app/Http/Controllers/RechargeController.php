@@ -702,7 +702,7 @@ class RechargeController extends Controller
         
 
         }
-
+            dd($xml2);
          return  Redirect()->back()->with('status','Your Recharge Has Been Suucessfull!');
         }else{
             return  Redirect()->back()->with('error','Insufficient Balance!'); 
