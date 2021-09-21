@@ -649,7 +649,7 @@ class RechargeController extends Controller
 
 
             $balance = DB::table('balances')->where('type','domestic')->update([
-                'balance' => $xml->LIMIT,
+                'balance' => $xml2->LIMIT,
             ]);
 
 
