@@ -36,17 +36,17 @@
                 <div class="row invoice-info mt-3">
                   <div class="col-12 text-center">
                     <h3>
-                      <strong>{{ $data->operator }}</strong>
+                      <strong>JM Nation</strong>
                     </h3>
                   </div>
                   <div class="col-12">
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
-                          {{-- <tr>
-                            <td>PIN</td>
-                            <td><strong>635214513366</strong></td>
-                          </tr> --}}
+                          <tr>
+                            <td>Phone Number</td>
+                            <td><strong>{{ $data->number }}</strong></td>
+                          </tr>
                           <tr>
                             <td>Date</td>
                             <td><strong>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</strong></td>
@@ -59,16 +59,36 @@
                             <td>Descrizion</td>
                             <td><strong>Ricarica Pin</strong></td>
                           </tr> --}}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="recharge_invoice_table">
+                      <table class="table table-sm">
+                        <tbody>
+                          <tr>
+                            <td><strong>{{ $data->operator }}</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="recharge_invoice_table">
+                      <table class="table table-sm">
+                        <tbody>
                           <tr>
                             <td>Prodotto</td>
-                            <td><strong>{{ $data->amount }}  &euro;</strong></td>
+                            @if($data->type == 'International')
+                              <td><strong>{{ $data->amount }}</strong></td>
+                            @else
+                              <td><strong>{{ $data->amount }}  &euro;</strong></td>
+                            @endif
                           </tr>
                           <tr>
-                            <td>Importo</td>
                             @if ($data->type == 'Domestic')
+                            <td>Importo</td>
                             <td><strong>{{ $data->amount }} &euro;</strong></td>
                             @else
-                            <td><strong>{{ $data->cost }} &euro;</strong></td>
+                            <td>Retailer Price</td>
+                            <td><strong>{{ $data->cost + $data->service}} &euro;</strong></td>
                             @endif
                           </tr>
                           {{-- <tr>
@@ -119,11 +139,11 @@
                             <td>ABI/CAB</td>
                             <td><strong>96306/AAVED</strong></td>
                           </tr>
-                          @endif
                           <tr>
                             <td>Agenzia</td>
                             <td><strong>Point recharge</strong></td>
                           </tr>
+                          @endif
                           <tr>
                             <td style="width: 80px">Help Desk</td>
                             <td><strong>3889883882/ 34786783388</strong></td>
@@ -132,10 +152,7 @@
                             <td class="align-middle">Note</td>
                             <td>
                               <strong class="fs-6">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Fugiat doloribus ducimus veniam. Libero accusantium vero, 
-                                incidunt quas ipsam repudiandae, error maxime impedit 
-                                tempora ab laboriosam placeat repellat!  
+                                Operazione fuori campo IVA ex art.7 sexies comma 1 lettera g del DPR 633/72. I servizi telefonici sono forniti dall'Operatore secondo gli specifici termini e condizioni generali in vigore con il Cliente; restrizioni, tasse e supplementi potrebbero essere applicati. JM Nation non ha alcun controllo e non è responsabile per il servizio di fonia fornito dall'Operatore. In caso di anomalie o reclami contattare il Servizio Clienti dell'Operatore.  
                               </strong>
                             </td>
                           </tr>
