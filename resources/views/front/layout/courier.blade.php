@@ -186,7 +186,7 @@
               <b class="mr-2">Ding:</b><span>{{ $ding->balance }}&euro;</span>
             </div>
             <div class="col-12">
-              <b class="mr-2">Domestic:</b><span>{{ $domestic->balance }}&euro;</span>
+              <b class="mr-2">Domestic:</b><span>{{ ($domestic->balance)/100 }}&euro;</span>
             </div>
           </div>
         @endif
