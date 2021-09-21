@@ -459,7 +459,7 @@ class RechargeController extends Controller
             'json' => [
                     'SkuCode' => $SkuCode,
                     'SendValue' => $SendValue,
-                    'BatchItemRef' => mt_rand(1000000000, 9999999999),
+                    'BatchItemRef' => $txid,
                     ]              
             ]);
 
