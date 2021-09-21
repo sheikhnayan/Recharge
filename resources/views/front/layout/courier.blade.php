@@ -179,8 +179,8 @@
         @if (Auth::user()->role == 'admin')
           <div class="row">
             @php
-              $ding = DB::table('balances')->where('type','ding')->first();
-              $domestic = DB::table('balances')->where('type','domestic')->first();
+              $ding = DB::table('balances')->where('type','ding')->latest()->first();
+              $domestic = DB::table('balances')->where('type','domestic')->latest()->first();
             @endphp
             <div class="col-12">
               <b class="mr-2">Ding:</b><span>{{ $ding->balance }}&euro;</span>
