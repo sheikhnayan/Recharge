@@ -28,7 +28,7 @@
                 <!-- title row -->
                 <div class="row">
                   <div class="col-12 text-center">
-                    <img src="{{ asset('images/jm logo.jpeg') }}" style="width: 65px; margin-bottom: 6px;"></img>
+                    <img src="{{ asset('images/jm logo.png') }}" style="width: 65px; margin-bottom: 6px;"></img>
                   </div>
                   <!-- /.col -->
                 </div>

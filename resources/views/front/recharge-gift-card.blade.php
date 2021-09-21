@@ -29,7 +29,7 @@
         <div class="recharge-box">
           <div class="card card-outline card-primary">
             <div class="card-header text-center">
-              <a href="index.html"><img src="images/jm logo.jpeg" width="80px" height="auto"></a>
+              <a href="index.html"><img src="images/jm logo.png" width="80px" height="auto"></a>
             </div>
             <div class="card-body gift_card_inner">
               <h3 class="text-center mb-5">Gift Card</h3>

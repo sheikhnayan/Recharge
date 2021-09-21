@@ -18,7 +18,7 @@
         <form action="/reseller/update/{{ $data->id }}" method="POST">
           @csrf
           <div class="card-header text-center">
-              <a href="/"><img src="{{ asset('images/jm logo.jpeg') }}" width="80px" height="auto"></a>
+              <a href="/"><img src="{{ asset('images/jm logo.png') }}" width="80px" height="auto"></a>
           </div>
           <div class="card-body">
               <p class="login-box-msg">Edit Profile</p>

@@ -99,7 +99,7 @@
                           <table class="table">
                             <tbody>
                               <tr>
-                                <td class="pt-4"><img src="{{ asset('images/jm logo.jpeg') }}" alt="logo" width="130" height="90"></td>
+                                <td class="pt-4"><img src="{{ asset('images/jm logo.png') }}" alt="logo" width="130" height="90"></td>
                                 <td class="text-center pt-4">
                                   <h3>Tracking Number</h3>
                                   <h4><b>{{ $order->id }}</b></h4>
