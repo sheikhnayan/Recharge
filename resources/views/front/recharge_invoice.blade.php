@@ -44,24 +44,39 @@
                       <table class="table table-sm">
                         <tbody>
                           <tr>
-                            <td>Phone Number</td>
+                            @if($data->type == 'International')
+                              <td>Phone Number</td>
+                            @else
+                              <td>Numero di telefono</td>
+                            @endif
                             <td><strong>{{ $data->number }}</strong></td>
                           </tr>
                           <tr>
-                            <td>Date</td>
+                            @if($data->type == 'International')
+                              <td>Date</td>
+                            @else
+                              <td>Data Transazione</td>
+                            @endif
                             <td><strong>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</strong></td>
                           </tr>
                           <tr>
-                            <td>Time</td>
+                            @if($data->type == 'International')
+                              <td>Time</td>
+                            @else
+                              <td>Time Transazione</td>
+                            @endif
                             <td><strong>{{ Carbon\Carbon::parse($data->created_at)->format('H:i:s') }}</strong></td>
                           </tr>
-                          {{-- <tr>
-                            <td>Descrizion</td>
-                            <td><strong>Ricarica Pin</strong></td>
-                          </tr> --}}
+                          @if($data->type == 'Domestic')
+                          <tr>
+                            <td>Descrizione prodotto</td>
+                            <td><strong>{{ $data->operator }}</strong></td>
+                          </tr>
+                          @endif
                         </tbody>
                       </table>
                     </div>
+                    @if($data->type == 'International')
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
@@ -71,6 +86,7 @@
                         </tbody>
                       </table>
                     </div>
+                    @endif
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
