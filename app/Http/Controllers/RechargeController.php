@@ -448,29 +448,6 @@ class RechargeController extends Controller
             $amount = $datas['amount'];
         }
         // dd($SkuCode);
-        $client = new \GuzzleHttp\Client();
-            $get_amount = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
-            'headers' => [
-            'api_key'     => '913XSjpRzlB6lbS2kEE7gt',
-            'Content-Type' => 'application/json'
-            ],
-            'verify' => false,
-            'json' => [
-                    'SkuCode' => $SkuCode,
-                    'SendValue' => $SendValue,
-                    'BatchItemRef' => $txid,
-                    ]              
-            ]);
-
-                $amounts = $get_amount->getBody();
-
-        
-
-
-                $amountss = json_decode($amounts,true);
-
-                $am = $amountss['Items'][0]['Price']['ReceiveValue'];
-                dd($a);
         if (a::user()->wallet >= $SendValue) {
             $client = new \GuzzleHttp\Client();
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
@@ -551,30 +528,7 @@ class RechargeController extends Controller
             $balance->save();
             }
 
-            
 
-            // $client = new \GuzzleHttp\Client();
-            // $get_amount = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
-            // 'headers' => [
-            // 'api_key'     => '913XSjpRzlB6lbS2kEE7gt',
-            // 'Content-Type' => 'application/json'
-            // ],
-            // 'verify' => false,
-            // 'json' => [
-            //         'SkuCode' => $SkuCode,
-            //         'SendValue' => $SendValue,
-            //         'BatchItemRef' => Math.floor(Math.random() * 100000000000),
-            //         ]              
-            // ]);
-
-            //     $amounts = $get_amount->getBody();
-
-        
-
-
-            //     $amountss = json_decode($amounts,true);
-
-            //     $am = $amountss['Items'][0]['Price']['ReceiveValue'];
             
             $create = new RechargeHistory;
             $create->reseller_id = a::user()->id;
