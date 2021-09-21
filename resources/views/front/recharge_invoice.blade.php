@@ -91,10 +91,9 @@
                       <table class="table table-sm">
                         <tbody>
                           <tr>
-                            <td>Prodotto</td>
                             @if($data->type == 'International')
+                            <td>Prodotto</td>
                               <td><strong>{{ $data->amount }}</strong></td>
-                            @else
                               <td><strong>{{ $data->amount }}  &euro;</strong></td>
                             @endif
                           </tr>
@@ -127,7 +126,7 @@
                         </tbody>
                       </table>
                     </div>
-                    @if($data->type == 'ss')
+                    {{-- @if($data->type == 'Domestic')
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
@@ -142,22 +141,25 @@
                         </tbody>
                       </table>
                     </div>
-                    @endif
+                    @endif --}}
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
-                          @if($data->type == 'ss')
+                          @if($data->type == 'Domestic')
                           <tr>
                             <td>Terminale</td>
-                            <td colspan="2"><strong>4673685</strong></td>
+                            <td colspan="2"><strong>IT028215</strong></td>
                           </tr>
                           <tr>
-                            <td>ABI/CAB</td>
-                            <td><strong>96306/AAVED</strong></td>
+                            <td>CAB</td>
+                            <td><strong>3D0013D001</strong></td>
                           </tr>
                           <tr>
                             <td>Agenzia</td>
-                            <td><strong>Point recharge</strong></td>
+                            @php
+                              $agent = User::where('id','reseller_id')->first();
+                            @endphp
+                            <td><strong>{{ $agent->nationality }}</strong></td>
                           </tr>
                           @endif
                           <tr>
@@ -167,9 +169,15 @@
                           <tr>
                             <td class="align-middle">Note</td>
                             <td>
+                              @if ($data->type == "International")
+                                <strong class="fs-6">
+                                  Operazione fuori campo IVA ex art.7 sexies comma 1 lettera g del DPR 633/72. I servizi telefonici sono forniti dall'Operatore secondo gli specifici termini e condizioni generali in vigore con il Cliente; restrizioni, tasse e supplementi potrebbero essere applicati. JM Nation non ha alcun controllo e non è responsabile per il servizio di fonia fornito dall'Operatore. In caso di anomalie o reclami contattare il Servizio Clienti dell'Operatore.  
+                                </strong>
+                              @else
                               <strong class="fs-6">
-                                Operazione fuori campo IVA ex art.7 sexies comma 1 lettera g del DPR 633/72. I servizi telefonici sono forniti dall'Operatore secondo gli specifici termini e condizioni generali in vigore con il Cliente; restrizioni, tasse e supplementi potrebbero essere applicati. JM Nation non ha alcun controllo e non è responsabile per il servizio di fonia fornito dall'Operatore. In caso di anomalie o reclami contattare il Servizio Clienti dell'Operatore.  
+                                {{ $data->operator }} accrediterà la ricarica entro 24 ore. Per info chiami il 159. IVA assolta ai sensi dell' ex art.74 Co.1. lett.d) DPR 633/72 da Wind Tre S.p.A PI 13378520152.
                               </strong>
+                              @endif
                             </td>
                           </tr>
                           {{-- <tr>
