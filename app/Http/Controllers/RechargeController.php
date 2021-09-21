@@ -423,7 +423,7 @@ class RechargeController extends Controller
     }
 
     public function recharge(Request $request)
-    {  dd($request->all());
+    {  
         $change = [' ','+'];
         $number = str_replace($change,'',$request->number);
        
@@ -433,7 +433,7 @@ class RechargeController extends Controller
         $datas = $request->all();
         // dd($datas);
 
-        
+        $received = $request->received_amount;
         $sku_amount = explode(',',$datas['amount']);
 
         // dd($sku_amount);
@@ -492,10 +492,12 @@ class RechargeController extends Controller
     
             $cost = $sendvalue + $reseller_commission + $admin_commission + $request->service;
 
+            $real_cost = $sendvalue + $reseller_commission + $admin_commission;
+
 
             if(a::user()->role != 'admin'){
                 $minus = a::user()->update([
-                    'wallet' => a::user()->wallet - $cost
+                    'wallet' => a::user()->wallet - $real_cost
                 ]);
                 
                 $reseller = User::where('id',a::user()->created_by)->first();
@@ -533,14 +535,15 @@ class RechargeController extends Controller
             $create = new RechargeHistory;
             $create->reseller_id = a::user()->id;
             $create->number = $request->number;
-            $create->amount = $amount;
+            $create->amount = $received;
             $create->reseller_com = $reseller_commission;
             $create->admin_com = $admin_commission;
             $create->txid = $txid;
             $create->operator = $request->operator;
             $create->type = 'International';
             $create->status = 'completed';
-            $create->cost = $cost;
+            $create->cost = $real_cost;
+            $create->service = $request->service;
             $create->save();
     
             }
