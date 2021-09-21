@@ -334,7 +334,7 @@
                                  <thead>
                                     <tr class="table-danger">
                                        <th>Receiver</th>
-                                       <th>Amount</th>
+                                       <th>Operator</th>
                                        <th>Cost</th>
                                        <th>Status</th>
                                        <th>Action</th>
@@ -344,7 +344,7 @@
                                     @foreach ($data as $item)
                                     <tr class="bg-ocean">
                                        <<td>{{ $item->number }}</td>
-                                       <td>{{ $item->amount }}</td>
+                                       <td>{{ $item->operator }}</td>
                                        <td>{{ $item->cost }}</td>
                                        <td><i class="text-primary fas fa-check-square"></i></td>
                                        <td> <a class="btn btn-success" href="/recharge_invoice/{{ $item->id }}"> Invoice</a> </td>
