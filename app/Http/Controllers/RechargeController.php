@@ -519,16 +519,11 @@ class RechargeController extends Controller
 
             $balancequery = Balance::where('type','ding')->first();
 
-            if($balancequery != null){
+
             $balance = DB::table('balances')->where('type','ding')->update([
                 'balance' => $bal,
             ]);
-            }else{
-            $balance = new Balance;
-            $balance->type = 'ding';
-            $balance->balance = $bal;
-            $balance->save();
-            }
+
 
 
             
@@ -652,16 +647,11 @@ class RechargeController extends Controller
 
         
 
-        if($balancequery != null){
+
             $balance = DB::table('balances')->where('type','domestic')->update([
                 'balance' => $xml->LIMIT,
             ]);
-        }else{
-            $balance = new Balance;
-            $balance->type = 'domestic';
-            $balance->balance = $xml->LIMIT;
-            $balance->save();
-        }
+
 
 
         if(a::user()->role != 'admin'){
@@ -702,7 +692,6 @@ class RechargeController extends Controller
         
 
         }
-            dd($xml2);
          return  Redirect()->back()->with('status','Your Recharge Has Been Suucessfull!');
         }else{
             return  Redirect()->back()->with('error','Insufficient Balance!'); 
