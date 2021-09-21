@@ -145,7 +145,7 @@
     <!-- Brand Logo -->
     <a href="/" class="brand-link" style="background: #fff;">
       <img src="{{ asset('images/jm-transparent-logo.png') }}" alt="Courier Logo" class="brand-image" style="opacity: .8">
-      <span class="brand-text font-weight-bold"><strong>JM</strong> LOGISTIC</span>
+      <span class="brand-text font-weight-bold"><strong>JM</strong> NATION</span>
     </a>
 
     <!-- Sidebar -->

@@ -344,7 +344,7 @@
                     <tbody>
                       <tr>
                         <td colspan="2" class="align-middle invoice_table_border" style="width: 23%;">
-                          <h5>JM LOGISTIC</h5>
+                          <h5>JM NATION</h5>
                         </td>
                         <td colspan="6" class="invoice_table_border" style="width: 77%;">
                           <b>Italy Office :</b> Via Delle Ninfee 32,00172 , Email: infogbsm@gmail.com, Mobile :3883929293<br>

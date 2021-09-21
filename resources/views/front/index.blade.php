@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-12 text-center">
             <h2 style="font-weight: 700; color: #bdbcbc;"><img src="images/jm-transparent-logo.png" width="20px">
-              <span class="brand-text"><strong>JM</strong> LOGISTIC</span>
+              <span class="brand-text"><strong>JM</strong> NATION</span>
             </h2>
           </div>
         </div>
