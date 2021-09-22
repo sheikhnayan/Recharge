@@ -21,7 +21,8 @@
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
   <script type= "text/javascript" src="{{asset('js/countries.js')}}"></script>
-</head>
+  <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}">
+<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
 
 @endsection
 

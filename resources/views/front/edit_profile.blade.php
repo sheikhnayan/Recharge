@@ -11,7 +11,8 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('css/admin.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
+  <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}">
+<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
 <body class="hold-transition register-page">
   <div class="register-box">
     <div class="card card-outline card-primary">

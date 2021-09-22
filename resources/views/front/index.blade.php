@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="css/admin.min.css">
 
   <link rel="stylesheet" href="css/style.css">
-</head>
+  <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}">
+<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
 
 @endsection
 

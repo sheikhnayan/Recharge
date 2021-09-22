@@ -15,7 +15,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
+    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}

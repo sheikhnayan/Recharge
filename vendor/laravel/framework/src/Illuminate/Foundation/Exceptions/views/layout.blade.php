@@ -44,7 +44,7 @@
                 padding: 20px;
             }
         </style>
-    </head>
+    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">

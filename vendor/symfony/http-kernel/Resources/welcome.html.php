@@ -60,7 +60,7 @@
             .resource a { font-size: 16px; margin-top: 0; }
         }
     </style>
-</head>
+<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
 <body>
 <div class="wrapper">
     <div class="warning">

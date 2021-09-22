@@ -455,7 +455,7 @@
                 }
             }
         </style>
-    </head>
+    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
     <body class="antialiased font-sans">
         <div class="md:flex min-h-screen">
             <div class="w-full md:w-1/2 bg-white flex items-center justify-center">

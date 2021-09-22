@@ -29,7 +29,7 @@
                 font-weight: 700;
             }
         </style>
-    </head>
+    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
 
     <body>
         {{-- Header --}}

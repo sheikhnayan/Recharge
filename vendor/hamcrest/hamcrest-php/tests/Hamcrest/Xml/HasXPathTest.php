@@ -36,7 +36,7 @@ XML;
 <html>
     <head>
         <title>Home Page</title>
-    </head>
+    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
     <body>
         <h1>Heading</h1>
         <p>Some text</p>

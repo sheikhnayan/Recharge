@@ -101,7 +101,7 @@
 }
 
     </style>
-  </head>
+  <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
   <body>
     
     <div class="wrapper d-flex align-items-stretch">

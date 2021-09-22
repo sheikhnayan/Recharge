@@ -49,7 +49,7 @@ final class HtmlResultPrinter extends ResultPrinter
                 margin-bottom: 1em;
             }
         </style>
-    </head>
+    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
     <body>
 EOT;
 

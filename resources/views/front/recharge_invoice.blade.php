@@ -12,7 +12,7 @@
    <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
    <link rel="stylesheet" href="{{asset('plugin/intl-tel-input/css/intlTelInput.min.css')}}">
    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-</head>
+<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
