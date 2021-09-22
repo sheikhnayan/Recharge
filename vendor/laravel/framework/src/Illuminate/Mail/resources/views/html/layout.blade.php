@@ -22,7 +22,7 @@ width: 100% !important;
 }
 }
 </style>
-<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+<link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
 <body>
 
 <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">

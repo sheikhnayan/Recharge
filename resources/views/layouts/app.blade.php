@@ -17,7 +17,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+    <link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
     <body class="font-sans antialiased">
         <x-jet-banner />
 

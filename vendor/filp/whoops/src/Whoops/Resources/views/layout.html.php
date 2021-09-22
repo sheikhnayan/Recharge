@@ -12,7 +12,7 @@
     <title><?php echo $tpl->escape($page_title) ?></title>
 
     <style><?php echo $stylesheet ?></style>
-  <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+  <link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
   <body>
 
     <div class="Whoops container">

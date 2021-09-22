@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{ asset('css/tempusdominus-bootstrap-4.min.css') }}">
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
-<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+<link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->

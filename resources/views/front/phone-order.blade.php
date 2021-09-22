@@ -17,7 +17,8 @@
 
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+  <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}">
+</head>
 @endsection
 
 @section('content')

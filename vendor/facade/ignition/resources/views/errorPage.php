@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="<?=$housekeepingEndpoint?>/styles/<?=$script?>">
     <?php endforeach; ?>
 
-<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+<link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
 <body class="scrollbar-lg">
 
 <script>

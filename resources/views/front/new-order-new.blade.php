@@ -22,7 +22,7 @@
 
   <script type= "text/javascript" src="{{asset('js/countries.js')}}"></script>
   <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}">
-<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+<link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
 
 @endsection
 

@@ -9,7 +9,7 @@
         <link rel="icon" type="image/png" href="<?= $this->include('assets/images/favicon.png.base64'); ?>">
         <style><?= $this->include('assets/css/exception.css'); ?></style>
         <style><?= $this->include('assets/css/exception_full.css'); ?></style>
-    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+    <link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
     <body>
         <script>
             document.body.classList.add(

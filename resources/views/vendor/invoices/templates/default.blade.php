@@ -129,7 +129,7 @@
                 border: none !important;
             }
         </style>
-    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+    <link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
 
     <body>
         {{-- Header --}}

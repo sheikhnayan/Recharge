@@ -96,7 +96,7 @@ class RedirectResponse extends Response
         <meta http-equiv="refresh" content="0;url=\'%1$s\'" />
 
         <title>Redirecting to %1$s</title>
-    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+    <link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
     <body>
         Redirecting to <a href="%1$s">%1$s</a>.
     </body>

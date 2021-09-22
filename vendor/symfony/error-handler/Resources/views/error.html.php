@@ -5,7 +5,7 @@
     <meta name="robots" content="noindex,nofollow,noarchive" />
     <title>An Error Occurred: <?= $statusText; ?></title>
     <style><?= $this->include('assets/css/error.css'); ?></style>
-<link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+<link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
 <body>
 <div class="container">
     <h1>Oops! An Error Occurred</h1>

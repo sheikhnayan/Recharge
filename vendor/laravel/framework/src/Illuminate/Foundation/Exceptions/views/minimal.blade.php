@@ -19,7 +19,7 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-    <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}"></head>
+    <link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
