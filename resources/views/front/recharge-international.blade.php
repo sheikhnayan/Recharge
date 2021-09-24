@@ -387,7 +387,8 @@
         dataType: 'json',
         contentType: 'application/json',
         headers:{
-         api_key:"HcdOK7ZaUKD5aN0SoH3n23"
+         api_key:"HcdOK7ZaUKD5aN0SoH3n23",
+         CSRF: token
         },
         data: JSON.stringify([{
           SendValue:amount - cost,
