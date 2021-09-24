@@ -387,13 +387,13 @@
         dataType: 'json',
         contentType: 'application/json',
         headers:{
-         api_key:"HcdOK7ZaUKD5aN0SoH3n23"
+         api_key:"HcdOK7ZaUKD5aN0SoH3n23",
+         'X-CSRF-TOKEN': token
         },
         data: JSON.stringify([{
           SendValue:amount - cost,
           SkuCode:skucode,
           BatchItemRef:Math.floor(Math.random() * 100000000000),
-          _token: token
         }]),
         success:function(response){
           console.log(response.Items[0].Price.ReceiveValue);
