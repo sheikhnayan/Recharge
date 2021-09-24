@@ -384,7 +384,7 @@
       $.ajax({
         url: "https://api.dingconnect.com/api/V1/EstimatePrices",
         type:"POST",
-        dataType: 'jsonp',
+        dataType: 'json',
         crossDomain: true,
         contentType: 'application/json',
         headers:{
