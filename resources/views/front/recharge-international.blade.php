@@ -388,7 +388,7 @@
         contentType: 'application/json',
         headers:{
          api_key:"HcdOK7ZaUKD5aN0SoH3n23",
-         'Access-Control-Allow-Origin' : 'https://jmnation.com'
+         'Access-Control-Allow-Origin' : '143.244.158.216'
 
         },
         data: JSON.stringify([{
