@@ -48,15 +48,18 @@
                       </div>
                       <input type="hidden" name="operator" id="op">
                       <select id="operator" class="brand-dropdown" value="" style="width: 100%;">
-                        <option id="test" value="Fastweb" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
+                        <option id="test" value="FASTCARD" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
                         <option id="test" value="Vodafone" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone</option>
                         <option value="Tiscali" data-thumbnail="{{ asset('images/Tiscali.png') }}">Tiscali</option>
                         <option value="Tim" data-thumbnail="{{ asset('images/Tim.png') }}">Tim</option>
+                        <option value="Very" data-thumbnail="{{ asset('images/very.png') }}">Very Mobile</option>
+                        <option value="Kena" data-thumbnail="{{ asset('images/kena.png') }}">Kena Mobile</option>
+                        <option value="Lyca" data-thumbnail="{{ asset('images/lyca.png') }}">LycaMobile</option>
                         <option value="WindTre" data-thumbnail="{{ asset('images/WindTre.png') }}">WindTre</option>
-                        <option value="PosteMobile" data-thumbnail="{{ asset('images/PosteMobile.png') }}">PosteMobile Online</option>
+                        <option value="Poste" data-thumbnail="{{ asset('images/PosteMobile.png') }}">PosteMobile Online</option>
                         <option value="Digi" data-thumbnail="{{ asset('images/Digi.png') }}">Digi Mobil</option>
                         <option value="Tim-Carta" data-thumbnail="{{ asset('images/Tim-Carta.png') }}">Tim-Carta Servizi</option>
-                        <option value="CoopVoce" data-thumbnail="{{ asset('images/coop-voce-1-480x480.jpeg') }}">CoopVoce</option>
+                        <option value="Coop" data-thumbnail="{{ asset('images/coop-voce-1-480x480.jpeg') }}">CoopVoce</option>
                         <option value="Ho" data-thumbnail="{{ asset('images/Ho.png') }}">Ho Mobile</option>
                         <option value="Vodafone-Carte" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone-Carte Servizi</option>
                         <option value="Iliad" data-thumbnail="{{ asset('images/Iliad.png') }}">Iliad</option>

@@ -623,26 +623,25 @@ class RechargeController extends Controller
                     <CAB/>
                 </REQUEST>';
 
-        // $req = $client->request(["Content-Type" => "application/xml"])
-        //                ->post('https://precision.epayworldwide.com/up-interface', [$xml,'verify' => false]);
+       
 
-        $client = new \GuzzleHttp\Client();
-        $recharge_request = $client->post('https://precision.epayworldwide.com/up-interface',[
-            'headers' => [
-            'api_key'     => 'Etmo8i5V9q862PHn5dNJSb',
-            'content_type' => 'application/xml'
-            ],
-            'verify' => false,
-            'body' => $xml2              
-        ]);
+            $client = new \GuzzleHttp\Client();
+            $recharge_request = $client->post('https://precision.epayworldwide.com/up-interface',[
+                'headers' => [
+                'api_key'     => 'Etmo8i5V9q862PHn5dNJSb',
+                'content_type' => 'application/xml'
+                ],
+                'verify' => false,
+                'body' => $xml2              
+            ]);
 
-        $body2 = $recharge_request->getBody(); 
-        $xml2 = simplexml_load_string($body2);
+            $body2 = $recharge_request->getBody(); 
+            $xml2 = simplexml_load_string($body2);
 
 
-        $balancequery = Balance::where('type','domestic')->first();
+            $balancequery = Balance::where('type','domestic')->first();
 
-        $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
+            $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
         
 
         
@@ -651,48 +650,51 @@ class RechargeController extends Controller
             $balance = DB::table('balances')->where('type','domestic')->update([
                 'balance' => $xml2->LIMIT,
             ]);
+            if($xml2->RESULT == 0){
 
+                if(a::user()->role != 'admin'){
+                    $reseller_commission = ($sku_amount['1']/100)*a::user()->recharge;
+                    $admin_commission = ($sku_amount['1']/100)*a::user()->admin_recharge_commission;
+                    $cost = $sku_amount['1'];
+    
+                    $admin_given_profit = ($prof->commission/100)*a::user()->admin_recharge_commission;
+    
+                    $minus = a::user()->update([
+                        'wallet' => a::user()->wallet - $cost + $admin_given_profit,
+                    ]);
+    
+                    $reseller = User::where('id',a::user()->created_by)->first();
+    
+                    // $commission = User::where('id',a::user()->created_by)->update([
+                    //     'wallet' => $reseller->wallet + $reseller_commission
+                    // ]);
+                }else{
+                    $reseller_commission = 0;
+                    $admin_commission = 0;
+                    $cost = $xml2->AMOUNT;
+                }
 
+                $create = new RechargeHistory;
+                $create->reseller_id = a::user()->id;
+                $create->number = $request->number;
+                $create->amount = $sku_amount['1'];
+                $create->operator = $operator;
+                $create->reseller_com = $reseller_commission;
+                $create->admin_com = $admin_commission;
+                $create->txid = $xml2->TXID;
+                $create->type = 'Domestic';
+                $create->status = 'completed';
+                $create->cost = $cost;
+                $create->save();
 
-        if(a::user()->role != 'admin'){
-            $reseller_commission = ($sku_amount['1']/100)*a::user()->recharge;
-            $admin_commission = ($sku_amount['1']/100)*a::user()->admin_recharge_commission;
-            $cost = $sku_amount['1'];
-
-            $admin_given_profit = ($prof->commission/100)*a::user()->admin_recharge_commission;
-
-            $minus = a::user()->update([
-                'wallet' => a::user()->wallet - $cost + $admin_given_profit,
-            ]);
-
-            $reseller = User::where('id',a::user()->created_by)->first();
-
-            // $commission = User::where('id',a::user()->created_by)->update([
-            //     'wallet' => $reseller->wallet + $reseller_commission
-            // ]);
+            }else {
+                return  Redirect()->back()->with('error','Recharge Incomplete,. Please try again!'); 
+            }
+            return  Redirect()->back()->with('status','Your Recharge Has Been Sucessfull!');
         }else{
-            $reseller_commission = 0;
-            $admin_commission = 0;
-            $cost = $xml2->AMOUNT;
+            return  Redirect()->back()->with('error','Recharge Incomplete,. Please try again!'); 
         }
-        
-
-        $create = new RechargeHistory;
-        $create->reseller_id = a::user()->id;
-        $create->number = $request->number;
-        $create->amount = $sku_amount['1'];
-        $create->operator = $operator;
-        $create->reseller_com = $reseller_commission;
-        $create->admin_com = $admin_commission;
-        $create->txid = $xml2->TXID;
-        $create->type = 'Domestic';
-        $create->status = 'completed';
-        $create->cost = $cost;
-        $create->save();
-        
-
-        }
-         return  Redirect()->back()->with('status','Your Recharge Has Been Suucessfull!');
+         
         }else{
             return  Redirect()->back()->with('error','Insufficient Balance!'); 
         }

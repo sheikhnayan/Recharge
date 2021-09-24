@@ -115,17 +115,34 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = User::where('id',$id)->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'vat_number' => $request->vat_number,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'contact_number' => $request->phone,
-            'codice_fiscale' =>$request->codice_fiscale,
-            'nationality' => $request->company,
-            'email' => $request->email
-        ]);
+        if($request->password != null){
+            $password = Hash::make($request->password);
+
+            $data = User::where('id',$id)->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'vat_number' => $request->vat_number,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'contact_number' => $request->phone,
+                'codice_fiscale' =>$request->codice_fiscale,
+                'nationality' => $request->company,
+                'password' => $password,
+                'email' => $request->email
+            ]);
+        }else{
+            $data = User::where('id',$id)->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'vat_number' => $request->vat_number,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'contact_number' => $request->phone,
+                'codice_fiscale' =>$request->codice_fiscale,
+                'nationality' => $request->company,
+                'email' => $request->email
+            ]);
+        }
 
         return redirect('/retailer/retailer-details');
     }
