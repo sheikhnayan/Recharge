@@ -385,11 +385,11 @@
         url: "https://api.dingconnect.com/api/V1/EstimatePrices",
         type:"POST",
         dataType: 'json',
-        crossDomain: true,
         contentType: 'application/json',
         headers:{
          api_key:"HcdOK7ZaUKD5aN0SoH3n23",
-         'X-CSRF-TOKEN': token
+         'Access-Control-Allow-Origin' : 'https://jmnation.com'
+
         },
         data: JSON.stringify([{
           SendValue:amount - cost,
