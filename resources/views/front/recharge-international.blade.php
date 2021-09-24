@@ -382,7 +382,7 @@
       var token   = $('meta[name="csrf-token"]').attr('content');
 
       $.ajax({
-        url: "https://api.dingconnect.com/api/V1/EstimatePrices",
+        url: "http://api.dingconnect.com/api/V1/EstimatePrices",
         type:"POST",
         dataType: 'json',
         contentType: 'application/json',
