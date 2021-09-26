@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RechargeController;
+use App\Http\Controllers\PinController;
 use App\Http\Controllers\SimController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
@@ -73,6 +74,10 @@ Route::post('offer-check', function(Request $request){
 
 Route::post('check-products', function(Request $request){
     $offer_detail = DomesticProduct::where('product', 'like', '%'.$request->id.'%')->where('type','recharge')->get();
+    return response()->json($offer_detail, 200);
+});
+Route::post('check-pins', function(Request $request){
+    $offer_detail = DomesticProduct::where('product', 'like', '%'.$request->id.'%')->where('type','pin')->get();
     return response()->json($offer_detail, 200);
 });
 
@@ -188,6 +193,8 @@ Route::get('/filebydate/{start}/{end}',[RechargeController::class,'filebydate'])
 
 Route::get('/recharge/recharge-italy', [RechargeController::class,'RechargeDom'])->name('recharge-italy');
 
+Route::get('/recharge/pin-italy', [PinController::class,'index']);
+
 Route::get('/recharge/recharge-gift-card', [RechargeController::class,'RechargeGiftCard'])->name('recharge-gift-card');
 
 Route::get('/recharge/recharge-calling-card', [RechargeController::class,'RechargeCallingCard'])->name('recharge-calling-card');
@@ -244,6 +251,7 @@ Route::post('/check-product',[RechargeController::class,'get_product']);
 Route::post('/check-changed-product',[RechargeController::class,'get_changed_product']);
 Route::post('/international_recharge',[RechargeController::class,'recharge']);
 Route::post('/domestic_recharge',[RechargeController::class,'domestic_recharge']);
+Route::post('/domestic_pin',[PinController::class,'store']);
 Route::get('/recharge_invoice/{id}',[RechargeController::class,'invoice']);
 // edit by shuvo
 Route::get('/fcm', [RechargeController::class,'fcmSend']);

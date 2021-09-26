@@ -259,6 +259,12 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="/recharge/pin-italy" class="@if(Route::currentRouteName() == 'recharge-italy') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pin</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="/recharge/all-invoice" class="@if(Route::currentRouteName() == 'recharge-invoice') nav-link active @endif nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>All Invoices</p>
