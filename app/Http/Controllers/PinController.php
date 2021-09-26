@@ -77,7 +77,7 @@ class PinController extends Controller
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
 
-        return $body;
+        dd($xml);
 
 
         // $data = json_encode($bod,true);
