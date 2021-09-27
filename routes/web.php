@@ -187,6 +187,8 @@ Route::get('/recharge/recharge-int', [RechargeController::class,'RechargeInt'])-
 
 Route::get('/recharge/all-invoice', [RechargeController::class,'invoices'])->name('recharge-invoice');
 
+Route::get('/pin/all-invoice', [PinController::class,'invoices'])->name('pin-invoice');
+
 Route::post('/filebytype',[RechargeController::class,'filebytype']);
 
 Route::get('/filebydate/{start}/{end}',[RechargeController::class,'filebydate']);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth as a;
 use Carbon\Carbon;
+use App\Models\Pin;
 
 class PinController extends Controller
 {
@@ -77,7 +78,39 @@ class PinController extends Controller
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
 
-        dd($xml);
+        $pin = $xml->PINCREDENTIALS;
+
+        if($xml->RESULT == 0){
+
+        $create = new Pin;
+
+        $create->reseller_id = a::user()->id;
+
+        $create->amount = $sku_amount['1'];
+
+        $create->txid = $txid;
+
+        $create->type = 'pin';
+
+        $create->pin = $pin->PIN;
+
+        $create->serial = $pin->SERIAL;
+
+        $create->validity = $pin->VALIDTO;
+
+        $create->operator = $operator;
+
+        $create->status = 'success';
+
+        $create->save();
+
+
+        return  Redirect('/pin/all-invoice')->with('status','Your Pin Purchase Has Been Sucessfull! Here is your pin '.$pin->PIN);
+
+
+        }else{
+            return  Redirect()->back()->with('error','Error occured Please try again!'); 
+        }
 
 
         // $data = json_encode($bod,true);
@@ -93,9 +126,19 @@ class PinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function invoices()
     {
-        //
+        if(a::user()->role == 'admin'){
+            $data = Pin::latest()->get();
+            $cost = $data->sum('amount');
+            // $profit = $data->sum('admin_com');
+        }else{
+            $data = Pin::where('reseller_id', a::user()->id)->latest()->get();
+            $cost = $data->sum('cost');
+            // $profit = $data->sum('reseller_com');
+        }
+
+        return view('front.print-all-invoice_pin',compact('data','cost'));
     }
 
     /**
