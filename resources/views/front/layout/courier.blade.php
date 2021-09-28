@@ -270,6 +270,12 @@
                     <p>All Invoices</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="/pin/all-invoice" class="@if(Route::currentRouteName() == 'pin-invoice') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pin Invoices</p>
+                  </a>
+                </li>
                 {{-- <li class="nav-item">
                   <a href="/recharge/recharge-gift-card" class="@if(Route::currentRouteName() == 'recharge-gift-card') nav-link active @endif nav-link">
                     <i class="far fa-circle nav-icon"></i>

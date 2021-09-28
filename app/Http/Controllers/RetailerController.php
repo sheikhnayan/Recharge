@@ -75,6 +75,14 @@ class RetailerController extends Controller
   
         return response()->json(['success'=>'Status change successfully.']);
     }
+    public function changePin(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->pin_permission = $request->status;
+        $user->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
+    }
     public function AddCom(Request $request)
     {
         if (Auth::user()->role == 'admin') {
@@ -84,6 +92,7 @@ class RetailerController extends Controller
                 'admin_cargo_commission' => $request->cargo,
                 'admin_recharge_commission' => $request->recharge,
                 'admin_international_recharge_commission' => $request->international_recharge,
+                'admin_pin_commission' => $request->pin,
             ]);
         }else{
             $user = User::where('id', $request->user_id)->update([
@@ -92,6 +101,7 @@ class RetailerController extends Controller
                 'cargo' => $request->cargo,
                 'recharge' => $request->recharge,
                 'international_recharge' => $request->international_recharge,
+                'pin' => $request->pin,
             ]); 
         }
         

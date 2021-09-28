@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth as a;
 use Carbon\Carbon;
 use App\Models\Pin;
+use App\Models\DomesticProfit;
+use App\Models\Balance;
 
 class PinController extends Controller
 {
@@ -82,6 +84,41 @@ class PinController extends Controller
 
         if($xml->RESULT == 0){
 
+            $balancequery = Balance::where('type','domestic')->first();
+
+            $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
+        
+
+        
+
+
+            $balance = DB::table('balances')->where('type','domestic')->update([
+                'balance' => $xml->LIMIT,
+            ]);
+
+
+            if(a::user()->role != 'admin'){
+                $reseller_commission = ($sku_amount['1']/100)*a::user()->pin;
+                $admin_commission = ($sku_amount['1']/100)*a::user()->admin_pin_commission;
+                $cost = $sku_amount['1'];
+
+                $admin_given_profit = ($prof->commission/100)*a::user()->admin_pin_commission;
+
+                $minus = a::user()->update([
+                    'wallet' => a::user()->wallet - $cost + $admin_given_profit,
+                ]);
+
+                $reseller = User::where('id',a::user()->created_by)->first();
+
+                // $commission = User::where('id',a::user()->created_by)->update([
+                //     'wallet' => $reseller->wallet + $reseller_commission
+                // ]);
+            }else{
+                $reseller_commission = 0;
+                $admin_commission = 0;
+                $cost = $xml2->AMOUNT;
+            }
+
         $create = new Pin;
 
         $create->reseller_id = a::user()->id;
@@ -102,7 +139,12 @@ class PinController extends Controller
 
         $create->status = 'success';
 
+        $create->reseller_com = $reseller_commission;
+
+        $create->admin_com = $admin_commission;
+
         $create->save();
+
 
 
         return  Redirect('/pin/all-invoice')->with('status','Your Pin Purchase Has Been Sucessfull! Here is your pin '.$pin->PIN);

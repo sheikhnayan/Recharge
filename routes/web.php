@@ -213,6 +213,8 @@ Route::get('changePhone', [RetailerController::class,'changePhone']);
 
 Route::get('changeReseller', [RetailerController::class,'changeReseller']);
 
+Route::get('changePin', [RetailerController::class,'changePin']);
+
 
 //  RECHARGES END
 

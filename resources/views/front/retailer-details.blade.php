@@ -226,6 +226,15 @@
                                 value="{{$item->recharge}}" 
                               @endif 
                                type="number" step="0.01" name="recharge"> <br>
+                               <label for="">Pin Commission :</label><br>
+                              <small>Default Admin Commission is {{ $item->admin_pin_commission }}</small>
+                              <input class="form-control" 
+                              @if (Auth::user()->role == 'admin')
+                                value="{{$item->admin_pin_commission}}" 
+                              @else
+                                value="{{$item->pin}}" 
+                              @endif 
+                               type="number" step="0.01" name="pin"> <br>
                               <button class="btn btn-success btn-sm"  type="submit">Set Commission For {{$item->first_name}}</button>
                             </div>
                           </form>
