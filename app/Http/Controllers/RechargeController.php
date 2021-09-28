@@ -380,33 +380,6 @@ class RechargeController extends Controller
     }
 
 
-    public function estimated(Request $request)
-    { dd($request->all());
-        $client = new \GuzzleHttp\Client();
-            $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
-            'headers' => [
-            'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
-            'Content-Type' => 'application/json'
-            ],
-            'verify' => false,
-            'json' => [
-                    'SkuCode' => $SkuCode,
-                    'SendValue' => $SendValue,
-                    'AccountNumber' => $number,
-                    'DistributorRef' => $txid,
-                    'ValidateOnly' => false
-                    ]              
-        ]);
-
-        $product_responses = $recharge_request->getBody();
-
-        
-
-
-        $prod = json_decode($product_responses,true);
-        
-    }
-
     public function get_changed_product(Request $request)
     {  
         $datas = $request->all();
