@@ -254,6 +254,7 @@ Route::post('/get-price',[RechargeController::class,'get_price']);
 Route::post('/check-product',[RechargeController::class,'get_product']);
 Route::post('/check-changed-product',[RechargeController::class,'get_changed_product']);
 Route::post('/international_recharge',[RechargeController::class,'recharge']);
+Route::post('/recharge/estimated',[RechargeController::class,'estimate']);
 Route::post('/domestic_recharge',[RechargeController::class,'domestic_recharge']);
 Route::post('/domestic_pin',[PinController::class,'store']);
 Route::get('/recharge_invoice/{id}',[RechargeController::class,'invoice']);

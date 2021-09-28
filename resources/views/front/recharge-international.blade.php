@@ -382,13 +382,10 @@
       var token   = $('meta[name="csrf-token"]').attr('content');
 
       $.ajax({
-        url: "https://api.dingconnect.com/api/V1/EstimatePrices",
+        url: "/recharge/estimated",
         type:"POST",
         dataType: 'json',
         contentType: 'application/json',
-        headers:{
-         api_key:"L3YzbaxR91u6bNsgvQVeGT",
-        },
         data: JSON.stringify([{
           SendValue:amount - cost,
           SkuCode:skucode,
