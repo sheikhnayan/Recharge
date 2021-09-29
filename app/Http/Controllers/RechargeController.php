@@ -563,7 +563,6 @@ class RechargeController extends Controller
 
     public function estimate(Request $request)
     { 
-        dd($request->all());
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
             'headers' => [
@@ -585,7 +584,7 @@ class RechargeController extends Controller
 
         $prod = json_decode($product_responses,true);
 
-        return $prod;
+        return $product_responses;
     }
 
     public function domestic_recharge(Request $request)
