@@ -103,7 +103,7 @@
                            @else
                            <div class="mb-3">
                               <label for="inputAmount" class="form-label">Amount (EUR)</label>
-                              <input oninput="cost" id="amount" type="number" step="any"
+                              <input oninput="cost()" id="amount" type="number" step="any"
                               min="{{ $prods['0']['Minimum']['SendValue'] + (($prods['0']['Minimum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($prods['0']['Minimum']['SendValue']/100)*Auth::user()->international_recharge) }}" 
                               max="{{ $prods['0']['Maximum']['SendValue'] + (($prods['0']['Maximum']['SendValue']/100)*Auth::user()->admin_international_recharge_commission) + (($prods['0']['Maximum']['SendValue']/100)*Auth::user()->international_recharge) }}" 
                               class="form-control" name="amount" 
@@ -385,9 +385,9 @@
       $.ajax({
         url: "/recharge/estimate",
         type:"POST",
-        headers:{
-         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content');
-        },
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         },
         data: {
           SendValue:send,
           SkuCode:skucode,
