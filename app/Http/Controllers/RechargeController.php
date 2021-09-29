@@ -593,7 +593,7 @@ class RechargeController extends Controller
 
         $prod = json_decode($product_responses,true);
 
-        return $prod;
+        return $recharge_request;
     }
 
     public function domestic_recharge(Request $request)
