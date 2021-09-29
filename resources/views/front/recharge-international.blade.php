@@ -380,15 +380,16 @@
       var am = Number(amount);
       var pm = Number(cost);
       var token   = $('meta[name="csrf-token"]').attr('content');
+      var send = amount - cost;
 
       $.ajax({
         url: "/recharge/estimate",
         type:"POST",
         headers:{
          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content');
-        }
+        },
         data: {
-          SendValue:amount - cost,
+          SendValue:send,
           SkuCode:skucode,
           BatchItemRef:Math.floor(Math.random() * 100000000000),
         },
