@@ -213,8 +213,8 @@ class RechargeController extends Controller
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
         dd($data);
-    $count = count($data['ErrorCodes']);
-    if($count == 0){
+    $count = count($data['Items']);
+    if($count != 0){
         $operators = $data['Items'];
     // dd($operators['0']);
     $datas = $request->all();
@@ -232,7 +232,7 @@ class RechargeController extends Controller
     $count = '1';
      return $pass = $this->get_product($request,$operators['0']['Name'],$operators['0']['ProviderCode'],$number);
     }else{
-        $error = $data['ErrorCodes']['0']['Code'];
+        $error = 'Invalid Phone Number';
         return redirect('/recharge/recharge-int')->with('error',$error);
     }
     
