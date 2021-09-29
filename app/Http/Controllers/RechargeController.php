@@ -562,7 +562,7 @@ class RechargeController extends Controller
     }
 
     public function estimate(Request $request)
-    { dd($request->all());
+    { dd($request->SkuCode);
         $client = new \GuzzleHttp\Client();
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
             'headers' => [
