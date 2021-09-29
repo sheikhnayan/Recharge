@@ -472,7 +472,7 @@ class RechargeController extends Controller
 
         $prod = json_decode($product_responses,true);
 
-        // dd($prod);
+        dd($prod);
 
 
         $sendvalue = $prod['TransferRecord']['Price']['SendValue'];
