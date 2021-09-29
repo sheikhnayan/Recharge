@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Pin;
 use App\Models\DomesticProfit;
 use App\Models\Balance;
+use DB;
 
 class PinController extends Controller
 {
