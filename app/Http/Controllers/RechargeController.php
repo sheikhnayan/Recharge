@@ -212,7 +212,7 @@ class RechargeController extends Controller
         ],'verify' => false]);
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
-
+        dd($data);
     $count = count($data['ErrorCodes']);
     if($count == 0){
         $operators = $data['Items'];
