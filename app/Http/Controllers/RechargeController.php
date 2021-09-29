@@ -541,6 +541,9 @@ class RechargeController extends Controller
             $create->service = $request->service;
             $create->save();
     
+            }else{
+                $error = $prod['ErrorCodes']['0']['Code'];
+                return redirect('/recharge/recharge-int')->with('error',$error);
             }
 
         return redirect('/recharge/recharge-int')->with('status','Recharge Successful!');
