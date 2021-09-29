@@ -387,7 +387,7 @@
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify([{
-           _token: token,
+           _token: '{{ csrf_token() }}',
           SendValue:amount - cost,
           SkuCode:skucode,
           BatchItemRef:Math.floor(Math.random() * 100000000000),
