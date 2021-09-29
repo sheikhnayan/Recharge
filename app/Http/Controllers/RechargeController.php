@@ -212,7 +212,10 @@ class RechargeController extends Controller
         ],'verify' => false]);
     $operator_response = $operator_request->getBody();
     $data = json_decode($operator_response,true);
-    $operators = $data['Items'];
+
+    $count = count($data['ErrorCodes']);
+    if($count == 0){
+        $operators = $data['Items'];
     // dd($operators['0']);
     $datas = $request->all();
     $datas['number'] = $number;
@@ -228,6 +231,11 @@ class RechargeController extends Controller
     }
     $count = '1';
      return $pass = $this->get_product($request,$operators['0']['Name'],$operators['0']['ProviderCode'],$number);
+    }else{
+        $error = $data['ErrorCodes']['0']['Code'];
+        return redirect('/recharge/recharge-int')->with('error',$error);
+    }
+    
 
 
     // return view('front.recharge-international',compact('operators','datas','stage','data','count'));
