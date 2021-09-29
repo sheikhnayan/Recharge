@@ -389,12 +389,12 @@
         headers:{
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-        data:{
+        data: [{
            _token: '{{ csrf_token() }}',
           SendValue:amount - cost,
           SkuCode:skucode,
           BatchItemRef:Math.floor(Math.random() * 100000000000),
-        },
+        }],
         success:function(response){
            console.log(response);
          //  console.log(response.Items[0].Price.ReceiveValue);
