@@ -564,7 +564,7 @@ class RechargeController extends Controller
     public function estimate(Request $request)
     { 
 
-        $sendvalue = $request['0']['SendValue'];
+        $sendvalue = 9;
         
         $skucode = $request['0']['SkuCode'];
 
