@@ -382,22 +382,20 @@
       var token   = $('meta[name="csrf-token"]').attr('content');
 
       $.ajax({
-        url: "https://api.dingconnect.com/api/V1/EstimatePrices",
+        url: "/recharge/estimate",
         type:"POST",
         dataType: 'json',
         contentType: 'application/json',
-        headers:{
-         api_key:"L3YzbaxR91u6bNsgvQVeGT",
-        },
         data: JSON.stringify([{
           SendValue:amount - cost,
           SkuCode:skucode,
           BatchItemRef:Math.floor(Math.random() * 100000000000),
         }]),
         success:function(response){
-          console.log(response.Items[0].Price.ReceiveValue);
-          document.getElementById("price").innerHTML = 'You Will Receive ' + response.Items[0].Price.ReceiveValue +' ' +response.Items[0].Price.ReceiveCurrencyIso+'. ';
-          document.getElementById("received_amount").setAttribute('value',response.Items[0].Price.ReceiveValue);
+           console.log(response);
+         //  console.log(response.Items[0].Price.ReceiveValue);
+         //  document.getElementById("price").innerHTML = 'You Will Receive ' + response.Items[0].Price.ReceiveValue +' ' +response.Items[0].Price.ReceiveCurrencyIso+'. ';
+         //  document.getElementById("received_amount").setAttribute('value',response.Items[0].Price.ReceiveValue);
         },
        });
    }

@@ -252,6 +252,7 @@ Route::post('/check-operator',[RechargeController::class,'check_operator']);
 Route::get('/change-operator/{numbers}/{rg}',[RechargeController::class,'change_operator']);
 Route::post('/get-price',[RechargeController::class,'get_price']);
 Route::post('/check-product',[RechargeController::class,'get_product']);
+Route::post('/recharge/estimate',[RechargeController::class,'estimate']);
 Route::post('/check-changed-product',[RechargeController::class,'get_changed_product']);
 Route::post('/international_recharge',[RechargeController::class,'recharge']);
 Route::post('/recharge/estimated',[RechargeController::class,'estimate']);
