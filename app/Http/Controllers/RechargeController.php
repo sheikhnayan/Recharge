@@ -475,7 +475,7 @@ class RechargeController extends Controller
         // dd($prod);
 
 
-        $sendvalue = $prod['TransferRecord']['Price']['SendValue'];
+        $sendvalue = $SendValue;
 
          $count = count($prod['ErrorCodes']);
 
