@@ -80,7 +80,6 @@ class PinController extends Controller
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
 
-        dd($xml->RECEIPT->LINE);
 
         $pin = $xml->PINCREDENTIALS;
 
@@ -144,6 +143,8 @@ class PinController extends Controller
         $create->reseller_com = $reseller_commission;
 
         $create->admin_com = $admin_commission;
+
+        $create->note = $xml->RECEIPT->LINE;
 
         $create->save();
 
