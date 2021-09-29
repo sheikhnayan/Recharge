@@ -571,11 +571,9 @@ class RechargeController extends Controller
             ],
             'verify' => false,
             'json' => [
-                    'SkuCode' => $SkuCode,
-                    'SendValue' => $SendValue,
-                    'AccountNumber' => $number,
-                    'DistributorRef' => $txid,
-                    'ValidateOnly' => false
+                    'SkuCode' => $request->SkuCode,
+                    'SendValue' => $request->SendValue,
+                    'BatchItemRef' => $request->BatchItemRef,
                     ]              
         ]);
 
@@ -585,6 +583,8 @@ class RechargeController extends Controller
 
 
         $prod = json_decode($product_responses,true);
+
+        return $prod;
     }
 
     public function domestic_recharge(Request $request)
