@@ -384,6 +384,9 @@
       $.ajax({
         url: "/recharge/estimate",
         type:"POST",
+        headers:{
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content');
+        }
         data: {
           SendValue:amount - cost,
           SkuCode:skucode,
