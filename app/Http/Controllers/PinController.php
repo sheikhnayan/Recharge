@@ -118,7 +118,7 @@ class PinController extends Controller
             }else{
                 $reseller_commission = 0;
                 $admin_commission = 0;
-                $cost = $xml2->AMOUNT;
+                $cost = $xml->AMOUNT;
             }
 
         $create = new Pin;
