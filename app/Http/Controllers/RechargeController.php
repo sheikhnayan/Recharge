@@ -390,7 +390,7 @@ class RechargeController extends Controller
         // $number = str_replace($change,'',$request->number);
 
         //  dd($number);
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client(['defaults' => [ 'exceptions' => false ]]);
         $product_request = $client->get('https://api.dingconnect.com/api/V1/GetProducts?&providerCodes='.$request->operator,['headers' => [
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT'
             ],'verify' => false]);
