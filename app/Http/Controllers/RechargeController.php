@@ -562,7 +562,7 @@ class RechargeController extends Controller
     }
 
     public function estimate(Request $request)
-    { 
+    { dd($request->all());
 
         $sendvalue = 9.2;
         
