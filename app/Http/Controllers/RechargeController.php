@@ -449,7 +449,7 @@ class RechargeController extends Controller
         }
         // dd($SkuCode);
         if (a::user()->wallet >= $SendValue) {
-            $client = new \GuzzleHttp\Client();
+            $client = new \GuzzleHttp\Client(['defaults' => [ 'exceptions' => false ]]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
             'headers' => [
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
