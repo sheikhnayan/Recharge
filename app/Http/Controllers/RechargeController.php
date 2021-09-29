@@ -566,7 +566,7 @@ class RechargeController extends Controller
 
         $sendvalue = $request['0']['SendValue'];
         
-        $skucode = (string)$request['0']['SkuCode'];
+        $skucode = $request['0']['SkuCode'];
 
         $batch = (string)$request['0']['BatchItemRef'];
 
