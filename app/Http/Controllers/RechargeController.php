@@ -573,7 +573,6 @@ class RechargeController extends Controller
             'verify' => false,
             'json' => [
                     'SkuCode' => $request->SkuCode,
-                    'SendValue' => 9,
                     'BatchItemRef' => $request->BatchItemRef,
                     ]              
         ]);
