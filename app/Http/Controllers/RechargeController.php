@@ -568,7 +568,7 @@ class RechargeController extends Controller
         
         $skucode = $request['0']['SkuCode'];
 
-        $batch = (string)$request['0']['BatchItemRef'];
+        $batch = mt_rand(1000000000, 9999999999);
 
         
 
@@ -593,7 +593,7 @@ class RechargeController extends Controller
 
         $prod = json_decode($product_responses,true);
 
-        return $recharge_request;
+        return $prod;
     }
 
     public function domestic_recharge(Request $request)
