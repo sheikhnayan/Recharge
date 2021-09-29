@@ -566,7 +566,7 @@ class RechargeController extends Controller
 
         $sendvalue = 9;
         
-        $skucode = $request['0']['SkuCode'];
+        $skucode = 'US_AT_TopUp';
 
         $batch = mt_rand(1000000000, 9999999999);
 
