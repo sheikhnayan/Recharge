@@ -562,7 +562,7 @@ class RechargeController extends Controller
     }
 
     public function estimate(Request $request)
-    { 
+    { dd($request['0']['SendValue']);
         $client = new \GuzzleHttp\Client();
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
             'headers' => [
