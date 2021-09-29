@@ -386,6 +386,9 @@
         type:"POST",
         dataType: 'json',
         contentType: 'application/json',
+        headers:{
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
         data: JSON.stringify([{
            _token: '{{ csrf_token() }}',
           SendValue:amount - cost,
