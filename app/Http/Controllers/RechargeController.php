@@ -793,7 +793,7 @@ class RechargeController extends Controller
             $profit = $data->sum('reseller_com');
         }
         // dd($data);
-        return view('front.print-all-invoice',compact('data','cost','profit'));
+        return view('front.print-all-invoice_pin',compact('data','cost','profit'));
     }
 
     public function filebytype(Request $request){
