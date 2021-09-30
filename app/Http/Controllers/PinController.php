@@ -187,6 +187,7 @@ class PinController extends Controller
     {
         if(a::user()->role == 'admin'){
             $data = Pin::latest()->get();
+            dd($data);
             $cost = $data->sum('amount');
             // $profit = $data->sum('admin_com');
         }else{
