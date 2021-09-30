@@ -568,9 +568,9 @@ class RechargeController extends Controller
 
         // dd($data);
 
-        $Sku = $data['SkuCode'];
-        $batch = $data['BatchItemRef'];
-        $send = $data['SendValue'];
+        // $Sku = $data['SkuCode'];
+        // $batch = $data['BatchItemRef'];
+        // $send = $data['SendValue'];
         
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
