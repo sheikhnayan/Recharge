@@ -135,7 +135,7 @@
                       @foreach ($data as $item)
                       <tr class="bg-ocean">
                         <td>
-                          <a type="button" href="/recharge_invoice/{{ $item->id }}">
+                          <a type="button" href="/pin_invoice/{{ $item->id }}">
                             <i class="fas fa-print"></i>
                           </a>
                           {{ $item->txid }}

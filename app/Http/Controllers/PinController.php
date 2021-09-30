@@ -10,6 +10,7 @@ use App\Models\Pin;
 use App\Models\DomesticProfit;
 use App\Models\Balance;
 use DB;
+use App\Models\DomesticProduct;
 
 class PinController extends Controller
 {
@@ -121,6 +122,8 @@ class PinController extends Controller
                 $cost = $xml->AMOUNT;
             }
 
+            $product = DomesticProduct::where('ean',$sku_amount['0'])->first();
+
         $create = new Pin;
 
         $create->reseller_id = a::user()->id;
@@ -146,6 +149,8 @@ class PinController extends Controller
         $create->admin_com = $admin_commission;
 
         $create->note = $xml->RECEIPT->LINE;
+
+        $create->product = $product->product;
 
         $create->save();
 
@@ -183,7 +188,6 @@ class PinController extends Controller
             $cost = $data->sum('cost');
             // $profit = $data->sum('reseller_com');
         }
-
         return view('front.print-all-invoice_pin',compact('data','cost'));
     }
 
@@ -205,9 +209,11 @@ class PinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function invoice($id)
     {
-        //
+        $data = Pin::where('id', $id)->first();
+
+        return view('front.recharge_invoice',compact('data'));
     }
 
     /**
@@ -216,8 +222,5 @@ class PinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

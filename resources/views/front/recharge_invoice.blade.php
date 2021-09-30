@@ -46,10 +46,17 @@
                           <tr>
                             @if($data->type == 'International')
                               <td>Phone Number</td>
+
+                            @elseif($data->type == 'pin')
+                              <td>Pin</td>
                             @else
                               <td>Numero di telefono</td>
                             @endif
-                            <td><strong>{{ $data->number }}</strong></td>
+                            @if($data->type == 'pin')
+                              <td><strong>{{ $data->pin }}</strong></td>
+                            @else
+                              <td><strong>{{ $data->number }}</strong></td>
+                            @endif
                           </tr>
                           <tr>
                             @if($data->type == 'International')
@@ -72,6 +79,13 @@
                             <td>Descrizione prodotto</td>
                             <td><strong>{{ $data->operator }}</strong></td>
                           </tr>
+                          @elseif($data->type == 'pin')
+                            <td>Descrizione prodotto</td>
+                            <td><strong>{{ $data->product }}</strong></td>
+                          <tr>
+                            <td>Importo</td>
+                            <td><strong>{{ $data->amount }} &euro;</strong></td>
+                          </tr>
                           @endif
                         </tbody>
                       </table>
@@ -87,6 +101,7 @@
                       </table>
                     </div>
                     @endif
+                    @if($data->type != 'pin')
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
@@ -101,7 +116,7 @@
                             @if ($data->type == 'Domestic')
                             <td>Importo</td>
                             <td><strong>{{ $data->amount }} &euro;</strong></td>
-                            @else
+                            @elseif($data->type == 'International')
                             <td>Retailer Price</td>
                             <td><strong>{{ $data->cost + $data->service}} &euro;</strong></td>
                             @endif
@@ -113,6 +128,7 @@
                         </tbody>
                       </table>
                     </div>
+                    @endif
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
@@ -145,7 +161,7 @@
                     <div class="recharge_invoice_table">
                       <table class="table table-sm">
                         <tbody>
-                          @if($data->type == 'Domestic')
+                          @if($data->type == 'Domestic' || $data->type == 'pin')
                           <tr>
                             <td>Terminale</td>
                             <td colspan="2"><strong>IT028215</strong></td>
@@ -175,7 +191,7 @@
                                 </strong>
                               @else
                               <strong class="fs-6">
-                                {{ $data->operator }} accrediterà la ricarica entro 24 ore. Per info chiami il 159. IVA assolta ai sensi dell' ex art.74 Co.1. lett.d) DPR 633/72 da Wind Tre S.p.A PI 13378520152.
+                                {{ $data->note }}
                               </strong>
                               @endif
                             </td>

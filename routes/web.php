@@ -259,6 +259,7 @@ Route::post('/recharge/estimated',[RechargeController::class,'estimate']);
 Route::post('/domestic_recharge',[RechargeController::class,'domestic_recharge']);
 Route::post('/domestic_pin',[PinController::class,'store']);
 Route::get('/recharge_invoice/{id}',[RechargeController::class,'invoice']);
+Route::get('/pin_invoice/{id}',[PinController::class,'invoice']);
 // edit by shuvo
 Route::get('/fcm', [RechargeController::class,'fcmSend']);
 
