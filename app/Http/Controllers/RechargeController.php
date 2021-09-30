@@ -568,6 +568,7 @@ class RechargeController extends Controller
         $Sku = $request->SkuCode;
         $batch = $request->BatchItemRef;
         $send = $request->SendValue;
+        dd($send);
 
  
         
