@@ -108,7 +108,6 @@
                           <tr>
                             @if($data->type == 'International')
                             <td>Prodotto</td>
-                              <td><strong>{{ $data->amount }}</strong></td>
                               <td><strong>{{ $data->amount }}  &euro;</strong></td>
                             @endif
                           </tr>
