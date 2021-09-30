@@ -566,7 +566,7 @@ class RechargeController extends Controller
 
         $data = json_encode($request->all());
 
-        dd($data);
+        dd($data['SkuCode']);
 
         $Sku = $data['SkuCode'];
         $batch = $data['BatchItemRef'];
