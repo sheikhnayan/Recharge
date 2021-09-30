@@ -563,9 +563,10 @@ class RechargeController extends Controller
 
     public function estimate(Request $request)
     { 
-
+        $data = $request->all();
         
-        $Sku = $request->SkuCode;
+        $Sku = $data['SkuCode'];
+        dd($Sku);
         $batch = $request->BatchItemRef;
         $send = (double)$request->SendValue;
 
