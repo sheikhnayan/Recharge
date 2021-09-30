@@ -42,7 +42,7 @@
                   <input type="text" class="form-control" name="daterange" id="inputSearchDate" value="01/01/2018 - 01/15/2018">
                   <!-- <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" /> -->
                 </div>
-                <form action="/filebytype" method="POST">
+                {{-- <form action="/filebytype" method="POST">
                 @csrf
                 <div class="row">
                   <div class="col-md-10">
@@ -51,17 +51,17 @@
                       <select class="custom-select" id="ExampleSelect" name="type">
                         <option value="all">All</option>
                         <option value="International">Recharge International</option>
-                        <option value="Domestic">Recharge Domestic</option>
+                        <option value="Domestic">Recharge Domestic</option> --}}
                         {{-- <option value="offer_table_two">Gift Card</option>
                         <option value="offer_table_two">Calling Card</option> --}}
-                      </select>
+                      {{-- </select>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <input type="submit" value="Search" class="btn btn-success">
                   </div>
                 </div>
-              </form>
+              </form> --}}
                 {{-- <div class="converter_section mt-5">
                   <div class="converter_btn-1">
                     <button type="button" class="btn btn-info btn-sm">Copy</button>
@@ -424,9 +424,9 @@ $(function() {
   }, function(start, end, label) {
 
 
-      var url = '/filebydate/'+start.format('YYYY-MM-DD')+'/'+end.format('YYYY-MM-DD');
+      var url = '/pinfilebydate/'+start.format('YYYY-MM-DD')+'/'+end.format('YYYY-MM-DD');
       window.location = url;
-       console.log('/filebydate/'+start.format('YYYY-MM-DD')+'/'+end.format('YYYY-MM-DD'));
+       console.log('/pinfilebydate/'+start.format('YYYY-MM-DD')+'/'+end.format('YYYY-MM-DD'));
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end).format('YYYY-MM-DD');
   });
 });

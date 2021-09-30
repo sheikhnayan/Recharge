@@ -13,6 +13,7 @@ use Auth as a;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use App\Models\RechargeHistory;
+use App\Models\Pin;
 use App\Models\DomesticProfit;
 use Carbon\Carbon;
 
@@ -771,6 +772,23 @@ class RechargeController extends Controller
             $profit = $data->sum('admin_com');
         }else{
             $data = RechargeHistory::whereBetween('created_at', [$start, $end])->where('reseller_id', a::user()->id)->latest()->get();
+            $cost = $data->sum('cost');
+            $profit = $data->sum('reseller_com');
+        }
+        // dd($data);
+        return view('front.print-all-invoice',compact('data','cost','profit'));
+    }
+
+    public function pinfilebydate($start,$end){
+        $st = Carbon::parse($start)->toDateTimeString();
+        $en = Carbon::parse($end)->toDateTimeString();
+        // dd($start);
+        if(a::user()->role == 'admin'){
+            $data = Pin::whereBetween('created_at', [$start, $end])->get();
+            $cost = $data->sum('amount');
+            $profit = $data->sum('admin_com');
+        }else{
+            $data = Pin::whereBetween('created_at', [$start, $end])->where('reseller_id', a::user()->id)->latest()->get();
             $cost = $data->sum('cost');
             $profit = $data->sum('reseller_com');
         }

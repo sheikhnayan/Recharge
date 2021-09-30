@@ -193,6 +193,8 @@ Route::post('/filebytype',[RechargeController::class,'filebytype']);
 
 Route::get('/filebydate/{start}/{end}',[RechargeController::class,'filebydate']);
 
+Route::get('/pinfilebydate/{start}/{end}',[RechargeController::class,'pinfilebydate']);
+
 Route::get('/recharge/recharge-italy', [RechargeController::class,'RechargeDom'])->name('recharge-italy');
 
 Route::get('/recharge/pin-italy', [PinController::class,'index']);
