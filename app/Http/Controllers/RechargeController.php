@@ -585,14 +585,17 @@ class RechargeController extends Controller
                     ]              
         ]);
 
-        $product_responses = $recharge_request->getQuery();
+        $product_responses = $recharge_request->getBody();
 
         
 
 
         $prod = json_decode($product_responses,true);
 
-        return $product_responses;
+         $recharge_request->rewind();
+       $req =   $recharge_request->getContents();
+
+        return $req;
     }
 
     public function domestic_recharge(Request $request)
