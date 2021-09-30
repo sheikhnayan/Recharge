@@ -91,7 +91,13 @@ class PinController extends Controller
 
             $prof = DomesticProfit::where('ean',$sku_amount['0'])->first();
         
-            dd(json_encode($xml->RECEIPT->LINE));
+            $noted = json_encode($xml->RECEIPT->LINE);
+
+            $c = ['1','2','3','4','5','6','7','8','9','0','"',',',':','{','}'];
+
+            $note = str_replace($c,'',$noted);
+
+            dd($note);
         
 
 
