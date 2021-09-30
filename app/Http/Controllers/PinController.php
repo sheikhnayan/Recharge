@@ -128,7 +128,7 @@ class PinController extends Controller
                 $cost = $xml->AMOUNT;
             }
 
-            $product = DomesticProduct::where('ean',$sku_amount['0'])->first();
+            $product = db::table('domestic_pins')->where('ean',$sku_amount['0'])->first();
 
         $create = new Pin;
 

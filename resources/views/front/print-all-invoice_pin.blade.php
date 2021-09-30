@@ -141,7 +141,7 @@
                           {{ $item->txid }}
                         </td>
                         {{-- <td>+{{ $item->number }}</td> --}}
-                        <td>{{ $item->cost }} &euro;</td>
+                        <td>{{ $item->amount }} &euro;</td>
                         <td>{{ $item->created_at }}</td>
                         @if (Auth::user()->role == 'admin')
                         <td>{{ $item->admin_com }} &euro;</td>

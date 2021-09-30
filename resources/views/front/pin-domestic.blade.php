@@ -32,7 +32,7 @@
               <a href="/"><img src="{{ asset('images/jm logo.png') }}" width="80px" height="auto"></a>
             </div>
             <div class="card-body">
-              <h3 class="text-center mb-5">Indice Brand Richriche</h3>
+              <h3 class="text-center mb-5">Indice Brand Pin</h3>
               <div class="row">
                 <div class="col-md-6">
                   <form action="/domestic_pin" method="post">
@@ -48,21 +48,50 @@
                       </div>
                       <input type="hidden" name="operator" id="op">
                       <select id="operator" class="brand-dropdown" value="" style="width: 100%;">
-                        <option id="test" value="FASTCARD" data-thumbnail="{{ asset('images/fastweb.png') }}"> Fastweb</option>
-                        <option id="test" value="Vodafone" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone</option>
-                        <option value="Tiscali" data-thumbnail="{{ asset('images/Tiscali.png') }}">Tiscali</option>
-                        <option value="Tim" data-thumbnail="{{ asset('images/Tim.png') }}">Tim</option>
-                        <option value="Very" data-thumbnail="{{ asset('images/very.png') }}">Very Mobile</option>
-                        <option value="Kena" data-thumbnail="{{ asset('images/kena.png') }}">Kena Mobile</option>
-                        <option value="Lyca" data-thumbnail="{{ asset('images/lyca.png') }}">LycaMobile</option>
-                        <option value="WindTre" data-thumbnail="{{ asset('images/WindTre.png') }}">WindTre</option>
-                        <option value="Poste" data-thumbnail="{{ asset('images/PosteMobile.png') }}">PosteMobile Online</option>
-                        <option value="Digi" data-thumbnail="{{ asset('images/Digi.png') }}">Digi Mobil</option>
-                        <option value="Tim-Carta" data-thumbnail="{{ asset('images/Tim-Carta.png') }}">Tim-Carta Servizi</option>
-                        <option value="Coop" data-thumbnail="{{ asset('images/coop-voce-1-480x480.jpeg') }}">CoopVoce</option>
-                        <option value="Ho" data-thumbnail="{{ asset('images/Ho.png') }}">Ho Mobile</option>
-                        <option value="Vodafone-Carte" data-thumbnail="{{ asset('images/vodafone.png') }}">Vodafone-Carte Servizi</option>
-                        <option value="Iliad" data-thumbnail="{{ asset('images/Iliad.png') }}">Iliad</option>
+                        <option id="test" value="VODAFONE" data-thumbnail="{{ asset('images/vodafone.png') }}"> VODAFONE</option>
+                        <option id="test" value="TIM" data-thumbnail="{{ asset('images/tim.png') }}">TIM</option>
+                        <option value="RABONA" data-thumbnail="{{ asset('images/rabona.png') }}">RABONA</option>
+                        <option value="LYCAMOBILE" data-thumbnail="{{ asset('images/lyca.png') }}">LYCAMOBILE</option>
+                        <option value="Daily Telecom" data-thumbnail="{{ asset('images/daily.png') }}">Daily Telecom</option>
+                        <option value="UNOMOBILE" data-thumbnail="{{ asset('images/telecom.png') }}">UNO MOBILE</option>
+                        <option value="PAYSAFE" data-thumbnail="{{ asset('images/pay.png') }}">PAYSAFE</option>
+                        <option value="Amazon" data-thumbnail="{{ asset('images/amazon.png') }}">Amazon</option>
+                        <option value="SKY" data-thumbnail="{{ asset('images/sky.png') }}">SKY</option>
+                        <option value="Telecom" data-thumbnail="{{ asset('images/telecom.png') }}">Telecom Italia</option>
+                        <option value="Linkem" data-thumbnail="{{ asset('images/linkem.png') }}">Linkem</option>
+                        <option value="Phoneall" data-thumbnail="{{ asset('images/phone.png') }}">Phoneall</option>
+                        <option value="BestCard" data-thumbnail="{{ asset('images/Tim-Carta.png') }}">BestCard</option>
+                        <option value="PiùRicarica" data-thumbnail="{{ asset('images/piu.jpg') }}">PiùRicarica</option>
+                        <option value="Freecom" data-thumbnail="{{ asset('images/freedom.png') }}">Freecom</option>
+                        <option value="BWIN" data-thumbnail="{{ asset('images/bwin.png') }}">BWIN</option>
+                        <option value="GD" data-thumbnail="{{ asset('images/gd.png') }}">GD</option>
+                        <option value="POKERSTARS" data-thumbnail="{{ asset('images/star.png') }}">POKERSTARS</option>
+                        <option value="WILLIAM" data-thumbnail="{{ asset('images/william.png') }}">WILLIAM HILL</option>
+                        <option value="BETSSON" data-thumbnail="{{ asset('images/betsson.png') }}">BETSSON</option>
+                        <option value="BETFLAG" data-thumbnail="{{ asset('images/betflag.png') }}">BETFLAG</option>
+                        <option value="STANLEYBET" data-thumbnail="{{ asset('images/stanley.png') }}">STANLEYBET</option>
+                        <option value="NowTel" data-thumbnail="{{ asset('images/Iliad.png') }}">NowTel</option>
+                        <option value="CloudItalia" data-thumbnail="{{ asset('images/cloud.png') }}">CloudItalia</option>
+                        <option value="OnShop" data-thumbnail="{{ asset('images/on.png') }}">OnShop</option>
+                        <option value="Party" data-thumbnail="{{ asset('images/party.png') }}">Party Poker</option>
+                        <option value="Much" data-thumbnail="{{ asset('images/much.png') }}">Much Better</option>
+                        <option value="MICROSOFT" data-thumbnail="{{ asset('images/microsoft.png') }}">MICROSOFT</option>
+                        <option value="TRAVELMATE" data-thumbnail="{{ asset('images/Iliad.png') }}">TRAVELMATE</option>
+                        <option value="SONY" data-thumbnail="{{ asset('images/sony.png') }}">SONY</option>
+                        <option value="NINTENDO" data-thumbnail="{{ asset('images/nintendo.png') }}">NINTENDO</option>
+                        <option value="DAZN" data-thumbnail="{{ asset('images/dazn.png') }}">DAZN</option>
+                        <option value="VOLAGRATIS" data-thumbnail="{{ asset('images/vola.png') }}">VOLAGRATIS</option>
+                        <option value="SIXTHCONTINENT" data-thumbnail="{{ asset('images/sixth.png') }}">SIXTHCONTINENT</option>
+                        <option value="NETFLIX" data-thumbnail="{{ asset('images/netflix.png') }}">NETFLIX</option>
+                        <option value="EUROSPORT" data-thumbnail="{{ asset('images/euro.png') }}">EUROSPORT</option>
+                        <option value="SPOTIFY" data-thumbnail="{{ asset('images/spotify.png') }}">SPOTIFY</option>
+                        <option value="WISHCARD" data-thumbnail="{{ asset('images/wish.png') }}">WISHCARD</option>
+                        <option value="HELBIZ" data-thumbnail="{{ asset('images/helbiz.png') }}">HELBIZ</option>
+                        <option value="LIBON" data-thumbnail="{{ asset('images/Iliad.png') }}">LIBON</option>
+                        <option value="YOUNG" data-thumbnail="{{ asset('images/young.png') }}">YOUNG</option>
+                        <option value="ROBLOX" data-thumbnail="{{ asset('images/roblox.png') }}">ROBLOX</option>
+                        <option value="EA" data-thumbnail="{{ asset('images/ea.png') }}">EA</option>
+                        <option value="FORK" data-thumbnail="{{ asset('images/fork.png') }}">THE FORK</option>
                       </select>
                     </div>
                     <div id="price">
@@ -76,7 +105,7 @@
                       <input type="text" class="form-control" id="inputAmount" step="any" name="service" placeholder="Please Enter Service Charge">
                     </div> --}}
                     <div class="mt-3">
-                      <input type="submit" class="btn btn-info" style="width: 100%;" value="Recharge">
+                      <input type="submit" class="btn btn-info" style="width: 100%;" value="Get Pin">
                     </div>
                     
                   </form>
@@ -220,8 +249,8 @@ $.ajax({
   dataType: 'json',
  success : function(response){
   $(response).each(function(index,item){
-    var data = '<option value='+item.ean+'>'+item.amount+'</option>';
-    $('#amounts').append('<option value='+item.ean+','+item.amount+'>'+item.amount+' Euro</option>');
+    var data = '<option value='+item.ean+'>'+item.product+'</option>';
+    $('#amounts').append('<option value='+item.ean+','+item.amount+'>'+item.product+' Euro</option>');
   })
  }
 });
