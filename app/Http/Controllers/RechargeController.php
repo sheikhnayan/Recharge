@@ -566,7 +566,7 @@ class RechargeController extends Controller
 
         $data = json_encode($request->all());
 
-        return $data['SkuCode'];
+        // dd($data);
 
         $Sku = $data['SkuCode'];
         $batch = $data['BatchItemRef'];
@@ -580,9 +580,7 @@ class RechargeController extends Controller
             ],
             'verify' => false,
             'json' => [
-                    'SkuCode' => $Sku,
-                    'BatchItemRef' => $batch,
-                    'SendValue' => $send
+                    $data
                     ]              
         ]);
 
