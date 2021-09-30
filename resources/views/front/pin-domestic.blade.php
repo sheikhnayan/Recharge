@@ -65,10 +65,6 @@
                         <option value="Iliad" data-thumbnail="{{ asset('images/Iliad.png') }}">Iliad</option>
                       </select>
                     </div>
-                    <div class="mb-3 phone_number">
-                      <label for="inputMobileNumber" class="form-label">Mobile Number</label>
-                      <input type="text" class="form-control myNumber" id="inputMobileNumber" name="number" value="" placeholder="Please enter mobile number">
-                    </div>
                     <div id="price">
                       <label for="">Amount</label>
                       <select id="amounts" name="amount" class="form-control amounts">
