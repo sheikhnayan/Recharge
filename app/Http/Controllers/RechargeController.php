@@ -566,8 +566,8 @@ class RechargeController extends Controller
 
         $data = $request->json()->all();
 
-        $Sku = (string)$data['SkuCode'];
-        $batch = (string)$data['BatchItemRef'];
+        $Sku = $data['SkuCode'];
+        $batch = $data['BatchItemRef'];
         $send = $data['SendValue'];
         
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
