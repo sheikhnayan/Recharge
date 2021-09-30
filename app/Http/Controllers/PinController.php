@@ -93,7 +93,8 @@ class PinController extends Controller
         
             $noted = json_encode($xml->RECEIPT->LINE);
 
-            $c = ['1','2','3','4','5','6','7','8','9','0','"',',',':','{','}'];
+
+            $c = ['1','2','3','4','5','6','7','8','9','0','"',',',':','{','}','/','\\'];
 
             $note = str_replace($c,'',$noted);
 
