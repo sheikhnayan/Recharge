@@ -84,7 +84,7 @@ class PinController extends Controller
 
 
         $pin = $xml->PINCREDENTIALS;
-
+        dd($xml->RECEIPT->LINE);
         if($xml->RESULT == 0){
 
             $balancequery = Balance::where('type','domestic')->first();
