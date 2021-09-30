@@ -564,9 +564,11 @@ class RechargeController extends Controller
     public function estimate(Request $request)
     { 
 
-        $Sku = (string)$request->SkuCode;
-        $batch = (string)$request->BatchItemRef;
-        $send = $request->SendValue;
+        $data = $request->json()->all();
+
+        $Sku = (string)$data['SkuCode'];
+        $batch = (string)$data['BatchItemRef'];
+        $send = $data['SendValue'];
         
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
@@ -578,7 +580,7 @@ class RechargeController extends Controller
             'json' => [
                     'SkuCode' => $Sku,
                     'BatchItemRef' => $batch,
-                    
+                    'SendValue' => $send
                     ]              
         ]);
 
