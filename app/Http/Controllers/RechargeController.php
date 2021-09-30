@@ -564,7 +564,7 @@ class RechargeController extends Controller
     public function estimate(Request $request)
     { 
 
-        $data = $request->json()->all();
+        $data = $request->all();
 
         dd($data);
 
