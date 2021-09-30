@@ -566,9 +566,8 @@ class RechargeController extends Controller
         $data = $request->all();
         
         $Sku = $data['SkuCode'];
-        dd($Sku);
-        $batch = $request->BatchItemRef;
-        $send = (double)$request->SendValue;
+        $batch = $data['BatchItemRef'];
+        $send = (double)$data['SendValue'];
 
  
         
