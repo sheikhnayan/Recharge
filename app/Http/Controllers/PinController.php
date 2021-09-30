@@ -98,7 +98,6 @@ class PinController extends Controller
 
             $note = str_replace($c,'',$noted);
 
-            dd($note);
         
 
 
@@ -155,7 +154,7 @@ class PinController extends Controller
 
         $create->admin_com = $admin_commission;
 
-        $create->note = $xml->RECEIPT->LINE;
+        $create->note = $note;
 
         $create->product = $product->product;
 
