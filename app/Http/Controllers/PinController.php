@@ -50,6 +50,8 @@ class PinController extends Controller
 
         $amount = $sku_amount['1']*100;
 
+        $amount = str_replace('.','',$amount);
+
         dd($amount);
 
         if (a::user()->wallet >= $sku_amount['1']) {
@@ -59,7 +61,7 @@ class PinController extends Controller
         <USERNAME>UPLIVE_AMICIBIGIOTTERIA</USERNAME>
         <TXID>'.$txid.'</TXID>
         <RECEIPT><LANGUAGE>ITA</LANGUAGE><CHARSPERLINE>40</CHARSPERLINE><TYPE>FULLTEXT</TYPE></RECEIPT>
-        <AMOUNT>'.$amount.'0</AMOUNT>
+        <AMOUNT>'.$amount.'</AMOUNT>
         <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
         <CURRENCY></CURRENCY>
         <CARD><EAN>'.$sku_amount['0'].'</EAN></CARD>
