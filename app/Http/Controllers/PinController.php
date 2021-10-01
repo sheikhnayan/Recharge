@@ -48,7 +48,7 @@ class PinController extends Controller
 
         $sku_amount = explode(',',$request->amount);
 
-        // dd($sku_amount);
+        dd($sku_amount);
 
         if (a::user()->wallet >= $sku_amount['1']) {
             $txid = mt_rand(1000000000, 9999999999);
