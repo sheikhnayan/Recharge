@@ -48,7 +48,9 @@ class PinController extends Controller
 
         $sku_amount = explode(',',$request->amount);
 
-        dd($sku_amount);
+        $amount = $sku_amount['1']*100;
+
+        dd($amount);
 
         if (a::user()->wallet >= $sku_amount['1']) {
             $txid = mt_rand(1000000000, 9999999999);
@@ -57,7 +59,7 @@ class PinController extends Controller
         <USERNAME>UPLIVE_AMICIBIGIOTTERIA</USERNAME>
         <TXID>'.$txid.'</TXID>
         <RECEIPT><LANGUAGE>ITA</LANGUAGE><CHARSPERLINE>40</CHARSPERLINE><TYPE>FULLTEXT</TYPE></RECEIPT>
-        <AMOUNT>'.$sku_amount['1'].'000</AMOUNT>
+        <AMOUNT>'.$amount.'0</AMOUNT>
         <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
         <CURRENCY></CURRENCY>
         <CARD><EAN>'.$sku_amount['0'].'</EAN></CARD>
