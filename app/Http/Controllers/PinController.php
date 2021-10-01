@@ -82,6 +82,8 @@ class PinController extends Controller
         $body = $recharge_request->getBody(); 
         $xml = simplexml_load_string($body);
 
+        dd($xml);
+
 
         $pin = $xml->PINCREDENTIALS;
         
