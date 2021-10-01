@@ -52,7 +52,6 @@ class PinController extends Controller
 
         $amount = str_replace('.','',$amount);
 
-        dd($amount);
 
         if (a::user()->wallet >= $sku_amount['1']) {
             $txid = mt_rand(1000000000, 9999999999);
@@ -61,7 +60,7 @@ class PinController extends Controller
         <USERNAME>UPLIVE_AMICIBIGIOTTERIA</USERNAME>
         <TXID>'.$txid.'</TXID>
         <RECEIPT><LANGUAGE>ITA</LANGUAGE><CHARSPERLINE>40</CHARSPERLINE><TYPE>FULLTEXT</TYPE></RECEIPT>
-        <AMOUNT>'.$amount.'</AMOUNT>
+        <AMOUNT>'.$amount.'0</AMOUNT>
         <TERMINALID RETAILERACC="PNTRCG" STOREID="3D001">IT028215</TERMINALID>
         <CURRENCY></CURRENCY>
         <CARD><EAN>'.$sku_amount['0'].'</EAN></CARD>
