@@ -572,7 +572,7 @@ class RechargeController extends Controller
 
 
         
-        $client = new \GuzzleHttp\Client(['defaults' => [ 'exceptions' => false ]]);
+        $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $price_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
             'headers' => [
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
