@@ -568,7 +568,7 @@ class RechargeController extends Controller
         
         $Sku = $data['SkuCode'];
         $batch = $data['BatchItemRef'];
-        $send = (double)$data['SendValue'];
+        $data['SendValue'] = (double)$data['SendValue'];
 
         $test = json_encode($data);
 
