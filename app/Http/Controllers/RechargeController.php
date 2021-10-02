@@ -580,9 +580,9 @@ class RechargeController extends Controller
             ],
             'verify' => false,
             'json' => [
-                    "SkuCode" => $Sku,
-                    "BatchItemRef" => $batch,
-                    "SendValue" => $send,
+                    "SkuCode" => "NG_ZA_TopUp",
+                    "BatchItemRef" => "434676e3-9ab8-4e51-b5bb-e86601aeaa29asdasd",
+                    "SendValue" => 4.0,
                     "SendCurrencyIso"=>null,
                     "ReceiveValue"=>0.0
                     ]              
