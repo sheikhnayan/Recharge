@@ -570,6 +570,10 @@ class RechargeController extends Controller
         $batch = $data['BatchItemRef'];
         $send = (double)$data['SendValue'];
 
+        $test = json_encode($data);
+
+        dd($data);
+
 
         
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
