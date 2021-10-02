@@ -572,7 +572,6 @@ class RechargeController extends Controller
 
         $test = json_encode($data);
 
-        dd($test);
 
 
         
@@ -583,7 +582,7 @@ class RechargeController extends Controller
             // 'Content-Type' => 'application/json'
             ],
             'verify' => false,
-            'body' => $data          
+            'body' => $test          
         ]);
 
         $price_responses = $price_request->getBody();
