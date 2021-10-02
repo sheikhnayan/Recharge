@@ -569,34 +569,33 @@ class RechargeController extends Controller
         $Sku = $data['SkuCode'];
         $batch = $data['BatchItemRef'];
         $send = (double)$data['SendValue'];
+
         
 
 
         
-        $client = new \GuzzleHttp\Client(['http_errors' => false]);
-            $price_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
+        $client = new \GuzzleHttp\Client();
+            $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
             'headers' => [
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
             'Content-Type' => 'application/json'
             ],
             'verify' => false,
             'json' => [
-                    "SkuCode" => "NG_ZA_TopUp",
-                    "BatchItemRef" => "434676e3-9ab8-4e51-b5bb-e86601aeaa29asdasd",
-                    "SendValue" => 4.0,
-                    "SendCurrencyIso"=>null,
-                    "ReceiveValue"=>0.0
+                    "SkuCode" => $Sku,
+                    "BatchItemRef" => $batch,
+                    "SendValue" => $send
                     ]              
         ]);
 
-        $price_responses = $price_request->getBody();
+        $product_responses = $recharge_request->getBody();
 
         
 
 
-        $prod = json_decode($price_responses,true);
+        $prod = json_decode($product_responses,true);
 
-        return $price_responses;
+        return $prod;
     }
 
     public function domestic_recharge(Request $request)
