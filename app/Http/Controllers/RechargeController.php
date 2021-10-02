@@ -568,10 +568,8 @@ class RechargeController extends Controller
         
         $Sku = $data['SkuCode'];
         $batch = $data['BatchItemRef'];
-        $data['SendValue'] = (double)$data['SendValue'];
-
-        $test = json_encode($data);
-
+        $send = (double)$data['SendValue'];
+        
 
 
         
@@ -582,7 +580,13 @@ class RechargeController extends Controller
             'Content-Type' => 'application/json'
             ],
             'verify' => false,
-            'body' => $test          
+            'json' => [
+                    "SkuCode" => "NG_ZA_TopUp",
+                    "BatchItemRef" => "434676e3-9ab8-4e51-b5bb-e86601aeaa29asdasd",
+                    "SendValue" => 4.0,
+                    "SendCurrencyIso"=>null,
+                    "ReceiveValue"=>0.0
+                    ]              
         ]);
 
         $price_responses = $price_request->getBody();
