@@ -579,7 +579,7 @@ class RechargeController extends Controller
             $price_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
             'headers' => [
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
-            // 'Content-Type' => 'application/json'
+            'Content-Type' => 'application/json'
             ],
             'verify' => false,
             'body' => $test          
