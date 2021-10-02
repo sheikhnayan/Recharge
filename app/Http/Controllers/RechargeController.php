@@ -570,8 +570,6 @@ class RechargeController extends Controller
         $batch = $data['BatchItemRef'];
         $send = (double)$data['SendValue'];
 
-        
-        dd($Sku,$batch,$send);
 
         
         $client = new \GuzzleHttp\Client();
