@@ -583,7 +583,7 @@ class RechargeController extends Controller
                     "SkuCode" => $Sku,
                     "BatchItemRef" => $batch,
                     "SendValue" => $send,
-                    'ValidateOnly' => false
+                    'ValidateOnly' => true
                     ]              
         ]);
 
