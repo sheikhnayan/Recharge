@@ -572,7 +572,7 @@ class RechargeController extends Controller
 
         $test = json_encode($data);
 
-        dd($data);
+        dd($test);
 
 
         
@@ -580,16 +580,10 @@ class RechargeController extends Controller
             $price_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
             'headers' => [
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
-            'Content-Type' => 'application/json'
+            // 'Content-Type' => 'application/json'
             ],
             'verify' => false,
-            'json' => [
-                    "SkuCode" => "NG_ZA_TopUp",
-                    "BatchItemRef" => "434676e3-9ab8-4e51-b5bb-e86601aeaa29asdasd",
-                    "SendValue" => 4.0,
-                    "SendCurrencyIso"=>null,
-                    "ReceiveValue"=>0.0
-                    ]              
+            'body' => $data          
         ]);
 
         $price_responses = $price_request->getBody();
