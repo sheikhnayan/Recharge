@@ -580,7 +580,6 @@ class RechargeController extends Controller
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
             'Content-Type' => 'application/json'
             ],
-            'verify' => false,
             'json' => [
                     "SkuCode" => $Sku,
                     "BatchItemRef" => $batch,
