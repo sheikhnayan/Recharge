@@ -579,7 +579,7 @@ class RechargeController extends Controller
 
         $sented = json_encode($sent);
 
-        dd($sented);
+        return $sented;
 
 
 
