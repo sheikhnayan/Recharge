@@ -53,7 +53,7 @@
                         <option value="RABONA" data-thumbnail="{{ asset('images/rabona.png') }}">RABONA</option>
                         <option value="LYCAMOBILE" data-thumbnail="{{ asset('images/lyca.png') }}">LYCAMOBILE</option>
                         <option value="Daily Telecom" data-thumbnail="{{ asset('images/daily.png') }}">Daily Telecom</option>
-                        <option value="UNOMOBILE" data-thumbnail="{{ asset('images/telecom.png') }}">UNO MOBILE</option>
+                        <option value="UNOMOBILE" data-thumbnail="{{ asset('images/uno.png') }}">UNO MOBILE</option>
                         <option value="PAYSAFE" data-thumbnail="{{ asset('images/pay.png') }}">PAYSAFE</option>
                         <option value="Amazon" data-thumbnail="{{ asset('images/amazon.png') }}">Amazon</option>
                         <option value="SKY" data-thumbnail="{{ asset('images/sky.png') }}">SKY</option>
@@ -70,13 +70,13 @@
                         <option value="BETSSON" data-thumbnail="{{ asset('images/betsson.png') }}">BETSSON</option>
                         <option value="BETFLAG" data-thumbnail="{{ asset('images/betflag.png') }}">BETFLAG</option>
                         <option value="STANLEYBET" data-thumbnail="{{ asset('images/stanley.png') }}">STANLEYBET</option>
-                        <option value="NowTel" data-thumbnail="{{ asset('images/Iliad.png') }}">NowTel</option>
+                        <option value="NowTel" data-thumbnail="{{ asset('images/nowtell.png') }}">NowTel</option>
                         <option value="CloudItalia" data-thumbnail="{{ asset('images/cloud.png') }}">CloudItalia</option>
                         <option value="OnShop" data-thumbnail="{{ asset('images/on.png') }}">OnShop</option>
                         <option value="Party" data-thumbnail="{{ asset('images/party.png') }}">Party Poker</option>
                         <option value="Much" data-thumbnail="{{ asset('images/much.png') }}">Much Better</option>
                         <option value="MICROSOFT" data-thumbnail="{{ asset('images/microsoft.png') }}">MICROSOFT</option>
-                        <option value="TRAVELMATE" data-thumbnail="{{ asset('images/Iliad.png') }}">TRAVELMATE</option>
+                        <option value="TRAVELMATE" data-thumbnail="{{ asset('images/travelmate.png') }}">TRAVELMATE</option>
                         <option value="SONY" data-thumbnail="{{ asset('images/sony.png') }}">SONY</option>
                         <option value="NINTENDO" data-thumbnail="{{ asset('images/nintendo.png') }}">NINTENDO</option>
                         <option value="DAZN" data-thumbnail="{{ asset('images/dazn.png') }}">DAZN</option>
@@ -87,7 +87,7 @@
                         <option value="SPOTIFY" data-thumbnail="{{ asset('images/spotify.png') }}">SPOTIFY</option>
                         <option value="WISHCARD" data-thumbnail="{{ asset('images/wish.png') }}">WISHCARD</option>
                         <option value="HELBIZ" data-thumbnail="{{ asset('images/helbiz.png') }}">HELBIZ</option>
-                        <option value="LIBON" data-thumbnail="{{ asset('images/Iliad.png') }}">LIBON</option>
+                        <option value="LIBON" data-thumbnail="{{ asset('images/libon.png') }}">LIBON</option>
                         <option value="YOUNG" data-thumbnail="{{ asset('images/young.png') }}">YOUNG</option>
                         <option value="ROBLOX" data-thumbnail="{{ asset('images/roblox.png') }}">ROBLOX</option>
                         <option value="EA" data-thumbnail="{{ asset('images/ea.png') }}">EA</option>
