@@ -579,7 +579,7 @@ class RechargeController extends Controller
 
         $sented = json_encode([$sent]);
 
-        dd($sent);
+        // dd($sent);
 
         $url = 'https://api.dingconnect.com/api/V1/EstimatePrices';
 
