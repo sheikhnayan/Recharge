@@ -631,11 +631,11 @@ class RechargeController extends Controller
 
         {
 
-            "SendValue": 4.0,
+            "SendValue": '.$send.',
 
-            "SkuCode": "NG_ZA_TopUp",
+            "SkuCode": "'.$Sku.'",
 
-            "BatchItemRef": "564642349884"
+            "BatchItemRef": "'.$batch.'"
 
         }
 
