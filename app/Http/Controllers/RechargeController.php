@@ -581,6 +581,13 @@ class RechargeController extends Controller
 
 
 
+        $url = 'https://api.dingconnect.com/api/V1/EstimatePrices';
+
+        $payloadArray =  array(
+            "data" => $sent,
+        );
+
+        $auth = false;
 
 
         // dd($sented);
@@ -588,26 +595,57 @@ class RechargeController extends Controller
 
 
         
-        $client = new \GuzzleHttp\Client(['http_errors' => false]);
-            $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
-            'headers' => [
-            'api_key'     => 'G4ymoFlN97B6PhZgK1yzuY',
-            'Content-Type' => 'application/json'
-            ],
-            'json' =>[$sented]
+        // $client = new \GuzzleHttp\Client(['http_errors' => false]);
+        //     $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
+        //     'headers' => [
+        //     'api_key'     => 'G4ymoFlN97B6PhZgK1yzuY',
+        //     'Content-Type' => 'application/json'
+        //     ],
+        //     'json' =>[$sented]
              
-        ]);
+        // ]);
 
 
 
-        $product_responses = $recharge_request->getBody();
+        // $product_responses = $recharge_request->getBody();
 
         
 
 
-        $prod = json_decode($product_responses,true);
+        // $prod = json_decode($product_responses,true);
 
-        return $prod;
+        // return $prod;
+
+        //INITIATE CURL
+        $ch = curl_init( $url );
+
+        //SETUP REQUEST SEND JSON VIA POST
+        $payload = json_encode( $payloadArray );
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, $payload );
+
+        //SETUP HEADER
+        if(!$auth)
+        {
+            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        }
+        else
+        {
+            $CI = &get_instance();
+            $authorization = "Authorization: " . $CI->session->userdata('jwt_token');
+            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json', $authorization));
+        }
+
+        //CONFIGURE THE RESPONSE TO BE TRANSFERRED INSTEAD OF PRINTED
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+
+        //EXECUTE CURL REQUEST
+        $result = curl_exec($ch);
+
+        //CLOSE CURL
+        curl_close($ch);
+        
+        //RETURN RESPONSE
+        return json_decode($result);
     }
 
     public function domestic_recharge(Request $request)
