@@ -595,6 +595,10 @@ class RechargeController extends Controller
              
         ]);
 
+        $rewind = $recharge_request->rewind();
+
+        return $recharge_request->getContents();
+
         $product_responses = $recharge_request->getBody();
 
         
