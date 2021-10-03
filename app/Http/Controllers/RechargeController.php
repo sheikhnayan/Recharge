@@ -577,7 +577,7 @@ class RechargeController extends Controller
 
         $sent["SendValue"] = 5.0;
 
-        $sented = '[{"SkuCode": '.$Sku.',"BatchItemRef": '.$batch.',"Price": '.$send.'}]';
+        $sented = '{"SkuCode": '.$Sku.',"BatchItemRef": '.$batch.',"SendValue": '.$send.'}';
 
 
         // return $sented;
