@@ -250,7 +250,7 @@ $.ajax({
  success : function(response){
   $(response).each(function(index,item){
     var data = '<option value='+item.ean+'>'+item.product+'</option>';
-    $('#amounts').append('<option value='+item.ean+','+item.amount+'>'+item.product+' Euro</option>');
+    $('#amounts').append('<option value='+item.ean+','+item.amount+'>'+item.product+' '+item.amount +' Euro</option>');
   })
  }
 });
