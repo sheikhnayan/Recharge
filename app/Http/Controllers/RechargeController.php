@@ -577,7 +577,7 @@ class RechargeController extends Controller
 
         $sent["SendValue"] = 5.0;
 
-        $sented = '[{"SkuCode": '.$Sku.',"BatchItemRef": '.$batch.',"SendValue": '.$send.'}]';
+        $sented = '[{"SkuCode": '.$Sku.',"BatchItemRef": '.$batch.',"Price": '.$send.'}]';
 
 
         // return $sented;
@@ -591,7 +591,7 @@ class RechargeController extends Controller
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
             'Content-Type' => 'application/json'
             ],
-            'body' =>$sented
+            'json' =>$sented
              
         ]);
 
