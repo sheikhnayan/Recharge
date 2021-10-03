@@ -616,36 +616,42 @@ class RechargeController extends Controller
 
         // return $prod;
 
-        //INITIATE CURL
-        $ch = curl_init( $url );
+        $curl = curl_init();
 
-        //SETUP REQUEST SEND JSON VIA POST
-        $payload = json_encode( $payloadArray );
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, $payload );
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.dingconnect.com/api/V1/EstimatePrices',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'[
 
-        //SETUP HEADER
-        if(!$auth)
         {
-            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+
+            "SendValue": 4.0,
+
+            "SkuCode": "NG_ZA_TopUp",
+
+            "BatchItemRef": "564642349884"
+
         }
-        else
-        {
-            $CI = &get_instance();
-            $authorization = "Authorization: " . $CI->session->userdata('jwt_token');
-            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json', $authorization));
-        }
 
-        //CONFIGURE THE RESPONSE TO BE TRANSFERRED INSTEAD OF PRINTED
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        ]',
+        CURLOPT_HTTPHEADER => array(
+            'api_key: G4ymoFlN97B6PhZgK1yzuY',
+            'Content-Type: application/json',
+            'Cookie: incap_ses_1133_1694192=AwHWAm/BhlzZuzgc6Dm5D7rbWWEAAAAAo9JpBSlTH4IrRXDnVPx7Fg==; nlbi_1694192=6JpIeiOts2y5IjJ2GYVdWQAAAAD/6ShAvkegY47YOpZi0MML; visid_incap_1694192=3NpwJbT5Rfi4Xx/8TMLYt0HPImEAAAAAQUIPAAAAAAA0uxNXMfBiKihGapkEfTkn'
+        ),
+        ));
 
-        //EXECUTE CURL REQUEST
-        $result = curl_exec($ch);
+        $response = curl_exec($curl);
 
-        //CLOSE CURL
-        curl_close($ch);
-        
-        //RETURN RESPONSE
-        return json_decode($result);
+        curl_close($curl);
+        echo $response;
+
     }
 
     public function domestic_recharge(Request $request)
