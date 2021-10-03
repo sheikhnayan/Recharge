@@ -49,7 +49,7 @@
                       <input type="hidden" name="operator" id="op">
                       <select id="operator" class="brand-dropdown" value="" style="width: 100%;">
                         <option id="test" value="VODAFONE" data-thumbnail="{{ asset('images/vodafone.png') }}"> VODAFONE</option>
-                        <option id="test" value="TIM" data-thumbnail="{{ asset('images/tim.png') }}">TIM</option>
+                        <option id="test" value="TIM" data-thumbnail="{{ asset('images/tim.jpg') }}">TIM</option>
                         <option value="RABONA" data-thumbnail="{{ asset('images/rabona.png') }}">RABONA</option>
                         <option value="LYCAMOBILE" data-thumbnail="{{ asset('images/lyca.png') }}">LYCAMOBILE</option>
                         <option value="Daily Telecom" data-thumbnail="{{ asset('images/daily.png') }}">Daily Telecom</option>
@@ -70,7 +70,7 @@
                         <option value="BETSSON" data-thumbnail="{{ asset('images/betsson.png') }}">BETSSON</option>
                         <option value="BETFLAG" data-thumbnail="{{ asset('images/betflag.png') }}">BETFLAG</option>
                         <option value="STANLEYBET" data-thumbnail="{{ asset('images/stanley.png') }}">STANLEYBET</option>
-                        <option value="NowTel" data-thumbnail="{{ asset('images/nowtell.png') }}">NowTel</option>
+                        <option value="NowTel" data-thumbnail="{{ asset('images/nowtell.jpg') }}">NowTel</option>
                         <option value="CloudItalia" data-thumbnail="{{ asset('images/cloud.png') }}">CloudItalia</option>
                         <option value="OnShop" data-thumbnail="{{ asset('images/on.png') }}">OnShop</option>
                         <option value="Party" data-thumbnail="{{ asset('images/party.png') }}">Party Poker</option>
