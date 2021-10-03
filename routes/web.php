@@ -77,7 +77,13 @@ Route::post('check-products', function(Request $request){
     return response()->json($offer_detail, 200);
 });
 Route::post('check-pins', function(Request $request){
-    $offer_detail = DB::table('domestic_pins')->where('operator', 'like', '%'.$request->id.'%')->where('type','pin')->get();
+
+    if($request->id == 'EA')
+    {
+        $offer_detail = DB::table('domestic_pins')->where('operator', $request->id)->where('type','pin')->get(); 
+    }else {
+        $offer_detail = DB::table('domestic_pins')->where('operator', 'like', '%'.$request->id.'%')->where('type','pin')->get();
+    }
     return response()->json($offer_detail, 200);
 });
 
