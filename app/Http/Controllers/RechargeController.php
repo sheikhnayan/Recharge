@@ -581,10 +581,10 @@ class RechargeController extends Controller
 
 
 
-
+        $test = str_replace('"{','{', $sented);
 
         
-
+        dd($test);
 
         
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
