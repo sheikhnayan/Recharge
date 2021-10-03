@@ -591,7 +591,7 @@ class RechargeController extends Controller
             'api_key'     => 'G4ymoFlN97B6PhZgK1yzuY',
             'Content-Type' => 'application/json'
             ],
-            'json' =>[$sented]
+            'json' =>$sented
              
         ]);
 
