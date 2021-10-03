@@ -594,7 +594,7 @@ class RechargeController extends Controller
             'api_key'     => 'G4ymoFlN97B6PhZgK1yzuY',
             'Content-Type' => 'application/json'
             ],
-            'body' => json_encode(['SkuCode' => $data['SkuCode'], 'BatchItemRef' => $data['BatchItemRef'], 'SendValue' => $send ], JSON_PRESERVE_ZERO_FRACTION),
+            'json' =>[$sented]
              
         ]);
 
