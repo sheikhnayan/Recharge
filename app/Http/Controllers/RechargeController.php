@@ -651,7 +651,7 @@ class RechargeController extends Controller
 
         curl_close($curl);
         // return $response;
-        $prod = json_decode($result,true);
+        $prod = json_decode($response,true);
 
         return $prod;
 
