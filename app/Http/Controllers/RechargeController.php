@@ -580,7 +580,6 @@ class RechargeController extends Controller
         $sented = json_encode($sent);
 
 
-        dd($sented);
 
         
 
@@ -592,9 +591,8 @@ class RechargeController extends Controller
             'api_key'     => 'L3YzbaxR91u6bNsgvQVeGT',
             'Content-Type' => 'application/json'
             ],
-            'json' => [
-                    $sented
-                    ]              
+            'json' =>$sented
+             
         ]);
 
         $product_responses = $recharge_request->getBody();
