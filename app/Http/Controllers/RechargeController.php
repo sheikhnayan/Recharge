@@ -579,6 +579,7 @@ class RechargeController extends Controller
 
         $sented = json_encode([$sent]);
 
+        dd($sent);
 
         $url = 'https://api.dingconnect.com/api/V1/EstimatePrices';
 
@@ -630,11 +631,11 @@ class RechargeController extends Controller
 
         {
 
-            "SendValue": '.$send.',
+            "SendValue": 4.0,
 
-            "SkuCode": '.$Sku.',
+            "SkuCode": "NG_ZA_TopUp",
 
-            "BatchItemRef": '.$batch.'
+            "BatchItemRef": "564642349884"
 
         }
 
