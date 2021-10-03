@@ -575,7 +575,7 @@ class RechargeController extends Controller
 
         $sent["BatchItemRef"] = $batch;
 
-        $sent["SendValue"] = $send;
+        $sent["SendValue"] = 5.0;
 
         $sent = json_encode($sent);
 
