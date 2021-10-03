@@ -582,7 +582,6 @@ class RechargeController extends Controller
 
         // dd($sented);
 
-        dd($sented);
 
 
         
