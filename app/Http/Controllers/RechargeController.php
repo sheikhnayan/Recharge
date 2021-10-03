@@ -595,9 +595,11 @@ class RechargeController extends Controller
              
         ]);
 
-        $rewind = $recharge_request->rewind();
+        $body = $recharge_request->getBody();
 
-        return $recharge_request->getContents();
+        // Rewind the stream
+        $body->rewind();
+        return $body->getContents(); // -->The request body :)
 
         $product_responses = $recharge_request->getBody();
 
