@@ -577,12 +577,12 @@ class RechargeController extends Controller
 
         $sent["SendValue"] = $send;;
 
-        $sented = json_encode($sent, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+        $sented = json_encode([$sent]);
 
 
         // dd($sented);
 
-        echo $sented;
+        dd($sented);
 
 
         
