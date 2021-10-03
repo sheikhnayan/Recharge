@@ -394,7 +394,7 @@
           BatchItemRef:Math.floor(Math.random() * 100000000000),
         },
         success:function(response){
-           console.log(response);
+           
           console.log(response['Items'][0]['Price.ReceiveValue']);
           document.getElementById("price").innerHTML = 'You Will Receive ' + response.Items[0].Price.ReceiveValue +' ' +response.Items[0].Price.ReceiveCurrencyIso+'. ';
           document.getElementById("received_amount").setAttribute('value',response.Items[0].Price.ReceiveValue);
