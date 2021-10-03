@@ -577,7 +577,7 @@ class RechargeController extends Controller
 
         $sent["SendValue"] = 5.0;
 
-        $sent = json_encode($sent);
+        $sented = json_encode($sent);
 
 
         // dd($sent);
@@ -593,7 +593,7 @@ class RechargeController extends Controller
             'Content-Type' => 'application/json'
             ],
             'json' => [
-                    $sent
+                    $sented
                     ]              
         ]);
 
