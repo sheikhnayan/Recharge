@@ -580,12 +580,6 @@ class RechargeController extends Controller
         $sented = json_encode($sent);
 
 
-
-        $test = str_replace('"{','{', $sented);
-
-        
-        dd($test);
-
         
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/EstimatePrices',[
@@ -593,7 +587,7 @@ class RechargeController extends Controller
             'api_key'     => 'G4ymoFlN97B6PhZgK1yzuY',
             'Content-Type' => 'application/json'
             ],
-            'json' =>[$sented]
+            'json' =>[json_encode($sent)]
              
         ]);
 
