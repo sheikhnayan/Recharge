@@ -582,6 +582,8 @@ class RechargeController extends Controller
 
         // dd($sented);
 
+        echo $sented;
+
 
         
         $client = new \GuzzleHttp\Client(['http_errors' => false]);
