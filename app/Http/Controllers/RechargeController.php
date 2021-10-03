@@ -570,6 +570,16 @@ class RechargeController extends Controller
         $batch = $data['BatchItemRef'];
         $send = (double)$data['SendValue'];
 
+
+        $sent["SkuCode"] = $Sku;
+
+        $sent["BatchItemRef"] = $batch;
+
+        $sent["SendValue"] = $send;
+
+
+        dd($sent);
+
         
 
 
