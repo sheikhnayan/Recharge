@@ -61,7 +61,7 @@ class PhoneController extends Controller
 
     public function order(Request $request)
     { 
-        if (Auth::user()->wallet >= $request->price) {
+        // if (Auth::user()->wallet >= $request->price) {
             $add = new PhoneOrder;
             $add->reseller_id = $request->reseller_id;
             $add->phone_name = $request->phone_name;
@@ -69,13 +69,15 @@ class PhoneController extends Controller
             $add->save();
 
             return back()->with('status','Order Placed Successfully!');
-        }else {
-            return back()->with('error','Insufficient Balance!');
-        }
+        // }else {
+        //     return back()->with('error','Insufficient Balance!');
+        // }
     }
 
     public function updateorder(Request $request)
     {
+        if(Auth::user()->role != 'admin')
+        {
         $info = Phone::where('phone', $request->phone_name)->first();
 
         $user = User::where('nationality', $request->nationality)->first();
@@ -86,19 +88,20 @@ class PhoneController extends Controller
 
         $admin_comission = ($info->dis_price/100)*$user->admin_mobile_commision;
 
-        if ($request->status == 'sold' && $past->status != 'sold') {
-            $update = User::where('nationality', $request->nationality)->update([
-                'wallet' => $user->wallet - (($info->dis_price*$past->quantity) + $reseller_comission + $admin_comission)
-            ]);
-        }elseif ($request->status == 'cancel' && $past->status == 'sold'){
-            $update = User::where('nationality', $request->nationality)->update([
-                'wallet' => $user->wallet + (($info->dis_price*$past->quantity) + $reseller_comission + $admin_comission)
-            ]);
-        }elseif ($request->status == 'pending' && $past->status == 'sold'){
-            $update = User::where('nationality', $request->nationality)->update([
-                'wallet' => $user->wallet + (($info->dis_price*$past->quantity) + $reseller_comission + $admin_comission)
-            ]);
-        }
+        // if ($request->status == 'sold' && $past->status != 'sold') {
+        //     $update = User::where('nationality', $request->nationality)->update([
+        //         'wallet' => $user->wallet - (($info->dis_price*$past->quantity) + $reseller_comission + $admin_comission)
+        //     ]);
+        // }elseif ($request->status == 'cancel' && $past->status == 'sold'){
+        //     $update = User::where('nationality', $request->nationality)->update([
+        //         'wallet' => $user->wallet + (($info->dis_price*$past->quantity) + $reseller_comission + $admin_comission)
+        //     ]);
+        // }elseif ($request->status == 'pending' && $past->status == 'sold'){
+        //     $update = User::where('nationality', $request->nationality)->update([
+        //         'wallet' => $user->wallet + (($info->dis_price*$past->quantity) + $reseller_comission + $admin_comission)
+        //     ]);
+        // }
+    }
 
         $update = PhoneOrder::where('id', $request->id)->update([
             'status' => $request->status

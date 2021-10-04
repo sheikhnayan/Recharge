@@ -138,6 +138,9 @@ class OrderController extends Controller
 
     public function update_status(Request $request)
     {
+
+        if(Auth::user()->role != 'admin')
+        {
         $info = Order::where('id', $request->id)->first();
 
         $user = User::where('id', $request->reseller_id)->first();
@@ -148,26 +151,27 @@ class OrderController extends Controller
 
         $admin_comission = ($info->total/100)*$user->admin_cargo_commision;
 
-        if ($request->status == 'confirmed' && $past->status != 'confirmed') {
-            $update = User::where('id', $request->reseller_id)->update([
-                'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
-            ]);
-        }elseif ($request->status == 'cancel' && $past->status == 'confirm'){
-            $update = User::where('id', $request->reseller_id)->update([
-                'wallet' => $user->wallet + ($info->total + $reseller_comission + $admin_comission)
-            ]);
-        }elseif ($request->status == 'pending' && $past->status == 'confirmed'){
-            $update = User::where('id', $request->reseller_id)->update([
-                'wallet' => $user->wallet + ($info->total + $reseller_comission + $admin_comission)
-            ]);
-        }elseif ($request->status == 'received' && $past->status == 'pending'){
-            $update = User::where('id', $request->reseller_id)->update([
-                'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
-            ]);
-        }elseif ($request->status == 'received' && $past->status == 'cancel'){
-            $update = User::where('id', $request->reseller_id)->update([
-                'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
-            ]);
+        // if ($request->status == 'confirmed' && $past->status != 'confirmed') {
+        //     $update = User::where('id', $request->reseller_id)->update([
+        //         'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
+        //     ]);
+        // }elseif ($request->status == 'cancel' && $past->status == 'confirm'){
+        //     $update = User::where('id', $request->reseller_id)->update([
+        //         'wallet' => $user->wallet + ($info->total + $reseller_comission + $admin_comission)
+        //     ]);
+        // }elseif ($request->status == 'pending' && $past->status == 'confirmed'){
+        //     $update = User::where('id', $request->reseller_id)->update([
+        //         'wallet' => $user->wallet + ($info->total + $reseller_comission + $admin_comission)
+        //     ]);
+        // }elseif ($request->status == 'received' && $past->status == 'pending'){
+        //     $update = User::where('id', $request->reseller_id)->update([
+        //         'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
+        //     ]);
+        // }elseif ($request->status == 'received' && $past->status == 'cancel'){
+        //     $update = User::where('id', $request->reseller_id)->update([
+        //         'wallet' => $user->wallet - ($info->total + $reseller_comission + $admin_comission)
+        //     ]);
+        // }
         }
 
         $update = Order::where('id', $request->id)->update([
