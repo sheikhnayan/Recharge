@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>Sim Sell</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -360,7 +361,7 @@ $.ajax({
  type: "POST",
  url: "{{ route('offer-check') }}", // url to request
  headers: {
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
          },
  data:{ 
             _token:'{{ csrf_token() }}',
