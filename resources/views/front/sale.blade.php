@@ -358,7 +358,7 @@ var sim = $('#sim_id').val();
 var table = $('#offer');
 $.ajax({
  type: "POST",
- url: "https://jmnation/offer-check", // url to request
+ url: "https://jmnation/api/offer-check", // url to request
  headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
          },
