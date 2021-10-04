@@ -364,7 +364,7 @@ $.ajax({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
          },
  data:{ 
-            _token:'{{ csrf_token() }}',
+            // _token:'{{ csrf_token() }}',
             id: value,
             sim_id: sim
         },
