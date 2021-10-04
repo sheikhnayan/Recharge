@@ -72,6 +72,12 @@ Route::post('offer-check', function(Request $request){
     return response()->json($offer_detail, 200);
 })->name('offer-check');
 
+Route::get('offer-edit/{id}', function($id){
+    $operator = SimOperator::all();
+    $offer_detail = Offer::where('id',$id)->first();
+    return view('front.offer-edit',compact('offer_detail','operator'));
+});
+
 Route::post('check-products', function(Request $request){
     $offer_detail = DomesticProduct::where('product', 'like', '%'.$request->id.'%')->where('type','recharge')->get();
     return response()->json($offer_detail, 200);
@@ -97,6 +103,8 @@ Route::get('/delete-operator/{id}', [OperatorController::class,'destroy']);
 Route::get('/offer', [OfferController::class,'index']);
 
 Route::post('/offer', [OfferController::class,'store']);
+
+Route::post('/offer-update/{id}', [OfferController::class,'update']);
 
 Route::get('/delete-offer/{id}', [OfferController::class,'destroy']);
 

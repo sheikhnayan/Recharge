@@ -87,7 +87,21 @@ class OfferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Offer::where('id',$id)->update([
+            'operator' => $request->operator,
+            'offer' => $request->offer,
+            'costo' => $request->costo,
+            'ricarica' => $request->ricarica,
+            'valida' => $request->valida,
+            'internet' => $request->internet,
+            'minuti' => $request->minuti,
+            'minuti_internazionale' =>$request->minuti_internazionale,
+            'minuti_illimitati' => $request->minuti_illimitati,
+            'minuti_internazionali_validi' => $request->minuti_internazionali_validi,
+            'altre_informazioni' => $request->altre_informazioni
+        ]);
+
+        return redirect('/sim/wi-fi');
     }
 
     /**
@@ -100,6 +114,6 @@ class OfferController extends Controller
     {
         Offer::where('id', $id)->delete();
         
-        return redirect('/offer');
+        return redirect('/sim/wi-fi');
     }
 }

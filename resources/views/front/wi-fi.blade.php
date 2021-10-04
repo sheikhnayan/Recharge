@@ -54,6 +54,7 @@
                       <th>Operator</th>
                       <th>Offer Name</th>
                       <th class="text-center">Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -62,6 +63,9 @@
                       <td>{{ $item->operator }}</td>
                       <td>{{ $item->offer }}</td>
                       <td class="text-center"><span class="badge bg-info">Active</span></td>
+                      <td> <a class="btn btn-success" href="/offer-edit/{{ $item->id }}">Edit</a> 
+                           <a class="btn btn-danger" href="/delete-offer/{{ $item->id }}">Delete</a> 
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>
