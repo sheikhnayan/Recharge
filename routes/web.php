@@ -70,7 +70,7 @@ Route::get('/recharge', function () {
 Route::post('offer-check', function(Request $request){
     $offer_detail = Offer::where('offer',$request->id)->first();
     return response()->json($offer_detail, 200);
-});
+})->name('offer-check');
 
 Route::post('check-products', function(Request $request){
     $offer_detail = DomesticProduct::where('product', 'like', '%'.$request->id.'%')->where('type','recharge')->get();

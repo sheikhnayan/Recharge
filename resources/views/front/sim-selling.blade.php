@@ -72,7 +72,11 @@
                       <td>{{ $item->iccid }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->nationality }}</td>
+                      @if($item->status == 'sold')
+                      <td><span class="badge badge-success">Completed</span></td>
+                      @else
                       <td><span class="badge badge-primary">{{ $item->status }}</span></td>
+                      @endif
                       @if (Auth::user()->role == 'admin')
                       <td> 
                         <form action="/sim-order/update" method="POST">
@@ -85,7 +89,7 @@
                           <select name="status" style="width: 120px">
                               <option {{$item->status == 'available' ? 'selected' : '' }} value="available">Available</option>
                               <option {{$item->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
-                              <option {{$item->status == 'sold' ? 'selected' : '' }} value="sold">Sold</option>
+                              <option {{$item->status == 'sold' ? 'selected' : '' }} value="sold">Completed</option>
                           </select>
                           <input type="submit" value="Update" class="btn btn-success">
                           </form>  

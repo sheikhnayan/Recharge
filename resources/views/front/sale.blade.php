@@ -64,106 +64,52 @@
                       <a href="/offer" type="button" class="btn btn-sm btn-info">Add Offer</a>
                     </div>
                     @endif
-                  <select name="offer" class="custom-select" id="exampleSelect">
+                  <select name="offer" class="custom-select" id="offer">
                     <option>Select Offer</option>
                     @foreach ($offer as $item)
                         <option value="{{ $item->offer }}">{{ $item->offer }}</option>
                     @endforeach
                   </select>
                 </div>
-                @foreach ($offer as $item)
-                <div class="{{ $item->offer }}" style="display: none;">
-                  <table class="table table-bordered">
-                    <tbody>
-                      <tr class="bg-sky">
-                        <td style="width: 30%;">Costo al mese</td>
-                        <td>&euro; {{ $item->costo }}</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>Ricarica totale</td>
-                        <td>&euro; {{ $item->ricarica }}</td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Offerta valida per</td>
-                        <td>{{ $item->valida }}</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>Pacchetto Internet gratuito (GB)</td>
-                        <td>{{ $item->internet }}</td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Minuti gratuiti per operatore locale</td>
-                        <td>{{ $item->minuti }}</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>minuti gratuiti per internazionale</td>
-                        <td>{{ $item->minuti_internazionale }}</td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Minuti illimitatia</td>
-                        <td>{{ $item->minuti_illimitati }}</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>Minuti internazionali validi per</td>
-                        <td>{{ $item->minuti_internazionali_validi }}
-                        </td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Altre informazioni</td>
-                        <td>{{ $item->altre_informazioni }}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                @endforeach
-                <div class="offer_table_one box" style="display: none;">
-                  <table class="table table-bordered">
-                    <tbody>
-                      <tr class="bg-sky">
-                        <td style="width: 30%;">Costo al mese</td>
-                        <td>&euro; 8.99</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>Ricarica totale</td>
-                        <td>&euro; 10.00</td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Offerta valida per</td>
-                        <td>01/09/2021</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>Pacchetto Internet gratuito (GB)</td>
-                        <td>70 GB (50GB inclusi+20 Giga free)</td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Minuti gratuiti per operatore locale</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing.</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>minuti gratuiti per internazionale</td>
-                        <td>300 MINUTE INTERNET ZONE</td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Minuti illimitatia</td>
-                        <td>VODAFONE PER VODAFONE ILLIMITATO</td>
-                      </tr>
-                      <tr class="bg-ocean">
-                        <td>Minuti internazionali validi per</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda fugiat odio 
-                          vitae, qui quod voluptatem error neque libero, alias voluptates numquam at, eaque obcaecati 
-                          ipsum voluptas repellendus veritatis cupiditate? Iste consequatur suscipit id expedita dolore 
-                          velit perspiciatis minima delectus a aspernatur atque fugit, aliquam adipisci,?
-                        </td>
-                      </tr>
-                      <tr class="bg-sky">
-                        <td>Altre informazioni</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dignissimos, soluta quaerat 
-                          ratione error dicta ducimus temporibus libero, ullam labore veniam suscipit, similique nobis hic.
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div id="offer-table" class="col-md-10">
+                  {{-- <table class="table table-bordered">
+                    <tr>
+                      <td>Costo al mese :</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Ricarica totale :</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Offerta valida per :</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Pacchetto Internet gratuito (GB) :</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Minuti gratuiti per operatore locale :</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Minuti gratuiti per internazionale :</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Minuti illimitati a :</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Minuti internazionali validi per :</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Altre informazioni :</strong></td>
+                      <td></td>
+                    </tr>
+                  </table> --}}
                 </div>
               </div>
             </div>
@@ -242,14 +188,13 @@
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label for="inputSalePrice" class="form-label">Sale Price</label>
-                      <input type="text" name="sell_price" class="form-control" id="inputSalePrice" placeholder="Inter Client Nationality">
+                      <input type="text" name="sell_price" class="form-control" id="inputSalePrice" placeholder="Inter Sell Price">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="selectRecarica">Recarica</label>
                       <select class="custom-select" name="recharge" id="selectRecarica">
-                        <option>Select Recarica</option>
                         <option>$10 Ricarica</option>
                         <option>$07 Ricarica</option>
                         <option>$05 Ricarica</option>
@@ -311,7 +256,7 @@
                         <label for="">File 1</label>
                         <input type="file" name="file" class="btn btn-success col " required="">
                         <label for="">File 2</label>
-                        <input type="file" name="file2" class="btn btn-success col " required="">
+                        <input type="file" name="file2" class="btn btn-success col ">
                         {{-- <span class="btn btn-success col fileinput-button">
                           <i class="fas fa-plus"></i>
                           <span>Add files</span>
@@ -399,6 +344,84 @@
 <script src="{{ asset('js/admin.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ asset('js/custom.js') }}"></script>
+
+
+
+
+<script>
+  $(function(){
+$('#offer').change(function(){
+var empty = "";
+var value = $(this).val();
+var sim = $('#sim_id').val();
+var table = $('#offer');
+$.ajax({
+ type: "POST",
+ url: "{{ route('offer-check') }}", // url to request
+ data:{ 
+            _token:'{{ csrf_token() }}',
+            id: value,
+            sim_id: sim
+        },
+  cache: false,
+  dataType: 'json',
+ success : function(response){
+  $("#offer-table").empty();
+   // populate data here
+   var offer = `<table class="table table-bordered">
+              <tr>
+              <th>Offer Details</th>
+              </tr>
+              <tr>
+                <td><strong>Costo al mese :</strong>` +response.costo+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><strong>Ricarica totale :</strong>` +response.ricarica+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> <strong>Offerta valida per :</strong>` +response.valida+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> <strong>Pacchetto Internet gratuito (GB) :</strong>` +response.internet+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> <strong>Minuti gratuiti per operatore locale :</strong>` +response.minuti+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> <strong>Minuti gratuiti per internazionale :</strong>` +response.minuti_internazionale+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> <strong>Minuti illimitati a :</strong>` +response.minuti_illimitati+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> <strong>Minuti internazionali validi per :</strong>` +response.minuti_internazionali_validi+`</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><strong>Altre informazioni :</strong> `+response.altre_informazioni+`</td>
+                <td></td>
+              </tr>
+            </table>`
+            $("#offer-table").append(offer);
+ }
+});
+});
+});
+</script>
+
+
+
+
+
+
+
 
 
 
