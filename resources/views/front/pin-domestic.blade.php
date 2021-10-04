@@ -70,7 +70,7 @@
                         <option value="BETSSON" data-thumbnail="{{ asset('images/betsson.png') }}">BETSSON</option>
                         <option value="BETFLAG" data-thumbnail="{{ asset('images/betflag.png') }}">BETFLAG</option>
                         <option value="STANLEYBET" data-thumbnail="{{ asset('images/stanley.png') }}">STANLEYBET</option>
-                        <option value="NowTel" data-thumbnail="{{ asset('images/nowtell.jpg') }}">NowTel</option>
+                        <option value="NowTel" data-thumbnail="{{ asset('images/nowtell.png') }}">NowTel</option>
                         <option value="CloudItalia" data-thumbnail="{{ asset('images/cloud.png') }}">CloudItalia</option>
                         <option value="OnShop" data-thumbnail="{{ asset('images/on.png') }}">OnShop</option>
                         <option value="Party" data-thumbnail="{{ asset('images/party.png') }}">Party Poker</option>
