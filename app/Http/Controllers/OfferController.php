@@ -53,7 +53,7 @@ class OfferController extends Controller
             'altre_informazioni' => $request->altre_informazioni
         ]);
 
-        return redirect('/offer');
+        return redirect('/sim/wi-fi');
     }
 
     /**
