@@ -215,6 +215,9 @@ class SimController extends Controller
 
 
     public function sim_order_update(Request $request){
+
+        if(Auth::useer()->role != 'admin')
+        {
         $info = sim::where('id', $request->sim_id)->first();
 
         $user = User::where('id', $info->reseller_id)->first();
@@ -237,6 +240,8 @@ class SimController extends Controller
             $update = User::where('id', $info->reseller_id)->update([
                 'wallet' => $user->wallet + ($info->buy_price + $reseller_comission + $admin_comission)
             ]);
+        }
+        
         }
 
         $update = sim::where('id', $request->sim_id)->update([
