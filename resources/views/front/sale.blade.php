@@ -360,7 +360,7 @@ $.ajax({
  type: "POST",
  url: "{{ route('offer-check') }}", // url to request
  headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
          },
  data:{ 
             _token:'{{ csrf_token() }}',
