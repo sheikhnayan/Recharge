@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Slider;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -158,5 +159,18 @@ class UserController extends Controller
         User::where('id', $id)->delete();
         
         return back();
+    }
+
+    public function slider(Request $request)
+    {
+        $path = $request->image->store('slider/uploads', 'public');
+
+
+        $Phones = new Slider;
+        $Phones->link = $request->input('link');        
+        $Phones->image = $path;
+        $Phones->save();
+
+        return back()->with('status', 'Sldier Uploaded Successfully!');
     }
 }

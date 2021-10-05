@@ -17,6 +17,7 @@ use App\Models\SimOperator;
 use App\Models\sim;
 use App\Models\User;
 use App\Models\Offer;
+use App\Models\Slider;
 use App\Models\Phone;
 use App\Models\DomesticProduct;
 use App\Models\DomesticProfit;
@@ -38,7 +39,8 @@ Route::post('/create',[UserController::class,'create'])->name('create');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     $data = Phone::where('status', 'available')->get();
-    return view('front.index',compact('data'));
+    $slider = Slider::latest()->get();
+    return view('front.index',compact('data','slider'));
 })->name('/');
 Route::get('/add-reseller', function () {
     return view('front.add-reseller');
@@ -165,6 +167,10 @@ Route::get('/phone/selling-list', [PhoneController::class,'SellingList'])->name(
 Route::get('/phone/add-phone-view', [PhoneController::class,'AddPhoneView'])->name('add-phone-view');
 
 Route::post('/phone/add-phone', [PhoneController::class,'AddPhone'])->name('add-phone');
+
+Route::get('/add-slider-view', [PhoneController::class,'AddPhoneView'])->name('add-sldier-view');
+
+Route::post('/add-slider', [PhoneController::class,'AddPhone'])->name('add-slider');
 
 Route::post('/phone/order', [PhoneController::class,'order'])->name('add-order');
 
