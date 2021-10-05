@@ -152,7 +152,7 @@
                   <div class="col-12">
                     <div class="mb-3">
                       <label for="inputNID" class="form-label">Codici Fiscali</label>
-                      <input name="codice" type="text" class="form-control" id="inputNID" placeholder="Inter Client NID number">
+                      <input name="codice" type="text" class="form-control" id="inputNID" placeholder="Inter Client Codici number">
                     </div>
                   </div>
                 </div>
@@ -196,9 +196,11 @@
                     <div class="form-group">
                       <label for="selectRecarica">Recarica</label>
                       <select class="custom-select" name="recharge" id="selectRecarica">
+                        <option>$5 Ricarica</option>
                         <option>$10 Ricarica</option>
-                        <option>$07 Ricarica</option>
-                        <option>$05 Ricarica</option>
+                        <option>$20 Ricarica</option>
+                        <option>$30 Ricarica</option>
+                        <option>$50 Ricarica</option>
                       </select>
                     </div>
                   </div>
