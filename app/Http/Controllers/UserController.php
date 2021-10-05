@@ -173,4 +173,9 @@ class UserController extends Controller
 
         return back()->with('status', 'Sldier Uploaded Successfully!');
     }
+
+    public function AddsliderView()
+    {
+        return view('front.add-slider')
+    }
 }

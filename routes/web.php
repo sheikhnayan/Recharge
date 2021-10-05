@@ -168,9 +168,9 @@ Route::get('/phone/add-phone-view', [PhoneController::class,'AddPhoneView'])->na
 
 Route::post('/phone/add-phone', [PhoneController::class,'AddPhone'])->name('add-phone');
 
-Route::get('/add-slider-view', [PhoneController::class,'AddPhoneView'])->name('add-sldier-view');
+Route::get('/add-slider-view', [UserController::class,'AddsliderView'])->name('add-sldier-view');
 
-Route::post('/add-slider', [PhoneController::class,'AddPhone'])->name('add-slider');
+Route::post('/add-slider', [UserController::class,'slider'])->name('add-slider');
 
 Route::post('/phone/order', [PhoneController::class,'order'])->name('add-order');
 
