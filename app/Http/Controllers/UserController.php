@@ -176,6 +176,6 @@ class UserController extends Controller
 
     public function AddsliderView()
     {
-        return view('front.add-slider')
+        return view('front.add-slider');
     }
 }
