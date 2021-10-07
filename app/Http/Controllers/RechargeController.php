@@ -484,7 +484,7 @@ class RechargeController extends Controller
         // dd($prod);
 
 
-        $sendvalue = $SendValue;
+        $sendvalue = $SendValue + ($SendValue/100)*a::user()->admin_international_recharge_commission + ($SendValue/100)*a::user()->international_recharge;
 
         //  $count = count($prod['ErrorCodes']);
 
@@ -503,7 +503,7 @@ class RechargeController extends Controller
 
             $real_cost = $sendvalue + $reseller_commission + $admin_commission;
 
-           dd($amount);
+           dd($sendvalue);
 
 
             if(a::user()->role != 'admin'){
