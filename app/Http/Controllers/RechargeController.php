@@ -458,7 +458,6 @@ class RechargeController extends Controller
             $amount = $datas['amount'];
             $refcost = $datas['amount'];
         }
-        dd($refcost);
         if (a::user()->wallet >= $SendValue) {
             $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
@@ -548,7 +547,7 @@ class RechargeController extends Controller
             $create->operator = $request->operator;
             $create->type = 'International';
             $create->status = 'completed';
-            $create->cost = $real_cost;
+            $create->cost = $refcost;
             $create->service = $request->service;
             $create->save();
     
