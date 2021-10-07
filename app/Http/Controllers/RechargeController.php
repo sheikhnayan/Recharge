@@ -503,7 +503,7 @@ class RechargeController extends Controller
 
             $real_cost = $sendvalue + $reseller_commission + $admin_commission;
 
-           dd($sendvalue);
+           dd($reseller_commission);
 
 
             if(a::user()->role != 'admin'){
