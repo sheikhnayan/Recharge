@@ -170,7 +170,15 @@ Route::post('/phone/add-phone', [PhoneController::class,'AddPhone'])->name('add-
 
 Route::get('/add-slider-view', [UserController::class,'AddsliderView'])->name('add-sldier-view');
 
+Route::get('/slider-view', [UserController::class,'sliderView'])->name('sldier-view');
+
+Route::get('/slider-edit/{id}', [UserController::class,'slideredit'])->name('slider-edit');
+
+Route::get('/slider-delete/{id}', [UserController::class,'sliderdelete'])->name('slider-delete');
+
 Route::post('/add-slider', [UserController::class,'slider'])->name('add-slider');
+
+Route::post('/edit-slider', [UserController::class,'updateslider'])->name('edit-slider');
 
 Route::post('/phone/order', [PhoneController::class,'order'])->name('add-order');
 

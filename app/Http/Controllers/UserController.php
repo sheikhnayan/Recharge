@@ -174,8 +174,45 @@ class UserController extends Controller
         return back()->with('status', 'Sldier Uploaded Successfully!');
     }
 
+    public function updateslider(Request $request)
+    {
+        $data = Slider::where('id', $request->id)->first();
+        if($request->image != null){
+            $path = $request->image->store('slider/uploads', 'public');
+        }else{
+            $path = $data->image;
+        }
+        
+
+
+        $Phones = Slider::where('id', $request->id)->update([
+            'link' => $request->input('link'),
+            'image' => $path
+        ]);
+
+        return back()->with('status', 'Sldier Updated Successfully!');
+    }
+
     public function AddsliderView()
     {
         return view('front.add-slider');
+    }
+
+    public function sliderView()
+    {
+        $data = Slider::latest()->get();
+        return view('front.sliders',compact('data'));
+    }
+
+    public function slideredit($id)
+    {
+        $data = Slider::where('id',$id)->first();
+        return view('front.edit-slider',compact('data'));
+    }
+
+    public function sliderdelete($id)
+    {
+        $data = Slider::where('id',$id)->delete();
+        return back()->with('status','Slider Deleted Successfully!');
     }
 }
