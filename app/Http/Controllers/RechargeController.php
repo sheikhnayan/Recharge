@@ -451,12 +451,13 @@ class RechargeController extends Controller
             $SkuCode = $sku_amount['0'];
             $SendValue = $sku_amount['1'];
             $amount = $sku_amount['1'];
+            $refcost = $sku_amount['1'] + ($sku_amount['1']/100)*a::user()->admin_international_recharge_commission + ($sku_amount['1']/100)*a::user()->international_recharge;
         }else{
             $SkuCode = $datas['Sku_Code'];
             $SendValue = $datas['amount'] - (($datas['amount']/100)*a::user()->admin_international_recharge_commission) - (($datas['amount']/100)*a::user()->international_recharge);
             $amount = $datas['amount'];
+            $refcost = $datas['amount'];
         }
-        // dd($SendValue);
         if (a::user()->wallet >= $SendValue) {
             $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
@@ -503,8 +504,6 @@ class RechargeController extends Controller
 
             $real_cost = $sendvalue + $reseller_commission + $admin_commission;
 
-            dd($real_cost);
-
 
             if(a::user()->role != 'admin'){
                 $minus = a::user()->update([
@@ -548,7 +547,7 @@ class RechargeController extends Controller
             $create->operator = $request->operator;
             $create->type = 'International';
             $create->status = 'completed';
-            $create->cost = $real_cost;
+            $create->cost = $refcost;
             $create->service = $request->service;
             $create->save();
     

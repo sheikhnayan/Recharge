@@ -20,7 +20,7 @@
 @section('content')
 <div class="content-wrapper">
 	<div class="container-fluid">
-		<form enctype="multipart/form-data" method="post" action="{{route('add-slider')}}">
+		<form enctype="multipart/form-data" method="post" action="{{route('edit-slider',$data->id)}}">
 			@csrf
 			@if (session('status'))
               	<div class="alert alert-success">
@@ -29,13 +29,17 @@
           	@endif
 		  <div class="form-group">
 		    <label for="formGroupExampleInput">slider link</label>
-		    <input type="text" class="form-control" id="formGroupExampleInput" name="link" placeholder="Example input">
+		    <input type="text" class="form-control" value="{{ $data->link }}" id="formGroupExampleInput" name="link" placeholder="Example input">
 		  </div>
 		  <div class="form-group">
 		    <label for="formGroupExampleInput">Image</label>
 		    <input type="file" class="form-control" id="formGroupExampleInput" name="image" placeholder="Example input">
 		  </div>
-		  <button class="btn btn-success" type="submit">Add Slider</button>
+		  <div class="form-group">
+				<img class="img-fluid" style="width: 600px" src="{{ asset('storage/'.$data->image) }}" alt="">
+		  </div>
+		  <input type="hidden" name="id" value="{{ $data->id }}">
+		  <button class="btn btn-success" type="submit">Edit Slider</button>
 		</form>
 	</div>
 </div>

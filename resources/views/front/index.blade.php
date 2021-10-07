@@ -33,7 +33,11 @@
             </h2>
           </div>
           <div class="col-2 text-center">
+            @if(Auth::user()->role == 'admin')
             <a class="btn btn-success" href="{{ route('add-sldier-view') }}">Add Slider</a>
+            <a class="btn btn-success" href="{{ route('sldier-view') }}">All Slider</a>
+
+            @endif
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -51,8 +55,16 @@
                     <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
                   </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
+                  <div class="carousel-inner" style="width: 100%; height:600px;">
+                    @foreach ($slider as $key => $item)
+                    <div class="carousel-item @if($key == '0') active @endif" style="width: 100%; height:600px;">
+                      <a href="{{ $item->link }}">
+                      <img class="d-block w-100 image-fluid" src="{{ asset('storage/'.$item->image) }}"
+                        alt="slide" style="width: 100%; height:600px;">
+                      </a>
+                    </div>
+                    @endforeach
+                    {{-- <div class="carousel-item active">
                       <img class="d-block w-100" src="images/carousel-images_1.jpg"
                         alt="First slide">
                     </div>
@@ -63,7 +75,7 @@
                     <div class="carousel-item">
                       <img class="d-block w-100" src="images/carousel-images_3.jpg"
                         alt="Third slide">
-                    </div>
+                    </div> --}}
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-custom-icon" aria-hidden="true">
