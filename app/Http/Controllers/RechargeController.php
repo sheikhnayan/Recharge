@@ -458,37 +458,37 @@ class RechargeController extends Controller
         }
         // dd($SendValue);
         if (a::user()->wallet >= $SendValue) {
-            $client = new \GuzzleHttp\Client(['http_errors' => false]);
-            $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
-            'headers' => [
-            'api_key'     => 'G4ymoFlN97B6PhZgK1yzuY',
-            'Content-Type' => 'application/json'
-            ],
-            'verify' => false,
-            'json' => [
-                    'SkuCode' => $SkuCode,
-                    'SendValue' => $SendValue,
-                    'AccountNumber' => $number,
-                    'DistributorRef' => $txid,
-                    'ValidateOnly' => false
-                    ]              
-        ]);
+        //     $client = new \GuzzleHttp\Client(['http_errors' => false]);
+        //     $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
+        //     'headers' => [
+        //     'api_key'     => 'G4ymoFlN97B6PhZgK1yzuY',
+        //     'Content-Type' => 'application/json'
+        //     ],
+        //     'verify' => false,
+        //     'json' => [
+        //             'SkuCode' => $SkuCode,
+        //             'SendValue' => $SendValue,
+        //             'AccountNumber' => $number,
+        //             'DistributorRef' => $txid,
+        //             'ValidateOnly' => false
+        //             ]              
+        // ]);
 
-        $product_responses = $recharge_request->getBody();
+        // $product_responses = $recharge_request->getBody();
 
         
 
 
-        $prod = json_decode($product_responses,true);
+        // $prod = json_decode($product_responses,true);
 
         // dd($prod);
 
 
         $sendvalue = $SendValue;
 
-         $count = count($prod['ErrorCodes']);
+        //  $count = count($prod['ErrorCodes']);
 
-         if($count == 0){
+        //  if($count == 0){
             $auth_recharge = a::user()->international_recharge;
 
             $auth_admin_recharge = a::user()->admin_international_recharge_commission;
@@ -503,7 +503,7 @@ class RechargeController extends Controller
 
             $real_cost = $sendvalue + $reseller_commission + $admin_commission;
 
-            dd($real_cost);
+           dd($real_cost);
 
 
             if(a::user()->role != 'admin'){
@@ -552,10 +552,10 @@ class RechargeController extends Controller
             $create->service = $request->service;
             $create->save();
     
-            }else{
-                $error = $prod['ErrorCodes']['0']['Code'];
-                return redirect('/recharge/recharge-int')->with('error',$error);
-            }
+            // }else{
+            //     $error = $prod['ErrorCodes']['0']['Code'];
+            //     return redirect('/recharge/recharge-int')->with('error',$error);
+            // }
 
         return redirect('/recharge/recharge-int')->with('status','Recharge Successful!');
         }else{
