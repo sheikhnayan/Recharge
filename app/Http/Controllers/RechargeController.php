@@ -450,11 +450,13 @@ class RechargeController extends Controller
         if(count($sku_amount) > 1) {
             $SkuCode = $sku_amount['0'];
             $SendValue = $sku_amount['1'];
+            $cutting_value = $sku_amount['1'];
             $amount = $sku_amount['1'];
         }else{
             $SkuCode = $datas['Sku_Code'];
             $SendValue = $datas['amount'] - (($datas['amount']/100)*a::user()->admin_international_recharge_commission) - (($datas['amount']/100)*a::user()->international_recharge);
             $amount = $datas['amount'];
+            $cutting_value = $datas['amount'];
         }
         // dd($SendValue);
         if (a::user()->wallet >= $SendValue) {
@@ -484,7 +486,7 @@ class RechargeController extends Controller
         // dd($prod);
 
 
-        $sendvalue = $SendValue + ($SendValue/100)*a::user()->admin_international_recharge_commission + ($SendValue/100)*a::user()->international_recharge;
+        $sendvalue = $cutting_value + ($cutting_value/100)*a::user()->admin_international_recharge_commission + ($cutting_value/100)*a::user()->international_recharge;
 
         //  $count = count($prod['ErrorCodes']);
 
