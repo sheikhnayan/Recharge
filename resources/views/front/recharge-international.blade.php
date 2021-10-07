@@ -343,7 +343,7 @@
                                  <tbody>
                                     @foreach ($data as $item)
                                     <tr class="bg-ocean">
-                                       <<td>{{ $item->number }}</td>
+                                       <td>{{ $item->number }}</td>
                                        <td>{{ $item->operator }}</td>
                                        <td>{{ $item->cost }}</td>
                                        <td><i class="text-primary fas fa-check-square"></i></td>
