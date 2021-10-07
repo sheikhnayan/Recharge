@@ -456,7 +456,7 @@ class RechargeController extends Controller
             $SendValue = $datas['amount'] - (($datas['amount']/100)*a::user()->admin_international_recharge_commission) - (($datas['amount']/100)*a::user()->international_recharge);
             $amount = $datas['amount'];
         }
-        dd($SendValue);
+        // dd($SendValue);
         if (a::user()->wallet >= $SendValue) {
             $client = new \GuzzleHttp\Client(['http_errors' => false]);
             $recharge_request = $client->post('https://api.dingconnect.com/api/V1/SendTransfer',[
@@ -502,6 +502,8 @@ class RechargeController extends Controller
             $cost = $sendvalue + $reseller_commission + $admin_commission + $request->service;
 
             $real_cost = $sendvalue + $reseller_commission + $admin_commission;
+
+            dd($real_cost);
 
 
             if(a::user()->role != 'admin'){
