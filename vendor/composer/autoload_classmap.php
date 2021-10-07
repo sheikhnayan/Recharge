@@ -49,6 +49,7 @@ return array(
     'App\\Models\\RechargeHistory' => $baseDir . '/app/Models/RechargeHistory.php',
     'App\\Models\\SimOperator' => $baseDir . '/app/Models/SimOperator.php',
     'App\\Models\\SimOrder' => $baseDir . '/app/Models/SimOrder.php',
+    'App\\Models\\Slider' => $baseDir . '/app/Models/Slider.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\sim' => $baseDir . '/app/Models/sim.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

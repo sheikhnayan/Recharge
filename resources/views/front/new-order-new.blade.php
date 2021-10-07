@@ -198,63 +198,21 @@
               <div class="col-md-6">
                 <div class="bg-ocean mr-1">
                   <div class="order_information">
-                    <div class="form-group">
-                      <label>Expected Delivary Date</label>
-                      <div class="input-group date" data-target-input="nearest">
-                        <input type="date" class="form-control"  name="expected_date_to_receive"/>
-                        {{-- <div class="input-group-append" data-target="#expectedDelivaryDate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div> --}}
-                      </div>
-                    </div>
+                    
                     <div class="form-group">
                       <label>Delivary Type</label>
                       <select class="form-control select2" name="delivery_condition" style="width: 100%;">
                         <option>--Select--</option>
-                        <option>Received from Dhaka Office</option>
-                        <option>Home Delivary in Dhaka City</option>
-                        <option>Delivary in District level</option>
-                        <option>Home Delivary in District level</option>
+                        <option>Goods</option>
+                        <option>Documents</option>
                       </select>
                     </div>
-                    <div class="form-group">
-                      <label>Number of Box</label>
-                      <select class="form-control select2" name="numberOfBox" style="width: 100%;">
-                        <option value="">--Select--</option>
-                        <option>01</option>
-                        <option>02</option>
-                        <option>03</option>
-                        <option>04</option>
-                        <option>05</option>
-                        <option>06</option>
-                        <option>07</option>
-                        <option>08</option>
-                        <option>09</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="goods_value" class="form-label">Goods Value (EURO) *</label>
-                      <input type="number" step="any" class="form-control" id="goods_value" name="goods_value" value="0" oninput="goodValue(this)">
-                    </div>
+
                     <!-- <div class="mb-3">
                       <label for="inputGoodsValue" class="form-label">Goods Value (Euro)</label>
                       <input type="number" class="form-control" id="inputGoodsValue" placeholder="1234">
                     </div> -->
-                    <div class="form-group">
-                      <label>Product Type</label>
-                      <select class="form-control select2" name="productType" id="productType" style="width: 100%;" oninput="myFunction1234(this)">
-                        <option value="null">--Select--</option>
-                        <option>Solid</option>
-                        <option>Paper</option>
-                      </select>
-                    </div>
+
                     <div class="mb-3">
                       <label for="totalWeightValue" class="form-label">Total Weight (Kg)</label>
                       <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="weight(this)">
@@ -263,14 +221,8 @@
                       <label for="chargePerKgValue" class="form-label">Charge/Kg(Euro)</label>
                       <input class="form-control" type="number" step="any" name="perKg" id="perKg" value="0" placeholder="0">
                     </div>
-                    <div class="mb-3">
-                      <label for="chargeValue" class="form-label">Charge(Euro)</label>
-                      <input type="number" class="form-control" id="chargeValue" name="cusCharge" placeholder="0">
-                    </div>
-                    <div class="mb-3">
-                      <label for="homeDeliveryChargeValue" class="form-label">Home Delivery Charge(Euro)</label>
-                      <input type="number" class="form-control" id="homeDeliveryChargeValue" name="homeDeliveryCharge" placeholder="0">
-                    </div>
+
+
                     <div class="mb-3">
                       <label for="addiCharge" class="form-label">Additional Charge(Euro)</label>
                       <input class="form-control" step="any" type="number" name="addiCharge" id="addiCharge" value="0" onchange="addAdditionalCharge(this)">
@@ -284,56 +236,19 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="bg-rose">
-                  <div class="order_information">
-                    <div class="form-group">
-                      <label>Delivary Way</label>
-                      <select class="form-control select2" name="delivery_way" style="width: 100%;">
-                        <option>--Select--</option>
-                        <option>By Air</option>
-                        <option>By Road</option>
-                        <option>By Train</option>
-                        <option>By Ship</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Departure Port/Station</label>
-                      <select class="form-control select2" name ="departure_airport" id ="state" style="width: 100%;"></select>
-                    </div>
-                    <div class="form-group">
-                      <label>Arival Port/Station</label>
-                      <select class="form-control select2" name ="arrival_airport" id ="rstate" style="width: 100%;"></select>
-                    </div>
-                  </div>
-                </div>
+
 
 
                 <div class="bg-rose mt-5">
                   <div class="order_information">
                     <div class="mb-3">
-                      <label for="totalChargeValue" class="form-label d-block">BOX 1</label>
+                      <label for="totalChargeValue" class="form-label d-block">BOX</label>
                       <input type="text" class="form-control d-inline-block" style="width: 70%;" id="totalChargeValue" name="product1" placeholder="Product Name (e.g. Shirt, Pant etc.)">
                       <input type="text" class="form-control d-inline-block" style="width: 25%; margin-left: 10px;" id="totalChargeValue" name="qty1" placeholder="Qty">
                     </div>
                     <div class="mb-3">
-                      <label for="totalChargeValue" class="form-label d-block">BOX 2</label>
-                      <input type="text" class="form-control d-inline-block" style="width: 70%;" id="totalChargeValue" name="product2" placeholder="Product Name (e.g. Shirt, Pant etc.)">
-                      <input type="text" class="form-control d-inline-block" style="width: 25%; margin-left: 10px;" id="totalChargeValue" name="qty2" placeholder="Qty">
-                    </div>
-                    <div class="mb-3">
-                      <label for="totalChargeValue" class="form-label d-block">BOX 3</label>
-                      <input type="text" class="form-control d-inline-block" style="width: 70%;" id="totalChargeValue" name="product3" placeholder="Product Name (e.g. Shirt, Pant etc.)">
-                      <input type="text" class="form-control d-inline-block" style="width: 25%; margin-left: 10px;" id="totalChargeValue" name="qty3" placeholder="Qty">
-                    </div>
-                    <div class="mb-3">
-                      <label for="totalChargeValue" class="form-label d-block">BOX 4</label>
-                      <input type="text" class="form-control d-inline-block" style="width: 70%;" id="totalChargeValue" name="product4" placeholder="Product Name (e.g. Shirt, Pant etc.)">
-                      <input type="text" class="form-control d-inline-block" style="width: 25%; margin-left: 10px;" id="totalChargeValue" name="qty4" placeholder="Qty">
-                    </div>
-                    <div class="mb-3">
-                      <label for="totalChargeValue" class="form-label d-block">BOX 5</label>
-                      <input type="text" class="form-control d-inline-block" style="width: 70%;" id="totalChargeValue" name="product5" placeholder="Product Name (e.g. Shirt, Pant etc.)">
-                      <input type="text" class="form-control d-inline-block" style="width: 25%; margin-left: 10px;" id="totalChargeValue" name="qty5" placeholder="Qty">
+                      <label for="interCustomerAddress" class="form-label">Description</label>
+                      <textarea class="form-control" id="interCustomerAddress" name="address" rows="3"></textarea>
                     </div>
                   </div>
                 </div>

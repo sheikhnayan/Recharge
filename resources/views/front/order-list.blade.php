@@ -84,7 +84,7 @@
                   <tbody>
                     @foreach($orders as $order)
                     <tr class="bg-ocean">
-                      <td>{{$order->id}}</td>
+                      <td>{{$order->ran_id}}</td>
                       <td>{{$order->created_at}}<!-- <br>20:42:30 --></td>
                       {{-- <td>Agent Name</td> --}}
                       {{-- <td>{{$order->city}}</td> --}}
