@@ -50,8 +50,8 @@ class CargoController extends Controller
     public function OrderTrackingView(Request $request)
     {
 
-        $orders = Order::where('id', '=', $request->order_no)->get();
-        // dd(count($ordsers));
+        $orders = Order::where('ran_id', '=', $request->order_no)->get();
+        // dd($orders);
         return view('front.order-tracking', compact('orders'));
     }
 
@@ -60,7 +60,7 @@ class CargoController extends Controller
         // echo "Order Tracking";
         if($request->order_no){
             if (Auth::user()->role == 'admin') {
-                $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->get();
+                $orders = Order::where('ran_id', 'LIKE', '%'.$request->order_no.'%')->get();
                 // dd($orders);
                 if (count($orders) > 0) {
                     $agent = User::where('id', $orders[0]->reseller_id)->first();
@@ -68,7 +68,7 @@ class CargoController extends Controller
 
                 return view('front.order-tracking', compact('orders','agent'));
             }else {
-                $orders = Order::where('id', 'LIKE', '%'.$request->order_no.'%')->where('reseller_id', Auth::user()->id)->get();
+                $orders = Order::where('ran_id', 'LIKE', '%'.$request->order_no.'%')->where('reseller_id', Auth::user()->id)->get();
 
                 $count = $orders->count();
                 if($count > 0){

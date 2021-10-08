@@ -13,7 +13,9 @@ class OrderController extends Controller
 {
     public function AddOrder(Request $request)
     { 
-
+        $ordeaars = Order::all();
+        $ooyeh = count($ordeaars);
+        $randomNumber = $ooyeh.random_int(1000, 9999).$ooyeh;
         if (Auth::user()->wallet >= $request->total) {
             // dd($request->all());
 
@@ -90,6 +92,7 @@ class OrderController extends Controller
         $orders->remail = $request->input('remail');
         $orders->address = $request->input('address');
         $orders->raddress = $request->input('raddress');
+        $orders->ran_id = $randomNumber;
         
         $orders->country = $request->input('country');
         $orders->rcountry = $request->input('rcountry');

@@ -79,7 +79,7 @@
             
             @foreach($orders as $order)
             <tr>
-              <td>{{$order->id}}</td>
+              <td>{{$order->ran_id}}</td>
               <td>{{$order->created_at}}</td>
               <td>{{ $agent->nationality }}</td>
               {{-- <td>{{$order->city}}</td> --}}

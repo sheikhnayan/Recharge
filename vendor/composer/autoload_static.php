@@ -732,6 +732,7 @@ class ComposerStaticInit8d411599166722813be44a90ce29357d
         'App\\Models\\RechargeHistory' => __DIR__ . '/../..' . '/app/Models/RechargeHistory.php',
         'App\\Models\\SimOperator' => __DIR__ . '/../..' . '/app/Models/SimOperator.php',
         'App\\Models\\SimOrder' => __DIR__ . '/../..' . '/app/Models/SimOrder.php',
+        'App\\Models\\Slider' => __DIR__ . '/../..' . '/app/Models/Slider.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\sim' => __DIR__ . '/../..' . '/app/Models/sim.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
