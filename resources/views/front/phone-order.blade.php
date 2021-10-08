@@ -99,10 +99,12 @@
                         <input type="hidden" name="reseller_id" value="{{ Auth::user()->id }}">
                         <input type="submit" class="input-group-text" id="basic-addon2" value="Buy">
                     </div>
+                    @if(Auth::user()->role == 'admin')
                     <div class="input-group mb-3">
                       <a href="{{ route('phone-edit',$item->id) }}" class="btn btn-primary" style="margin-right: 10px">Edit</a>
                       <a href="{{ route('phone-delete',$item->id) }}" class="btn btn-danger confirm">delete</a>
                     </div>
+                    @endif
                   </form>
                   </div>
                 </div>
