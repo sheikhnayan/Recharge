@@ -199,15 +199,17 @@ class SimController extends Controller
         if(Auth::user()->role == 'admin'){
         $data = SimOrder::join('sims','sims.id','=','sim_orders.sim_id')
         ->select('sim_orders.*','sims.status')
+        ->with('users')
         ->latest()->get();
         }else{
         $check = SimOrder::where('reseller_id', Auth::user()->id)->get();
         $count = $check->count();
         if ($count > 0) {
             $data = SimOrder::where('reseller_id',Auth::user()->id)
+            ->with('users')
             ->latest()->get();
         }else {
-            $data = SimOrder::where('reseller_id',Auth::user()->id)->get();
+            $data = SimOrder::where('reseller_id',Auth::user()->id)->with('users')->get();
         }
         }
         return view('front.sim-selling',compact('data'));

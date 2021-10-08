@@ -71,7 +71,7 @@
                       <td>{{ $item->offer }}</td>
                       <td>{{ $item->iccid }}</td>
                       <td>{{ $item->created_at }}</td>
-                      <td>{{ $item->nationality }}</td>
+                      <td>{{ $item->users->nationality }}</td>
                       @if($item->status == 'sold')
                       <td><span class="badge badge-success">Completed</span></td>
                       @else
