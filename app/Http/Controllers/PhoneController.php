@@ -38,6 +38,18 @@ class PhoneController extends Controller
         return view('front.add-phone');
     }
 
+    public function Phoneedit($id)
+    {
+        $data = Phone::where('id',$id)->first();
+        return view('front.edit-phone',compact('data'));
+    }
+
+    public function Phonedelete($id)
+    {
+        $data = Phone::where('id',$id)->delete();
+        return back()->with('error','Phone Deleted Successfully!');
+    }
+
     public function AddPhone(Request $request)
     {
 
@@ -56,6 +68,31 @@ class PhoneController extends Controller
         $Phones->save();
 
         return back()->with('status', 'Product Uploaded Successfully!');
+
+    }
+
+    public function UpdatePhone(Request $request,$id)
+    {
+        if($request->image != null){
+            $path = $request->image->store('sim/uploads', 'public');
+
+            $update = Phone::where('id',$id)->update([
+                'phone' => $request->input('phone'),
+                'price' => $request->input('price'),
+                'dis_price' => $request->input('dis_price'),
+                'description' => $request->input('description'),
+                'image' => $path
+            ]);
+        }else{
+            $update = Phone::where('id',$id)->update([
+                'phone' => $request->input('phone'),
+                'price' => $request->input('price'),
+                'dis_price' => $request->input('dis_price'),
+                'description' => $request->input('description')
+            ]);
+        }
+
+        return back()->with('status', 'Product Updated Successfully!');
 
     }
 

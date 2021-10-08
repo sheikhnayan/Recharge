@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
   <link rel="icon" href="{{ asset('images/jm-transparent-logo.png') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 </head>
 @endsection
 
@@ -60,9 +61,9 @@
         <div class="row px-3">
           @foreach ($data as $item)
           <div class="col-sm-4 col-md-3 my-4">
-            <div class="position-relative home_product_card">
+            <div class="position-relative home_product_card" style="min-height: 550px; max-height:550px">
               <div data-toggle="modal" data-target="#modal-default{{ $item->id }}">
-                <img src="{{asset('/storage'.'/'.$item->image)}}" alt="Photo 1" class="img-fluid">
+                <img src="{{asset('/storage'.'/'.$item->image)}}" alt="Photo 1" style="width:400px;height:300px" class="img-fluid">
                 <div class="ribbon-wrapper ribbon-lg">
                   {{-- <div class="ribbon bg-success text-lg">
                     30% OFF
@@ -97,6 +98,10 @@
                         <input type="hidden" name="price" value="{{ $item->price }}">
                         <input type="hidden" name="reseller_id" value="{{ Auth::user()->id }}">
                         <input type="submit" class="input-group-text" id="basic-addon2" value="Buy">
+                    </div>
+                    <div class="input-group mb-3">
+                      <a href="{{ route('phone-edit',$item->id) }}" class="btn btn-primary" style="margin-right: 10px">Edit</a>
+                      <a href="{{ route('phone-delete',$item->id) }}" class="btn btn-danger confirm">delete</a>
                     </div>
                   </form>
                   </div>
@@ -209,5 +214,9 @@
         });
     })
   })
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+  <script>
+    $(".confirm").confirm();
   </script>
 @endsection

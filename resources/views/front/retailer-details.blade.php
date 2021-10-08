@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="{{asset('css/admin.min.css')}}">
 
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
-<link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png"></head>
+  <link rel="icon" href="https://jmnation.com/images/jm-transparent-logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+</head>
 <style type="text/css">
   .modal-content{
     border:whitesmoke 6px solid;
@@ -251,7 +253,7 @@
                     <a href="/reseller/edit/{{ $item->id }}" class="btn btn-sm btn-secondary mt-1">
                       <i class="fas fa-edit"></i> Edit Profile
                     </a>
-                    <a href="/reseller/delete/{{ $item->id }}" class="btn btn-sm btn-danger mt-1">
+                    <a href="/reseller/delete/{{ $item->id }}" class="btn btn-sm btn-danger mt-1 confirm">
                       <i class="fas fa-user"></i> Delete
                     </a>
                   </div>
@@ -377,4 +379,8 @@
 <script src="{{asset('js/admin.js')}}"></script>
 <!-- Custome JS -->
 <script src="{{asset('js/custom.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script>
+  $(".confirm").confirm();
+</script>
 @endsection
