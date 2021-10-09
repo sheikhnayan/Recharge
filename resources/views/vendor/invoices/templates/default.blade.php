@@ -315,14 +315,18 @@
                     <td> <span style="font-weight: bold"> ICCID Number </span> : {{$item->iccid}}</td>
                 </tr>
 
+
                 @php
                     $alt = DB::table('sim_orders')->where('iccid', $item->iccid)->latest()->first();
 
                     $iccid = $alt->alt_iccid;
                     $sim_number = $alt->alt_sim_number;
                     $operator = $alt->alt_operator;
+                    $ricarica = $alt->recharge;
                 @endphp
-
+                <tr>
+                    <td colspan="2"> <span style="font-weight: bold"> Ricarica </span> : {{$ricarica}}</td>
+                </tr>
                 @if ($iccid != null)
                     <tr>
                         <td> <span style="font-weight: bold"> Protabilita Sim Number  </span> : {{$sim_number}}</td>
