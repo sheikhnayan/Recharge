@@ -325,11 +325,11 @@
 
                 @if ($iccid != null)
                     <tr>
-                        <td> <span style="font-weight: bold"> Protability Sim Number  </span> : {{$sim_number}}</td>
-                        <td> <span style="font-weight: bold"> Portability ICCID Number </span> : {{$iccid}}</td>
+                        <td> <span style="font-weight: bold"> Protabilita Sim Number  </span> : {{$sim_number}}</td>
+                        <td> <span style="font-weight: bold"> Portabilita ICCID Number </span> : {{$iccid}}</td>
                     </tr>
                     <tr>
-                        <td colspan="2"> <span style="font-weight: bold"> Portability Operator </span> : {{$operator}}</td>
+                        <td colspan="2"> <span style="font-weight: bold"> Portabilita Operator </span> : {{$operator}}</td>
                     </tr>
                 @endif
 
