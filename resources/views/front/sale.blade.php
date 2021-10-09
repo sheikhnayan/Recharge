@@ -196,11 +196,11 @@
                     <div class="form-group">
                       <label for="selectRecarica">Recarica</label>
                       <select class="custom-select" name="recharge" id="selectRecarica">
-                        <option>$5 Ricarica</option>
-                        <option>$10 Ricarica</option>
-                        <option>$20 Ricarica</option>
-                        <option>$30 Ricarica</option>
-                        <option>$50 Ricarica</option>
+                        <option>€5 Ricarica</option>
+                        <option>€10 Ricarica</option>
+                        <option>€20 Ricarica</option>
+                        <option>€30 Ricarica</option>
+                        <option>€50 Ricarica</option>
                       </select>
                     </div>
                   </div>
