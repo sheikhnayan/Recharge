@@ -54,6 +54,7 @@
                       <th style="background: #faaeae;">Order ID</th>
                       <th style="background: #faaeae;">Offer</th>
                       <th style="background: #faaeae;">ICCID Number</th>
+                      <th style="background: #faaeae;">Sim Number</th>
                       <th style="background: #faaeae;">Order Date</th>
                       <th style="background: #faaeae;">Order By</th>
                       <th class="text-center" style="background: #faaeae;">Status</th>
@@ -70,6 +71,7 @@
                       <td>{{ $item->id }}</td>
                       <td>{{ $item->offer }}</td>
                       <td>{{ $item->iccid }}</td>
+                      <td>{{ $item->sim_number }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->users->nationality }}</td>
                       @if($item->status == 'sold')
