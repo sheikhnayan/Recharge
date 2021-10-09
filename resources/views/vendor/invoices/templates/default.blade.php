@@ -314,9 +314,28 @@
                     <td> <span style="font-weight: bold"> Codice </span> : {{$item->codice}}</td>
                     <td> <span style="font-weight: bold"> ICCID Number </span> : {{$item->iccid}}</td>
                 </tr>
+
+                @php
+                    $alt = DB::table('sim_orders')->where('iccid', $item->iccid)->first();
+
+                    $iccid = $alt->alt_iccid;
+                    $sim_number = $alt->alt_sim_number;
+                    $operator = $alt->alt_operator;
+                @endphp
+
+                @if ($iccid != null)
+                    <tr>
+                        <td> <span style="font-weight: bold"> Protability Sim Number  </span> : {{$sim_number}}</td>
+                        <td> <span style="font-weight: bold"> Portability ICCID Number </span> : {{$iccid}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> <span style="font-weight: bold"> Portability Operator </span> : {{$operator}}</td>
+                    </tr>
+                @endif
+
                 <tr>
-                    <td> <span style="font-weight: bold"> Nazionalità</span> : {{$item->price}}</td>
-                    <td> <span style="font-weight: bold"> FIRMA DEL CLENTE </span> :</td>
+                    <td> <span style="font-weight: bold"> Nazionalità </span> : {{$item->price}}</td>
+                    <td> <span style="font-weight: bold"> FIRMA DEL CLENTE </span> :  </td>
                 </tr>
                 @endforeach
                 {{-- Summary --}}
