@@ -316,7 +316,7 @@
                 </tr>
 
                 @php
-                    $alt = DB::table('sim_orders')->where('iccid', $item->iccid)->first();
+                    $alt = DB::table('sim_orders')->where('iccid', $item->iccid)->latest()->first();
 
                     $iccid = $alt->alt_iccid;
                     $sim_number = $alt->alt_sim_number;
