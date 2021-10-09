@@ -217,7 +217,6 @@ class SimController extends Controller
 
 
     public function sim_order_update(Request $request){
-
         if(Auth::user()->role != 'admin')
         {
         $info = sim::where('id', $request->sim_id)->first();
@@ -249,9 +248,14 @@ class SimController extends Controller
         $update = sim::where('id', $request->sim_id)->update([
             'status' => $request->status
         ]);
-        $update_sim = SimOrder::where('id', $request->id)->update([
-            'status' => $request->status
-        ]);
+        if($request->status == 'available'){
+            $update_sim = SimOrder::where('id', $request->id)->delete();
+        }else{
+            $update_sim = SimOrder::where('id', $request->id)->update([
+                'status' => $request->status
+            ]);
+        }
+       
         return back();
     }
 
