@@ -323,9 +323,11 @@
                     $sim_number = $alt->alt_sim_number;
                     $operator = $alt->alt_operator;
                     $ricarica = $alt->recharge;
+                    $sim_number = $alt->sim_number; 
                 @endphp
                 <tr>
-                    <td colspan="2"> <span style="font-weight: bold"> Ricarica </span> : {{$ricarica}}</td>
+                    <td> <span style="font-weight: bold"> Ricarica </span> : {{$ricarica}}</td>
+                    <td> <span style="font-weight: bold"> Sim Number </span> : {{$sim_number}}</td>
                 </tr>
                 @if ($iccid != null)
                     <tr>
