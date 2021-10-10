@@ -337,6 +337,8 @@
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <!-- Select2 -->
 <script src="{{ asset('js/select2.full.min.js') }}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{asset('js/jquery.bootstrap-duallistbox.min.js')}}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('js/moment.min.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
@@ -447,6 +449,7 @@ $.ajax({
     });
 
   })
+  
  
   // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
   var previewNode = document.querySelector("#template")
