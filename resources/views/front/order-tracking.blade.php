@@ -81,7 +81,7 @@
             <tr>
               <td>{{$order->ran_id}}</td>
               <td>{{$order->created_at}}</td>
-              <td>{{ $agent->nationality }}</td>
+              <td>{{ $agent->nationality ?? ''}}</td>
               {{-- <td>{{$order->city}}</td> --}}
               <td>{{$order->first_name}}</td>
               <td>{{$order->rfirst_name}}</td>
