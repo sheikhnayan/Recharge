@@ -50,7 +50,11 @@ class CargoController extends Controller
     public function OrderTrackingView(Request $request)
     {
 
-        $orders = Order::where('ran_id', '=', $request->order_no)->get();
+        if(Auth::user()->role == 'admin'){
+            $orders = Order::where('ran_id', '=', $request->order_no)->get();
+        }else{
+            $orders = Order::where('ran_id', '=', $request->order_no)->where('reseller_id', Auth::user()->id)->get();
+        }
         // dd($orders);
         return view('front.order-tracking', compact('orders'));
     }

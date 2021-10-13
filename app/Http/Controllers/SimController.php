@@ -74,7 +74,7 @@ class SimController extends Controller
         $operator = SimOperator::where('operator', $data->operator)->first();
 
         $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $price = '€ '.$sim->buy_price;
+        $price = '€ '.$data->sell_price;
 
         $item = (new InvoiceItem())->title('Invoice')->pricePerUnit(2)->first($data->first_name)->last($data->last_name)->dob($data->dob)->gender($data->gender)->codice($data->codice)->iccid($data->iccid)->price($data->nationality);
 
@@ -199,15 +199,17 @@ class SimController extends Controller
         if(Auth::user()->role == 'admin'){
         $data = SimOrder::join('sims','sims.id','=','sim_orders.sim_id')
         ->select('sim_orders.*','sims.status')
+        ->with('users')
         ->latest()->get();
         }else{
         $check = SimOrder::where('reseller_id', Auth::user()->id)->get();
         $count = $check->count();
         if ($count > 0) {
             $data = SimOrder::where('reseller_id',Auth::user()->id)
+            ->with('users')
             ->latest()->get();
         }else {
-            $data = SimOrder::where('reseller_id',Auth::user()->id)->get();
+            $data = SimOrder::where('reseller_id',Auth::user()->id)->with('users')->get();
         }
         }
         return view('front.sim-selling',compact('data'));
@@ -215,7 +217,6 @@ class SimController extends Controller
 
 
     public function sim_order_update(Request $request){
-
         if(Auth::user()->role != 'admin')
         {
         $info = sim::where('id', $request->sim_id)->first();
@@ -247,9 +248,14 @@ class SimController extends Controller
         $update = sim::where('id', $request->sim_id)->update([
             'status' => $request->status
         ]);
-        $update_sim = SimOrder::where('id', $request->id)->update([
-            'status' => $request->status
-        ]);
+        if($request->status == 'available'){
+            $update_sim = SimOrder::where('id', $request->id)->delete();
+        }else{
+            $update_sim = SimOrder::where('id', $request->id)->update([
+                'status' => $request->status
+            ]);
+        }
+       
         return back();
     }
 

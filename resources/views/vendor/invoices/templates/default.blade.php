@@ -314,9 +314,34 @@
                     <td> <span style="font-weight: bold"> Codice </span> : {{$item->codice}}</td>
                     <td> <span style="font-weight: bold"> ICCID Number </span> : {{$item->iccid}}</td>
                 </tr>
+
+
+                @php
+                    $alt = DB::table('sim_orders')->where('iccid', $item->iccid)->latest()->first();
+
+                    $iccid = $alt->alt_iccid;
+                    $sim_number = $alt->alt_sim_number;
+                    $operator = $alt->alt_operator;
+                    $ricarica = $alt->recharge;
+                    $sim_number = $alt->sim_number; 
+                @endphp
                 <tr>
-                    <td> <span style="font-weight: bold"> Nazionalità</span> : {{$item->price}}</td>
-                    <td> <span style="font-weight: bold"> FIRMA DEL CLENTE </span> :</td>
+                    <td> <span style="font-weight: bold"> Ricarica </span> : {{$ricarica}}</td>
+                    <td> <span style="font-weight: bold"> Sim Number </span> : {{$sim_number}}</td>
+                </tr>
+                @if ($iccid != null)
+                    <tr>
+                        <td> <span style="font-weight: bold"> Protabilita Sim Number  </span> : {{$sim_number}}</td>
+                        <td> <span style="font-weight: bold"> Portabilita ICCID Number </span> : {{$iccid}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> <span style="font-weight: bold"> Portabilita Operator </span> : {{$operator}}</td>
+                    </tr>
+                @endif
+
+                <tr>
+                    <td> <span style="font-weight: bold"> Nazionalità </span> : {{$item->price}}</td>
+                    <td> <span style="font-weight: bold"> FIRMA DEL CLENTE </span> :  </td>
                 </tr>
                 @endforeach
                 {{-- Summary --}}

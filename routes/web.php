@@ -166,7 +166,13 @@ Route::get('/phone/selling-list', [PhoneController::class,'SellingList'])->name(
 
 Route::get('/phone/add-phone-view', [PhoneController::class,'AddPhoneView'])->name('add-phone-view');
 
+Route::get('/phone/edit/{id}', [PhoneController::class,'phoneedit'])->name('phone-edit');
+
+Route::get('/phone/delete/{id}', [PhoneController::class,'phonedelete'])->name('phone-delete');
+
 Route::post('/phone/add-phone', [PhoneController::class,'AddPhone'])->name('add-phone');
+
+Route::post('/phone/update-phone/{id}', [PhoneController::class,'UpdatePhone'])->name('update-phone');
 
 Route::get('/add-slider-view', [UserController::class,'AddsliderView'])->name('add-sldier-view');
 

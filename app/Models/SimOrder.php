@@ -31,4 +31,9 @@ class SimOrder extends Model
         'sell_price',
         'recharge'
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class,'reseller_id');
+    }
 }
