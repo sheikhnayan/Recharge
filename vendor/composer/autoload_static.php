@@ -724,6 +724,7 @@ class ComposerStaticInit8d411599166722813be44a90ce29357d
         'App\\Models\\Offer' => __DIR__ . '/../..' . '/app/Models/Offer.php',
         'App\\Models\\Operator' => __DIR__ . '/../..' . '/app/Models/Operator.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
+        'App\\Models\\OrderRatings' => __DIR__ . '/../..' . '/app/Models/OrderRatings.php',
         'App\\Models\\Phone' => __DIR__ . '/../..' . '/app/Models/Phone.php',
         'App\\Models\\PhoneOrder' => __DIR__ . '/../..' . '/app/Models/PhoneOrder.php',
         'App\\Models\\Pin' => __DIR__ . '/../..' . '/app/Models/Pin.php',

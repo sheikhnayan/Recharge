@@ -41,6 +41,7 @@ return array(
     'App\\Models\\Offer' => $baseDir . '/app/Models/Offer.php',
     'App\\Models\\Operator' => $baseDir . '/app/Models/Operator.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
+    'App\\Models\\OrderRatings' => $baseDir . '/app/Models/OrderRatings.php',
     'App\\Models\\Phone' => $baseDir . '/app/Models/Phone.php',
     'App\\Models\\PhoneOrder' => $baseDir . '/app/Models/PhoneOrder.php',
     'App\\Models\\Pin' => $baseDir . '/app/Models/Pin.php',
