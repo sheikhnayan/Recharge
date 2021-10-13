@@ -48,7 +48,7 @@
       <div class="container-fluid">
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
-          <form action="{{route('add-new-pricing')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{route('add-new-pricing-for-real')}}" method="POST" enctype="multipart/form-data">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -67,185 +67,47 @@
          <input type="hidden" name="reseller_id" value="{{ Auth::user()->id }}">
           <div class="card-body">
             <div class="row b-border pb-3">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="bg-ocean mr-1">
                   <div class="customer_information">
-                    <h5><i class="fas fa-male"></i> <strong>Customer Information</strong></h5>
+                    <h5><i class="fas fa-male"></i> <strong>Pricing</strong></h5>
                     <div class="mb-3">
-                      <label for="first_name" class="form-label">First Name</label>
-                      <input required="" type="text" class="form-control" name="first_name" id="first_name" placeholder="Customer Name">
+                      <label for="type" class="form-label">Type</label>
+                      <input required="" type="text" class="form-control" name="type" id="type" placeholder="Type">
                     </div>
                     <div class="mb-3">
-                      <label for="surname" class="form-label">Surname</label>
-                      <input required="" type="text" class="form-control" name="surname" id="surname" placeholder="Customer surname">
+                      <label for="weight_start" class="form-label">Weight Start</label>
+                      <input required="" type="text" class="form-control" name="weight_start" id="weight_start" placeholder=" Weight Start">
                     </div>
                     <div class="form-group">
-                      <label>Date of Birth</label>
-                      <div class="input-group date" id="customerBirthDate" data-target-input="nearest">
-                        <input type="date" name="dob" class="form-control" />
-                        {{-- <div class="input-group-append" data-target="#customerBirthDate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div> --}}
-                      </div>
+                      <label>Weight End</label>
+                      <input required="" type="text" class="form-control" name="weight_end" id="weight_end" placeholder=" Weight End">
                     </div>
                     <div class="mb-3">
-                      <label for="documentNumber" class="form-label">Document Number</label>
-                      <input type="text" class="form-control" id="documentNumber" name="document_number" placeholder="Enter Document Number">
+                      <label for="documentNumber" class="form-label">Charge For Weight</label>
+                      <input type="text" class="form-control" id="charge_for_weight" name="charge_for_weight" placeholder="Enter Charge For Weight">
                     </div>
                     <div class="mb-3">
-                      <label for="enterPhoneNumber" class="form-label">Phone</label>
-                      <input type="text" class="form-control" id="enterPhoneNumber" name="phone" placeholder="Enter Customer Phone Number">
+                      <label for="charge_for_country" class="form-label">Charge For Country</label>
+                      <input type="text" class="form-control" id="charge_for_country" name="charge_for_country" placeholder="Enter Charge For Country">
                     </div>
                     <div class="mb-3">
-                      <label for="enterEmail" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="enterEmail" name="email" placeholder="Enter Customer Email">
+                      <label for="ef_1" class="form-label">Country Name</label>
+                      <input type="email" class="form-control" id="ef_1" name="ef_1" placeholder="Enter Country Name">
                     </div>
                     <div class="mb-3">
-                      <label for="interCustomerAddress" class="form-label">Address</label>
-                      <textarea class="form-control" id="interCustomerAddress" name="address" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <select class="form-control select2" onchange="print_state('state',this.selectedIndex);" id="country" name ="country" style="width: 100%;"></select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputFile">Package Label</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="label" name="label">
-                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
-                        </div>
-                      </div>
+                      <label for="interCustomerAddress" class="form-label">Total</label>
+                      <input type="email" class="form-control" id="total" name="total" placeholder="Enter Total">
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="bg-rose mx-1">
-                  <div class="receiver_information">
-                    <h5><i class="fas fa-user-tie"></i> <strong>Receiver Information</strong></h5>
-                    <div class="mb-3">
-                      <label for="inputReceiverName" class="form-label">First Name</label>
-                      <input type="text" class="form-control" id="inputReceiverName" name="rfirst_name" placeholder="Receiver Name">
-                    </div>
-                    <div class="mb-3">
-                      <label for="inputSurName" class="form-label">Surname</label>
-                      <input type="text" class="form-control" id="inputSurName" name="rsurname" placeholder="Receiver surname">
-                    </div>
-                    <div class="form-group">
-                      <label>Date of Birth</label>
-                      <div class="input-group date" id="receiverBirthDate" data-target-input="nearest">
-                        <input type="date" class="form-control" data-target="" name="rdob" />
-                        {{-- <div class="input-group-append" data-target="#receiverBirthDate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div> --}}
-                      </div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="documentNumber" class="form-label">Document Number</label>
-                      <input type="text" class="form-control" id="documentNumber" name="rdocument_number" placeholder="Enter Document Number">
-                    </div>
-                    <div class="mb-3">
-                      <label for="enterPhoneNumber" class="form-label">Phone</label>
-                      <input type="text" class="form-control" id="enterPhoneNumber" name="rphone" placeholder="Enter Receiver Phone Number">
-                    </div>
-                    <div class="mb-3">
-                      <label for="enterEmail" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="enterEmail" name="remail" placeholder="Enter Receiver Email">
-                    </div>
-                    <div class="mb-3">
-                      <label for="interReceiverAddress" class="form-label">Address</label>
-                      <textarea class="form-control" id="interReceiverAddress" name="raddress" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <select class="form-control select2" onchange="print_state_for_receiver('rstate',this.selectedIndex);" id="rcountry" name ="rcountry" style="width: 100%;"></select>
-                    </div>
-                    <!-- <div class="form-group">
-                      <label for="exampleInputFile">File input</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
-                        </div>
-                      </div>
-                    </div> -->
-                  </div>
-                </div>
-              </div>
+
             </div>
             <!-- /.row -->   
-
-            <div class="row">
-              <div class="col-md-12 pt-3">
-                <h5><i class="fas fa-file-alt"></i> <strong>Order Details</strong></h5>
-              </div>
-              <div class="col-md-6">
-                <div class="bg-ocean mr-1">
-                  <div class="order_information">
-                    
-                    <div class="form-group">
-                      <label>Delivary Type</label>
-                      <select class="form-control select2" name="delivery_condition" style="width: 100%;">
-                        <option>--Select--</option>
-                        <option>Goods</option>
-                        <option>Documents</option>
-                      </select>
-                    </div>
-
-                    <!-- <div class="mb-3">
-                      <label for="inputGoodsValue" class="form-label">Goods Value (Euro)</label>
-                      <input type="number" class="form-control" id="inputGoodsValue" placeholder="1234">
-                    </div> -->
-
-                    <div class="mb-3">
-                      <label for="totalWeightValue" class="form-label">Total Weight (Kg)</label>
-                      <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="weight(this)">
-                    </div>
-                    <div class="mb-3">
-                      <label for="chargePerKgValue" class="form-label">Charge/Kg(Euro)</label>
-                      <input class="form-control" type="number" step="any" name="perKg" id="perKg" value="0" placeholder="0">
-                    </div>
-
-
-                    <div class="mb-3">
-                      <label for="addiCharge" class="form-label">Additional Charge(Euro)</label>
-                      <input class="form-control" step="any" type="number" name="addiCharge" id="addiCharge" value="0" onchange="addAdditionalCharge(this)">
-                    </div>
-                    <div class="mb-3">
-                      <label for="total" class="form-label">Total Charge(Euro)</label>
-                      <input class="form-control" step="any" readonly="true" type="number" name="total" id="total" value="0">
-                      <input type="hidden" name="agent_comm" id="agent_comm" value="0">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-
-
-
-                <div class="bg-rose mt-5">
-                  <div class="order_information">
-                    <div class="mb-3">
-                      <label for="totalChargeValue" class="form-label d-block">BOX</label>
-                      <input type="text" class="form-control d-inline-block" style="width: 70%;" id="totalChargeValue" name="product1" placeholder="Product Name (e.g. Shirt, Pant etc.)">
-                      <input type="text" class="form-control d-inline-block" style="width: 25%; margin-left: 10px;" id="totalChargeValue" name="qty1" placeholder="Qty">
-                    </div>
-                    <div class="mb-3">
-                      <label for="interCustomerAddress" class="form-label">Description</label>
-                      <textarea class="form-control" id="interCustomerAddress" name="address" rows="3"></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="my-5">
-                  <button type="submit" class="btn btn-primary" style="width: 100%;">Send Order</button>
-                </div>
-              </div>
+            <div class="my-5">
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Order</button>
             </div>
           </div>
           </form>

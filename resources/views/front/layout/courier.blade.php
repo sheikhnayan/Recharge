@@ -368,6 +368,14 @@
                     <p>Invoice</p>
                   </a>
                 </li> --}}
+                @if (Auth::user()->role == 'admin')
+                <li class="nav-item">
+                  <a href="add-new-pricing" class="@if(Route::currentRouteName() == 'add-new-pricing') nav-link active @endif nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Pricing</p>
+                  </a>
+                </li>
+                @endif
               </ul>
             </li>
           @endif

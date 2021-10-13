@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\RetailerController;
 use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\PricingController;
 use App\Models\SimOperator;
 use App\Models\sim;
 use App\Models\User;
@@ -138,6 +139,10 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView'])->name('c
 
     //  ADD NEW ORDER
     Route::POST('/cargo/add-new-order', [OrderController::class,'AddOrder'])->name('add-new-order');
+
+    Route::GET('/add-new-pricing', [PricingController::class,'Pricing'])->name('add-new-pricing');
+
+    Route::POST('add-new-pricing-for-real', [PricingController::class,'AddPricing'])->name('add-new-pricing-for-real');
 
 
 //  CARGO VIEW TRACK
