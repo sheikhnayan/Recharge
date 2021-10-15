@@ -144,6 +144,8 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView'])->name('c
 
     Route::POST('add-new-pricing-for-real', [PricingController::class,'AddPricing'])->name('add-new-pricing-for-real');
 
+    Route::GET('/pricing-list', [PricingController::class,'PricingTab'])->name('pricing-list');
+
 
 //  CARGO VIEW TRACK
 Route::get('/cargo/order-tracking-view', [CargoController::class,'OrderTrackingView'])->name('order-tracking-view');
