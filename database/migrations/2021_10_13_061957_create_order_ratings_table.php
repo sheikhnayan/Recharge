@@ -16,13 +16,13 @@ class CreateOrderRatingsTable extends Migration
         Schema::create('order_ratings', function (Blueprint $table) {
             $table->id();
             $table->string('type')->nullable();
-            $table->string('weight_start')->nullable();
-            $table->string('weight_end')->nullable();
-            $table->string('charge_for_weight')->nullable();
+            $table->float('weight_start')->nullable();
+            $table->float('weight_end')->nullable();
+            $table->float('charge_for_weight')->nullable();
             $table->string('charge_for_country')->nullable();
-            $table->string('ef_1')->nullable();
-            $table->string('ef_2')->nullable();
-            $table->string('total')->nullable();
+            $table->text('country_name')->nullable();
+            $table->boolean('status')->nullable();//status
+            $table->float('total')->nullable();
             $table->timestamps();
         });
     }

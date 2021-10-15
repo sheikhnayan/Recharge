@@ -48,7 +48,7 @@
       <div class="container-fluid">
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
-          <form action="{{route('add-new-pricing-for-real')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{route('edit-new-pricing-for-real', ['id' => $orders->id])}}" method="POST" enctype="multipart/form-data">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

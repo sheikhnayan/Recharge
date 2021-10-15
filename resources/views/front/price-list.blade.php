@@ -27,7 +27,7 @@
           <div class="col-12 phone_order_header d-block">
             <div class="order_page_header d-inline-block mb-2">
               <h4 class="d-inline-block"><i class="fas fa-copy"></i>Order List</h4>
-              <a href="{{route('cargo-new-order')}}" class="d-inline-block" style="float: right;"><i class="fas fa-plus-circle"></i>New Order</a>
+              <a href="{{url('add-new-pricing')}}" class="d-inline-block" style="float: right;"><i class="fas fa-plus-circle"></i>New Pricing</a>
             </div>
             <div class="input-group mb-4">
               <input type="text" class="form-control light-table-filter" data-table="table-info" placeholder="Search old order" aria-label="Search old order"
@@ -65,16 +65,16 @@
                 <table class="table-info table table-sm table-bordered table-hover table-head-fixed text-nowrap">
                   <thead>
                     <tr>
-                      <th style="background: #faaeae;">Order ID</th>
-                      <th style="background: #faaeae;">type</th>
-                      {{-- <th style="background: #faaeae;">Agent</th> --}}
-                      {{-- <th style="background: #faaeae;">City</th> --}}
-                      <th style="background: #faaeae;">weight_start</th>
-                      <th style="background: #faaeae;">weight_end</th>
-                      <th style="background: #faaeae;">charge_for_weight</th>
-                      <th style="background: #faaeae;">charge_for_country</th>
-                      <th style="background: #faaeae;">ef_1</th>
-                      <th style="background: #faaeae;">total</th>
+                      <th style="background: #faaeae;"><small>Order ID</small></th>
+                      <th style="background: #faaeae;"><small>type</small></th>
+                      <th style="background: #faaeae;"><small>Weight Start</small></th>
+                      <th style="background: #faaeae;"><small>Weight End</small></th>
+                      <th style="background: #faaeae;"><small>Charge For Weight</small></th>
+                      <th style="background: #faaeae;"><small>Charge For Country</small></th>
+                      <th style="background: #faaeae;"><small>Country Name</small></th>
+                      <th style="background: #faaeae;"><small>Total</small></th>
+                      <th style="background: #faaeae;"><small>Status</small></th>
+                      <th style="background: #faaeae;"><small>Action</small></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -86,7 +86,7 @@
                       <td>{{$order->weight_end}}</td>
                       <td>{{$order->charge_for_weight}}</td>
                       <td>{{$order->charge_for_country}}</td>
-                      <td>{{$order->ef_1}}</td>
+                      <td>{{$order->country_name}}</td>
                       <td>{{$order->total}}</td>
                       <td>
                         <form action="/cargo_update" method="POST">
@@ -94,13 +94,8 @@
                           <input type="hidden" name="reseller_id" value="{{ $order->reseller_id }}">
                           <input type="hidden" name="id" value="{{ $order->id }}">
                           <select name="status">
-                            <option {{$order->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
-                            <option {{$order->status == 'confirmed' ? 'selected' : '' }} value="confirmed">Confirmed</option>
-                            <option {{$order->status == 'received' ? 'selected' : '' }} value="received">Received</option>
-                            <option {{$order->status == 'on_the_way' ? 'selected' : '' }} value="on_the_way">On The Way</option>
-                            <option {{$order->status == 'in_the_airport' ? 'selected' : '' }} value="in_the_airport">In Customs</option>
-                            <option {{$order->status == 'delivered' ? 'selected' : '' }} value="delivered">Delivered</option>
-                            <option {{$order->status == 'cancel' ? 'selected' : '' }} value="cancel">Cancel</option>
+                            <option {{$order->status == '0' ? 'selected' : '' }} value="0">Not Applied</option>
+                            <option {{$order->status == '1' ? 'selected' : '' }} value="1">Applied</option>
                           </select>
 
                           <input type="submit" class="btn btn-success" value="Update">
@@ -111,12 +106,9 @@
                           <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
                           </button>
                           <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="/cargo/order-invoice/{{ $order->id }}"><i class="fas fa-print"></i>Print Invoice</a>
-                            @if ($order->label != null)
-                            <a class="dropdown-item" href="/cargo/order-label/{{ $order->id }}"><i class="fas fa-print"></i>Print Label</a>
-                            @endif
-                            <a class="dropdown-item" href="/cargo/order/view/{{ $order->id }}"><i class="fas fa-eye"></i>View</a>
-                            <a class="dropdown-item" href="/cargo/order/cancel/{{ $order->id }}"><i class="fas fa-times"></i>Cancel</a>
+                            
+                            <a href="{{ url ('price-edit', ['id' => $order->id]) }}" class="dropdown-item"><i class="fas fa-edit"></i>Edit</a>
+                            <a class="dropdown-item" href="{{ url ('price-delete', ['id' => $order->id]) }}"><i class="fas fa-eye"></i>Delete</a>
                           </div>
                         </div>
                       </td>

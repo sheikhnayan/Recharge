@@ -142,9 +142,18 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView'])->name('c
 
     Route::GET('/add-new-pricing', [PricingController::class,'Pricing'])->name('add-new-pricing');
 
-    Route::POST('add-new-pricing-for-real', [PricingController::class,'AddPricing'])->name('add-new-pricing-for-real');
+    Route::POST('/add-new-pricing-for-real', [PricingController::class,'AddPricing'])->name('add-new-pricing-for-real');
 
     Route::GET('/pricing-list', [PricingController::class,'PricingTab'])->name('pricing-list');
+
+    Route::GET('price-edit/{id}', [PricingController::class,'EditPricing']);
+
+    Route::POST('edit-new-pricing-for-real/{id}', [PricingController::class,'EditPricingForReal'])->name('edit-new-pricing-for-real');
+    
+    Route::GET('price-delete/{id}', [PricingController::class,'DeletePricing'])->name('price-delete');
+
+
+
 
 
 //  CARGO VIEW TRACK

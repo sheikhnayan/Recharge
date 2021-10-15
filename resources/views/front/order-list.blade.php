@@ -102,7 +102,7 @@
                           <input type="hidden" name="reseller_id" value="{{ $order->reseller_id }}">
                           <input type="hidden" name="id" value="{{ $order->id }}">
                           <select name="status">
-                            <option {{$order->status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
+                            <option {{$order->ef_2 == '0' ? 'selected' : '' }} value="pending">Pending</option>
                             <option {{$order->status == 'confirmed' ? 'selected' : '' }} value="confirmed">Confirmed</option>
                             <option {{$order->status == 'received' ? 'selected' : '' }} value="received">Received</option>
                             <option {{$order->status == 'on_the_way' ? 'selected' : '' }} value="on_the_way">On The Way</option>
