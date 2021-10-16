@@ -19,7 +19,7 @@ class CreateOrderRatingsTable extends Migration
             $table->float('weight_start')->nullable();
             $table->float('weight_end')->nullable();
             $table->float('charge_for_weight')->nullable();
-            $table->string('charge_for_country')->nullable();
+            $table->float('charge_for_country')->nullable();
             $table->text('country_name')->nullable();
             $table->boolean('status')->nullable();//status
             $table->float('total')->nullable();
