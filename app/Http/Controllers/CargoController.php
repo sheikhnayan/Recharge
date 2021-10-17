@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\OrderRatings;
 use Auth;
 
 
@@ -14,8 +15,10 @@ class CargoController extends Controller
     public function NewOrderView(Request $request)
     {
         $orders = Order::where('email', 'LIKE', '%'.$request->email.'%')->get();
+        $OrderRatings = OrderRatings::all();
+        // dd($OrderRatings);
         // dd($orders);
-        return view('front.new-order-new', compact('orders'));
+        return view('front.new-order-new', compact('orders','OrderRatings'));
     }
 
     public function Search(Request $request)

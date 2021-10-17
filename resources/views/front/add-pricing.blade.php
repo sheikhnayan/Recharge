@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cargo New Order</title>
+  <title>Cargo New Pricing</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="country_name" class="form-label">Country Name</label>
-                      <input type="text" class="form-control" id="country_name" name="country_name" placeholder="Enter Country Name">
+                      <select class="form-control select2" onchange="print_state('state',this.selectedIndex);" id="country_name" name ="country_name" style="width: 100%;"></select>
                     </div>
                     <div class="mb-3">
                       <label for="interCustomerAddress" class="form-label">Total</label>
@@ -178,6 +178,6 @@
 
 
 </script>
-<script language="javascript">print_country("country");</script>
+<script language="javascript">print_country("country_name");</script>
 <script language="javascript">print_country("rcountry");</script>
 @endsection

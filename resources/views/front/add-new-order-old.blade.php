@@ -5611,7 +5611,7 @@ let totalCharge = document.getElementById("total");
 
 }
 function myFunction1234() {
-let totalCharge = document.getElementById("total");
+   let totalCharge = document.getElementById("total");
    let change = document.getElementById("total").value;
 
    let type = document.getElementById("productType");

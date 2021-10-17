@@ -45,7 +45,7 @@ class PricingController extends Controller
         $prices->total = $request->input('total');
         $prices->save();
 
-        return back()->with('status', 'Order Created Successfully!');
+        return back()->with('status', 'Price Created Successfully!');
     }
     
     public function EditPricing($id)
@@ -69,7 +69,7 @@ class PricingController extends Controller
         $prices->total = $request->input('total');
         $prices->save();
 
-        return back()->with('status', 'Order Created Successfully!');
+        return back()->with('status', 'Price Edited Successfully!');
     }
     public function DeletePricing($id)
     {

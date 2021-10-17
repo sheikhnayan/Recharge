@@ -201,7 +201,7 @@
                     
                     <div class="form-group">
                       <label>Delivary Type</label>
-                      <select class="form-control select2" name="delivery_condition" style="width: 100%;">
+                      <select class="form-control select2" name="delivery_condition" style="width: 100%;" onchange="heyyaaa(value);">
                         <option>--Select--</option>
                         <option>Goods</option>
                         <option>Documents</option>
@@ -214,7 +214,7 @@
                     </div> -->
 
                     <div class="mb-3">
-                      <label for="totalWeightValue" class="form-label">Total Weight (Kg)</label>
+                      <label for="totalWeightValue" id="myDiv" class="form-label">Total Weight (Kg)</label>
                       <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="weight(this)">
                     </div>
                     <div class="mb-3">
@@ -335,6 +335,7 @@ function weight() {
    let change = document.getElementById("total").value;
 
    let weight = document.getElementById("weight");
+   
    totalCharge.setAttribute('value', change+9);
 
    // let totalCharge = document.getElementById("total");
@@ -357,6 +358,44 @@ function myFunction1234() {
 
 }
 
+function heyyaaa(value) {
+  // alert(value);
+  if(value == "Documents"){
+    // The Alert works
+    alert(value);
+    
+    let weight = document.getElementById("weight");
+    
+    //  CHECK IF ORDER_RATING MODEL HAS A PRICE FOR SELECTED WEIGHT
+
+
+    let totalCharge = document.getElementById("total");
+    let change = document.getElementById("total").value;
+
+    
+
+    totalCharge.setAttribute('value', change+143);
+    
+    // fetching var x also works
+    var x = document.getElementById("myDIV");
+
+    // shows error in the console for this line
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "none";
+    }
+
+  }
+}
+function showDiv() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "block";
+  }
+}
 </script>
 <script language="javascript">print_country("country");</script>
 <script language="javascript">print_country("rcountry");</script>
