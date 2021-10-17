@@ -107,7 +107,7 @@
             </div>
             <!-- /.row -->   
             <div class="my-5">
-              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Order</button>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Pricing</button>
             </div>
           </div>
           </form>

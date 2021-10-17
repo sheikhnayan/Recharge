@@ -152,8 +152,10 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView'])->name('c
     
     Route::GET('price-delete/{id}', [PricingController::class,'DeletePricing'])->name('price-delete');
 
+    //  AJAX
+    Route::GET('/send-pricing', [PricingController::class,'SendPricing'])->name('send-pricing');
 
-
+    Route::GET('/send-pricing-for-docs', [PricingController::class,'SendPricingForDocs'])->name('send-pricing-for-docs');
 
 
 //  CARGO VIEW TRACK

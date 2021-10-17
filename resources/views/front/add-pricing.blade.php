@@ -85,11 +85,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="documentNumber" class="form-label">Charge For Weight</label>
-                      <input type="number" step="0.01" class="form-control" id="charge_for_weight" name="charge_for_weight" placeholder="Enter Charge For Weight">
+                      <input type="number" step="0.01" class="form-control" oninput="myFunction(this);" value="0" id="charge_for_weight" name="charge_for_weight" placeholder="Enter Charge For Weight">
                     </div>
                     <div class="mb-3">
                       <label for="charge_for_country" class="form-label">Charge For Country</label>
-                      <input type="number" step="0.01" class="form-control" id="charge_for_country" name="charge_for_country" placeholder="Enter Charge For Country">
+                      <input type="number" step="0.01" class="form-control" oninput="myFunction2(this);" id="charge_for_country" name="charge_for_country" value="0" placeholder="Enter Charge For Country">
                     </div>
                     <div class="mb-3">
                       <label for="country_name" class="form-label">Country Name</label>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="interCustomerAddress" class="form-label">Total</label>
-                      <input type="number" step="0.01" class="form-control" id="total" name="total" placeholder="Enter Total">
+                      <input type="number" step="any" readonly="true" class="form-control" id="total" name="total" placeholder="Total">
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@
             </div>
             <!-- /.row -->   
             <div class="my-5">
-              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Order</button>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Set Price</button>
             </div>
           </div>
           </form>
@@ -172,6 +172,38 @@
   $(function () {
       bsCustomFileInput.init();
     });
+
+  function myFunction() {
+   let totalCharge = document.getElementById("total");
+   let change = document.getElementById("total").value;
+   let countryCharge = document.getElementById("charge_for_country").value;
+   let weightCharge = document.getElementById("charge_for_weight").value;
+
+
+   totalCharge.setAttribute('value', parseInt(weightCharge) + parseInt(countryCharge));
+   
+   // let totalCharge = document.getElementById("total");
+
+   console.log(change);
+   // totalCharge.setAttribute('value','')
+
+  }
+
+  function myFunction2() {
+   let totalCharge = document.getElementById("total");
+   let change = document.getElementById("total").value;
+   let countryCharge = document.getElementById("charge_for_country").value;
+   let weightCharge = document.getElementById("charge_for_weight").value;
+
+
+   totalCharge.setAttribute('value', parseInt(weightCharge) + parseInt(countryCharge));
+   
+   // let totalCharge = document.getElementById("total");
+
+   console.log(change);
+   // totalCharge.setAttribute('value','')
+
+  }
 
 </script>
 <script type="text/javascript">

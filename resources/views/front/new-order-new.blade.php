@@ -201,7 +201,7 @@
                     
                     <div class="form-group">
                       <label>Delivary Type</label>
-                      <select class="form-control select2" name="delivery_condition" style="width: 100%;" onchange="heyyaaa(value);">
+                      <select class="form-control select2" name="delivery_condition" id="delivery_condition" style="width: 100%;">
                         <option>--Select--</option>
                         <option>Goods</option>
                         <option>Documents</option>
@@ -213,11 +213,11 @@
                       <input type="number" class="form-control" id="inputGoodsValue" placeholder="1234">
                     </div> -->
 
-                    <div class="mb-3">
+                    <div class="mb-3 myDIV" id="myDiv" >
                       <label for="totalWeightValue" id="myDiv" class="form-label">Total Weight (Kg)</label>
                       <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="weight(this)">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 myDIV">
                       <label for="chargePerKgValue" class="form-label">Charge/Kg(Euro)</label>
                       <input class="form-control" type="number" step="any" name="perKg" id="perKg" value="0" placeholder="0">
                     </div>
@@ -271,6 +271,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- jQuery -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <!-- Bootstrap -->
@@ -362,11 +363,25 @@ function heyyaaa(value) {
   // alert(value);
   if(value == "Documents"){
     // The Alert works
-    alert(value);
+    // alert(value);
     
-    let weight = document.getElementById("weight");
+    let weight = document.getElementById("weight").value;
+
+    // alert(weight);
+
+    $.ajax({
+    type:"GET",
+    url : "controller mapping",
+    data : "selectbox1_selectedvalue="+$(this).val(),
+    async: false,
+    success : function(response) {
+        data = response;
+        return response;
+    },
+    error: function() {
+        alert('Error occured');
+    }
     
-    //  CHECK IF ORDER_RATING MODEL HAS A PRICE FOR SELECTED WEIGHT
 
 
     let totalCharge = document.getElementById("total");
@@ -399,4 +414,119 @@ function showDiv() {
 </script>
 <script language="javascript">print_country("country");</script>
 <script language="javascript">print_country("rcountry");</script>
+
+<script>
+  $(document).ready(function(){
+    
+    $("#delivery_condition").change(function(){
+        let value = document.getElementById("delivery_condition").value;
+        let weight = document.getElementById("weight").value;
+        
+        if(value == "Documents"){
+          $("#myDIV").hide();
+        }
+
+        var e = document.getElementById("delivery_condition");
+        var type = e.value;
+
+        var f = document.getElementById("rcountry");
+        var country = f.value;
+        
+        if(type == 'Documents')
+        {
+          $.ajax({
+            type: 'GET',
+            url: '/send-pricing-for-docs/',
+            data: {
+              type:type,
+              country:country,
+
+            },
+            success: function(data){
+              $(".myDIV").hide();
+              $('#total').val(data);
+            }
+          });
+        }
+        else
+        {
+          $.ajax({
+            type: 'GET',
+            url: '/send-pricing/',
+            data: {
+              type:type,
+              weight:weight,
+              country:country,
+
+            },
+            success: function(data){
+              // $('#total').append(data);
+              $('#total').val(data);
+              // $('#result').val(data);
+              // console.log(data);
+              // $("#total").append(JSON.stringify(data));
+              $(".myDIV").show();
+              // $("#total").html(data);
+            }
+          });
+        }
+    });
+    
+  });
+</script>
+<!-- <script>
+  $(document).ready(function(){
+    
+    $("#rcountry").change(function(){
+        let value = document.getElementById("delivery_condition").value;
+        let weight = document.getElementById("weight").value;
+        
+        if(value == "Documents"){
+          $("#myDIV").hide();
+        }
+
+        var e = document.getElementById("delivery_condition");
+        var type = e.value;
+
+        var f = document.getElementById("rcountry");
+        var country = f.value;
+        
+        if(type == 'Documents')
+        {
+          $.ajax({
+            type: 'GET',
+            url: '/send-pricing/',
+            data: {
+              type:type,
+              country:country,
+
+            },
+            success: function(data){
+              $(".myDIV").hide();
+              $("#total").html(data);
+            }
+          });
+        }
+        else
+        {
+          $.ajax({
+            type: 'GET',
+            url: '/send-pricing/',
+            data: {
+              type:type,
+              weight:weight,
+              country:country,
+
+            },
+            success: function(data){
+              $('#total').append(data);
+              $(".myDIV").show();
+              // $("#total").html(data);
+            }
+          });
+        }
+    });
+    
+  });
+</script> -->
 @endsection
