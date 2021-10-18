@@ -123,10 +123,10 @@
           </span><br>
           {{-- <span>
             <span class="color m-2">Saldo Ricariche : </span><span class="text-muted"> {{Auth::user()->wallet}}</span>
-          </span><br>
-          <span>
-            <span class="color m-2">Debito Corriere : </span><span class="text-muted"> 1230</span>
           </span><br> --}}
+          <span>
+            <span class="color m-2">Corriere dovuto : </span><span class="text-muted"> {{ Auth::user()->cargo_due }}</span>
+          </span><br>
           {{-- <span>
             <span class="color m-2">Debito Sim : </span><span class="text-muted"> 5000</span>
           </span><br> --}}
