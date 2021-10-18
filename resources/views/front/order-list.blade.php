@@ -120,11 +120,11 @@
                           </button>
                           <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item" href="/cargo/order-invoice/{{ $order->id }}"><i class="fas fa-print"></i>Print Invoice</a>
-                            {{-- @if ($order->label != null && Auth::user()->role != 'admin') --}}
-                            <a class="dropdown-item" href="{{ Storage::url($order->label) }}"><i class="fas fa-print"></i>Print Label</a>
-                            {{-- @elseif(Auth::user()->role == 'admin') --}}
+                            @if ($order->label != null)
+                            <a class="dropdown-item" href="/cargo/order-label/{{ $order->id }}"><i class="fas fa-print"></i>Print Label</a>
+                            @elseif(Auth::user()->role == 'admin')
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal{{ $order->id }}"><i class="fas fa-print"></i>Upload Label</a>
-                            {{-- @endif --}}
+                            @endif
                             <a class="dropdown-item" href="/cargo/order/view/{{ $order->id }}"><i class="fas fa-eye"></i>View</a>
                             <a class="dropdown-item" href="/cargo/order/cancel/{{ $order->id }}"><i class="fas fa-times"></i>Cancel</a>
                           </div>

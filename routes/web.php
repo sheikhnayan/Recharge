@@ -20,6 +20,7 @@ use App\Models\User;
 use App\Models\Offer;
 use App\Models\Slider;
 use App\Models\Phone;
+use App\Models\Order;
 use App\Models\DomesticProduct;
 use App\Models\DomesticProfit;
 
@@ -164,6 +165,12 @@ Route::get('/cargo/order-tracking-view', [CargoController::class,'OrderTrackingV
 Route::get('/cargo/order-list', [CargoController::class,'OrderList'])->name('order-list');
 
 Route::post('/cargo/order-label/update', [CargoController::class,'Orderlabel']);
+
+Route::get('/cargo/order-label/{id}', function($id){
+    $get  = Order::where('id',$id)->first();
+
+    return response()->download(public_path('/storage'.'/'.$get->label));
+});
 
 
 //  CARGO ORDER TRACKING
