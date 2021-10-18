@@ -143,7 +143,7 @@ class OrderController extends Controller
 
 
 
-        Auth::user()->update([
+        $up = User::where('id',$user->id)->update([
             'cargo_due' => $total - $reseller_comission -  $admin_comission
         ]);
 
