@@ -38,11 +38,18 @@ class OperatorController extends Controller
      */
     public function store(Request $request)
     { 
-        $path = $request->img->store('operator', 'public');
-        $data = SimOperator::create([
-            'operator' => $request->operator,
-            'img' => $path
-        ]);
+        if($request->img != null){
+            $path = $request->img->store('operator', 'public');
+            $data = SimOperator::create([
+                'operator' => $request->operator,
+                'img' => $path
+            ]);
+        }else{
+            $data = SimOperator::create([
+                'operator' => $request->operator,
+            ]);
+        }
+        
 
         return redirect('/operator');
     }

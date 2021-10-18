@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cargo Order List</title>
+  <title>Cargo Price List</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,7 +26,7 @@
         <div class="row">
           <div class="col-12 phone_order_header d-block">
             <div class="order_page_header d-inline-block mb-2">
-              <h4 class="d-inline-block"><i class="fas fa-copy"></i>Order List</h4>
+              <h4 class="d-inline-block"><i class="fas fa-copy"></i>Price List</h4>
               <a href="{{url('add-new-pricing')}}" class="d-inline-block" style="float: right;"><i class="fas fa-plus-circle"></i>New Pricing</a>
             </div>
             <div class="input-group mb-4">
@@ -69,10 +69,8 @@
                       <th style="background: #faaeae;"><small>type</small></th>
                       <th style="background: #faaeae;"><small>Weight Start</small></th>
                       <th style="background: #faaeae;"><small>Weight End</small></th>
-                      <th style="background: #faaeae;"><small>Charge For Weight</small></th>
-                      <th style="background: #faaeae;"><small>Charge For Country</small></th>
                       <th style="background: #faaeae;"><small>Country Name</small></th>
-                      <th style="background: #faaeae;"><small>Total</small></th>
+                      <th style="background: #faaeae;"><small>Cost</small></th>
                       <th style="background: #faaeae;"><small>Status</small></th>
                       <th style="background: #faaeae;"><small>Action</small></th>
                     </tr>
@@ -84,8 +82,6 @@
                       <td>{{$order->type}}</td>
                       <td>{{$order->weight_start}}<!-- <br>20:42:30 --></td>
                       <td>{{$order->weight_end}}</td>
-                      <td>{{$order->charge_for_weight}}</td>
-                      <td>{{$order->charge_for_country}}</td>
                       <td>{{$order->country_name}}</td>
                       <td>{{$order->total}}</td>
                       <td>

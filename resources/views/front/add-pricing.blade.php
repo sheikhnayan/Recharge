@@ -81,11 +81,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="weight_start" class="form-label">Weight Start</label>
-                      <input required="" type="number" class="form-control" name="weight_start" id="weight_start" step="0.01" placeholder=" Weight Start">
+                      <input type="number" class="form-control" name="weight_start" id="weight_start" step="0.01" placeholder=" Weight Start">
                     </div>
                     <div class="form-group">
                       <label>Weight End</label>
-                      <input required="" type="number" class="form-control" name="weight_end" id="weight_end" step="0.01" placeholder=" Weight End">
+                      <input type="number" class="form-control" name="weight_end" id="weight_end" step="0.01" placeholder=" Weight End">
                     </div>
 <!--                     <div class="mb-3">
                       <label for="documentNumber" class="form-label">Charge For Weight</label>
