@@ -88,6 +88,7 @@ class PricingController extends Controller
     {
         $data = OrderRatings::where('country_name', '=', $request->country)->where('type', '=', $request->type)->get('total');
         $data = $data[0]->total;
-        return response($data);
+        $message = "Country unavailable";
+        return response($data, $message);
     }
 }
