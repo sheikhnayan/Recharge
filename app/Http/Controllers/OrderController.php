@@ -141,7 +141,7 @@ class OrderController extends Controller
 
         $admin_comission = ($total/100)*$user->admin_cargo_commision;
 
-        dd($admin_cargo_commision);
+        dd($user->admin_cargo_commision);
 
 
 
