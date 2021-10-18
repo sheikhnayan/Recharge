@@ -79,7 +79,7 @@ class PricingController extends Controller
 
     public function SendPricing(Request $request)
     {
-        $data = OrderRatings::where('country_name', '=', $request->country)->where('weight_start', '<', $request->weight)->where('weight_end', '>', $request->weight)->get('total');
+        $data = OrderRatings::where('country_name', '=', $request->country)->where('weight_start', '<=', $request->weight)->where('weight_end', '>=', $request->weight)->get('total');
         $data = $data[0]->total;
         return response($data);
     }

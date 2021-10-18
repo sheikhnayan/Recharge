@@ -117,18 +117,6 @@
                     <div class="form-group">
                       <select class="form-control select2" onchange="print_state('state',this.selectedIndex);" id="country" name ="country" style="width: 100%;"></select>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputFile">Package Label</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="label" name="label">
-                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -203,7 +191,7 @@
                       <label>Delivary Type</label>
                       <select class="form-control select2" name="delivery_condition" id="delivery_condition" style="width: 100%;">
                         <option>--Select--</option>
-                        <option>Goods</option>
+                        <option selected="">Goods</option>
                         <option>Documents</option>
                       </select>
                     </div>
@@ -215,7 +203,7 @@
 
                     <div class="mb-3 myDIV" id="myDiv" >
                       <label for="totalWeightValue" id="myDiv" class="form-label">Total Weight (Kg)</label>
-                      <input class="form-control" step="any" type="number" name="weight" id="weight" value="0" oninput="weight(this)">
+                      <input class="form-control" step="any" type="number" name="weight" id="weight" value="1" oninput="weight(this)">
                     </div>
                     <div class="mb-3 myDIV">
                       <label for="chargePerKgValue" class="form-label">Charge/Kg(Euro)</label>
@@ -359,50 +347,20 @@ function myFunction1234() {
 
 }
 
-function heyyaaa(value) {
-  // alert(value);
-  if(value == "Documents"){
-    // The Alert works
-    // alert(value);
+// function heyyaaa(value) {
+//   // alert(value);
+//   if(value == "Documents"){
+//     // The Alert works
+//     // alert(value);
+//     $(".myDIV").hide();
     
-    let weight = document.getElementById("weight").value;
-
-    // alert(weight);
-
-    $.ajax({
-    type:"GET",
-    url : "controller mapping",
-    data : "selectbox1_selectedvalue="+$(this).val(),
-    async: false,
-    success : function(response) {
-        data = response;
-        return response;
-    },
-    error: function() {
-        alert('Error occured');
-    }
+//     let weight = document.getElementById("weight").value;
     
+//     // fetching var x also works
+//     var x = document.getElementById("myDIV");
 
-
-    let totalCharge = document.getElementById("total");
-    let change = document.getElementById("total").value;
-
-    
-
-    totalCharge.setAttribute('value', change+143);
-    
-    // fetching var x also works
-    var x = document.getElementById("myDIV");
-
-    // shows error in the console for this line
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "none";
-    }
-
-  }
-}
+//   }
+// }
 function showDiv() {
   var x = document.getElementById("myDIV");
   if (x.style.display === "none") {
@@ -423,7 +381,10 @@ function showDiv() {
         let weight = document.getElementById("weight").value;
         
         if(value == "Documents"){
-          $("#myDIV").hide();
+          $(".myDIV").hide();
+        }
+        if(value == "Goods"){
+          $(".myDIV").show();
         }
 
         var e = document.getElementById("delivery_condition");
@@ -474,7 +435,7 @@ function showDiv() {
     
   });
 </script>
-<!-- <script>
+<script>
   $(document).ready(function(){
     
     $("#rcountry").change(function(){
@@ -482,7 +443,10 @@ function showDiv() {
         let weight = document.getElementById("weight").value;
         
         if(value == "Documents"){
-          $("#myDIV").hide();
+          $(".myDIV").hide();
+        }
+        if(value == "Goods"){
+          $(".myDIV").show();
         }
 
         var e = document.getElementById("delivery_condition");
@@ -495,7 +459,7 @@ function showDiv() {
         {
           $.ajax({
             type: 'GET',
-            url: '/send-pricing/',
+            url: '/send-pricing-for-docs/',
             data: {
               type:type,
               country:country,
@@ -503,7 +467,7 @@ function showDiv() {
             },
             success: function(data){
               $(".myDIV").hide();
-              $("#total").html(data);
+              $('#total').val(data);
             }
           });
         }
@@ -519,7 +483,11 @@ function showDiv() {
 
             },
             success: function(data){
-              $('#total').append(data);
+              // $('#total').append(data);
+              $('#total').val(data);
+              // $('#result').val(data);
+              // console.log(data);
+              // $("#total").append(JSON.stringify(data));
               $(".myDIV").show();
               // $("#total").html(data);
             }
@@ -528,5 +496,5 @@ function showDiv() {
     });
     
   });
-</script> -->
+</script>
 @endsection

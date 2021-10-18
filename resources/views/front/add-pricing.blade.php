@@ -71,9 +71,13 @@
                 <div class="bg-ocean mr-1">
                   <div class="customer_information">
                     <h5><i class="fas fa-male"></i> <strong>Pricing</strong></h5>
-                    <div class="mb-3">
-                      <label for="type" class="form-label">Type</label>
-                      <input required="" type="text" class="form-control" name="type" id="type" placeholder="Type">
+                    <div class="mb-3" class="form-label">
+                      <label>Type</label>
+                      <select class="form-control select2" name="type" id="type" style="width: 100%;">
+                        <option>--Select--</option>
+                        <option>Goods</option>
+                        <option>Documents</option>
+                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="weight_start" class="form-label">Weight Start</label>
@@ -83,21 +87,21 @@
                       <label>Weight End</label>
                       <input required="" type="number" class="form-control" name="weight_end" id="weight_end" step="0.01" placeholder=" Weight End">
                     </div>
-                    <div class="mb-3">
+<!--                     <div class="mb-3">
                       <label for="documentNumber" class="form-label">Charge For Weight</label>
                       <input type="number" step="0.01" class="form-control" oninput="myFunction(this);" value="0" id="charge_for_weight" name="charge_for_weight" placeholder="Enter Charge For Weight">
                     </div>
                     <div class="mb-3">
                       <label for="charge_for_country" class="form-label">Charge For Country</label>
                       <input type="number" step="0.01" class="form-control" oninput="myFunction2(this);" id="charge_for_country" name="charge_for_country" value="0" placeholder="Enter Charge For Country">
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                       <label for="country_name" class="form-label">Country Name</label>
                       <select class="form-control select2" onchange="print_state('state',this.selectedIndex);" id="country_name" name ="country_name" style="width: 100%;"></select>
                     </div>
                     <div class="mb-3">
                       <label for="interCustomerAddress" class="form-label">Total</label>
-                      <input type="number" step="any" readonly="true" class="form-control" id="total" name="total" placeholder="Total">
+                      <input type="number" step="any" class="form-control" id="total" name="total" placeholder="Total">
                     </div>
                   </div>
                 </div>
