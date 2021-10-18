@@ -35,16 +35,6 @@
         <div class="row">
           <div class="col-12 phone_order_header d-block">
             <div class="order_page_header d-inline-block">
-              <form action="{{ url('/cargo/search') }}" method="get">
-                @csrf
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter email..." aria-label="Search old order"
-                    aria-describedby="basic-addon2">
-                  <button type="submit">
-                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
-                  </button>
-                </div>
-              </form>
               <h4 class="d-inline-block"><i class="fas fa-plus-circle"></i>New Order</h4>
             </div>
           </div>
