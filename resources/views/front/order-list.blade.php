@@ -77,7 +77,9 @@
                       <th style="background: #faaeae;">Type</th>
                       <th style="background: #faaeae;">Destination</th>
                       <th style="background: #faaeae;">Status</th>
+                      @if (Auth::user()->role == 'admin')
                       <th style="background: #faaeae;">Status Update</th>
+                      @endif
                       <th style="background: #faaeae;">Action</th>
                     </tr>
                   </thead>
@@ -96,6 +98,7 @@
                       <td>{{$order->productType}}</td>
                       <td>{{$order->raddress}}</td>
                       <td>{{$order->status}}</td>
+                      @if (Auth::user()->role == 'admin')
                       <td>
                         <form action="/cargo_update" method="POST">
                           @csrf
@@ -114,6 +117,7 @@
                           <input type="submit" class="btn btn-success" value="Update">
                         </form>
                       </td>
+                      @endif
                       <td>
                         <div class="btn-group cargo_t-action_btn">
                           <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
