@@ -120,8 +120,10 @@
                           </button>
                           <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item" href="/cargo/order-invoice/{{ $order->id }}"><i class="fas fa-print"></i>Print Invoice</a>
-                            @if ($order->label != null)
+                            @if ($order->label != null && Auth::user()->role != 'admin')
                             <a class="dropdown-item" href="/cargo/order-label/{{ $order->id }}"><i class="fas fa-print"></i>Print Label</a>
+                            @elseif(Auth::user()->role == 'admin')
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal{{ $order->id }}"><i class="fas fa-print"></i>Upload Label</a>
                             @endif
                             <a class="dropdown-item" href="/cargo/order/view/{{ $order->id }}"><i class="fas fa-eye"></i>View</a>
                             <a class="dropdown-item" href="/cargo/order/cancel/{{ $order->id }}"><i class="fas fa-times"></i>Cancel</a>
@@ -129,6 +131,46 @@
                         </div>
                       </td>
                     </tr>
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Upload Label</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="order-label/update"
+                            enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <div class="form-group">
+                              <input type="hidden" name="id" value="{{ $order->id }}">
+                              <label for="">Upload Label</label>
+                              <input type="file" name="label" class="form-control">
+                            </div>
+                            <input type="submit" value="Upload" class="btn btn-success">
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
                     @endforeach
                   </tbody>
                 </table>

@@ -117,6 +117,19 @@ class CargoController extends Controller
 
     }
 
+    public function Orderlabel(Request $request)
+    {
+        $request->file('label')->store('public');  
+        $labelFileName = $request->label->hashName();
+
+        $update = Order::where('id',$request->id)->update([
+            'label' => $labelFileName
+        ]);
+
+        return back()->with('success', "Label Updated Successfully!");
+
+    }
+
 
 
 }

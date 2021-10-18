@@ -163,6 +163,8 @@ Route::get('/cargo/order-tracking-view', [CargoController::class,'OrderTrackingV
 
 Route::get('/cargo/order-list', [CargoController::class,'OrderList'])->name('order-list');
 
+Route::post('/cargo/order-label/update', [CargoController::class,'Orderlabel']);
+
 
 //  CARGO ORDER TRACKING
 Route::get('/cargo/order-tracking', [CargoController::class,'OrderTracking'])->name('order-tracking');
