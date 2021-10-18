@@ -121,7 +121,7 @@
                           <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item" href="/cargo/order-invoice/{{ $order->id }}"><i class="fas fa-print"></i>Print Invoice</a>
                             {{-- @if ($order->label != null && Auth::user()->role != 'admin') --}}
-                            <a class="dropdown-item" href="{{ asset('/storage'.'/'.$order->label) }}"><i class="fas fa-print"></i>Print Label</a>
+                            <a class="dropdown-item" href="{{ {{ Storage::url($order->label) }} }}"><i class="fas fa-print"></i>Print Label</a>
                             {{-- @elseif(Auth::user()->role == 'admin') --}}
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal{{ $order->id }}"><i class="fas fa-print"></i>Upload Label</a>
                             {{-- @endif --}}
