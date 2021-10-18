@@ -141,6 +141,8 @@ class OrderController extends Controller
 
         $admin_comission = ($total/100)*$user->admin_cargo_commision;
 
+        dd($admin_comission);
+
 
 
         $up = User::where('id',$user->id)->update([
