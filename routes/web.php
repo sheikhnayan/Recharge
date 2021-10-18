@@ -20,6 +20,7 @@ use App\Models\User;
 use App\Models\Offer;
 use App\Models\Slider;
 use App\Models\Phone;
+use App\Models\Order;
 use App\Models\DomesticProduct;
 use App\Models\DomesticProfit;
 
@@ -162,6 +163,14 @@ Route::get('/cargo/new-order', [CargoController::class,'NewOrderView'])->name('c
 Route::get('/cargo/order-tracking-view', [CargoController::class,'OrderTrackingView'])->name('order-tracking-view');
 
 Route::get('/cargo/order-list', [CargoController::class,'OrderList'])->name('order-list');
+
+Route::post('/cargo/order-label/update', [CargoController::class,'Orderlabel']);
+
+Route::get('/cargo/order-label/{id}', function($id){
+    $get  = Order::where('id',$id)->first();
+
+    return response()->download(public_path('/storage'.'/'.$get->label));
+});
 
 
 //  CARGO ORDER TRACKING
@@ -323,6 +332,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::post('/add_balance',[BalanceController::class,'AddBalance'])->name('AddBalance');
+
+Route::post('/add_cargo_due',[BalanceController::class,'AddDue']);
+
+Route::post('/edit_cargo_due',[BalanceController::class,'EditDue']);
 
 
 Route::post('/edit_balance',[BalanceController::class,'EditBalance'])->name('EditBalance');

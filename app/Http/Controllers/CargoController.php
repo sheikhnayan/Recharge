@@ -29,7 +29,7 @@ class CargoController extends Controller
             // dd($orders);
         }
         if (empty($request->email)) {
-            $orders = Order::all();
+            $orders = Order::paginate(10);
         }
 
         return view('front.order-list', compact('orders'));
@@ -114,6 +114,19 @@ class CargoController extends Controller
         Order::where('id', $id)->delete();
 
         return back();
+
+    }
+
+    public function Orderlabel(Request $request)
+    {
+        $request->file('label')->store('public');  
+        $labelFileName = $request->label->hashName();
+
+        $update = Order::where('id',$request->id)->update([
+            'label' => $labelFileName
+        ]);
+
+        return back()->with('success', "Label Updated Successfully!");
 
     }
 

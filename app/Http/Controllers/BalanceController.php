@@ -107,6 +107,37 @@ class BalanceController extends Controller
         }
     }
 
+    public function EditDue(Request $request){
+
+        $info = User::where('id', $request->user_id)->first();
+
+        if($info->cargo_due >= $request->due){
+            $user = User::where('id', $request->user_id)->update([
+
+                "cargo_due" => $info->cargo_due - $request->due
+                
+            ]);
+
+            return back();
+        }else{
+            return back()->with('error','Due Amount Is Less Than The Input');
+        }
+    }
+
+    public function AddDue(Request $request){
+
+        $info = User::where('id', $request->user_id)->first();
+
+
+            $user = User::where('id', $request->user_id)->update([
+
+                "cargo_due" => $info->cargo_due + $request->due
+                
+            ]);
+
+            return back();
+    }
+
     public function PriceDiscount(Request $request)
     {
         $phone = Phone::find($request->user_id);

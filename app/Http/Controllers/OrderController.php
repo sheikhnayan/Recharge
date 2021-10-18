@@ -133,6 +133,21 @@ class OrderController extends Controller
         $orders->status = 'available';
         $orders->save();
 
+        $user = User::where('id', $orders->reseller_id)->first();
+
+        $total = $request->total;
+
+        $reseller_comission = ($total/100)*$user->cargo;
+
+        $admin_comission = ($total/100)*$user->admin_cargo_commission;
+
+
+
+
+        $up = User::where('id',$user->id)->update([
+            'cargo_due' => $total - $reseller_comission -  $admin_comission
+        ]);
+
         return back()->with('status', 'Order Created Successfully!');
         }else{
             return back()->with('error', 'Insufficient Balace!');    

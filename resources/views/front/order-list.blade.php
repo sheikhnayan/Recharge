@@ -77,7 +77,9 @@
                       <th style="background: #faaeae;">Type</th>
                       <th style="background: #faaeae;">Destination</th>
                       <th style="background: #faaeae;">Status</th>
+                      @if (Auth::user()->role == 'admin')
                       <th style="background: #faaeae;">Status Update</th>
+                      @endif
                       <th style="background: #faaeae;">Action</th>
                     </tr>
                   </thead>
@@ -96,6 +98,7 @@
                       <td>{{$order->productType}}</td>
                       <td>{{$order->raddress}}</td>
                       <td>{{$order->status}}</td>
+                      @if (Auth::user()->role == 'admin')
                       <td>
                         <form action="/cargo_update" method="POST">
                           @csrf
@@ -114,6 +117,7 @@
                           <input type="submit" class="btn btn-success" value="Update">
                         </form>
                       </td>
+                      @endif
                       <td>
                         <div class="btn-group cargo_t-action_btn">
                           <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
@@ -122,6 +126,8 @@
                             <a class="dropdown-item" href="/cargo/order-invoice/{{ $order->id }}"><i class="fas fa-print"></i>Print Invoice</a>
                             @if ($order->label != null)
                             <a class="dropdown-item" href="/cargo/order-label/{{ $order->id }}"><i class="fas fa-print"></i>Print Label</a>
+                            @elseif(Auth::user()->role == 'admin')
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal{{ $order->id }}"><i class="fas fa-print"></i>Upload Label</a>
                             @endif
                             <a class="dropdown-item" href="/cargo/order/view/{{ $order->id }}"><i class="fas fa-eye"></i>View</a>
                             <a class="dropdown-item" href="/cargo/order/cancel/{{ $order->id }}"><i class="fas fa-times"></i>Cancel</a>
@@ -129,6 +135,46 @@
                         </div>
                       </td>
                     </tr>
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Upload Label</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="order-label/update"
+                            enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <div class="form-group">
+                              <input type="hidden" name="id" value="{{ $order->id }}">
+                              <label for="">Upload Label</label>
+                              <input type="file" name="label" class="form-control">
+                            </div>
+                            <input type="submit" value="Upload" class="btn btn-success">
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
                     @endforeach
                   </tbody>
                 </table>

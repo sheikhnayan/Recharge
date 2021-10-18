@@ -415,7 +415,7 @@ function showDiv() {
             },
             success: function(data){
               // $('#total').append(data);
-              $('#total').val(data);
+              $('#total').val(data*weight);
               // $('#result').val(data);
               if(data == 'No data'){
                 alert(data);
@@ -484,7 +484,7 @@ function showDiv() {
             },
             success: function(data){
               // $('#total').append(data);
-              $('#total').val(data);
+              $('#total').val(data*weight);
               if(data == 'No data'){
                 alert(data);
               }
@@ -533,7 +533,7 @@ function showDiv() {
             },
             success: function(data){
               $(".myDIV").hide();
-              $('#total').val(data);
+              $('#total').val(data));
               if(data == 'No data'){
                 alert(data);
               }
@@ -554,7 +554,7 @@ function showDiv() {
             },
             success: function(data){
               // $('#total').append(data);
-              $('#total').val(data);
+              $('#total').val(data*weight);
               if(data == 'No data'){
                 alert(data);
               }
