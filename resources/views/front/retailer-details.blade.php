@@ -171,6 +171,48 @@
                           </div>
                         </div>
                       @endif 
+
+                      @if (Auth::user()->role == 'admin')
+                        <div class="  mt-2">
+                          <strong> Cargo Due: </strong>
+                          <span>&euro; {{ $item->cargo_due }}</span>
+                        </div>
+                        <!-- ADD DUE -->
+                        <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#cargo1{{$item->id}}">Add Due</button>
+
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" id="{{$item->id}}modal_id" data-target="#cargo2{{$item->id}}">Edit Due</button>
+
+                        <div class="modal fade bd-example-modal-sm" id="cargo1{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <form action="{{url('/add_cargo_due')}}" method="post">
+                                @csrf
+                                <div>
+                                  <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
+                                  <input class="form-control" type="number" step="0.01" name="due">
+                                  <button class="btn btn-success btn-sm"  type="submit">Add Due For {{$item->first_name}}</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade bd-example-modal-sm" id="cargo2{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <form action="{{url('/edit_cargo_due')}}" method="post">
+                                @csrf
+                                <div>
+                                  <input class="form-control" type="hidden" name="user_id" value="{{$item->id}}">
+                                  <input class="form-control" type="number"  step="0.01" name="due">
+                                  <button class="btn btn-success btn-sm"  type="submit">Edit Due For {{$item->first_name}}</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      @endif 
                       <div class="  mt-2">
                         <strong>Commission: </strong>
                       </div>

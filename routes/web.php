@@ -333,6 +333,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::post('/add_balance',[BalanceController::class,'AddBalance'])->name('AddBalance');
 
+Route::post('/add_cargo_due',[BalanceController::class,'AddDue']);
+
+Route::post('/edit_cargo_due',[BalanceController::class,'EditDue']);
+
 
 Route::post('/edit_balance',[BalanceController::class,'EditBalance'])->name('EditBalance');
 
