@@ -176,7 +176,7 @@
             <b class="mr-2">Due:</b><span>{{ Auth()->user()->due }}</span>
           </div>
           <span>
-            <b class="mr-2">Corriere dovuto : </b><span> {{ Auth::user()->cargo_due }}&euro;</span>
+            <b class="mr-2">Corriere : </b><span> {{ Auth::user()->cargo_due }}&euro;</span>
           </span><br>
         </div>
         @if (Auth::user()->role == 'admin')
