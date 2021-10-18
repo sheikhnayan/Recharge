@@ -203,7 +203,7 @@
 
                     <div class="mb-3 myDIV" id="myDiv" >
                       <label for="totalWeightValue" id="myDiv" class="form-label">Total Weight (Kg)</label>
-                      <input class="form-control" step="any" type="number" name="weight" id="weight" value="1" oninput="weight(this)">
+                      <input class="form-control" step="any" type="number" name="weight" id="weight" value="1" >
                     </div>
                     <div class="mb-3 myDIV">
                       <label for="chargePerKgValue" class="form-label">Charge/Kg(Euro)</label>
@@ -406,6 +406,9 @@ function showDiv() {
             success: function(data){
               $(".myDIV").hide();
               $('#total').val(data);
+              if(data == 'No data'){
+                alert(data);
+              }
             }
           });
         }
@@ -424,7 +427,10 @@ function showDiv() {
               // $('#total').append(data);
               $('#total').val(data);
               // $('#result').val(data);
-              // console.log(data);
+              if(data == 'No data'){
+                alert(data);
+              }
+
               // $("#total").append(JSON.stringify(data));
               $(".myDIV").show();
               // $("#total").html(data);
@@ -468,6 +474,10 @@ function showDiv() {
             success: function(data){
               $(".myDIV").hide();
               $('#total').val(data);
+              if(data == 'No data'){
+                alert(data);
+              }
+              // alert(message);
             }
           });
         }
@@ -485,6 +495,80 @@ function showDiv() {
             success: function(data){
               // $('#total').append(data);
               $('#total').val(data);
+              if(data == 'No data'){
+                alert(data);
+              }
+              // alert(message);
+              // $('#result').val(data);
+              // console.log(data);
+              // $("#total").append(JSON.stringify(data));
+              $(".myDIV").show();
+              // $("#total").html(data);
+            }
+          });
+        }
+    });
+    
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    
+    $("#weight").on("input", function(){
+        let value = document.getElementById("delivery_condition").value;
+        let weight = document.getElementById("weight").value;
+        
+        if(value == "Documents"){
+          $(".myDIV").hide();
+        }
+        if(value == "Goods"){
+          $(".myDIV").show();
+        }
+
+        var e = document.getElementById("delivery_condition");
+        var type = e.value;
+
+        var f = document.getElementById("rcountry");
+        var country = f.value;
+        
+        if(type == 'Documents')
+        {
+          $.ajax({
+            type: 'GET',
+            url: '/send-pricing-for-docs/',
+            data: {
+              type:type,
+              country:country,
+
+            },
+            success: function(data){
+              $(".myDIV").hide();
+              $('#total').val(data);
+              if(data == 'No data'){
+                alert(data);
+              }
+              // alert(message);
+            }
+          });
+        }
+        else
+        {
+          $.ajax({
+            type: 'GET',
+            url: '/send-pricing/',
+            data: {
+              type:type,
+              weight:weight,
+              country:country,
+
+            },
+            success: function(data){
+              // $('#total').append(data);
+              $('#total').val(data);
+              if(data == 'No data'){
+                alert(data);
+              }
+              // alert(message);
               // $('#result').val(data);
               // console.log(data);
               // $("#total").append(JSON.stringify(data));

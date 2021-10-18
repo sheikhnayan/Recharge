@@ -79,16 +79,28 @@ class PricingController extends Controller
 
     public function SendPricing(Request $request)
     {
-        $data = OrderRatings::where('country_name', '=', $request->country)->where('weight_start', '<=', $request->weight)->where('weight_end', '>=', $request->weight)->get('total');
-        $data = $data[0]->total;
+        // $data = OrderRatings::where('country_name', '=', $request->country)->where('weight_start', '<=', $request->weight)->where('weight_end', '>=', $request->weight)->get('total');
+        // $data = $data[0]->total;
+        $data = OrderRatings::where('country_name', '=', $request->country)->where('type', '=', $request->type)->get('total');
+        
+        if(count($data) < 1){
+            $data = "No data";
+        }else{
+            $data = $data[0]->total;
+        }
         return response($data);
     }
 
     public function SendPricingForDocs(Request $request)
     {
         $data = OrderRatings::where('country_name', '=', $request->country)->where('type', '=', $request->type)->get('total');
-        $data = $data[0]->total;
-        $message = "Country unavailable";
-        return response($data, $message);
+        
+        if(count($data) < 1){
+            $data = "No data";
+        }else{
+            $data = $data[0]->total;
+        }
+
+        return response($data);
     }
 }
